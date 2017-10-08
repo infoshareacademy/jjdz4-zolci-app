@@ -63,22 +63,41 @@ public class Parser {
             e.printStackTrace();
         }
 
-        /*for (AllegroItem allegroItems : allegroList) {
-            System.out.println("\nid: " + allegroItems.getId() + "\nName: " + allegroItems.getName() +
-                    "\nParent: " + allegroItems.getParent() + "\nPosition: " + allegroItems.getPosition());
-        }*/
+        int sum = 0;
         for (int i = 0; i < allegroList.size(); i++) {
-            //14899
-            if (allegroList.get(i).getId() == 14899) {
+            if (allegroList.get(i).getName().equals("Części samochodowe")) {
                 System.out.println(allegroList.get(i).getName());
+                sum++;
                 for (int j = 0; j < allegroList.size(); j++) {
-                    if (allegroList.get(i).getId() == allegroList.get(j).getParent())
-                        System.out.println("****" + allegroList.get(j).getName());
+                    if (allegroList.get(i).getId() == allegroList.get(j).getParent()) {
+                        System.out.println("*" + allegroList.get(j).getName());
+                        sum++;
+                        for (int k = 0; k < allegroList.size(); k++) {
+                            if (allegroList.get(j).getId() == allegroList.get(k).getParent()) {
+                                System.out.println("**" + allegroList.get(k).getName());
+                                sum++;
+                                for (int l = 0; l < allegroList.size(); l++) {
+                                    if (allegroList.get(k).getId() == allegroList.get(l).getParent()) {
+                                        System.out.println("***" + allegroList.get(l).getName());
+                                        sum++;
+                                        for (int m = 0; m < allegroList.size(); m++) {
+                                            if (allegroList.get(l).getId() == allegroList.get(m).getParent()) {
+                                                System.out.println("****" + allegroList.get(m).getName());
+                                                sum++;
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
+
+
             }
+
         }
-
-
+        System.out.println(sum);
     }
-
 }
