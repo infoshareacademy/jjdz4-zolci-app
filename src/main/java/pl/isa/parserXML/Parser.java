@@ -18,6 +18,7 @@ public class Parser {
         AllegroItem allegroItem;
         ArrayList<AllegroItem> allegroList = new ArrayList<AllegroItem>();
 
+        int czesciSamochodowe = 0;
         try {
             File inputFile = new File("src/Allegro_cathegories_2016-02-13.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -56,24 +57,22 @@ public class Parser {
                             .getElementsByTagName("ns1:catPosition")
                             .item(0)
                             .getTextContent()));
-
                     allegroList.add(allegroItem);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        for(int i=0; i<allegroList.size(); i++){
-            if(allegroList.get(i).getId()==620)
-            allegroList.get(i).setChildren(allegroList);
+        for(int i=0; i<allegroList.size(); i++) {
+            if (allegroList.get(i).getId() == 620){
+                czesciSamochodowe = i;
+            break;
         }
-        for(AllegroItem item : allegroList){
-            if(item.getId()==620)
-                item.printTree();
         }
 
 
-
+        allegroList.get(czesciSamochodowe).setChildren(allegroList);
+        allegroList.get(czesciSamochodowe).printTree(1);
 
 
 

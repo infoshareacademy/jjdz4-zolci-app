@@ -51,11 +51,15 @@ public class AllegroItem {
         }
     }
 
-    public void printTree() {
+    public void printTree(int stars) {
+        stars++;
         for (AllegroItem item : this.children) {
+            for(int i=0; i<stars; i++) {
                 System.out.print("*");
-                System.out.println(item.getName());
-                item.printTree();
+            }
+
+            System.out.println(item.getName());
+            item.printTree(stars);
 
         }
     }
