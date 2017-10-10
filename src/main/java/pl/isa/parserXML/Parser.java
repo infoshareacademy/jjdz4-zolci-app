@@ -79,7 +79,7 @@ public class Parser {
             if (value.equals(entry.getValue().getName())) {
 //                result = entry.getValue();
                 result = entry.getKey();
-                System.out.println("Parentid: " + result);
+                System.out.println(value + "Parentid: " + result + "\n");
             }
         }
         Integer result2 = 0;
@@ -89,8 +89,8 @@ public class Parser {
 //                result = entry.getValue();
                 result2 = entry.getKey();
                 value2 = entry.getValue().getName();
-                System.out.println("Id: " + result2);
-                System.out.println("Category name: " + value2);
+                System.out.print("Id: " + result2);
+                System.out.println(" - Category name: " + value2);
             }
         }
 
