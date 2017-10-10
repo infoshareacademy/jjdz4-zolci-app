@@ -8,12 +8,13 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Parser {
+
+    static Integer result_tmp2 = 0;
+    static String value_tmp2 = "";
+    static int i = 1;
 
     public static void main(String[] args) {
         AllegroItem allegroItem;
@@ -61,7 +62,7 @@ public class Parser {
                             .item(0)
                             .getTextContent()));
 
-                 //   allegroList.add(allegroItem);
+                    //   allegroList.add(allegroItem);
 
                     map.put(allegroItem.getId(), allegroItem);
 
@@ -72,52 +73,77 @@ public class Parser {
         }
 
 //        System.out.println(map.get(253498).getName());
+        List<Integer> tmpList = new ArrayList<>();
 
-        String value = "Akcesoria samochodowe";
-        Integer result = 0;
+        Integer result_tmp = 0;
+        String value_tmp = value_tmp2;
+//        Integer result_tmp2;
+//        String value_tmp2;
+
         for (Map.Entry<Integer, AllegroItem> entry : map.entrySet()) {
-            if (value.equals(entry.getValue().getName())) {
-//                result = entry.getValue();
-                result = entry.getKey();
-                System.out.println(value + "Parentid: " + result + "\n");
-            }
-        }
-        Integer result2 = 0;
-        String value2 = "";
-        for (Map.Entry<Integer, AllegroItem> entry : map.entrySet()) {
-            if (result.equals(entry.getValue().getParent())) {
-//                result = entry.getValue();
-                result2 = entry.getKey();
-                value2 = entry.getValue().getName();
-                System.out.print("Id: " + result2);
-                System.out.println(" - Category name: " + value2);
+            if (result_tmp.equals(entry.getValue().getParent())) {
+                result_tmp2 = entry.getKey();
+                value_tmp2 = entry.getValue().getName();
+                System.out.print("Id: " + result_tmp2);
+                System.out.println(" : " + (i++) + " - Category name: " + value_tmp2);
+                tmpList.add(result_tmp2);
             }
         }
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nWybierz numer kategorii: ");
+        result_tmp = scanner.nextInt();
+        result_tmp = tmpList.get(result_tmp - 1);
+        tmpList.clear();
+        i = 1;
 
-////        System.out.println(map.get(253498).getName());
-//        Map<Integer, Integer> map1 = new HashMap<>();
-//        map1.put(2, 4);
-//        map1.put(3, 1);
-//        map1.put(8, 1);
-//        map1.put(9, 4);
-//        map1.put(4, 3);
-//        map1.put(6, 3);
-//        map1.put(1, 4);
-//        map1.put(7, 2);
-//        map1.put(0, 2);
-//
-//        Integer value = 1;
-//        Integer result = 0;
-//        for (Map.Entry<Integer, Integer> entry : map1.entrySet()) {
-//            if(value.equals(entry.getValue())){
-////                result = entry.getValue();
-//                result = entry.getKey();
-//                System.out.println(result);
-//            }
-//        }
+        for (Map.Entry<Integer, AllegroItem> entry : map.entrySet()) {
+            if (result_tmp.equals(entry.getValue().getParent())) {
+                result_tmp2 = entry.getKey();
+                value_tmp2 = entry.getValue().getName();
+                System.out.print("Id: " + result_tmp2);
+                System.out.println(" : " + (i++) + " - Category name: " + value_tmp2);
+                tmpList.add(result_tmp2);
+            }
+        }
 
-        System.out.println();
+        scanner = new Scanner(System.in);
+        System.out.print("\nWybierz numer kategorii: ");
+        result_tmp = scanner.nextInt();
+        result_tmp = tmpList.get(result_tmp - 1);
+        tmpList.clear();
+        i = 1;
+
+        for (Map.Entry<Integer, AllegroItem> entry : map.entrySet()) {
+            if (result_tmp.equals(entry.getValue().getParent())) {
+                result_tmp2 = entry.getKey();
+                value_tmp2 = entry.getValue().getName();
+                System.out.print("Id: " + result_tmp2);
+                System.out.println(" : " + (i++) + " - Category name: " + value_tmp2);
+                tmpList.add(result_tmp2);
+            }
+        }
+
+        scanner = new Scanner(System.in);
+        System.out.print("\nWybierz numer kategorii: ");
+        result_tmp = scanner.nextInt();
+        result_tmp = tmpList.get(result_tmp - 1);
+        tmpList.clear();
+        i = 1;
+
+        for (Map.Entry<Integer, AllegroItem> entry : map.entrySet()) {
+            if (result_tmp.equals(entry.getValue().getParent())) {
+                result_tmp2 = entry.getKey();
+                value_tmp2 = entry.getValue().getName();
+                System.out.print("Id: " + result_tmp2);
+                System.out.println(" : " + (i++) + " - Category name: " + value_tmp2);
+                tmpList.add(result_tmp2);
+            }
+        }
+
+
+
+
 
 //        int sum = 0;
 //        for (int i = 0; i < allegroList.size(); i++) {
