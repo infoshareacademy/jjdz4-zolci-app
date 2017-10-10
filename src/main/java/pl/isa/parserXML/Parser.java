@@ -64,6 +64,7 @@ public class Parser {
             e.printStackTrace();
         }
         for(int i=0; i<allegroList.size(); i++){
+            if(allegroList.get(i).getId()==620)
             allegroList.get(i).setChildren(allegroList);
         }
         for(AllegroItem item : allegroList){
