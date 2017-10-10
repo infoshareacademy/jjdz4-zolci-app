@@ -1,12 +1,14 @@
 package pl.isa.parserXML;
 
+import java.util.ArrayList;
+
 public class AllegroItem {
 
     private int id;
     private String name;
     private int parent;
     private int position;
-
+    private ArrayList<AllegroItem> children = new ArrayList<AllegroItem>();
 
     public int getId() {
         return id;
@@ -38,5 +40,23 @@ public class AllegroItem {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public void setChildren(ArrayList<AllegroItem> allegroList) {
+        for (int i = 0; i < allegroList.size(); i++) {
+            if (this.id == allegroList.get(i).getParent()) {
+                this.children.add(allegroList.get(i));
+                allegroList.get(i).setChildren(allegroList);
+            }
+        }
+    }
+
+    public void printTree() {
+        for (AllegroItem item : this.children) {
+                System.out.print("*");
+                System.out.println(item.getName());
+                item.printTree();
+
+        }
     }
 }

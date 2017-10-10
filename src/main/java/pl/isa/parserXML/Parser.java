@@ -9,14 +9,15 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Parser {
 
     public static void main(String[] args) {
         AllegroItem allegroItem;
-        List<AllegroItem> allegroList = new ArrayList<AllegroItem>();
-        List<AllegroItem> sameParent = new ArrayList<AllegroItem>();
+        ArrayList<AllegroItem> allegroList = new ArrayList<AllegroItem>();
+
         try {
             File inputFile = new File("src/Allegro_cathegories_2016-02-13.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -62,7 +63,66 @@ public class Parser {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        for(int i=0; i<allegroList.size(); i++){
+            allegroList.get(i).setChildren(allegroList);
+        }
+        for(AllegroItem item : allegroList){
+            if(item.getId()==620)
+                item.printTree();
+        }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       /* HashMap hashMap = new HashMap(0);
+        for (AllegroItem item : allegroList) {
+            hashMap.put(item.getParent(), item);
+
+        }
         int sum = 0;
         for (int i = 0; i < allegroList.size(); i++) {
             if (allegroList.get(i).getName().equals("Części samochodowe")) {
@@ -98,6 +158,6 @@ public class Parser {
             }
 
         }
-        System.out.println(sum);
+        System.out.println(sum);*/
     }
 }
