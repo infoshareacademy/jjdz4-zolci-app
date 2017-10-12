@@ -1,29 +1,49 @@
 package pl.isa.parserXML;
 
-import java.util.Map;
+import java.util.*;
 
 public class AllegroItem {
 
     private int id;
     private String name;
-    private int parent;
+    private int parentId;
     private int position;
+    Scanner scanner = new Scanner(System.in);
+
+    //    choosing options from keyboard
+    public int readData(List<Integer> tmpList) {
+        int result_tmp;
+
+        System.out.print("\nWybierz numer kategorii: ");
+        result_tmp = tmpList.get(scanner.nextInt() - 1);
+
+        return result_tmp;
+    }
 
 
-//    public static void mainCategories(Map<Integer, AllegroItem> map) {
-//        Integer result_tmp = 0;
-//        Integer result_tmp2;
-//        String valu_tmp = "tmp";
-//
-//        for (Map.Entry<Integer, AllegroItem> entry : map.entrySet()) {
-//            if (result_tmp.equals(entry.getValue().getParent())) {
-//                result_tmp2 = entry.getKey();
-//                valu_tmp = entry.getValue().getName();
-//                System.out.print("Id: " + result_tmp2);
-//                System.out.println(" - Category name: " + valu_tmp);
-//            }
-//        }
-//    }
+
+
+    //    filtering categories
+    public List<Integer> allegroCategories(Map<Integer, AllegroItem> map, Integer result_tmp) {
+
+        List<Integer> tmpList = new ArrayList<>();
+        Map<Integer, String> tmpMap = new HashMap<>();
+
+        int i = 1;
+
+        for (Map.Entry<Integer, AllegroItem> entry : map.entrySet()) {
+            if (result_tmp.equals(entry.getValue().getParentId())) {
+
+                System.out.print("Id: " + entry.getKey());
+                System.out.println(" : " + (i++) + " - Category name: " + entry.getValue().getName());
+                tmpList.add(entry.getKey());
+
+                tmpMap.put(entry.getKey(), entry.getValue().getName());
+//                continue;
+            }
+        }
+        return tmpList;
+    }
 
 
     public int getId() {
@@ -42,12 +62,12 @@ public class AllegroItem {
         this.name = name;
     }
 
-    public int getParent() {
-        return parent;
+    public int getParentId() {
+        return parentId;
     }
 
-    public void setParent(int parent) {
-        this.parent = parent;
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
     }
 
     public int getPosition() {
