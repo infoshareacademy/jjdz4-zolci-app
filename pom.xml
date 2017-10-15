@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>pl.isa.autoparts</groupId>
-  <artifactId>autparts-cli</artifactId>
+  <artifactId>autoparts-cli</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>autparts-cli</name>
+  <name>autoparts-cli</name>
   <url>http://maven.apache.org</url>
   <build>
     <plugins>
