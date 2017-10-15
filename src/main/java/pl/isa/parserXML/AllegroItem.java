@@ -8,7 +8,10 @@ public class AllegroItem {
     private String name;
     private int parent;
     private int position;
+
     private ArrayList<AllegroItem> children = new ArrayList<AllegroItem>();
+
+    private AllegroItem parentObject;
 
     public int getId() {
         return id;
@@ -44,23 +47,29 @@ public class AllegroItem {
 
     public void setChildren(ArrayList<AllegroItem> allegroList) {
         for (int i = 0; i < allegroList.size(); i++) {
-            if (this.id == allegroList.get(i).getParent()) {
-                this.children.add(allegroList.get(i));
-                allegroList.get(i).setChildren(allegroList);
+            AllegroItem child = allegroList.get(i);
+
+            if (this.id == child.getParent()) {
+                child.setParentObject(this);
+                this.children.add(child);
+
+                child.setChildren(allegroList);
             }
         }
     }
 
-    public void printTree(int stars) {
-        stars++;
-        for (AllegroItem item : this.children) {
-            for(int i=0; i<stars; i++) {
-                System.out.print("*");
-            }
+    public void setParentObject(AllegroItem item) {
+        this.parentObject = item;
+        this.parent = item.getParent();
+    }
 
-            System.out.println(item.getName());
-            item.printTree(stars);
 
-        }
+    public ArrayList<AllegroItem> getChildren() {
+        return children;
+    }
+
+
+    public AllegroItem getParentObject() {
+        return parentObject;
     }
 }

@@ -9,16 +9,15 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class Parser {
+    static int czesciSamochodoweId = 620;
 
     public static void main(String[] args) {
         AllegroItem allegroItem;
         ArrayList<AllegroItem> allegroList = new ArrayList<AllegroItem>();
 
-        int czesciSamochodowe = 0;
+        int czesciSamochodowePosition = 0;
         try {
             File inputFile = new File("src/Allegro_cathegories_2016-02-13.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -63,101 +62,26 @@ public class Parser {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        for(int i=0; i<allegroList.size(); i++) {
-            if (allegroList.get(i).getId() == 620){
-                czesciSamochodowe = i;
-            break;
-        }
-        }
-
-
-        allegroList.get(czesciSamochodowe).setChildren(allegroList);
-        allegroList.get(czesciSamochodowe).printTree(1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       /* HashMap hashMap = new HashMap(0);
-        for (AllegroItem item : allegroList) {
-            hashMap.put(item.getParent(), item);
-
-        }
-        int sum = 0;
-        for (int i = 0; i < allegroList.size(); i++) {
-            if (allegroList.get(i).getName().equals("Części samochodowe")) {
-                System.out.println(allegroList.get(i).getName());
-                sum++;
-                for (int j = 0; j < allegroList.size(); j++) {
-                    if (allegroList.get(i).getId() == allegroList.get(j).getParent()) {
-                        System.out.println("*" + allegroList.get(j).getName());
-                        sum++;
-                        for (int k = 0; k < allegroList.size(); k++) {
-                            if (allegroList.get(j).getId() == allegroList.get(k).getParent()) {
-                                System.out.println("**" + allegroList.get(k).getName());
-                                sum++;
-                                for (int l = 0; l < allegroList.size(); l++) {
-                                    if (allegroList.get(k).getId() == allegroList.get(l).getParent()) {
-                                        System.out.println("***" + allegroList.get(l).getName());
-                                        sum++;
-                                        for (int m = 0; m < allegroList.size(); m++) {
-                                            if (allegroList.get(l).getId() == allegroList.get(m).getParent()) {
-                                                System.out.println("****" + allegroList.get(m).getName());
-                                                sum++;
-
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-
+        for (int i = 0; i < allegroList.size(); i++) { //find collection position of category "Części Samochodowe"
+            if (allegroList.get(i).getId() == czesciSamochodoweId) {
+                czesciSamochodowePosition = i;
+                break;
             }
-
         }
-        System.out.println(sum);*/
+
+
+        TreeOperations treeOperations = new TreeOperations();
+
+        allegroList.get(czesciSamochodowePosition).setChildren(allegroList); //set every item's children
+        treeOperations.printWholeTree(0, allegroList.get(czesciSamochodowePosition));
+
+        /*Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj nazwę kategorii której dzieci i rodzice cię interesują: ");
+        //String searchPhase = scanner.nextLine();*/
+        String searchPhase = "Układ hamulcowy";
+
+        /*treeOperations.setSearchedCategory(searchPhase);
+        treeOperations.printRelations(allegroList);*/
+        //TODO poruszac sie tylko po dzieciach Czesci SAmochodowych a nie po calej liscie
     }
 }
