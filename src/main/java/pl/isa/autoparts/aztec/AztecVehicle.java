@@ -6,4 +6,8 @@ public class AztecVehicle {
 
     @JsonProperty("Dane")
     private AztecData aztecData;
+
+    public AztecData getAztecData() {
+        return aztecData;
+    }
 }
