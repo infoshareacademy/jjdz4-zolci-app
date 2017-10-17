@@ -43,7 +43,7 @@ public class AllegroItem {
             if (this.id == child.getParent()) {
                 this.children.add(child);
 
-                //child.setChildren(allegroList);
+                child.setChildren(allegroList);
             }
         }
     }

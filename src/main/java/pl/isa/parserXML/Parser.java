@@ -16,7 +16,7 @@ public class Parser {
     public static void main(String[] args) {
         AllegroItem allegroItem;
         ArrayList<AllegroItem> allegroList = new ArrayList<AllegroItem>();
-
+        AllegroItem czesciSamochodowe = new AllegroItem();
         int czesciSamochodowePosition = 0;
         try {
             File inputFile = new File("src/Allegro_cathegories_2016-02-13.xml");
@@ -62,23 +62,12 @@ public class Parser {
             }
         }
 
+        czesciSamochodowe = allegroList.get(czesciSamochodowePosition);
 
-        //allegroList.get(czesciSamochodowePosition).setChildren(allegroList);
-        for (AllegroItem item : allegroList) {
-            item.setChildren(allegroList);
-        }
-        TreeOperations treeOperations = new TreeOperations(allegroList);
+        czesciSamochodowe.setChildren(allegroList);
 
-        //treeOperations.printWholeTree(0, allegroList.get(czesciSamochodowePosition));
+        TreeOperations treeOperations = new TreeOperations(czesciSamochodowe);
 
-        /*Scanner scanner = new Scanner(System.in);
-        System.out.println("Podaj nazwę kategorii której dzieci i rodzice cię interesują: ");
-        //String searchPhase = scanner.nextLine();*/
-        String searchPhase = "Chłodnice";
-        treeOperations.setSearchedCategory(searchPhase);
-        treeOperations.printRelations();
-        //TODO poruszac sie tylko po dzieciach Czesci SAmochodowych a nie po calej liscie
-
-
+        treeOperations.printWholeTree(0, czesciSamochodowe);
     }
 }

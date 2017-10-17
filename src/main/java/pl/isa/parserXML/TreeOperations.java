@@ -7,41 +7,21 @@ import java.util.ArrayList;
 public class TreeOperations {
 
 
-    private String category;
-    private ArrayList<AllegroItem> allegroList = new ArrayList<AllegroItem>();
+    private AllegroItem czesciSamochodowe = new AllegroItem();
 
-    TreeOperations(ArrayList<AllegroItem> allegroList) {
-        this.allegroList = allegroList;
+    TreeOperations(AllegroItem allegroItem) {
+        this.czesciSamochodowe = allegroItem;
     }
 
 
-    public void printWholeTree(int stars, AllegroItem allegroItem) {
+    public void printWholeTree(int stars, AllegroItem czesciSamochodowe) {
         stars++;
-        for (AllegroItem item : allegroItem.getChildren()) {
+        for (AllegroItem item : czesciSamochodowe.getChildren()) {
             for (int i = 0; i < stars; i++) {
                 System.out.print("*");
             }
             System.out.println(item.getName());
             printWholeTree(stars, item);
-        }
-    }
-
-    public void setSearchedCategory(String category) {
-        this.category = category;
-    }
-
-    public void printRelations() {
-        for (AllegroItem item : this.allegroList) {
-            if (item.getName().equals(this.category)) {
-                System.out.println(item.getName());
-                for (AllegroItem parent : this.allegroList) {
-                    if (item.getParent() == parent.getId()) {
-                        setSearchedCategory(parent.getName());
-                        printRelations();
-
-                    }
-                }
-            }
         }
     }
 }
