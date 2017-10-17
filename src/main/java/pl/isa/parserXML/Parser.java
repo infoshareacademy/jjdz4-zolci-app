@@ -24,14 +24,11 @@ public class Parser {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
-//            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             NodeList nList = doc.getElementsByTagName("ns1:item");
             System.out.println("----------------------------");
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
-//                System.out.println("\nCurrent Element :" + nNode.getNodeName());
-//                System.out.println("\nIteam");
                 allegroItem = new AllegroItem();
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -52,10 +49,6 @@ public class Parser {
                             .item(0)
                             .getTextContent()));
 
-                    allegroItem.setPosition(Integer.parseInt(eElement
-                            .getElementsByTagName("ns1:catPosition")
-                            .item(0)
-                            .getTextContent()));
                     allegroList.add(allegroItem);
                 }
             }
@@ -70,18 +63,22 @@ public class Parser {
         }
 
 
-        TreeOperations treeOperations = new TreeOperations();
+        //allegroList.get(czesciSamochodowePosition).setChildren(allegroList);
+        for (AllegroItem item : allegroList) {
+            item.setChildren(allegroList);
+        }
+        TreeOperations treeOperations = new TreeOperations(allegroList);
 
-        allegroList.get(czesciSamochodowePosition).setChildren(allegroList); //set every item's children
-        treeOperations.printWholeTree(0, allegroList.get(czesciSamochodowePosition));
+        //treeOperations.printWholeTree(0, allegroList.get(czesciSamochodowePosition));
 
         /*Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj nazwę kategorii której dzieci i rodzice cię interesują: ");
         //String searchPhase = scanner.nextLine();*/
-        String searchPhase = "Układ hamulcowy";
-
-        /*treeOperations.setSearchedCategory(searchPhase);
-        treeOperations.printRelations(allegroList);*/
+        String searchPhase = "Chłodnice";
+        treeOperations.setSearchedCategory(searchPhase);
+        treeOperations.printRelations();
         //TODO poruszac sie tylko po dzieciach Czesci SAmochodowych a nie po calej liscie
+
+
     }
 }

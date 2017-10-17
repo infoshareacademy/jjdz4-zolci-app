@@ -6,12 +6,10 @@ public class AllegroItem {
 
     private int id;
     private String name;
-    private int parent;
-    private int position;
+    private int parentId;
 
     private ArrayList<AllegroItem> children = new ArrayList<AllegroItem>();
 
-    private AllegroItem parentObject;
 
     public int getId() {
         return id;
@@ -30,37 +28,24 @@ public class AllegroItem {
     }
 
     public int getParent() {
-        return parent;
+        return parentId;
     }
 
     public void setParent(int parent) {
-        this.parent = parent;
+        this.parentId = parent;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
 
     public void setChildren(ArrayList<AllegroItem> allegroList) {
         for (int i = 0; i < allegroList.size(); i++) {
             AllegroItem child = allegroList.get(i);
 
             if (this.id == child.getParent()) {
-                child.setParentObject(this);
                 this.children.add(child);
 
-                child.setChildren(allegroList);
+                //child.setChildren(allegroList);
             }
         }
-    }
-
-    public void setParentObject(AllegroItem item) {
-        this.parentObject = item;
-        this.parent = item.getParent();
     }
 
 
@@ -69,7 +54,4 @@ public class AllegroItem {
     }
 
 
-    public AllegroItem getParentObject() {
-        return parentObject;
-    }
 }

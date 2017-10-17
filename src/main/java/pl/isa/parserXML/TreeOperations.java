@@ -1,11 +1,19 @@
 package pl.isa.parserXML;
 
+import sun.reflect.generics.tree.Tree;
+
 import java.util.ArrayList;
 
 public class TreeOperations {
 
 
     private String category;
+    private ArrayList<AllegroItem> allegroList = new ArrayList<AllegroItem>();
+
+    TreeOperations(ArrayList<AllegroItem> allegroList) {
+        this.allegroList = allegroList;
+    }
+
 
     public void printWholeTree(int stars, AllegroItem allegroItem) {
         stars++;
@@ -22,31 +30,22 @@ public class TreeOperations {
         this.category = category;
     }
 
-    public void printRelations(ArrayList<AllegroItem> allegroList) {
-        AllegroItem leaf = null;
-        for(AllegroItem item : allegroList)
-        {
-            if(item.getName().equals(this.category)){
-                leaf = item;
-                break;
-//                this.category = item.getParentObject().getName();
-//                System.out.println(item.getName());
-//                printRelations(allegroList);
+    public void printRelations() {
+        for (AllegroItem item : this.allegroList) {
+            if (item.getName().equals(this.category)) {
+                System.out.println(item.getName());
+                for (AllegroItem parent : this.allegroList) {
+                    if (item.getParent() == parent.getId()) {
+                        setSearchedCategory(parent.getName());
+                        printRelations();
 
+                    }
+                }
             }
-        }
-
-        this.printParent(leaf);
-    }
-
-    private void printParent(AllegroItem item) {
-        AllegroItem parentObject = item.getParentObject();
-
-        if (parentObject != null) {
-            System.out.println(parentObject.getName());
-            printParent(parentObject);
         }
     }
 }
+
+
 
 
