@@ -20,7 +20,7 @@ public class AztecData {
     private String vehicleType;
 
     @JsonProperty("Przeznaczenie")
-    private String vehiclePurpose; //TODO refactor
+    private String vehiclePurpose;
 
     @JsonProperty("Rok_produkcji")
     private String productionYear;
@@ -95,19 +95,19 @@ public class AztecData {
     private int seatsNumberField_S1;
 
     @JsonProperty("S.2")
-    private String standsNumberfield_S2; // TODO refactor?
+    private String standingPlacesNumberField_S2;
 
-    @JsonProperty("Organ_wydajacy1") // TODO refactor
-    private String govLine_1;
+    @JsonProperty("Organ_wydajacy1")
+    private String issuingAuthorityLine1;
 
-    @JsonProperty("Organ_wydajacy2") // TODO refactor
-    private String Organ_wydajacy2;
+    @JsonProperty("Organ_wydajacy2")
+    private String issuingAuthorityLine2;
 
-    @JsonProperty("Organ_wydajacy3") // TODO refactor
-    private String Organ_wydajacy3;
+    @JsonProperty("Organ_wydajacy3")
+    private String issuingAuthorityLine3;
 
-    @JsonProperty("Organ_wydajacy4") // TODO refactor
-    private String Organ_wydajacy4;
+    @JsonProperty("Organ_wydajacy4")
+    private String issuingAuthorityLine4;
 
     @JsonProperty("A")
     private String registryNumberField_A;
@@ -148,7 +148,7 @@ public class AztecData {
     @JsonProperty("Podrodzaj_pojazdu_kod_ITS")
     private int vehicleSubtypeITSCode;
 
-    @JsonProperty("Przeznaczenie_pojazdu_kod_ITS") //TODO refactor
+    @JsonProperty("Przeznaczenie_pojazdu_kod_ITS")
     private int vehiclePurposeITSCode;
 
 
@@ -272,24 +272,24 @@ public class AztecData {
         return seatsNumberField_S1;
     }
 
-    public String getStandsNumberfield_S2() {
-        return standsNumberfield_S2;
+    public String getStandingPlacesNumberField_S2() {
+        return standingPlacesNumberField_S2;
     }
 
-    public String getGovLine_1() {
-        return govLine_1;
+    public String getIssuingAuthorityLine1() {
+        return issuingAuthorityLine1;
     }
 
-    public String getOrgan_wydajacy2() {
-        return Organ_wydajacy2;
+    public String getIssuingAuthorityLine2() {
+        return issuingAuthorityLine2;
     }
 
-    public String getOrgan_wydajacy3() {
-        return Organ_wydajacy3;
+    public String getIssuingAuthorityLine3() {
+        return issuingAuthorityLine3;
     }
 
-    public String getOrgan_wydajacy4() {
-        return Organ_wydajacy4;
+    public String getIssuingAuthorityLine4() {
+        return issuingAuthorityLine4;
     }
 
     public String getRegistryNumberField_A() {
