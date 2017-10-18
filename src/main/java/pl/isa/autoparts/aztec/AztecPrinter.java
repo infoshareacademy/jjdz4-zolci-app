@@ -4,13 +4,13 @@ public class AztecPrinter {
 
     private static final String NORMAL = "\u001B[0m";
     private static final String YELLOW = "\u001B[33m";
-    private static final String GREEN = "\u001B[32m";
+    private static final String BLUE = "\u001B[34m";
     private static final String RED = "\u001B[31m";
 
 
     public static void println(String text) {
 
-        System.out.println(GREEN + text + NORMAL);
+        System.out.println(BLUE + text + NORMAL);
     }
 
 

@@ -14,7 +14,7 @@ public class AztecJsonParser {
         return mapper.readValue(jsonData, AztecVehicle.class);
     }
 
-    public static String aztecVehicleToJson(AztecVehicle aztecVehicle) throws JsonProcessingException {
+    protected static String aztecVehicleToJson(AztecVehicle aztecVehicle) throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
 
