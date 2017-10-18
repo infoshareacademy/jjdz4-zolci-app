@@ -62,7 +62,14 @@ public class AztecPrinter {
         printItem("C.1.3 Adres posiadacza dowodu",
                 aztec.getAztecData().getRegistryOwnersAddressField_C13());
 
-        // TODO Add C.2.x ??
+        printItem("C.2.1 Nazwa posiadacza dowodu",
+                aztec.getAztecData().getVehicleOwnersNameField_C21());
+
+        printItem("C.2.2 Numer PESEL lub REGON",
+                aztec.getAztecData().getVehicleOwnersPeselRegonField_C22());
+
+        printItem("C.2.3 Adres posiadacza dowodu",
+                aztec.getAztecData().getVehicleOwnersAddressField_C23());
 
         printItem("F.1 Dopuszczalna masa całkowita\n    z wyłączeniem motocykli i motorowerów",
                 aztec.getAztecData().getMaxVehicleMassWithoutMotorbikesField_F1());
