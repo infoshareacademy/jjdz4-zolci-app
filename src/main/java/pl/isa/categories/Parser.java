@@ -1,4 +1,4 @@
-package pl.isa.parserXML;
+package pl.isa.categories;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -61,7 +61,7 @@ public class Parser {
                 break;
             }
         }
-
+        int phraseId;
         czesciSamochodowe = allegroList.get(czesciSamochodowePosition);
 
         czesciSamochodowe.setChildren(allegroList);
@@ -69,5 +69,10 @@ public class Parser {
         TreeOperations treeOperations = new TreeOperations(czesciSamochodowe);
 
         treeOperations.printWholeTree(0, czesciSamochodowe);
+
+        treeOperations.searchedPhrase("Silniczki szyb");
+
+        phraseId = treeOperations.findPhrase(czesciSamochodowe);
+        System.out.println(phraseId);
     }
 }

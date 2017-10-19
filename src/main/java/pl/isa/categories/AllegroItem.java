@@ -1,4 +1,4 @@
-package pl.isa.parserXML;
+package pl.isa.categories;
 
 import java.util.ArrayList;
 
