@@ -11,13 +11,16 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Parser {
-    static int czesciSamochodoweId = 620;
+    private AllegroItem allegroItem;
 
-    public static void main(String[] args) {
-        AllegroItem allegroItem;
-        ArrayList<AllegroItem> allegroList = new ArrayList<AllegroItem>();
-        AllegroItem czesciSamochodowe = new AllegroItem();
-        int czesciSamochodowePosition = 0;
+    public ArrayList<AllegroItem> getAllegroList() {
+        return allegroList;
+    }
+
+    private ArrayList<AllegroItem> allegroList = new ArrayList<AllegroItem>();
+    public void parse() {
+
+
         try {
             File inputFile = new File("src/Allegro_cathegories_2016-02-13.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -55,24 +58,6 @@ public class Parser {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        for (int i = 0; i < allegroList.size(); i++) { //find collection position of category "Części Samochodowe"
-            if (allegroList.get(i).getId() == czesciSamochodoweId) {
-                czesciSamochodowePosition = i;
-                break;
-            }
-        }
-        int phraseId;
-        czesciSamochodowe = allegroList.get(czesciSamochodowePosition);
 
-        czesciSamochodowe.setChildren(allegroList);
-
-        TreeOperations treeOperations = new TreeOperations(czesciSamochodowe);
-
-        treeOperations.printWholeTree(0, czesciSamochodowe);
-
-        treeOperations.searchedPhrase("Silniczki szyb");
-
-        phraseId = treeOperations.findPhrase(czesciSamochodowe);
-        System.out.println(phraseId);
     }
 }

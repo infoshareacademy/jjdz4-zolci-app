@@ -6,7 +6,7 @@ public class TreeOperations {
     private int phraseId;
     private AllegroItem czesciSamochodowe = new AllegroItem();
 
-    TreeOperations(AllegroItem allegroItem) {
+    public TreeOperations(AllegroItem allegroItem) {
         this.czesciSamochodowe = allegroItem;
     }
 
