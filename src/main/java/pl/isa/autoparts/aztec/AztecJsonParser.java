@@ -17,11 +17,15 @@ public class AztecJsonParser {
         return mapper.readValue(new URL(url), AztecVehicle.class);
     }
 
-    public static AztecVehicle parseAztecJsonFromFile(String fileName) throws IOException {
+    public static AztecVehicle parseAztecJsonFromFile(String fileName) throws IOException, NullPointerException {
+
+        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+        File file = new File(classLoader.getResource(fileName).getFile());
+        if (file == null) throw new NullPointerException();
 
         ObjectMapper mapper = new ObjectMapper();
 
-        return mapper.readValue(new File(fileName), AztecVehicle.class);
+        return mapper.readValue(file, AztecVehicle.class);
     }
 
     public static String aztecVehicleToJson(AztecVehicle aztecVehicle) throws JsonProcessingException {
