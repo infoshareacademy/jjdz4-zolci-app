@@ -12,6 +12,13 @@ public class AztecVehicle {
         return aztecData;
     }
 
+    public boolean hasError() {
+
+        if (getAztecData().getError() < 0) return true;
+
+        return false;
+    }
+
     @Override
     public String toString() {
 

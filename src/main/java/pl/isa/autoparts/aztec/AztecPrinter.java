@@ -13,6 +13,13 @@ public class AztecPrinter {
         System.out.println(BLUE + text + NORMAL);
     }
 
+    public static void printError(AztecVehicle aztec) {
+
+        System.out.println(String.format("%sBłąd [%d]: %s%s",
+                RED, aztec.getAztecData().getError(),
+                aztec.getAztecData().getErrorText(), NORMAL));
+    }
+
 
     private static void printItem(String itemName, String itemValue) {
 
@@ -23,14 +30,30 @@ public class AztecPrinter {
 
     private static void printItem(String itemName, long itemValue) {
 
-        System.out.println(YELLOW + itemName + ": "
-                + RED + itemValue + NORMAL);
+        if (itemValue != 0)
+            System.out.println(YELLOW + itemName + ": "
+                    + RED + itemValue + NORMAL);
     }
 
     private static void printItem(String itemName, int itemValue) {
 
-        System.out.println(YELLOW + itemName + ": "
-                + RED + itemValue + NORMAL);
+        if (itemValue != 0)
+            System.out.println(YELLOW + itemName + ": "
+                    + RED + itemValue + NORMAL);
+    }
+
+    private static void printItem(String itemName, int itemValue, boolean zeroIsAllowed) {
+
+        if ((itemValue != 0 || zeroIsAllowed))
+            System.out.println(YELLOW + itemName + ": "
+                    + RED + itemValue + NORMAL);
+    }
+
+    private static boolean itsIdentificationExtist(long itsIdentification) {
+
+        if (itsIdentification > 0) return true;
+
+        return false;
     }
 
     public static void printAztecVehicleData(AztecVehicle aztec) {
@@ -157,5 +180,21 @@ public class AztecPrinter {
 
         printItem("H. Okres ważności dowodu",
                 aztec.getAztecData().getRegistryExpireDateField_H());
+
+
+        long its = aztec.getAztecData().getItsIdentification();
+        printItem("Identyfikator ITS", its);
+
+        if (itsIdentificationExtist(its)) {
+
+            printItem("ITS rodzaju pojazdu",
+                    aztec.getAztecData().getVehicleTypeITSCode(), true);
+
+            printItem("ITS podrodzaju pojazdu",
+                    aztec.getAztecData().getVehicleSubtypeITSCode(), true);
+
+            printItem("ITS przeznaczenia pojazdu",
+                    aztec.getAztecData().getVehiclePurposeITSCode(), true);
+        }
     }
 }
