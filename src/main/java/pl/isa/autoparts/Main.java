@@ -32,11 +32,12 @@ public class Main {
 
 
         TreeOperations treeOperations = new TreeOperations();
-        treeOperations.findCzesciSamochodowePosition(allegroList);
-        treeOperations.setSearchedPhrase("Silniczki szyb"); //for example
-        phraseId = treeOperations.findPhrase();
-        treeOperations.printParent(allegroList, phraseId);
-        treeOperations.printWholeTree(0, treeOperations.getCzesciSamochodowe());
+        treeOperations.findCzesciSamochodowePosition(allegroList); //zapisuje w obiekcie czesciSamochodowe jego dzieci
+        treeOperations.setSearchedPhrase("Silniczki szyb");        //i przypisuje jego dzieciom ich dzieci - rekurencyjnie
+        phraseId = treeOperations.findPhrase();                    //rekurencyjnie znajduje i zwraca ID szukanej kategorii,
+                                                                   //szuka tylko ponizej kategorii czesciSamochdowe
+        treeOperations.printWholeTree(0, treeOperations.getCzesciSamochodowe());   //drukuje cale drzewo kategorii
+        treeOperations.printParent(allegroList, phraseId);          //drukuje rodzicow szukanej kategorii po kolei
 
     }
 }

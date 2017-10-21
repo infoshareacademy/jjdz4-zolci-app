@@ -11,6 +11,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Parser {
+
     private AllegroItem allegroItem;
 
     public ArrayList<AllegroItem> getAllegroList() {

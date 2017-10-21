@@ -9,13 +9,13 @@ public class TreeOperations {
     private String phrase;
     private int phraseId;
 
+    private AllegroItem czesciSamochodowe = new AllegroItem();
+    private AllegroItem czesciSamochodoweClipboard = new AllegroItem();
+
 
     public AllegroItem getCzesciSamochodowe() {
         return czesciSamochodowe;
     }
-
-    private AllegroItem czesciSamochodowe = new AllegroItem();
-    private AllegroItem czesciSamochodoweClipboard = new AllegroItem();
 
 
     public void findCzesciSamochodowePosition(ArrayList<AllegroItem> allegroList) {
