@@ -10,14 +10,6 @@ public class AtenaSessionReader {
     private String userKey;
     private String sessionURL;
 
-    public String getSessionKey() {
-        return sessionKey;
-    }
-
-    public void setSessionKey(String sessionKey) {
-        this.sessionKey = sessionKey;
-    }
-
     public AtenaSessionReader(AtenaUser user) {
 
         userKey = user.getUserKey();
@@ -27,6 +19,14 @@ public class AtenaSessionReader {
 
         this.sessionKey = sessionKey;
         userKey = user.getUserKey();
+    }
+
+    public String getSessionKey() {
+        return sessionKey;
+    }
+
+    public void setSessionKey(String sessionKey) {
+        this.sessionKey = sessionKey;
     }
 
     private String createSessionURL() {
