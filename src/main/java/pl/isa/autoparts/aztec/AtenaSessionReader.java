@@ -40,17 +40,17 @@ public class AtenaSessionReader {
         return stringBuilder.toString();
     }
 
-    public String readAztecFromSession() throws IOException {
+    public AztecVehicle parseAztecFromSession() throws IOException {
 
         sessionURL = createSessionURL();
-        return URLReader.readFromURL(sessionURL);
+        return AztecJsonParser.parseAztecJsonFromURL(sessionURL);
     }
 
-    public String readAztecFromSession(String sessionKey) throws IOException {
+    public AztecVehicle parseAztecFromSession(String sessionKey) throws IOException {
 
         this.sessionKey = sessionKey;
         sessionURL = createSessionURL();
 
-        return URLReader.readFromURL(sessionURL);
+        return AztecJsonParser.parseAztecJsonFromURL(sessionURL);
     }
 }

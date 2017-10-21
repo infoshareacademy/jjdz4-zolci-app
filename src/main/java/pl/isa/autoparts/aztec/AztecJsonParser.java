@@ -3,18 +3,28 @@ package pl.isa.autoparts.aztec;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class AztecJsonParser {
 
-    public static AztecVehicle jsonToAztecVehilce(String jsonData) throws IOException {
+    public static AztecVehicle parseAztecJsonFromURL(String url) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        return mapper.readValue(jsonData, AztecVehicle.class);
+        return mapper.readValue(new URL(url), AztecVehicle.class);
     }
 
-    protected static String aztecVehicleToJson(AztecVehicle aztecVehicle) throws JsonProcessingException {
+    public static AztecVehicle parseAztecJsonFromFile(String fileName) throws IOException {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        return mapper.readValue(new File(fileName), AztecVehicle.class);
+    }
+
+    public static String aztecVehicleToJson(AztecVehicle aztecVehicle) throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
 
