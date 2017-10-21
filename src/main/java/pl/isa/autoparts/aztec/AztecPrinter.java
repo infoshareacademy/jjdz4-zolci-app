@@ -13,7 +13,12 @@ public class AztecPrinter {
         System.out.println(BLUE + text + NORMAL);
     }
 
-    public static void printError(AztecVehicle aztec) {
+    public static void printError(String text) {
+
+        System.out.println(RED + "Błąd: " + text + NORMAL);
+    }
+
+    public static void printSessionError(AztecVehicle aztec) {
 
         System.out.println(String.format("%sBłąd [%d]: %s%s",
                 RED, aztec.getAztecData().getError(),
