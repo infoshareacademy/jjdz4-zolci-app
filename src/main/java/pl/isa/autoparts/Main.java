@@ -1,9 +1,9 @@
 package pl.isa.autoparts;
 
 
-import pl.isa.categories.AllegroItem;
-import pl.isa.categories.Parser;
-import pl.isa.categories.TreeOperations;
+import pl.isa.autoparts.categories.AllegroItem;
+import pl.isa.autoparts.categories.Parser;
+import pl.isa.autoparts.categories.TreeOperations;
 
 import java.util.ArrayList;
 

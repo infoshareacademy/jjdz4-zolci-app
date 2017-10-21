@@ -1,4 +1,4 @@
-package pl.isa.categories;
+package pl.isa.autoparts.categories;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

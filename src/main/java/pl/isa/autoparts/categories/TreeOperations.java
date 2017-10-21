@@ -1,4 +1,4 @@
-package pl.isa.categories;
+package pl.isa.autoparts.categories;
 
 import java.util.ArrayList;
 
