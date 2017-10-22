@@ -13,6 +13,12 @@ public class TreeOperations {
     private AllegroItem czesciSamochodoweClipboard = new AllegroItem();
 
 
+    public TreeOperations() {
+        Parser parser = new Parser();
+        allegroList = parser.getAllegroList();
+        findCzesciSamochodowePosition();
+    }
+
     public ArrayList<AllegroItem> getParents() {
         return parents;
     }
@@ -21,13 +27,6 @@ public class TreeOperations {
         return czesciSamochodowe;
     }
 
-
-    public TreeOperations() {
-        Parser parser = new Parser();
-        allegroList = parser.getAllegroList();
-
-        findCzesciSamochodowePosition();
-    }
 
     public void printWholeTree() {
         printWholeTreeRecurency(0, czesciSamochodowe);

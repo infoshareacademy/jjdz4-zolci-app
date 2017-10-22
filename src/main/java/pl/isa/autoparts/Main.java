@@ -16,8 +16,8 @@ public class Main {
 
 
         TreeOperations treeOperations = new TreeOperations();
-        treeOperations.printWholeTree();
         treeOperations.setSearchedPhrase("Silniczki szyb");
+        treeOperations.printWholeTree();
 
 
         for (AllegroItem item : treeOperations.getParents()) {     //wydrukujemy sobie rodzicow danej kategorii
