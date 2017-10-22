@@ -7,7 +7,7 @@ public class TreeOperations {
     static int czesciSamochodoweId = 620;
     private int czesciSamochodowePosition = 0;
     private int phraseId;
-    private ArrayList<AllegroItem> allegroList;
+    private ArrayList<AllegroItem> allegroList = new ArrayList<>();
     private ArrayList<AllegroItem> parents = new ArrayList<>();
     private AllegroItem czesciSamochodowe = new AllegroItem();
     private AllegroItem czesciSamochodoweClipboard = new AllegroItem();
@@ -22,8 +22,10 @@ public class TreeOperations {
     }
 
 
-    public TreeOperations(ArrayList<AllegroItem> allegroList) {
-        this.allegroList = allegroList;
+    public TreeOperations() {
+        Parser parser = new Parser();
+        allegroList = parser.getAllegroList();
+
         findCzesciSamochodowePosition();
     }
 

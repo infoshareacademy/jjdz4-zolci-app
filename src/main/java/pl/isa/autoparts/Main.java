@@ -2,7 +2,6 @@ package pl.isa.autoparts;
 
 
 import pl.isa.autoparts.categories.AllegroItem;
-import pl.isa.autoparts.categories.Parser;
 import pl.isa.autoparts.categories.TreeOperations;
 
 public class Main {
@@ -16,16 +15,14 @@ public class Main {
         chosenOption = textMenu.choseOptions();*/
 
 
-        Parser parser = new Parser();
-
-        TreeOperations treeOperations = new TreeOperations(parser.getAllegroList());
+        TreeOperations treeOperations = new TreeOperations();
         treeOperations.printWholeTree();
         treeOperations.setSearchedPhrase("Silniczki szyb");
 
 
-        for(AllegroItem item : treeOperations.getParents()) {     //wydrukujemy sobie rodzicow danej kategorii
-                    System.out.println(item.getName());
-                }
+        for (AllegroItem item : treeOperations.getParents()) {     //wydrukujemy sobie rodzicow danej kategorii
+            System.out.println(item.getName());
+        }
     }
-            }
+}
 
