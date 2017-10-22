@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,11 +18,11 @@ public class AztecJsonParser {
         return mapper.readValue(new URL(url), AztecVehicle.class);
     }
 
-    public static AztecVehicle parseAztecJsonFromFile(String fileName) throws IOException, NullPointerException {
+    public static AztecVehicle parseAztecJsonFromFile(String fileName) throws IOException, FileNotFoundException {
 
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         File file = new File(classLoader.getResource(fileName).getFile());
-        if (file == null) throw new NullPointerException();
+        if (file == null) throw new FileNotFoundException();
 
         ObjectMapper mapper = new ObjectMapper();
 

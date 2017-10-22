@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class AtenaSessionReader {
 
-    private static final String sessionURLPreamble = "https://aztec.atena.pl/PWM2/rest/aztec/getbysession?";
+    private static final String SESSION_URL_PREAMBLE = "https://aztec.atena.pl/PWM2/rest/aztec/getbysession?";
 
     private String sessionKey;
     private String userKey;
@@ -33,7 +33,7 @@ public class AtenaSessionReader {
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(sessionURLPreamble)
+        stringBuilder.append(SESSION_URL_PREAMBLE)
                 .append("sessionKey=").append(sessionKey)
                 .append("&userKey=").append(userKey);
 
