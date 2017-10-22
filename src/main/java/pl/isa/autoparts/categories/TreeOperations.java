@@ -6,22 +6,47 @@ public class TreeOperations {
 
     static int czesciSamochodoweId = 620;
     private int czesciSamochodowePosition = 0;
-    private String phrase;
     private int phraseId;
     private ArrayList<AllegroItem> allegroList;
-
+    private ArrayList<AllegroItem> parents = new ArrayList<>();
     private AllegroItem czesciSamochodowe = new AllegroItem();
     private AllegroItem czesciSamochodoweClipboard = new AllegroItem();
+
+
+    public ArrayList<AllegroItem> getParents() {
+        return parents;
+    }
+
     public AllegroItem getCzesciSamochodowe() {
         return czesciSamochodowe;
     }
 
-    public TreeOperations(ArrayList<AllegroItem> allegroList){
+
+    public TreeOperations(ArrayList<AllegroItem> allegroList) {
         this.allegroList = allegroList;
         findCzesciSamochodowePosition();
     }
 
-    public void findCzesciSamochodowePosition() {
+    public void printWholeTree() {
+        Tree(0, czesciSamochodowe);
+    }
+
+    public void setSearchedPhrase(String phrase) {
+        this.parents = saveParent(findPhrase(phrase), this.parents);
+    }
+
+    private void Tree(int stars, AllegroItem czesciSamochodowe) {
+        stars++;
+        for (AllegroItem item : czesciSamochodowe.getChildren()) {
+            for (int i = 0; i < stars; i++) {
+                System.out.print("*");
+            }
+            System.out.println(item.getName());
+            Tree(stars, item);
+        }
+    }
+
+    private void findCzesciSamochodowePosition() {
         for (int i = 0; i < allegroList.size(); i++) { //find collection position of category "Części Samochodowe"
             if (allegroList.get(i).getId() == czesciSamochodoweId) {
                 czesciSamochodowePosition = i;
@@ -34,45 +59,7 @@ public class TreeOperations {
 
     }
 
-    public void printWholeTree(int stars, AllegroItem czesciSamochodowe) {
-        stars++;
-        for (AllegroItem item : czesciSamochodowe.getChildren()) {
-            for (int i = 0; i < stars; i++) {
-                System.out.print("*");
-            }
-            System.out.println(item.getName());
-            printWholeTree(stars, item);
-        }
-    }
-
-    public void setSearchedPhrase(String phrase) {
-        this.phrase = phrase;
-    }
-
-    public int findPhrase() {   //returns ID of searched category
-        for (AllegroItem item : czesciSamochodowe.getChildren()) {
-            if (item.getName().equals(phrase)) {
-                phraseId = item.getId();
-                break;
-            } else {
-                this.czesciSamochodowe = item;
-                findPhrase();
-            }
-        }
-        czesciSamochodowe = czesciSamochodoweClipboard;
-        return phraseId;
-    }
-
-    public void printParent(ArrayList<AllegroItem> allegroList, int parentId) { //prints parents by giving to a a method id of first parent
-        for (AllegroItem item : allegroList) {
-            if (item.getId() == parentId) {
-                System.out.println(item.getName());
-                printParent(allegroList, item.getParent());
-                break;
-            }
-        }
-    }
-    public ArrayList<AllegroItem> saveParent(int parentId, ArrayList<AllegroItem> parentList) {
+    private ArrayList<AllegroItem> saveParent(int parentId, ArrayList<AllegroItem> parentList) {
         for (AllegroItem item : allegroList) {
             if (item.getId() == parentId) {
                 parentList.add(item);
@@ -81,6 +68,21 @@ public class TreeOperations {
             }
         }
         return parentList;
+    }
+
+
+    private int findPhrase(String phrase) {   //returns ID of searched category
+        for (AllegroItem item : czesciSamochodowe.getChildren()) {
+            if (item.getName().equals(phrase)) {
+                phraseId = item.getId();
+                break;
+            } else {
+                this.czesciSamochodowe = item;
+                findPhrase(phrase);
+            }
+        }
+        czesciSamochodowe = czesciSamochodoweClipboard;
+        return phraseId;
     }
 }
 

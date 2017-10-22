@@ -29,15 +29,12 @@ public class Main {
 
 
         TreeOperations treeOperations = new TreeOperations(allegroList);
-        ArrayList<AllegroItem> parents = new ArrayList<AllegroItem>();  //na podstawie tej kolekcji mozemy stworzyc na przyklad link
-
+        treeOperations.printWholeTree();
         treeOperations.setSearchedPhrase("Silniczki szyb");
-        phraseId = treeOperations.findPhrase();                    //rekurencyjnie znajduje i zwraca ID szukanej kategorii,
-        parents = treeOperations.saveParent(phraseId, parents);
 
-        for(AllegroItem item : parents) {                            //wydrukujemy sobie rodzicow danej kategorii
+        for(AllegroItem item : treeOperations.getParents()) {     //wydrukujemy sobie rodzicow danej kategorii
                     System.out.println(item.getName());
                 }
     }
-}
+            }
 
