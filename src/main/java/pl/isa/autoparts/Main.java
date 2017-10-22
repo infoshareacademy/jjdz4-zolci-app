@@ -8,21 +8,26 @@ public class Main {
 
 
     public static void main(String[] args) {
+        TreeOperations treeOperations = new TreeOperations();
         int chosenOption;
 
-        /*TextMenu textMenu = new TextMenu();
+        TextMenu textMenu = new TextMenu();
         textMenu.showOptions();
-        chosenOption = textMenu.choseOptions();*/
+        chosenOption = textMenu.choseOptions();
 
-
-        TreeOperations treeOperations = new TreeOperations();
-        treeOperations.setSearchedPhrase("Silniczki szyb");
-        treeOperations.printWholeTree();
-
-
-        for (AllegroItem item : treeOperations.getParents()) {     //wydrukujemy sobie rodzicow danej kategorii
-            System.out.println(item.getName());
+        switch (chosenOption) {
+            case 1:
+                treeOperations.printWholeTree();
+                break;
+            case 2:
+                treeOperations.setSearchedPhrase("Silniczki szyb");
+                for (AllegroItem item : treeOperations.getParents()) {     //wydrukujemy sobie rodzicow danej kategorii
+                    System.out.println(item.getName());
+                }
+                break;
         }
+
+
     }
 }
 
