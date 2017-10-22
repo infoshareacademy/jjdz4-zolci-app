@@ -72,11 +72,11 @@ public class TreeOperations {
             }
         }
     }
-    public ArrayList<AllegroItem> saveParent(ArrayList<AllegroItem> allegroList, int parentId, ArrayList<AllegroItem> parentList) {
+    public ArrayList<AllegroItem> saveParent(int parentId, ArrayList<AllegroItem> parentList) {
         for (AllegroItem item : allegroList) {
             if (item.getId() == parentId) {
                 parentList.add(item);
-                saveParent(allegroList, item.getParent(), parentList);
+                saveParent(item.getParent(), parentList);
                 break;
             }
         }
