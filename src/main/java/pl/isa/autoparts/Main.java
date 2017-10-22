@@ -31,8 +31,6 @@ public class Main {
         TreeOperations treeOperations = new TreeOperations(allegroList);
         ArrayList<AllegroItem> parents = new ArrayList<AllegroItem>();  //na podstawie tej kolekcji mozemy stworzyc na przyklad
 
-
-        //treeOperations.findCzesciSamochodowePosition(allegroList); //zapisuje w obiekcie czesciSamochodowe jego dzieci
         treeOperations.setSearchedPhrase("Silniczki szyb");        //i przypisuje jego dzieciom ich dzieci - rekurencyjnie
         phraseId = treeOperations.findPhrase();                    //rekurencyjnie znajduje i zwraca ID szukanej kategorii,
         //szuka tylko ponizej kategorii czesciSamochdowe

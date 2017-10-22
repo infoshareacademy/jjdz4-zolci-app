@@ -8,19 +8,20 @@ public class TreeOperations {
     private int czesciSamochodowePosition = 0;
     private String phrase;
     private int phraseId;
+    private ArrayList<AllegroItem> allegroList;
 
     private AllegroItem czesciSamochodowe = new AllegroItem();
     private AllegroItem czesciSamochodoweClipboard = new AllegroItem();
-
-    public TreeOperations(ArrayList<AllegroItem> allegroList){
-        findCzesciSamochodowePosition(allegroList);
-    }
     public AllegroItem getCzesciSamochodowe() {
         return czesciSamochodowe;
     }
 
+    public TreeOperations(ArrayList<AllegroItem> allegroList){
+        this.allegroList = allegroList;
+        findCzesciSamochodowePosition();
+    }
 
-    public void findCzesciSamochodowePosition(ArrayList<AllegroItem> allegroList) {
+    public void findCzesciSamochodowePosition() {
         for (int i = 0; i < allegroList.size(); i++) { //find collection position of category "Części Samochodowe"
             if (allegroList.get(i).getId() == czesciSamochodoweId) {
                 czesciSamochodowePosition = i;
