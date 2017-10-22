@@ -28,21 +28,21 @@ public class TreeOperations {
     }
 
     public void printWholeTree() {
-        Tree(0, czesciSamochodowe);
+        printWholeTreeRecurency(0, czesciSamochodowe);
     }
 
     public void setSearchedPhrase(String phrase) {
         this.parents = saveParent(findPhrase(phrase), this.parents);
     }
 
-    private void Tree(int stars, AllegroItem czesciSamochodowe) {
+    private void printWholeTreeRecurency(int stars, AllegroItem czesciSamochodowe) {
         stars++;
         for (AllegroItem item : czesciSamochodowe.getChildren()) {
             for (int i = 0; i < stars; i++) {
                 System.out.print("*");
             }
             System.out.println(item.getName());
-            Tree(stars, item);
+            printWholeTreeRecurency(stars, item);
         }
     }
 
