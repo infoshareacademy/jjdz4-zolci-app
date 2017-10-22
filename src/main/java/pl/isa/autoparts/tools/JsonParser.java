@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 
@@ -17,11 +16,11 @@ public class JsonParser {
         return mapper.readValue(new URL(url), object.getClass());
     }
 
-    public static Object parseJsonFromFile(String fileName, Object object) throws IOException, FileNotFoundException {
+    public static Object parseJsonFromFile(String fileName, Object object) throws IOException {
 
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         File file = new File(classLoader.getResource(fileName).getFile());
-        if (file == null) throw new FileNotFoundException();
+        if (file == null) throw new IOException();
 
         ObjectMapper mapper = new ObjectMapper();
 
