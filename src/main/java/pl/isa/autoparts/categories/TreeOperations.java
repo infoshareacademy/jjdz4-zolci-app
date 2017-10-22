@@ -12,7 +12,9 @@ public class TreeOperations {
     private AllegroItem czesciSamochodowe = new AllegroItem();
     private AllegroItem czesciSamochodoweClipboard = new AllegroItem();
 
-
+    public TreeOperations(ArrayList<AllegroItem> allegroList){
+        findCzesciSamochodowePosition(allegroList);
+    }
     public AllegroItem getCzesciSamochodowe() {
         return czesciSamochodowe;
     }
@@ -68,6 +70,16 @@ public class TreeOperations {
                 break;
             }
         }
+    }
+    public ArrayList<AllegroItem> saveParent(ArrayList<AllegroItem> allegroList, int parentId, ArrayList<AllegroItem> parentList) {
+        for (AllegroItem item : allegroList) {
+            if (item.getId() == parentId) {
+                parentList.add(item);
+                saveParent(allegroList, item.getParent(), parentList);
+                break;
+            }
+        }
+        return parentList;
     }
 }
 

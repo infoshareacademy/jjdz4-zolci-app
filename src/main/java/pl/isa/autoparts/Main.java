@@ -28,17 +28,23 @@ public class Main {
         allegroList = parser.getAllegroList();
 
 
+        TreeOperations treeOperations = new TreeOperations(allegroList);
+        ArrayList<AllegroItem> parents = new ArrayList<AllegroItem>();  //na podstawie tej kolekcji mozemy stworzyc na przyklad
 
 
-
-        TreeOperations treeOperations = new TreeOperations();
-        treeOperations.findCzesciSamochodowePosition(allegroList); //zapisuje w obiekcie czesciSamochodowe jego dzieci
+        //treeOperations.findCzesciSamochodowePosition(allegroList); //zapisuje w obiekcie czesciSamochodowe jego dzieci
         treeOperations.setSearchedPhrase("Silniczki szyb");        //i przypisuje jego dzieciom ich dzieci - rekurencyjnie
         phraseId = treeOperations.findPhrase();                    //rekurencyjnie znajduje i zwraca ID szukanej kategorii,
-                                                                   //szuka tylko ponizej kategorii czesciSamochdowe
-        treeOperations.printWholeTree(0, treeOperations.getCzesciSamochodowe());   //drukuje cale drzewo kategorii
-        treeOperations.printParent(allegroList, phraseId);          //drukuje rodzicow szukanej kategorii po kolei
+        //szuka tylko ponizej kategorii czesciSamochdowe
+        //treeOperations.printWholeTree(0, treeOperations.getCzesciSamochodowe());   //drukuje cale drzewo kategorii
+        //treeOperations.printParent(allegroList, phraseId);          //drukuje rodzicow szukanej kategorii po kolei
 
+                                                                        //link do kategorii
+        parents = treeOperations.saveParent(allegroList, phraseId, parents); //tworzy kolekcje z obiektami
+
+        for(AllegroItem item : parents) {                            //sprawdzenie czy dziala tak samo jak printParent
+                    System.out.println(item.getName());
+                }
     }
 }
 
