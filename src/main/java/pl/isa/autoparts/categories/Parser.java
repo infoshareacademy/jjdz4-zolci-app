@@ -14,12 +14,17 @@ public class Parser {
 
     private AllegroItem allegroItem;
 
+    public Parser() {
+        parse();
+    }
+
     public ArrayList<AllegroItem> getAllegroList() {
         return allegroList;
     }
 
     private ArrayList<AllegroItem> allegroList = new ArrayList<AllegroItem>();
-    public void parse() {
+
+    private void parse() {
 
 
         try {

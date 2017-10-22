@@ -5,18 +5,11 @@ import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.Parser;
 import pl.isa.autoparts.categories.TreeOperations;
 
-import java.util.ArrayList;
-
 public class Main {
 
 
     public static void main(String[] args) {
         int chosenOption;
-
-        int phraseId;
-        AllegroItem czesciSamochodowe;
-        ArrayList<AllegroItem> allegroList = new ArrayList<AllegroItem>();
-
 
         /*TextMenu textMenu = new TextMenu();
         textMenu.showOptions();
@@ -24,11 +17,8 @@ public class Main {
 
 
         Parser parser = new Parser();
-        parser.parse();
-        allegroList = parser.getAllegroList();
 
-
-        TreeOperations treeOperations = new TreeOperations(allegroList);
+        TreeOperations treeOperations = new TreeOperations(parser.getAllegroList());
         treeOperations.printWholeTree();
         treeOperations.setSearchedPhrase("Silniczki szyb");
 
