@@ -7,12 +7,24 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import java.util.List;
 
 public class QuestionGroup {
-    @JacksonXmlProperty(localName = "id", isAttribute = true)
+
+    @JacksonXmlProperty(localName = "name", isAttribute = true)
+    private String name;
+
+    @JacksonXmlProperty(localName = "id")
     private int id;
 
-    @JacksonXmlElementWrapper(localName = "pytanie", useWrapping = false)
+    @JacksonXmlElementWrapper(localName = "pytanie")
     private List<Question> questions;
 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;

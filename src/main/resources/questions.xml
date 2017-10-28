@@ -1,4 +1,4 @@
-<?xml version = "1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <class>
     <grupa-pytan name="przod samochodu">
         <pytanie>
@@ -149,7 +149,6 @@
                 </czesc>
             </awaria>
         </pytanie>
-
         <pytanie>
             <id>2</id>
             <tresc>stukanie</tresc>
@@ -260,7 +259,6 @@
                 </czesc>
             </awaria>
         </pytanie>
-
     </grupa-pytan>
     <grupa-pytan name="tył samochodu">
         <pytanie>
@@ -357,6 +355,5 @@
         </pytanie>
     </grupa-pytan>
     <grupa-pytan name="podwozie">
-
     </grupa-pytan>
 </class>

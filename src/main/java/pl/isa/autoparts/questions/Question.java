@@ -5,7 +5,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import java.util.List;
 
-
 public class Question {
     @JacksonXmlProperty(localName = "id")
     private int id;
@@ -14,7 +13,7 @@ public class Question {
     private String descripton;
 
     @JacksonXmlElementWrapper(localName = "awaria")
-    private List<BreakDown> breakDowns;
+    private List<BreakDown> breakDown;
 
     public int getId() {
         return id;
@@ -32,11 +31,12 @@ public class Question {
         this.descripton = descripton;
     }
 
-    public List<BreakDown> getBreakDowns() {
-        return breakDowns;
+    public List<BreakDown> getBreakDown() {
+        return breakDown;
     }
 
-    public void setBreakDowns(List<BreakDown> breakDowns) {
-        this.breakDowns = breakDowns;
+    public void setBreakDown(List<BreakDown> breakDown) {
+        this.breakDown = breakDown;
     }
+
 }

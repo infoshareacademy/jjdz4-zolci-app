@@ -10,7 +10,21 @@ public class Parts {
     @JacksonXmlProperty(localName = "nazwa")
     private String part;
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getPart() {
+        return part;
+    }
+
+    public void setPart(String part) {
+        this.part = part;
+    }
 }
 
 

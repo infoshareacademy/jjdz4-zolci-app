@@ -1,6 +1,7 @@
 package pl.isa.autoparts.questions;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.List;
 @JacksonXmlRootElement(localName = "class")
 public class TopClass {
 
-@JacksonXmlElementWrapper(localName = "class")
+//    @JacksonXmlProperty(localName = "grupa-pytan")
+    @JacksonXmlElementWrapper(localName = "grupa-pytan")
     private List<QuestionGroup> rootClass;
 
     public List<QuestionGroup> getRootClass() {
@@ -19,4 +21,6 @@ public class TopClass {
     public void setRootClass(List<QuestionGroup> rootClass) {
         this.rootClass = rootClass;
     }
+
+
 }
