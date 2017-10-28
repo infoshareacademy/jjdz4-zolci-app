@@ -3,8 +3,8 @@ package pl.isa.autoparts.tools;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 public class JsonParser {
@@ -18,8 +18,8 @@ public class JsonParser {
 
     public static Object parseJsonFromFile(String fileName, Object object) throws IOException {
 
-        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        File file = new File(classLoader.getResource(fileName).getFile());
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        InputStream file = classLoader.getResourceAsStream(fileName);
         if (file == null) throw new IOException();
 
         ObjectMapper mapper = new ObjectMapper();
