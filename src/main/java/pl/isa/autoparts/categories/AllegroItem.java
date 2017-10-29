@@ -1,9 +1,10 @@
 package pl.isa.autoparts.categories;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class AllegroItem {
-
+    private static final Logger logger = Logger.getLogger(AllegroItem.class.getName());
     private int id;
     private String name;
     private int parentId;

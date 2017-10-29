@@ -1,9 +1,10 @@
 package pl.isa.autoparts.categories;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class TreeOperations {
-
+    private static final Logger logger = Logger.getLogger(TreeOperations.class.getName());
     static int czesciSamochodoweId = 620;
     private int czesciSamochodowePosition = 0;
     private int phraseId;
@@ -11,7 +12,7 @@ public class TreeOperations {
     private ArrayList<AllegroItem> parents = new ArrayList<>();
     private AllegroItem czesciSamochodowe = new AllegroItem();
     private AllegroItem czesciSamochodoweClipboard = new AllegroItem();
-
+    private int flag=0;
 
     public TreeOperations() {
         Parser parser = new Parser();
@@ -76,13 +77,20 @@ public class TreeOperations {
         for (AllegroItem item : czesciSamochodowe.getChildren()) {
             if (item.getName().equals(phrase)) {
                 phraseId = item.getId();
+                flag++;
                 break;
             } else {
                 this.czesciSamochodowe = item;
                 findPhrase(phrase);
             }
         }
+        if(flag==1)
+            logger.info("Znaleziono szukaną kategorię");
+        else
+            logger.warning("Nie znaleziono podanej kategorii");
+
         czesciSamochodowe = czesciSamochodoweClipboard;
+
         return phraseId;
     }
 }

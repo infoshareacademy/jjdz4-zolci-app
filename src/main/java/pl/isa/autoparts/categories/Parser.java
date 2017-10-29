@@ -9,9 +9,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class Parser {
-
+    private static final Logger logger = Logger.getLogger(Parser.class.getName());
     private AllegroItem allegroItem;
 
     public Parser() {
@@ -35,7 +36,7 @@ public class Parser {
             doc.getDocumentElement().normalize();
             NodeList nList = doc.getElementsByTagName("ns1:item");
             System.out.println("----------------------------");
-
+            logger.info("Wczytano plik z kategoriami");
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
                 allegroItem = new AllegroItem();
@@ -62,6 +63,7 @@ public class Parser {
                 }
             }
         } catch (Exception e) {
+            logger.severe("Błąd wczytywania pliku z kategoriami");
             e.printStackTrace();
         }
 
