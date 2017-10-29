@@ -9,7 +9,7 @@ public class Question {
     @JacksonXmlProperty(localName = "id")
     private int id;
 
-    @JacksonXmlProperty(localName = "tresc")
+    @JacksonXmlProperty(localName = "opis")
     private String descripton;
 
     @JacksonXmlElementWrapper(localName = "awaria")

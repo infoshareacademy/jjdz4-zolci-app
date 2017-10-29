@@ -1,16 +1,11 @@
 package pl.isa.autoparts.questions;
 
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 
 public class App {
@@ -18,60 +13,89 @@ public class App {
     public static void main(String[] args) throws IOException {
 //
         XmlMapper mapper = new XmlMapper();
+        XmlMapper xmlMapper = new XmlMapper();
+        File file = new File("out.xml");
+        file.delete();
 
+        xmlMapper.writeValue(new File("out.xml"), prepareTopClass());
 
+        /*
         InputStream activitiesStream = App.class.getClassLoader()
                 .getResourceAsStream("questions.xml");
 //                .getResourceAsStream("/home/sony/projects/java_projects/Myorigin/jjdz4-zolci-app/src/main/resources/questions.xml");
-        Scanner scanner = new Scanner(activitiesStream).useDelimiter("\n");
+       // Scanner scanner = new Scanner(activitiesStream).useDelimiter("\n");
 
-        String file = String.valueOf(scanner);
 
-//        String abc = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
-//                "<class>" +
-//                "<grupa-pytan name=\"przod samochodu\">" +
-//                "<pytanie>" +
-//                "<id>1</id>" +
-//                "<tresc>wyciek plynu</tresc>" +
-//                "<awaria>" +
-//                "<id>1</id>" +
-//                "<tresc>wyciek z silnika</tresc>" +
-//                "<czesc>" +
-//                "<id>1</id>" +
-//                "<nazwa>glowica</nazwa>" +
-//                "</czesc>" +
-//                "<czesc>" +
-//                "<id>2</id>" +
-//                "<nazwa>misa</nazwa>" +
-//                "</czesc>" +
-//                "<czesc>" +
-//                "<id>3</id>" +
-//                "<nazwa>uszczelka</nazwa>" +
-//                "</czesc>" +
-//                "</awaria>" +
-//                "<awaria>" +
-//                "<id>2</id>" +
-//                "<tresc>wyciek z chlodnicy</tresc>" +
-//                "<czesc>" +
-//                "<id>1</id>" +
-//                "<nazwa>chlodnica</nazwa>" +
-//                "</czesc>" +
-//                "</awaria>" +
-//                "</pytanie>" +
-//                "</grupa-pytan>" +
-//                "</class>";
+        String file = getStringFromInputStream(activitiesStream);
 
-        XmlMapper xmlMapper = new XmlMapper();
-//        TopClass topClass1 = xmlMapper.readValue(file, TopClass.class);
+
+        System.out.println(file);
+
+        TopClass topClass1 = xmlMapper.readValue(file, TopClass.class);
+
+
 
 //        System.out.println(xmlMapper.readValue(file, TopClass.class));
 
-//        System.out.println(topClass1.getRootClass().get(0).getQuestions().get(0).getDescripton());
+//        System.out.println(topClass1.getGrupaPytan().get(0).getQuestions().get(0).getDescripton());
+*/
 
-        while (scanner.hasNext()) {
-
-            System.out.println(scanner.next());
-
-        }
     }
+
+
+
+    public static TopClass prepareTopClass() {
+
+        TopClass tc = new TopClass();
+
+
+        QuestionGroup questionGroup1 = new QuestionGroup();
+        questionGroup1.setId(1);
+        questionGroup1.setName("name");
+        List<Question>  qg1questions = new ArrayList<>();
+        Question singleQ = new Question();
+        singleQ.setDescripton("des");
+        singleQ.setId(44);
+        qg1questions.add(singleQ);
+
+        questionGroup1.setQuestions(qg1questions);
+
+        QuestionGroup[] questions = new QuestionGroup[]{questionGroup1};
+
+        tc.setGrupaPytan(questions);
+
+
+        return tc;
+    }
+
+    // convert InputStream to String
+    private static String getStringFromInputStream(InputStream is) {
+
+        BufferedReader br = null;
+        StringBuilder sb = new StringBuilder();
+
+        String line;
+        try {
+
+            br = new BufferedReader(new InputStreamReader(is));
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return sb.toString();
+
+    }
+
 }
