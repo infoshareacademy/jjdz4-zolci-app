@@ -5,14 +5,15 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import java.util.List;
 
-public class Question {
+public final class Question {
     @JacksonXmlProperty(localName = "id")
     private int id;
 
     @JacksonXmlProperty(localName = "opis")
     private String descripton;
 
-    @JacksonXmlElementWrapper(localName = "awaria")
+    @JacksonXmlProperty(localName = "awaria")
+    @JacksonXmlElementWrapper(useWrapping = false)
     private List<BreakDown> breakDown;
 
     public int getId() {

@@ -13,7 +13,8 @@ public class BreakDown {
     @JacksonXmlProperty(localName = "tresc")
     private String description;
 
-    @JacksonXmlElementWrapper(localName = "czesc")
+    @JacksonXmlProperty(localName = "czesc")
+    @JacksonXmlElementWrapper(useWrapping = false)
     private List<Parts> parts;
 
     public int getId() {

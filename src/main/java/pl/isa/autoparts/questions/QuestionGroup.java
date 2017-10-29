@@ -8,14 +8,15 @@ import java.util.List;
 
 public class QuestionGroup {
 
-    //    @JacksonXmlProperty(localName = "name", isAttribute = true)
-    @JacksonXmlProperty(localName = "name", isAttribute = false)
+    @JacksonXmlProperty(localName = "name")
+//    @JacksonXmlProperty(localName = "name", isAttribute = false)
     private String name;
 
     @JacksonXmlProperty(localName = "id")
     private int id;
 
-    @JacksonXmlElementWrapper(localName = "pytanie")
+    @JacksonXmlProperty(localName = "pytanie")
+    @JacksonXmlElementWrapper(useWrapping = false)
     private List<Question> questions;
 
 
