@@ -9,7 +9,6 @@ import java.util.List;
 public class QuestionGroup {
 
     @JacksonXmlProperty(localName = "name")
-//    @JacksonXmlProperty(localName = "name", isAttribute = false)
     private String name;
 
     @JacksonXmlProperty(localName = "id")
