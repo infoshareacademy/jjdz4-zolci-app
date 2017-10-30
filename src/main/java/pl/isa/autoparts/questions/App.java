@@ -16,6 +16,6 @@ public class App {
         XmlMapper xmlMapper = new XmlMapper();
         TopClass topClass = xmlMapper.readValue(file, TopClass.class);
 
-        functions.giveQuestionGrup(topClass);
+        functions.giveQuestionGrup(topClass.getGrupaPytan(), true);
     }
 }

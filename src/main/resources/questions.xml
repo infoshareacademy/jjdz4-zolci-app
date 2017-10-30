@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class>
-    <grupa-pytan name="przod samochodu">
+    <grupa-pytan name="przód samochodu">
         <pytanie>
             <id>1</id>
             <opis>wyciek</opis>
@@ -13,11 +13,15 @@
                 </czesc>
                 <czesc>
                     <id>2</id>
-                    <nazwa>misa</nazwa>
+                    <nazwa>misa olejowa</nazwa>
                 </czesc>
                 <czesc>
                     <id>3</id>
-                    <nazwa>uszczelka</nazwa>
+                    <nazwa>uszczelka pod głowicą</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>simering wału korbowego</nazwa>
                 </czesc>
             </awaria>
             <awaria>
@@ -31,6 +35,10 @@
                     <id>2</id>
                     <nazwa>przewody</nazwa>
                 </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>wentylator</nazwa>
+                </czesc>
             </awaria>
             <awaria>
                 <id>3</id>
@@ -41,7 +49,7 @@
                 </czesc>
                 <czesc>
                     <id>2</id>
-                    <nazwa>przewody</nazwa>
+                    <nazwa>przewody hamulcowe</nazwa>
                 </czesc>
             </awaria>
         </pytanie>
@@ -74,6 +82,30 @@
                 <czesc>
                     <id>6</id>
                     <nazwa>Sprężyna zawieszenia</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>1</id>
+                <tresc>silnik</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>tłoki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>rozrząd</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>korbowód</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>koło zamachowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>pompa paliwa</nazwa>
                 </czesc>
             </awaria>
         </pytanie>
@@ -200,10 +232,26 @@
             <opis>kontrolka</opis>
             <awaria>
                 <id>1</id>
-                <tresc>ABS</tresc>
+                <tresc>kontrolka trakcji + ABS</tresc>
                 <czesc>
                     <id>1</id>
                     <nazwa>czujnik ABS</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>przewody</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>bezpiecznik</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>tarcze hamulcowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>zaciski hamulcowe</nazwa>
                 </czesc>
             </awaria>
             <awaria>
@@ -211,7 +259,7 @@
                 <tresc>czujnik oleju</tresc>
                 <czesc>
                     <id>1</id>
-                    <nazwa>misa</nazwa>
+                    <nazwa>misa olejowa</nazwa>
                 </czesc>
                 <czesc>
                     <id>2</id>
@@ -219,7 +267,7 @@
                 </czesc>
                 <czesc>
                     <id>3</id>
-                    <nazwa>głowica</nazwa>
+                    <nazwa>głowica silnika</nazwa>
                 </czesc>
                 <czesc>
                     <id>4</id>
@@ -256,6 +304,50 @@
                 <czesc>
                     <id>4</id>
                     <nazwa>czujnik poziomu oleju</nazwa>
+                </czesc>
+            </awaria>
+        </pytanie>
+        <pytanie>
+            <id>3</id>
+            <opis>Uszkodzony układ zmiany biegów</opis>
+            <awaria>
+                <id>1</id>
+                <tresc>sprzęgło</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>wałek sprzęgła</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>koło zamachowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>tarcza dociskowa sprzęgła</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>łożysko sprzęgła</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>skrzynia biegów</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>wybierak</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>łożysko sprzęgła</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Simmeringi i uszczelnienia</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>koło zębate, wałki</nazwa>
                 </czesc>
             </awaria>
         </pytanie>
@@ -350,6 +442,14 @@
                 <czesc>
                     <id>3</id>
                     <nazwa>uszczelki</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>płyn hamulcowy</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>przewody hamulcowe</nazwa>
                 </czesc>
             </awaria>
         </pytanie>

@@ -8,66 +8,73 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Functions {
+    private Scanner sc = new Scanner(System.in);
 
-    protected void giveQuestionGrup(TopClass topClass) {
 
-        Scanner sc = new Scanner(System.in);
-        boolean flag = true;
+//    questions about parts of car, <QuestionGroup>
+protected void giveQuestionGrup(List<QuestionGroup> q1, boolean flag) {
 
-        for (int i = 0; i < topClass.getGrupaPytan().size(); i++) {
+        for (int i = 0; i < q1.size(); i++) {
+            if (!q1.get(i).getQuestions().isEmpty() && flag) {
 
-            if (!topClass.getGrupaPytan().get(i).getQuestions().isEmpty() && flag) {
-                System.out.print("Czy awaria dotyczy części: " +
-                        topClass.getGrupaPytan().get(i).getName() +
-                        "\nwcisnij 'y' jesli potwiedzasz: ");
+                System.out.print("Czy awaria dotyczy: " +
+                        q1.get(i).getName() +
+                        "?\nwcisnij ('y=Yes'/'n'=No) jesli potwiedzasz: ");
 
                 if (sc.next().equals("y")) {
                     flag = false;
-                    giveQuestion(topClass.getGrupaPytan().get(i).getQuestions());
+                    giveQuestion(q1.get(i).getQuestions(), true);
+                    break;
                 }
             }
+                System.out.println("\nCzęść nie znaleziona\n");
         }
     }
 
-    private void giveQuestion(List<Question> q1) {
-        boolean flag = true;
-        Scanner sc = new Scanner(System.in);
+//  questions about more specific parts of car, <Question>
+    private void giveQuestion(List<Question> q1, boolean flag) {
 
         for (int i = 0; i < q1.size(); i++) {
             if (!q1.get(i).getBreakDown().isEmpty() && flag) {
+
                 System.out.print("\nCzy awaria dotyczy: " +
                         q1.get(i).getDescripton() +
-                        "\nwcisnij 'y' jesli potwiedzasz: ");
+                        "?\nwcisnij ('y=Yes'/'n'=No) jesli potwiedzasz: ");
 
                 if (sc.next().equals("y")) {
                     flag = false;
-                    giveBreakDown(q1.get(i).getBreakDown());
+                    giveBreakDown(q1.get(i).getBreakDown(), true);
+                    break;
                 }
             }
+                System.out.println("\nCzęść nie znaleziona");
         }
     }
 
-    private void giveBreakDown(List<BreakDown> q1) {
-        boolean flag = true;
-        Scanner sc = new Scanner(System.in);
+//  questions about specific faults of car's parts <BreakDown>
+    private void giveBreakDown(List<BreakDown> q1, boolean flag) {
 
         for (int i = 0; i < q1.size(); i++) {
             if (!q1.get(i).getParts().isEmpty() && flag) {
+
                 System.out.print("\nCzy awaria dotyczy: " +
                         q1.get(i).getDescription() +
-                        "\nwciśnij 'y' jesli potwierdzasz: ");
+                        "?\nwcisnij ('y=Yes'/'n'=No) jesli potwiedzasz: ");
 
                 if (sc.next().equals("y")) {
                     flag = false;
                     giveParts(q1.get(i).getParts());
+                    break;
                 }
             }
+                System.out.println("\nCzęść nie znaleziona");
         }
     }
 
+//  list of recomended parts' to repair <Parts>
     private void giveParts(List<Parts> q1) {
-
         System.out.println("\nLista proponowanych części: ");
+
         for (int i = 0; i < q1.size(); i++) {
             System.out.println("- " + q1.get(i).getPart());
         }
