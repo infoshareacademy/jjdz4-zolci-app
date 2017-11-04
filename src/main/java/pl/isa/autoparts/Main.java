@@ -25,6 +25,8 @@ public class Main {
         textMenu.showOptions();
         chosenOption = textMenu.choseOptions();
 
+
+
         switch (chosenOption) {
             case 1:
                 treeOperations.printWholeTree();
