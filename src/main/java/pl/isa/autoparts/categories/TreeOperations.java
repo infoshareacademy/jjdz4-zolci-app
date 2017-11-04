@@ -12,7 +12,7 @@ public class TreeOperations {
     private ArrayList<AllegroItem> parents = new ArrayList<>();
     private AllegroItem czesciSamochodowe = new AllegroItem();
     private AllegroItem czesciSamochodoweClipboard = new AllegroItem();
-    private int flag=0;
+    private int flag = 0;
 
     public TreeOperations() {
         Parser parser = new Parser();
@@ -84,7 +84,7 @@ public class TreeOperations {
                 findPhrase(phrase);
             }
         }
-        if(flag==1)
+        if (flag == 1)
             logger.info("Znaleziono szukaną kategorię");
         else
             logger.warning("Nie znaleziono podanej kategorii");
