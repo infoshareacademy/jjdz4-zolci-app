@@ -34,7 +34,12 @@ public class TreeOperations {
     }
 
     public void setSearchedPhrase(String phrase) {
-        this.parents = saveParent(findPhrase(phrase), this.parents);
+        int parentId = findPhrase(phrase);
+        if (parentId != 0) {
+            this.parents = saveParent(parentId, this.parents);
+        }
+        else
+            System.out.println("Nie znaleziono kategorii!");
     }
 
     private void printWholeTreeRecurency(int stars, AllegroItem czesciSamochodowe) {
