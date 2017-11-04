@@ -48,8 +48,6 @@ public class Main {
         Printer.inputRequest("Wybierz opcję", "np. 1");
         int option = InputScanner.scanForOption();
 
-        AztecVehicle vehicle = null;
-
         switch (option) {
 
             case 1:
