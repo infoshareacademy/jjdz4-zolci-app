@@ -29,7 +29,10 @@ public class Parser {
 
 
         try {
-            File inputFile = new File("src/main/resources/Allegro_cathegories_2016-02-13.xml");
+            ClassLoader classLoader = getClass().getClassLoader();
+            File inputFile = new File(classLoader.getResource("Allegro_cathegories_2016-02-13.xml").getFile());
+
+
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);

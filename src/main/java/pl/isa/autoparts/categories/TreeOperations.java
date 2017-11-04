@@ -74,6 +74,7 @@ public class TreeOperations {
                 break;
             }
         }
+
         return parentList;
     }
 
@@ -91,9 +92,10 @@ public class TreeOperations {
         }
         if (flag == 1)
             logger.info("Znaleziono szukaną kategorię");
-        else
+        else {
             logger.warning("Nie znaleziono podanej kategorii");
 
+        }
         czesciSamochodowe = czesciSamochodoweClipboard;
 
         return phraseId;
