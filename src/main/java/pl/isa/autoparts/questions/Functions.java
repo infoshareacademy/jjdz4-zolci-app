@@ -19,9 +19,9 @@ public class Functions {
 //    }
 
 
-//    questions about parts of car, <QuestionGroup>
-protected void giveQuestionGrup(List<QuestionGroup> question, boolean flag) {
-    logger.info("Start Function");
+    //    questions about parts of car, <QuestionGroup>
+    protected void giveQuestionGrup(List<QuestionGroup> question, boolean flag) {
+        logger.info("Start Function");
 
         for (int i = 0; i < question.size(); i++) {
             if (!question.get(i).getQuestions().isEmpty() && flag) {
@@ -36,11 +36,11 @@ protected void giveQuestionGrup(List<QuestionGroup> question, boolean flag) {
                     break;
                 }
             }
-                System.out.println("\nCzęść nie znaleziona\n");
+            System.out.println("\nNastępna opcja: \n");
         }
     }
 
-//  questions about more specific parts of car, <Question>
+    //  questions about more specific parts of car, <Question>
     private void giveQuestion(List<Question> question, boolean flag) {
 
         for (int i = 0; i < question.size(); i++) {
@@ -56,11 +56,11 @@ protected void giveQuestionGrup(List<QuestionGroup> question, boolean flag) {
                     break;
                 }
             }
-                System.out.println("\nCzęść nie znaleziona");
+            System.out.println("\nNastępna opcja: ");
         }
     }
 
-//  questions about specific faults of car's parts <BreakDown>
+    //  questions about specific faults of car's parts <BreakDown>
     private void giveBreakDown(List<BreakDown> question, boolean flag) {
 
         for (int i = 0; i < question.size(); i++) {
@@ -76,11 +76,11 @@ protected void giveQuestionGrup(List<QuestionGroup> question, boolean flag) {
                     break;
                 }
             }
-                System.out.println("\nCzęść nie znaleziona");
+            System.out.println("\nCzęść nie znaleziona ");
         }
     }
 
-//  list of recomended parts' to repair <Parts>
+    //  list of recomended parts' to repair <Parts>
     private void giveParts(List<Parts> question) {
         System.out.println("\nLista proponowanych części: ");
 

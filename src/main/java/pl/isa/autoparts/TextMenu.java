@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class TextMenu {
     Scanner sc = new Scanner(System.in);
     int input;
-    String[] menuOptions = {"Wydrukuj całe drzewo kategorii", "Wydrukuj rodziców szukanej kategorii", "opcja trzecia",
+    String[] menuOptions = {"Wydrukuj całe drzewo kategorii", "Wydrukuj rodziców szukanej kategorii", "Wybór części na podstawie pytań użytkownika",
             "opcja czwarta", "opcja piąta"};
 
     public void showOptions() {
