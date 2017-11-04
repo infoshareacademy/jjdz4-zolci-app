@@ -81,6 +81,9 @@ public class AztecPrinter {
         printItem("Dopuszczalny nacisk na oś",
                 aztec.getAztecData().getMaxAxisLoad());
 
+        printItem("Numer karty pojazdu",
+                aztec.getAztecData().getVehicleCardNumber());
+
         printItem("C.1.1 Nazwa posiadacza dowodu",
                 aztec.getAztecData().getRegistyOwnersNameField_C11());
 

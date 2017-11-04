@@ -92,7 +92,7 @@ public class AztecData {
     private String powerToMassRatioField_Q;
 
     @JsonProperty("S.1")
-    private int seatsNumberField_S1;
+    private String seatsNumberField_S1;
 
     @JsonProperty("S.2")
     private String standingPlacesNumberField_S2;
@@ -268,7 +268,7 @@ public class AztecData {
         return powerToMassRatioField_Q;
     }
 
-    public int getSeatsNumberField_S1() {
+    public String getSeatsNumberField_S1() {
         return seatsNumberField_S1;
     }
 
