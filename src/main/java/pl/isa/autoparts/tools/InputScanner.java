@@ -14,4 +14,16 @@ public class InputScanner {
 
         return "";
     }
+
+    public static int scanForOption() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        if (scanner.hasNextInt()) {
+
+            return scanner.nextInt();
+        }
+
+        return 0;
+    }
 }

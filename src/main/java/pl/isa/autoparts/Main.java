@@ -1,10 +1,7 @@
 package pl.isa.autoparts;
 
 
-import pl.isa.autoparts.aztec.AtenaSessionReader;
-import pl.isa.autoparts.aztec.AtenaUser;
-import pl.isa.autoparts.aztec.AztecPrinter;
-import pl.isa.autoparts.aztec.AztecVehicle;
+import pl.isa.autoparts.aztec.*;
 import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.tools.InputScanner;
@@ -44,7 +41,44 @@ public class Main {
 
     private static void executeAztecReader() {
 
-        Printer.println("Pobieranie danych kodu aztec ze zdjęcia");
+        Printer.println("Pokaż dane kodu aztec");
+        Printer.println("1. Pobierz dane z pliku");
+        Printer.println("2. Pobierz dane z sesji Atena");
+
+        Printer.inputRequest("Wybierz opcję", "np. 1");
+        int option = InputScanner.scanForOption();
+
+        AztecVehicle vehicle = null;
+
+        switch (option) {
+
+            case 1:
+                readAztecFromFile();
+                break;
+            case 2:
+                readAztecFromSession();
+                break;
+            default:
+                Printer.printError("Wybrałeś złą opcję");
+        }
+
+
+    }
+
+    private static void readAztecFromFile() {
+
+        AztecVehicle vehicle = null;
+
+        try {
+            vehicle = AztecJsonParser.parseAztecFromFile("AztecCodeResult.json");
+        } catch (IOException e) {
+            Printer.printError("Niepowodzenie parsowania json z pliku");
+        }
+
+        AztecPrinter.printAztecVehicleData(vehicle);
+    }
+
+    private static void readAztecFromSession() {
 
         Printer.inputRequest("Podaj kod klienta", "np. qY2?0Pw!");
         AtenaUser user = new AtenaUser(InputScanner.scanForStringLine());
