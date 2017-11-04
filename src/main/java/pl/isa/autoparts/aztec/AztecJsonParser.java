@@ -1,38 +1,18 @@
 package pl.isa.autoparts.aztec;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import pl.isa.autoparts.tools.JsonParser;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
-public class AztecJsonParser {
+public class AztecJsonParser extends JsonParser {
 
-    public static AztecVehicle parseAztecJsonFromURL(String url) throws IOException {
+    public static AztecVehicle parseAztecFromURL(String url) throws IOException {
 
-        ObjectMapper mapper = new ObjectMapper();
-
-        return mapper.readValue(new URL(url), AztecVehicle.class);
+        return (AztecVehicle) parseJsonFromURL(url, new AztecVehicle());
     }
 
-    public static AztecVehicle parseAztecJsonFromFile(String fileName) throws IOException, FileNotFoundException {
+    public static AztecVehicle parseAztecFromFile(String fileName) throws IOException {
 
-        ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        File file = new File(classLoader.getResource(fileName).getFile());
-        if (file == null) throw new FileNotFoundException();
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        return mapper.readValue(file, AztecVehicle.class);
-    }
-
-    public static String aztecVehicleToJson(AztecVehicle aztecVehicle) throws JsonProcessingException {
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        return mapper.writeValueAsString(aztecVehicle);
+        return (AztecVehicle) parseJsonFromFile(fileName, new AztecVehicle());
     }
 }

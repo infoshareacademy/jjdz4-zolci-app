@@ -1,22 +1,8 @@
 package pl.isa.autoparts.aztec;
 
-public class AztecPrinter {
+import pl.isa.autoparts.tools.Printer;
 
-    private static final String NORMAL = "\u001B[0m";
-    private static final String YELLOW = "\u001B[33m";
-    private static final String BLUE = "\u001B[34m";
-    private static final String RED = "\u001B[31m";
-
-
-    public static void println(String text) {
-
-        System.out.println(BLUE + text + NORMAL);
-    }
-
-    public static void printError(String text) {
-
-        System.out.println(RED + "Błąd: " + text + NORMAL);
-    }
+public class AztecPrinter extends Printer {
 
     public static void printSessionError(AztecVehicle aztec) {
 
