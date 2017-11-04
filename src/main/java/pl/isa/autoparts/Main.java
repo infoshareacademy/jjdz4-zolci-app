@@ -29,6 +29,7 @@ public class Main {
                 treeOperations.printWholeTree();
                 break;
             case 2:
+                System.out.println("Wpisz szukaną kategorię. Zacznij z wielkiej litery");
                 Scanner phrase = new Scanner(System.in);
                 treeOperations.setSearchedPhrase(phrase.nextLine());
                 for (AllegroItem item : treeOperations.getParents()) {     //wydrukujemy sobie rodzicow danej kategorii
