@@ -7,15 +7,17 @@ import pl.isa.autoparts.aztec.AztecPrinter;
 import pl.isa.autoparts.aztec.AztecVehicle;
 import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.TreeOperations;
+import pl.isa.autoparts.questions.Questionary;
 import pl.isa.autoparts.tools.InputScanner;
 import pl.isa.autoparts.tools.Printer;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         TreeOperations treeOperations = new TreeOperations();
         int chosenOption;
 
@@ -23,18 +25,25 @@ public class Main {
         textMenu.showOptions();
         chosenOption = textMenu.choseOptions();
 
+
+
         switch (chosenOption) {
             case 1:
                 treeOperations.printWholeTree();
                 break;
             case 2:
-                treeOperations.setSearchedPhrase("Silniczki szyb");
+                Scanner phrase = new Scanner(System.in);
+                treeOperations.setSearchedPhrase(phrase.nextLine());
                 for (AllegroItem item : treeOperations.getParents()) {     //wydrukujemy sobie rodzicow danej kategorii
                     System.out.println(item.getName());
                 }
                 break;
             case 3:
                 executeAztecReader();
+                break;
+            case 4:
+                Questionary questionary = new Questionary();
+                questionary.questionOptions();
                 break;
             default:
                 Printer.printError("Wybrałeś złą opcję");

@@ -12,7 +12,7 @@ public class TreeOperations {
     private ArrayList<AllegroItem> parents = new ArrayList<>();
     private AllegroItem czesciSamochodowe = new AllegroItem();
     private AllegroItem czesciSamochodoweClipboard = new AllegroItem();
-    private int flag=0;
+    private int flag = 0;
 
     public TreeOperations() {
         Parser parser = new Parser();
@@ -34,7 +34,12 @@ public class TreeOperations {
     }
 
     public void setSearchedPhrase(String phrase) {
-        this.parents = saveParent(findPhrase(phrase), this.parents);
+        int parentId = findPhrase(phrase);
+        if (parentId != 0) {
+            this.parents = saveParent(parentId, this.parents);
+        }
+        else
+            System.out.println("Nie znaleziono kategorii!");
     }
 
     private void printWholeTreeRecurency(int stars, AllegroItem czesciSamochodowe) {
@@ -84,7 +89,7 @@ public class TreeOperations {
                 findPhrase(phrase);
             }
         }
-        if(flag==1)
+        if (flag == 1)
             logger.info("Znaleziono szukaną kategorię");
         else
             logger.warning("Nie znaleziono podanej kategorii");

@@ -7,7 +7,7 @@ public class TextMenu {
     Scanner sc = new Scanner(System.in);
     int input;
     String[] menuOptions = {"Wydrukuj całe drzewo kategorii", "Wydrukuj rodziców szukanej kategorii", "Pobierz dane kodu aztec ze zdjęcia",
-            "opcja czwarta", "opcja piąta"};
+            "Wybór części na podstawie serii pytań", "opcja piąta"};
 
     public void showOptions() {
         System.out.println("Menu tekstowe: \n");
