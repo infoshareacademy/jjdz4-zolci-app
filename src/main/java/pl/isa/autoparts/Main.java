@@ -6,9 +6,12 @@ import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.questions.Questionary;
 import pl.isa.autoparts.tools.InputScanner;
+import pl.isa.autoparts.tools.JsonParser;
 import pl.isa.autoparts.tools.Printer;
+import pl.isa.autoparts.vehiclefinder.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -43,6 +46,9 @@ public class Main {
                 Questionary questionary = new Questionary();
                 questionary.questionOptions();
                 break;
+            case 5:
+                executeVehicleFinder();
+                break;
             default:
                 Printer.printError("Wybrałeś złą opcję");
         }
@@ -55,7 +61,7 @@ public class Main {
         Printer.println("1. Pobierz dane z pliku");
         Printer.println("2. Pobierz dane z sesji Atena");
 
-        Printer.inputRequest("Wybierz opcję", "np. 1");
+        Printer.printInputRequest("Wybierz opcję");
         int option = InputScanner.scanForOption();
 
         switch (option) {
@@ -88,10 +94,10 @@ public class Main {
 
     private static void readAztecFromSession() {
 
-        Printer.inputRequest("Podaj kod klienta", "np. qY2?0Pw!");
+        Printer.printInputRequest("Podaj kod klienta [np. qY2?0Pw!]");
         AtenaUser user = new AtenaUser(InputScanner.scanForStringLine());
 
-        Printer.inputRequest("Podaj otrzymany kod sesji", "np. g1sjjw");
+        Printer.printInputRequest("Podaj otrzymany kod sesji");
         AtenaSessionReader session = new AtenaSessionReader(InputScanner.scanForStringLine(), user);
 
         AztecVehicle vehicle = null;
@@ -106,6 +112,58 @@ public class Main {
             AztecPrinter.printSessionError(vehicle);
         else
             AztecPrinter.printAztecVehicleData(vehicle);
+    }
+
+    private static void executeVehicleFinder() {
+
+        Printer.println("Identyfikacja auta po serii pytań");
+        Printer.println("Aktualizacja bazy... Poczekaj chwilę...");
+
+        Vehicle vehicle = null;
+
+        try {
+            vehicle = VehicleJsonParser.parseVehicleJsonFromURL(VehicleFinder.VEHICLE_DB_URL);
+        } catch (IOException e) {
+            Printer.printError("Niepowodzenie parsowania json");
+            return;
+        }
+
+        Printer.printInputRequest("Podaj markę szukanego auta");
+        String brandName = InputScanner.scanForStringLine();
+
+        Printer.printInputRequest("Podaj model");
+        String modelName = InputScanner.scanForStringLine();
+
+        Printer.printInputRequest("Podaj rocznik");
+        String productionYear = InputScanner.scanForStringLine();
+
+        Printer.printInputRequest("Podaj pojemność");
+        String cylinderVolume = InputScanner.scanForStringLine();
+
+        VehicleFinder vehicleFinder = new VehicleFinder(vehicle);
+
+        List<VehicleData> models = vehicleFinder.findVehicleModels(brandName, modelName, productionYear);
+        if (models.size() > 1) {
+
+            VehiclePrinter.printModels(models);
+            modelName = InputScanner.scanForStringLine();
+
+            for (VehicleData data : models) {
+                if (data.getName().toUpperCase()
+                        .contains(modelName.toUpperCase())) {
+                    modelName = data.getName();
+                    break;
+                }
+            }
+        }
+        else {
+            if (!models.isEmpty())
+                modelName = models.get(0).getName();
+        }
+
+        List<VehicleData> vehicles = vehicleFinder.foundVehicles(modelName, cylinderVolume);
+
+        VehiclePrinter.printFoundVehicles(vehicleFinder, vehicles);
     }
 }
 

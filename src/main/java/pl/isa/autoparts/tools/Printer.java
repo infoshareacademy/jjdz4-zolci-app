@@ -17,8 +17,8 @@ public abstract class Printer {
         System.out.println(RED + "Błąd: " + text + NORMAL);
     }
 
-    public static void inputRequest(String text, String instruction) {
+    public static void printInputRequest(String text) {
 
-        System.out.print(YELLOW + '\n' + text + " [" + instruction + "]: ");
+        System.out.print(YELLOW + '\n' + text + ": " + NORMAL);
     }
 }
