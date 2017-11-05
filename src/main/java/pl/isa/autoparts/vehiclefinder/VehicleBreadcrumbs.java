@@ -1,30 +1,22 @@
 package pl.isa.autoparts.vehiclefinder;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class VehicleBreadcrumbs {
 
-    private VehicleData[] data;
+    @JsonProperty("title")
+    private String title;
 
-    private String datatype;
+    @JsonProperty("link")
+    private String link;
 
-    public VehicleData[] getData ()
-    {
-        return data;
+    public String getTitle() {
+        return title;
     }
 
-    public void setData (VehicleData[] data)
-    {
-        this.data = data;
+    public String getLink() {
+        return link;
     }
-
-    public String getDatatype ()
-    {
-        return datatype;
-    }
-
-    public void setDatatype (String datatype)
-    {
-        this.datatype = datatype;
-    }
-
-    // TODO override toString()
 }
