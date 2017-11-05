@@ -28,7 +28,7 @@ public class Functions {
 
                 System.out.print("Czy awaria dotyczy: " +
                         question.get(i).getName() +
-                        "?\nwcisnij ('y=Yes'/'n'=No) jesli potwiedzasz: ");
+                        "?\nwcisnij ('y=Yes'/'n'=No) jesli potwierdzasz: ");
 
                 if (sc.next().equals("y")) {
                     flag = false;
@@ -48,7 +48,7 @@ public class Functions {
 
                 System.out.print("\nCzy awaria dotyczy: " +
                         question.get(i).getDescripton() +
-                        "?\nwcisnij ('y=Yes'/'n'=No) jesli potwiedzasz: ");
+                        "?\nwcisnij ('y=Yes'/'n'=No) jesli potwierdzasz: ");
 
                 if (sc.next().equals("y")) {
                     flag = false;
@@ -68,7 +68,7 @@ public class Functions {
 
                 System.out.print("\nCzy awaria dotyczy: " +
                         question.get(i).getDescription() +
-                        "?\nwcisnij ('y=Yes'/'n'=No) jesli potwiedzasz: ");
+                        "?\nwcisnij ('y=Yes'/'n'=No) jesli potwierdzasz: ");
 
                 if (sc.next().equals("y")) {
                     flag = false;
