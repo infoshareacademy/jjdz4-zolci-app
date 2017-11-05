@@ -18,8 +18,9 @@ public class JsonParser {
 
     public static Object parseJsonFromFile(String fileName, Object object) throws IOException {
 
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        InputStream file = classLoader.getResourceAsStream(fileName);
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        InputStream file = classloader.getResourceAsStream(fileName);
+
         if (file == null) throw new IOException();
 
         ObjectMapper mapper = new ObjectMapper();
