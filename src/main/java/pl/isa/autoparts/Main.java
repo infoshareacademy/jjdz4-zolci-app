@@ -6,7 +6,6 @@ import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.questions.Questionary;
 import pl.isa.autoparts.tools.InputScanner;
-import pl.isa.autoparts.tools.JsonParser;
 import pl.isa.autoparts.tools.Printer;
 import pl.isa.autoparts.vehiclefinder.*;
 
@@ -23,10 +22,9 @@ public class Main {
 
         TextMenu textMenu = new TextMenu();
         textMenu.showOptions();
+
+
         chosenOption = textMenu.choseOptions();
-
-
-
         switch (chosenOption) {
             case 1:
                 treeOperations.printWholeTree();
