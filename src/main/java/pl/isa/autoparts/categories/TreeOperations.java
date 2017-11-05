@@ -36,10 +36,14 @@ public class TreeOperations {
     public void setSearchedPhrase(String phrase) {
         int parentId = findPhrase(phrase);
         if (parentId != 0) {
+            logger.info("Znaleziono szukaną kategorię");
+
+
             this.parents = saveParent(parentId, this.parents);
-        }
-        else
+        } else {
+            logger.info("Nie znaleziono podanej kategorii");
             System.out.println("Nie znaleziono kategorii!");
+        }
     }
 
     private void printWholeTreeRecurency(int stars, AllegroItem czesciSamochodowe) {
@@ -74,6 +78,7 @@ public class TreeOperations {
                 break;
             }
         }
+
         return parentList;
     }
 
@@ -89,10 +94,6 @@ public class TreeOperations {
                 findPhrase(phrase);
             }
         }
-        if (flag == 1)
-            logger.info("Znaleziono szukaną kategorię");
-        else
-            logger.warning("Nie znaleziono podanej kategorii");
 
         czesciSamochodowe = czesciSamochodoweClipboard;
 

@@ -7,7 +7,7 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -29,7 +29,9 @@ public class Parser {
 
 
         try {
-            File inputFile = new File("src/main/resources/Allegro_cathegories_2016-02-13.xml");
+            ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+            InputStream inputFile = classloader.getResourceAsStream("Allegro_cathegories_2016-02-13.xml");
+
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);
