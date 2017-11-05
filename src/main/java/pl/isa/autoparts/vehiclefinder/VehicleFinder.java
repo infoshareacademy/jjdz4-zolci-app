@@ -9,8 +9,8 @@ import java.util.List;
 public class VehicleFinder {
 
     public static final String VEHICLE_DB_URL = "http://infoshareacademycom.2find.ru/api/v2?lang=polish";
-    public static final String VEHICLE_DB_URL_PRE = "http://infoshareacademycom.2find.ru";
-    public static final String VEHICLE_DB_URL_POST = "?lang=polish";
+    private static final String VEHICLE_DB_URL_PRE = "http://infoshareacademycom.2find.ru";
+    private final String VEHICLE_DB_URL_POST = "?lang=polish";
 
     private Vehicle vehicle;
     private Vehicle foundVehicle;
