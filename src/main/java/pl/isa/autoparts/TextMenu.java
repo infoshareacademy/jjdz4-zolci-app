@@ -47,13 +47,17 @@ public class TextMenu {
                     treeOperations.printWholeTree();
                     break;
                 case 2:
-                    System.out.println("Wpisz szukaną kategorię. Zacznij z wielkiej litery");
+                    System.out.println("Wpisz szukaną kategorię. Wpisz 'back' aby wrócić");
                     Scanner phrase = new Scanner(System.in);
-                    treeOperations.setSearchedPhrase(phrase.nextLine());
-                    for (AllegroItem item : treeOperations.getParents()) {     //wydrukujemy sobie rodzicow danej kategorii
-                        System.out.println(item.getName());
+                    if(phrase.equals("back")){
+                        options(treeOperations);
                     }
-
+                    else {
+                        treeOperations.setSearchedPhrase(phrase.nextLine());
+                        for (AllegroItem item : treeOperations.getParents()) {     //wydrukujemy sobie rodzicow danej kategorii
+                            System.out.println(item.getName());
+                        }
+                    }
                     break;
                 case 3:
                     initateAztec.executeAztecReader();
