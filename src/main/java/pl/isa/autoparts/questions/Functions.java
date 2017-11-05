@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class Functions {
     private Scanner sc = new Scanner(System.in);
-    Logger logger = LoggerFactory.getLogger(Functions.class.getName());
+//    Logger logger = LoggerFactory.getLogger(Functions.class.getName());
 
 //    public Functions(){
 //        logger.info("");
@@ -21,7 +21,7 @@ public class Functions {
 
     //    questions about parts of car, <QuestionGroup>
     protected void giveQuestionGrup(List<QuestionGroup> question, boolean flag) {
-        logger.info("Start Function");
+//        logger.info("Start Function");
 
         for (int i = 0; i < question.size(); i++) {
             if (!question.get(i).getQuestions().isEmpty() && flag) {
@@ -87,7 +87,7 @@ public class Functions {
         for (int i = 0; i < question.size(); i++) {
             System.out.println("- " + question.get(i).getPart());
         }
-        logger.info("Stop Function");
+//        logger.info("Stop Function");
     }
 
     // convert InputStream to String
@@ -106,14 +106,14 @@ public class Functions {
 
         } catch (IOException e) {
             e.printStackTrace();
-            logger.error("File not found!");
+//            logger.error("File not found!");
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    logger.error("File not found!");
+//                    logger.error("File not found!");
                 }
             }
         }

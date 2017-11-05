@@ -10,7 +10,7 @@ public class Questionary {
 
     public void questionOptions() throws IOException {
         Functions functions = new Functions();
-        Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
+//        Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
 
 
         InputStream activitiesStream = Questionary.class.getClassLoader()
@@ -19,7 +19,7 @@ public class Questionary {
         String file = functions.getStringFromInputStream(activitiesStream);
         XmlMapper xmlMapper = new XmlMapper();
         TopClass topClass = xmlMapper.readValue(file, TopClass.class);
-        logger.info("XML is mapped correctly");
+//        logger.info("XML is mapped correctly");
 
         functions.giveQuestionGrup(topClass.getGrupaPytan(), true);
     }

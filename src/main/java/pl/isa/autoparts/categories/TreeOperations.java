@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 public class TreeOperations {
-    private static final Logger logger = Logger.getLogger(TreeOperations.class.getName());
+//    private static final Logger logger = Logger.getLogger(TreeOperations.class.getName());
     static int czesciSamochodoweId = 620;
     private int czesciSamochodowePosition = 0;
     private int phraseId;
@@ -36,12 +36,12 @@ public class TreeOperations {
     public void setSearchedPhrase(String phrase) {
         int parentId = findPhrase(phrase);
         if (parentId != 0) {
-            logger.info("Znaleziono szukaną kategorię");
+//            logger.info("Znaleziono szukaną kategorię");
 
 
             this.parents = saveParent(parentId, this.parents);
         } else {
-            logger.info("Nie znaleziono podanej kategorii");
+//            logger.info("Nie znaleziono podanej kategorii");
             System.out.println("Nie znaleziono kategorii!");
         }
     }
