@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,6 +18,8 @@ public class Functions {
 //    public Functions(){
 //        logger.info("");
 //    }
+
+    private List<String> lista = new ArrayList<>();
 
 
     //    questions about parts of car, <QuestionGroup>
@@ -86,6 +89,7 @@ public class Functions {
 
         for (int i = 0; i < question.size(); i++) {
             System.out.println("- " + question.get(i).getPart());
+            lista.add(question.get(i).getPart());
         }
 //        logger.info("Stop Function");
     }
@@ -118,5 +122,13 @@ public class Functions {
             }
         }
         return sb.toString();
+    }
+
+    public List<String> getLista() {
+        return lista;
+    }
+
+    public void clearList() {
+        lista.clear();
     }
 }
