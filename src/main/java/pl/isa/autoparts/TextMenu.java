@@ -60,12 +60,10 @@ public class TextMenu {
                     System.out.println("Wpisz szukaną kategorię. Wpisz 'back' aby wrócić");
                     Scanner phrase = new Scanner(System.in);
                     if (phrase.equals("back")) {
-                        options(treeOperations);
+                        break;
                     } else {
-                        treeOperations.setSearchedPhrase(phrase.nextLine());
-                        for (AllegroItem item : treeOperations.getParents()) {     //wydrukujemy sobie rodzicow danej kategorii
-                            System.out.println(item.getName());
-                        }
+                        treeOperations.setSearchedPhrase(phrase.nextLine().toLowerCase());
+                        treeOperations.printParents();
                     }
                     break;
                 case 3:
@@ -87,7 +85,6 @@ public class TextMenu {
 
 
             }
-            System.out.println("\n");
             System.out.println("\n");
             System.out.println("\n");
         } while (i != 0);
