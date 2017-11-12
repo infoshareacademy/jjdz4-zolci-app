@@ -1,6 +1,5 @@
 package pl.isa.autoparts;
 
-import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.questions.Questionary;
 import pl.isa.autoparts.tools.Printer;
@@ -8,7 +7,6 @@ import pl.isa.autoparts.tools.Printer;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 
 public class TextMenu {
@@ -24,20 +22,20 @@ public class TextMenu {
 
         System.out.print("\n" + "podaj numer opcji: ");
     }
-    String a = "";
+
+    String stringInput = "";
+
     private int choseOptions() {
-//        input = 0;
-        a = sc.nextLine();
+        stringInput = sc.nextLine();
         try {
-            input = Integer.parseInt(a);
-//            input = sc.nextInt();
+            input = Integer.parseInt(stringInput);
         } catch (InputMismatchException e) {
-//            input = 6;
             return 6;
-        }catch (NumberFormatException e) {
-//            input = 6;
-        return 6;
-    }
+        } catch (NumberFormatException e) {
+            Printer.printError("dana nie jest indeksem");
+            System.out.println("Podaj wartosc w zakresie 0-5!");
+            return 6;
+        }
 
         try {
             System.out.println("\nwybrano: " + menuOptions[input]);
@@ -48,11 +46,11 @@ public class TextMenu {
     }
 
     public void options(TreeOperations treeOperations) throws IOException {
-        int i = 0;
+        int checkOption = 0;
         do {
             showOptions();
-            i = choseOptions();
-            switch (i) {
+            checkOption = choseOptions();
+            switch (checkOption) {
                 case 1:
                     treeOperations.printWholeTree();
                     break;
@@ -82,13 +80,8 @@ public class TextMenu {
                     break;
                 default:
                     Printer.printError("Wybrałeś złą opcję");
-
-
             }
             System.out.println("\n");
-            System.out.println("\n");
-        } while (i != 0);
+        } while (checkOption != 0);
     }
-
-
 }

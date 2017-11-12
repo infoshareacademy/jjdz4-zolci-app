@@ -46,7 +46,7 @@ public class Functions {
             if (i < question.size() - 1)
                 System.out.println("\nNastępna opcja: \n");
         }
-        System.out.println("\n\n\n\n\n");
+        System.out.println("\nNie wybrałeś żadnej kategorii!\n\n\n");
         textMenu.options(treeOperations);
     }
 
@@ -69,7 +69,7 @@ public class Functions {
             if (i < question.size() - 1)
                 System.out.println("\nNastępna opcja: ");
         }
-        System.out.println("\n\n\n\n\n");
+        System.out.println("\nNie wybrałeś żadnej kategorii!\n\n\n");
         textMenu.options(treeOperations);
     }
 
@@ -90,9 +90,9 @@ public class Functions {
                 }
             }
             if (i < question.size() - 1)
-            System.out.println("\nCzęść nie znaleziona ");
+                System.out.println("\nCzęść nie znaleziona ");
         }
-        System.out.println("\n\n\n\n\n");
+        System.out.println("\n");
         textMenu.options(treeOperations);
     }
 
