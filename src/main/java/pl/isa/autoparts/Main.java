@@ -4,6 +4,8 @@ package pl.isa.autoparts;
 import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.TreeOperations;
 
+import java.util.Scanner;
+
 public class Main {
 
 
@@ -20,9 +22,26 @@ public class Main {
                 treeOperations.printWholeTree();
                 break;
             case 2:
-                treeOperations.setSearchedPhrase("Silniczki szyb");
+                Scanner ask = new Scanner(System.in);
+                System.out.println("Podaj kategorię");
+                String cat = ask.next().toString();
+                treeOperations.setSearchedPhrase(cat);
                 for (AllegroItem item : treeOperations.getParents()) {     //wydrukujemy sobie rodzicow danej kategorii
                     System.out.println(item.getName());
+                }
+                break;
+            case 3:
+                Scanner input = new Scanner(System.in);
+                System.out.println("Podaj kategorię");
+                String category = input.next().toString();
+                treeOperations.setSearchedPhrase(category);
+                int catID = treeOperations.findPhrase(category);
+                int i = 0;
+                for (AllegroItem item : treeOperations.getParents()) {
+                    i++;
+                    if(i == 2) {
+                        System.out.println("https://allegro.pl/kategoria/" + item.getName().replace(" ", "-").toLowerCase() + "-" + category.toLowerCase() + "-" +catID);
+                    }
                 }
                 break;
         }
