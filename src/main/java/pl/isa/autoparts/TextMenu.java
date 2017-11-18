@@ -45,7 +45,8 @@ public class TextMenu {
         return input;
     }
 
-    public void options(TreeOperations treeOperations) throws IOException {
+    public void options() throws IOException {
+        TreeOperations treeOperations = new TreeOperations();
         int checkOption = 0;
         do {
             showOptions();

@@ -1,7 +1,5 @@
 package pl.isa.autoparts.questions;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.TextMenu;
 import pl.isa.autoparts.categories.TreeOperations;
 
@@ -47,7 +45,7 @@ public class Functions {
                 System.out.println("\nNastępna opcja: \n");
         }
         System.out.println("\nNie wybrałeś żadnej kategorii!\n\n\n");
-        textMenu.options(treeOperations);
+        textMenu.options();
     }
 
     //  questions about more specific parts of car, <Question>
@@ -70,7 +68,7 @@ public class Functions {
                 System.out.println("\nNastępna opcja: ");
         }
         System.out.println("\nNie wybrałeś żadnej kategorii!\n\n\n");
-        textMenu.options(treeOperations);
+        textMenu.options();
     }
 
     //  questions about specific faults of car's parts <BreakDown>
@@ -93,7 +91,7 @@ public class Functions {
                 System.out.println("\nCzęść nie znaleziona ");
         }
         System.out.println("\n");
-        textMenu.options(treeOperations);
+        textMenu.options();
     }
 
     //  list of recomended parts' to repair <Parts>
