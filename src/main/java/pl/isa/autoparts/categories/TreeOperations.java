@@ -73,7 +73,7 @@ public class TreeOperations {
     }
 
 
-    private int findPhrase(String phrase) {   //returns ID of searched category
+    public int findPhrase(String phrase) {   //returns ID of searched category
         for (AllegroItem item : czesciSamochodowe.getChildren()) {
             if (item.getName().equals(phrase)) {
                 phraseId = item.getId();
