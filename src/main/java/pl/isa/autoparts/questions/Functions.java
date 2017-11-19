@@ -51,7 +51,9 @@ public class Functions {
     //  questions about more specific parts of car, <Question>
     private void giveQuestion(List<Question> question, boolean flag) throws IOException {
 
-        for (int i = 0; i < question.size(); i++) {
+//        for (Question question1 : question) {
+
+        for(int i=0; i< question.size(); i++){
             if (!question.get(i).getBreakDown().isEmpty() && flag) {
 
                 System.out.print("\nCzy awaria dotyczy: " +
@@ -59,8 +61,7 @@ public class Functions {
                         "?\nwcisnij ('y'=Yes/'n'=No) jesli potwierdzasz: ");
 
                 if (sc.next().equals("y")) {
-                    flag = false;
-                    giveBreakDown(question.get(i).getBreakDown(), true);
+                    giveBreakDown(question.get(i).getBreakDown());
                     break;
                 }
             }
@@ -69,28 +70,48 @@ public class Functions {
         }
         System.out.println("\nNie wybrałeś żadnej kategorii!\n\n\n");
         textMenu.options();
+
     }
 
-    //  questions about specific faults of car's parts <BreakDown>
-    private void giveBreakDown(List<BreakDown> question, boolean flag) throws IOException {
+//        for (int i = 0; i < question.size(); i++) {
+//            if (!question.get(i).getBreakDown().isEmpty() && flag) {
+//
+//                System.out.print("\nCzy awaria dotyczy: " +
+//                        question.get(i).getDescripton() +
+//                        "?\nwcisnij ('y'=Yes/'n'=No) jesli potwierdzasz: ");
+//
+//                if (sc.next().equals("y")) {
+//                    flag = false;
+//                    giveBreakDown(question.get(i).getBreakDown(), true);
+//                    break;
+//                }
+//            }
+//            if (i < question.size() - 1)
+//                System.out.println("\nNastępna opcja: ");
+//        }
+//        System.out.println("\nNie wybrałeś żadnej kategorii!\n\n\n");
+//        textMenu.options();
+//    }
 
-        for (int i = 0; i < question.size(); i++) {
-            if (!question.get(i).getParts().isEmpty() && flag) {
+    //  questions about specific faults of car's parts <BreakDown>
+    private void giveBreakDown(List<BreakDown> questions) throws IOException {
+
+        for (BreakDown breakDown : questions) {
+            if (!breakDown.getParts().isEmpty()) {
 
                 System.out.print("\nCzy awaria dotyczy: " +
-                        question.get(i).getDescription() +
+                        breakDown.getDescription() +
                         "?\nwcisnij ('y'=Yes/'n'=No) jesli potwierdzasz: ");
 
                 if (sc.next().equals("y")) {
-                    flag = false;
-                    giveParts(question.get(i).getParts());
+                    giveParts(breakDown.getParts());
                     break;
+                } else if (questions.iterator().hasNext()) {
+                    System.out.println("\nNastępna opcja: ");
                 }
             }
-            if (i < question.size() - 1)
-                System.out.println("\nCzęść nie znaleziona ");
         }
-        System.out.println("\n");
+        System.out.println("\nCzęść nie znaleziona \n");
         textMenu.options();
     }
 
