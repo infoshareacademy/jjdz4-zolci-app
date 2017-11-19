@@ -7,6 +7,7 @@ import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.questions.Questionary;
 import pl.isa.autoparts.tools.InputScanner;
 import pl.isa.autoparts.tools.Printer;
+import pl.isa.autoparts.tools.StringNormalizer;
 import pl.isa.autoparts.vehiclefinder.*;
 
 import java.io.IOException;
@@ -50,23 +51,28 @@ public class Main {
                 executeVehicleFinder();
                 break;
             case 6:
-                Scanner input = new Scanner(System.in);
-                System.out.println("Podaj kategorię");
-                String category = input.next().toString();
-                treeOperations.setSearchedPhrase(category);
-                int catID = treeOperations.findPhrase(category);
-                int i = 0;
-                for (AllegroItem item : treeOperations.getParents()) {
-                    i++;
-                    if(i == 2) {
-                        System.out.println("https://allegro.pl/kategoria/" + item.getName().replace(" ", "-").toLowerCase() + "-" + category.toLowerCase() + "-" +catID);
-                    }
-                }
+                printAllegroLinkToCategory(treeOperations);
                 break;
             default:
                 Printer.printError("Wybrałeś złą opcję");
         }
     }
+
+    private static void printAllegroLinkToCategory(TreeOperations treeOperations) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Podaj kategorię");
+        String category = input.next().toString();
+        treeOperations.setSearchedPhrase(category);
+        int catID = treeOperations.findPhrase(category);
+        AllegroItem item = treeOperations.getParents().get(1);
+        StringNormalizer stringNormalizer = new StringNormalizer();
+        System.out.println(
+                "https://allegro.pl/kategoria/" + stringNormalizer.normalize(item.getName())
+                        .replace(" ", "-") + "-" + stringNormalizer.normalize(category) + "-" + catID
+        );
+    }
+
+
 
 
     private static void executeAztecReader() {
