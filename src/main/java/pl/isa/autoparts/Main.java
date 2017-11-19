@@ -61,14 +61,14 @@ public class Main {
     private static void printAllegroLinkToCategory(TreeOperations treeOperations) {
         Scanner input = new Scanner(System.in);
         System.out.println("Podaj kategorię");
-        String category = input.next().toString();
+        String category = input.nextLine().toString();
         treeOperations.setSearchedPhrase(category);
         int catID = treeOperations.findPhrase(category);
         AllegroItem item = treeOperations.getParents().get(1);
         StringNormalizer stringNormalizer = new StringNormalizer();
         System.out.println(
                 "https://allegro.pl/kategoria/" + stringNormalizer.normalize(item.getName())
-                        .replace(" ", "-") + "-" + stringNormalizer.normalize(category) + "-" + catID
+                         + "-" + stringNormalizer.normalize(category) + "-" + catID
         );
     }
 
