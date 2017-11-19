@@ -27,6 +27,14 @@ public class Questionary {
 //        logger.info("XML is mapped correctly");
 
         functions.giveQuestionGrup(topClass.getGrupaPytan(), true);
+
+//        Questions questions = functions.giveQuestionGrup(topClass.getGrupaPytan(), true);
+//        if (questions.isEmpty) {
+//            return;
+//        }
+//
+
+
         lista.addAll(functions.getLista());
         functions.clearList();
     }

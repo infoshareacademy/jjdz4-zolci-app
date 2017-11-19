@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -53,7 +54,7 @@ public class Functions {
 
 //        for (Question question1 : question) {
 
-        for(int i=0; i< question.size(); i++){
+        for (int i = 0; i < question.size(); i++) {
             if (!question.get(i).getBreakDown().isEmpty() && flag) {
 
                 System.out.print("\nCzy awaria dotyczy: " +
@@ -95,23 +96,29 @@ public class Functions {
 
     //  questions about specific faults of car's parts <BreakDown>
     private void giveBreakDown(List<BreakDown> questions) throws IOException {
+        boolean breakDownIsNotDetected = true;
 
-        for (BreakDown breakDown : questions) {
-            if (!breakDown.getParts().isEmpty()) {
+        for (Iterator<BreakDown> iterator = questions.iterator(); iterator.hasNext(); ) {
+            BreakDown breakDown = iterator.next();
+            if (breakDown.getParts().isEmpty()) {
+                break;
+            }
+            System.out.print("\nCzy awaria dotyczy: " +
+                    breakDown.getDescription() +
+                    "?\nwcisnij ('y'=Yes/'n'=No) jesli potwierdzasz: ");
 
-                System.out.print("\nCzy awaria dotyczy: " +
-                        breakDown.getDescription() +
-                        "?\nwcisnij ('y'=Yes/'n'=No) jesli potwierdzasz: ");
-
-                if (sc.next().equals("y")) {
-                    giveParts(breakDown.getParts());
-                    break;
-                } else if (questions.iterator().hasNext()) {
-                    System.out.println("\nNastępna opcja: ");
-                }
+            if (sc.next().equals("y")) {
+                giveParts(breakDown.getParts());
+                breakDownIsNotDetected = false;
+                break;
+            } else if (iterator.hasNext()) {
+                System.out.println("\nNastępna opcja: ");
             }
         }
-        System.out.println("\nCzęść nie znaleziona \n");
+        if (breakDownIsNotDetected){
+            System.out.println("\nCzęść nie znaleziona \n");
+
+        }
         textMenu.options();
     }
 
