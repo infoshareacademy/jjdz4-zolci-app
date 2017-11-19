@@ -7,12 +7,11 @@ public class TreeOperations {
     static int czesciSamochodoweId = 620;
     private int czesciSamochodowePosition = 0;
     private int phraseId;
+    private int parentId;
     private ArrayList<AllegroItem> allegroList = new ArrayList<>();
     private ArrayList<AllegroItem> parents = new ArrayList<>();
     private AllegroItem czesciSamochodowe = new AllegroItem();
     private AllegroItem czesciSamochodoweClipboard = new AllegroItem();
-    private boolean flag = false;
-    private int parentId;
 
     public TreeOperations() {
         Parser parser = new Parser();
@@ -36,7 +35,6 @@ public class TreeOperations {
 
     public void setSearchedPhrase(String phrase) {
         parents.clear();
-
         parentId = findPhrase(phrase);
 
         if (parentId != 0) {
@@ -44,13 +42,11 @@ public class TreeOperations {
 
 
             saveParent(parentId);
-            parentId=0;
         } else {
-            parentId=0;
+
 //            logger.info("Nie znaleziono podanej kategorii");
             System.out.println("Nie znaleziono kategorii!");
         }
-        parentId=0;
     }
 
     public void printParents() {
@@ -61,7 +57,11 @@ public class TreeOperations {
             }
             i++;
             System.out.println(parents.get(n).getName().substring(0, 1).toUpperCase() + parents.get(n).getName().substring(1).toLowerCase());
+
         }
+        parents.clear();
+        phraseId=0;
+        parentId=0;
     }
 
     private void printWholeTreeRecurency(int stars, AllegroItem czesciSamochodowe) {
@@ -105,7 +105,6 @@ public class TreeOperations {
         for (AllegroItem item : czesciSamochodowe.getChildren()) {
             if (item.getName().equals(phrase)) {
                 phraseId = item.getId();
-                flag = true;
                 break;
             } else {
 
@@ -113,9 +112,7 @@ public class TreeOperations {
                 findPhrase(phrase);
             }
         }
-        if (flag == false) {
-            phraseId = 0;
-        }
+
         czesciSamochodowe = czesciSamochodoweClipboard;
 
         return phraseId;
