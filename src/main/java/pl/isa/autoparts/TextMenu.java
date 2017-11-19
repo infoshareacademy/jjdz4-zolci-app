@@ -27,6 +27,7 @@ public class TextMenu {
 
     private int choseOptions() {
         stringInput = sc.nextLine();
+        System.out.println();
         try {
             input = Integer.parseInt(stringInput);
         } catch (InputMismatchException e) {
@@ -40,12 +41,14 @@ public class TextMenu {
         try {
             System.out.println("\nwybrano: " + menuOptions[input]);
         } catch (ArrayIndexOutOfBoundsException e) {
+            Printer.printError("Wybrałeś złą opcję");
             System.out.println("Podaj wartosc w zakresie 0-5!");
         }
         return input;
     }
 
     public void options() throws IOException {
+        boolean flag = true;
         TreeOperations treeOperations = new TreeOperations();
         int checkOption = 0;
         do {
@@ -75,12 +78,10 @@ public class TextMenu {
                 case 5:
                     initateAztec.executeVehicleFinder();
                     break;
-                case 6:
-                    break;
                 case 0:
                     break;
                 default:
-                    Printer.printError("Wybrałeś złą opcję");
+
             }
             System.out.println("\n");
         } while (checkOption != 0);
