@@ -5,9 +5,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class JsonParser {
+
+    public static <T> T parseFromGeneric(String s) throws IOException {
+        T jsonObject = null;
+        ObjectMapper mapper = new ObjectMapper();
+
+        return mapper.readValue(new URL(s), (Class<T>) jsonObject.getClass());
+    }
 
     public static Object parseJsonFromURL(String url, Object object) throws IOException {
 
