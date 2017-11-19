@@ -7,12 +7,12 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
 public class Parser {
-    private static final Logger logger = Logger.getLogger(Parser.class.getName());
+//    private static final Logger logger = Logger.getLogger(Parser.class.getName());
     private AllegroItem allegroItem;
 
     public Parser() {
@@ -29,14 +29,16 @@ public class Parser {
 
 
         try {
-            File inputFile = new File("src/main/resources/Allegro_cathegories_2016-02-13.xml");
+            ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+            InputStream inputFile = classloader.getResourceAsStream("Allegro_cathegories_2016-02-13.xml");
+
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);
             doc.getDocumentElement().normalize();
             NodeList nList = doc.getElementsByTagName("ns1:item");
             System.out.println("----------------------------");
-            logger.info("Wczytano plik z kategoriami");
+//            logger.info("Wczytano plik z kategoriami");
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
                 allegroItem = new AllegroItem();
@@ -63,7 +65,7 @@ public class Parser {
                 }
             }
         } catch (Exception e) {
-            logger.severe("Błąd wczytywania pliku z kategoriami");
+//            logger.severe("Błąd wczytywania pliku z kategoriami");
             e.printStackTrace();
         }
 
