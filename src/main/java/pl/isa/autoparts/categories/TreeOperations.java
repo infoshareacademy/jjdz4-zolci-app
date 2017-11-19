@@ -11,12 +11,14 @@ public class TreeOperations {
     private ArrayList<AllegroItem> parents = new ArrayList<>();
     private AllegroItem czesciSamochodowe = new AllegroItem();
     private AllegroItem czesciSamochodoweClipboard = new AllegroItem();
-    private int flag = 0;
+    private boolean flag = false;
+    private int parentId;
 
     public TreeOperations() {
         Parser parser = new Parser();
         allegroList = parser.getAllegroList();
         findCzesciSamochodowePosition();
+
     }
 
     public ArrayList<AllegroItem> getParents() {
@@ -33,21 +35,27 @@ public class TreeOperations {
     }
 
     public void setSearchedPhrase(String phrase) {
-        int parentId = findPhrase(phrase);
+        parents.clear();
+
+        parentId = findPhrase(phrase);
+
         if (parentId != 0) {
 //            logger.info("Znaleziono szukaną kategorię");
 
 
-            this.parents = saveParent(parentId, this.parents);
+            saveParent(parentId);
+            parentId=0;
         } else {
+            parentId=0;
 //            logger.info("Nie znaleziono podanej kategorii");
             System.out.println("Nie znaleziono kategorii!");
         }
+        parentId=0;
     }
 
     public void printParents() {
         int i = 0;
-        for(int n=parents.size()-1; n>=0; n--){
+        for (int n = parents.size() - 1; n >= 0; n--) {
             for (int d = 0; d < i; d++) {
                 System.out.print("   ");
             }
@@ -81,16 +89,15 @@ public class TreeOperations {
 
     }
 
-    private ArrayList<AllegroItem> saveParent(int parentId, ArrayList<AllegroItem> parentList) {
+    private void saveParent(int parentId) {
         for (AllegroItem item : allegroList) {
             if (item.getId() == parentId) {
-                parentList.add(item);
-                saveParent(item.getParent(), parentList);
+                parents.add(item);
+                saveParent(item.getParent());
                 break;
             }
         }
 
-        return parentList;
     }
 
 
@@ -98,14 +105,17 @@ public class TreeOperations {
         for (AllegroItem item : czesciSamochodowe.getChildren()) {
             if (item.getName().equals(phrase)) {
                 phraseId = item.getId();
-                flag++;
+                flag = true;
                 break;
             } else {
+
                 this.czesciSamochodowe = item;
                 findPhrase(phrase);
             }
         }
-
+        if (flag == false) {
+            phraseId = 0;
+        }
         czesciSamochodowe = czesciSamochodoweClipboard;
 
         return phraseId;

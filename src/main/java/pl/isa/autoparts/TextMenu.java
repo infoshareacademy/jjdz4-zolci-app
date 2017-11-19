@@ -48,9 +48,8 @@ public class TextMenu {
     }
 
     public void options() throws IOException {
-        boolean flag = true;
         TreeOperations treeOperations = new TreeOperations();
-        int checkOption = 0;
+        int checkOption;
         do {
             showOptions();
             checkOption = choseOptions();
