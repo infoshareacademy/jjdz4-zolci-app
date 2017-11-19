@@ -60,13 +60,15 @@ public class TextMenu {
                     break;
                 case 2:
                     System.out.println("Wpisz szukaną kategorię. Wpisz 'back' aby wrócić");
-                    Scanner phrase = new Scanner(System.in);
+                    Scanner scanner = new Scanner(System.in);
+                    String phrase = scanner.nextLine();
                     if (phrase.equals("back")) {
                         break;
-                    } else {
-                        treeOperations.setSearchedPhrase(phrase.nextLine().toLowerCase());
-                        treeOperations.printParents();
                     }
+
+                    treeOperations.setSearchedPhrase(phrase.toLowerCase());
+                    treeOperations.printParents();
+
                     break;
                 case 3:
                     initateAztec.executeAztecReader();
