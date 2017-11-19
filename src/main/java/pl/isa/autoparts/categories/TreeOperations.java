@@ -1,7 +1,6 @@
 package pl.isa.autoparts.categories;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class TreeOperations {
     //    private static final Logger logger = Logger.getLogger(TreeOperations.class.getName());
@@ -77,7 +76,7 @@ public class TreeOperations {
             }
         }
         czesciSamochodowe = allegroList.get(czesciSamochodowePosition);
-        czesciSamochodowe.setChildren(allegroList);
+        czesciSamochodowe.createChildrenList(allegroList);
         czesciSamochodoweClipboard = czesciSamochodowe; // method findPhrase overwrites czesciSamochodowe object so we have to be able to recover it
 
     }
