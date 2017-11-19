@@ -1,10 +1,9 @@
 package pl.isa.autoparts.categories;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class TreeOperations {
-//    private static final Logger logger = Logger.getLogger(TreeOperations.class.getName());
+    //    private static final Logger logger = Logger.getLogger(TreeOperations.class.getName());
     static int czesciSamochodoweId = 620;
     private int czesciSamochodowePosition = 0;
     private int phraseId;
@@ -30,7 +29,7 @@ public class TreeOperations {
 
 
     public void printWholeTree() {
-        printWholeTreeRecurency(0, czesciSamochodowe);
+        printWholeTreeRecurency(-1, czesciSamochodowe);
     }
 
     public void setSearchedPhrase(String phrase) {
@@ -46,13 +45,25 @@ public class TreeOperations {
         }
     }
 
+    public void printParents() {
+        int i = 0;
+        for(int n=parents.size()-1; n>=0; n--){
+            for (int d = 0; d < i; d++) {
+                System.out.print("   ");
+            }
+            i++;
+            System.out.println(parents.get(n).getName().substring(0, 1).toUpperCase() + parents.get(n).getName().substring(1).toLowerCase());
+        }
+    }
+
     private void printWholeTreeRecurency(int stars, AllegroItem czesciSamochodowe) {
         stars++;
         for (AllegroItem item : czesciSamochodowe.getChildren()) {
             for (int i = 0; i < stars; i++) {
-                System.out.print("*");
+                System.out.print("  ");
             }
-            System.out.println(item.getName());
+            System.out.println(item.getName().substring(0, 1).toUpperCase() + item.getName().substring(1).toLowerCase());
+
             printWholeTreeRecurency(stars, item);
         }
     }
@@ -65,7 +76,7 @@ public class TreeOperations {
             }
         }
         czesciSamochodowe = allegroList.get(czesciSamochodowePosition);
-        czesciSamochodowe.setChildren(allegroList);
+        czesciSamochodowe.createChildrenList(allegroList);
         czesciSamochodoweClipboard = czesciSamochodowe; // method findPhrase overwrites czesciSamochodowe object so we have to be able to recover it
 
     }

@@ -54,7 +54,7 @@ public class Parser {
                     allegroItem.setName(eElement
                             .getElementsByTagName("ns1:catName")
                             .item(0)
-                            .getTextContent());
+                            .getTextContent().toLowerCase());
 
                     allegroItem.setParent(Integer.parseInt(eElement
                             .getElementsByTagName("ns1:catParent")

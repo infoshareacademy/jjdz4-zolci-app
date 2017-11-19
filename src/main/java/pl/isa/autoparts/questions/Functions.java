@@ -1,12 +1,13 @@
 package pl.isa.autoparts.questions;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import pl.isa.autoparts.TextMenu;
+import pl.isa.autoparts.categories.TreeOperations;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,9 +19,13 @@ public class Functions {
 //        logger.info("");
 //    }
 
+    private List<String> lista = new ArrayList<>();
+
+    TreeOperations treeOperations = new TreeOperations();
+    TextMenu textMenu = new TextMenu();
 
     //    questions about parts of car, <QuestionGroup>
-    protected void giveQuestionGrup(List<QuestionGroup> question, boolean flag) {
+    protected void giveQuestionGrup(List<QuestionGroup> question, boolean flag) throws IOException {
 //        logger.info("Start Function");
 
         for (int i = 0; i < question.size(); i++) {
@@ -36,12 +41,15 @@ public class Functions {
                     break;
                 }
             }
-            System.out.println("\nNastępna opcja: \n");
+            if (i < question.size() - 1)
+                System.out.println("\nNastępna opcja: \n");
         }
+        System.out.println("\nNie wybrałeś żadnej kategorii!\n\n\n");
+        textMenu.options();
     }
 
     //  questions about more specific parts of car, <Question>
-    private void giveQuestion(List<Question> question, boolean flag) {
+    private void giveQuestion(List<Question> question, boolean flag) throws IOException {
 
         for (int i = 0; i < question.size(); i++) {
             if (!question.get(i).getBreakDown().isEmpty() && flag) {
@@ -56,12 +64,15 @@ public class Functions {
                     break;
                 }
             }
-            System.out.println("\nNastępna opcja: ");
+            if (i < question.size() - 1)
+                System.out.println("\nNastępna opcja: ");
         }
+        System.out.println("\nNie wybrałeś żadnej kategorii!\n\n\n");
+        textMenu.options();
     }
 
     //  questions about specific faults of car's parts <BreakDown>
-    private void giveBreakDown(List<BreakDown> question, boolean flag) {
+    private void giveBreakDown(List<BreakDown> question, boolean flag) throws IOException {
 
         for (int i = 0; i < question.size(); i++) {
             if (!question.get(i).getParts().isEmpty() && flag) {
@@ -76,8 +87,11 @@ public class Functions {
                     break;
                 }
             }
-            System.out.println("\nCzęść nie znaleziona ");
+            if (i < question.size() - 1)
+                System.out.println("\nCzęść nie znaleziona ");
         }
+        System.out.println("\n");
+        textMenu.options();
     }
 
     //  list of recomended parts' to repair <Parts>
@@ -86,6 +100,7 @@ public class Functions {
 
         for (int i = 0; i < question.size(); i++) {
             System.out.println("- " + question.get(i).getPart());
+            lista.add(question.get(i).getPart());
         }
 //        logger.info("Stop Function");
     }
@@ -118,5 +133,13 @@ public class Functions {
             }
         }
         return sb.toString();
+    }
+
+    public List<String> getLista() {
+        return lista;
+    }
+
+    public void clearList() {
+        lista.clear();
     }
 }

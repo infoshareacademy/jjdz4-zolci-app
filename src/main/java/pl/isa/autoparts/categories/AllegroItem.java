@@ -1,7 +1,6 @@
 package pl.isa.autoparts.categories;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class AllegroItem {
 //    private static final Logger logger = Logger.getLogger(AllegroItem.class.getName());
@@ -37,14 +36,14 @@ public class AllegroItem {
     }
 
 
-    public void setChildren(ArrayList<AllegroItem> allegroList) {
+    public void createChildrenList(ArrayList<AllegroItem> allegroList) {
         for (int i = 0; i < allegroList.size(); i++) {
             AllegroItem child = allegroList.get(i);
 
             if (this.id == child.getParent()) {
                 this.children.add(child);
 
-                child.setChildren(allegroList);
+                child.createChildrenList(allegroList);
             }
         }
     }
