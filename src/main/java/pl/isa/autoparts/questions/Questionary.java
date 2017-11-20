@@ -5,6 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,8 +18,8 @@ public class Questionary {
         Functions functions = new Functions();
 //        Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
 
-
-        InputStream activitiesStream = Questionary.class.getClassLoader()
+        InputStream activitiesStream = Questionary.class
+                .getClassLoader()
                 .getResourceAsStream("questions.xml");
 
         String file = functions.getStringFromInputStream(activitiesStream);
@@ -26,14 +27,27 @@ public class Questionary {
         TopClass topClass = xmlMapper.readValue(file, TopClass.class);
 //        logger.info("XML is mapped correctly");
 
-        functions.giveQuestionGrup(topClass.getGrupaPytan(), true);
 
-//        Questions questions = functions.giveQuestionGrup(topClass.getGrupaPytan(), true);
-//        if (questions.isEmpty) {
-//            return;
-//        }
-//
+        List<BreakDown> breakDowns;
+        List<Parts> parts;
+        List<Question> questionsGroup = functions.giveQuestionGrup(topClass.getGrupaPytan());
+        if (questionsGroup.isEmpty()) {
+            return;
+        } else {
+            breakDowns = functions.giveQuestion(questionsGroup);
+        }
 
+        if (breakDowns.isEmpty()) {
+            return;
+        } else {
+            parts = functions.giveBreakDown(breakDowns);
+        }
+
+        if (parts.isEmpty()){
+            return;
+        }else {
+            functions.giveParts(parts);
+        }
 
         lista.addAll(functions.getLista());
         functions.clearList();
