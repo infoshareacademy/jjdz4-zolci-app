@@ -1,6 +1,8 @@
 package pl.isa.autoparts.aztec;
 
 
+import pl.isa.autoparts.tools.JsonParser;
+
 import java.io.IOException;
 
 public class AtenaSessionReader {
@@ -17,7 +19,7 @@ public class AtenaSessionReader {
 
     public AztecVehicle parseAztecFromSession() throws IOException {
 
-        return AztecJsonParser.parseAztecFromURL(createSessionURL());
+        return JsonParser.parseJsonFromURL(createSessionURL(), new AztecVehicle());
     }
 
     private String createSessionURL() {
