@@ -92,11 +92,8 @@ public class Main {
 
     private static void readAztecFromSession() {
 
-        Printer.printInputRequest("Podaj kod klienta [np. qY2?0Pw!]");
-        AtenaUser user = new AtenaUser(InputScanner.scanForStringLine());
-
         Printer.printInputRequest("Podaj otrzymany kod sesji");
-        AtenaSessionReader session = new AtenaSessionReader(InputScanner.scanForStringLine(), user);
+        AtenaSessionReader session = new AtenaSessionReader(InputScanner.scanForStringLine());
 
         AztecVehicle vehicle = null;
 
@@ -117,7 +114,7 @@ public class Main {
         Printer.println("Identyfikacja auta po serii pytań");
         Printer.println("Aktualizacja bazy... Poczekaj chwilę...");
 
-        Vehicle vehicle = null;
+        Vehicle vehicle;
 
         try {
             vehicle = VehicleJsonParser.parseVehicleJsonFromURL(VehicleFinder.VEHICLE_DB_URL);
