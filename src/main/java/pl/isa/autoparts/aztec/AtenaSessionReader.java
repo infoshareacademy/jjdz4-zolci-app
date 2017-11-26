@@ -1,57 +1,36 @@
 package pl.isa.autoparts.aztec;
 
 
+import pl.isa.autoparts.tools.JsonParser;
+
 import java.io.IOException;
 
 public class AtenaSessionReader {
 
     private static final String SESSION_URL_PREAMBLE = "https://aztec.atena.pl/PWM2/rest/aztec/getbysession?";
+    private static final String ATENA_API_KEY = "qY2?0Pw!";
 
     private String sessionKey;
-    private String userKey;
-    private String sessionURL;
 
-    public AtenaSessionReader(AtenaUser user) {
-
-        userKey = user.getUserKey();
-    }
-
-    public AtenaSessionReader(String sessionKey, AtenaUser user) {
+    public AtenaSessionReader(String sessionKey) {
 
         this.sessionKey = sessionKey;
-        userKey = user.getUserKey();
     }
 
-    public String getSessionKey() {
-        return sessionKey;
-    }
+    public AztecVehicle parseAztecFromSession() throws IOException {
 
-    public void setSessionKey(String sessionKey) {
-        this.sessionKey = sessionKey;
+        return JsonParser.parseJsonFromURL(createSessionURL(), AztecVehicle.class);
     }
 
     private String createSessionURL() {
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(SESSION_URL_PREAMBLE)
+        stringBuilder
+                .append(SESSION_URL_PREAMBLE)
                 .append("sessionKey=").append(sessionKey)
-                .append("&userKey=").append(userKey);
+                .append("&userKey=").append(ATENA_API_KEY);
 
         return stringBuilder.toString();
-    }
-
-    public AztecVehicle parseAztecFromSession() throws IOException {
-
-        sessionURL = createSessionURL();
-        return AztecJsonParser.parseAztecFromURL(sessionURL);
-    }
-
-    public AztecVehicle parseAztecFromSession(String sessionKey) throws IOException {
-
-        this.sessionKey = sessionKey;
-        sessionURL = createSessionURL();
-
-        return AztecJsonParser.parseAztecFromURL(sessionURL);
     }
 }
