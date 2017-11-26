@@ -50,7 +50,7 @@ public class Questionary {
         }
 
         lista.addAll(functions.getLista());
-        propositionsList = functions.getLista();
+        this.propositionsList = lista;
         functions.clearList();
     }
     public List<String> getPropositionsList(){
