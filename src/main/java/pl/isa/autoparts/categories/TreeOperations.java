@@ -6,6 +6,11 @@ public class TreeOperations {
     //    private static final Logger logger = Logger.getLogger(TreeOperations.class.getName());
     static int czesciSamochodoweId = 620;
     private int czesciSamochodowePosition = 0;
+
+    public int getPhraseId() {
+        return phraseId;
+    }
+
     private int phraseId;
     private int parentId;
     private ArrayList<AllegroItem> allegroList = new ArrayList<>();

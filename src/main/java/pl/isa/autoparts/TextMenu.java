@@ -1,8 +1,10 @@
 package pl.isa.autoparts;
 
+import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.questions.Questionary;
 import pl.isa.autoparts.tools.Printer;
+import pl.isa.autoparts.tools.StringNormalizer;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -60,18 +62,18 @@ public class TextMenu {
                 case 1:
                     treeOperations.printWholeTree();
                     break;
-                case 2:
-                    System.out.println("Wpisz szukaną kategorię. Wpisz 'back' aby wrócić");
-                    Scanner scanner = new Scanner(System.in);
-                    String phrase = scanner.nextLine();
-                    if (phrase.equals("back")) {
-                        break;
-                    }
-
-                    treeOperations.setSearchedPhrase(phrase.toLowerCase());
-                    treeOperations.printParents();
-
-                    break;
+//                case 2:
+//                    System.out.println("Wpisz szukaną kategorię. Wpisz 'back' aby wrócić");
+//                    Scanner scanner = new Scanner(System.in);
+//                    String phrase = scanner.nextLine();
+//                    if (phrase.equals("back")) {
+//                        break;
+//                    }
+//
+//                    treeOperations.setSearchedPhrase(phrase.toLowerCase());
+//                    treeOperations.printParents();
+//
+//                    break;
                 case 3:
                     initateAztec.executeAztecReader();
                     break;
@@ -82,6 +84,9 @@ public class TextMenu {
                 case 5:
                     initateAztec.executeVehicleFinder();
                     break;
+                case 2:
+                    printAllegroLinkToCategory(treeOperations);
+                    break;
                 case 0:
                     break;
                 default:
@@ -90,4 +95,20 @@ public class TextMenu {
             System.out.println("\n");
         } while (checkOption != 0);
     }
+
+    private static void printAllegroLinkToCategory(TreeOperations treeOperations) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Podaj kategorię");
+        String category = input.nextLine().toString();
+        treeOperations.setSearchedPhrase(category);
+        int catID = treeOperations.getPhraseId();
+        AllegroItem item = treeOperations.getParents().get(1);
+        StringNormalizer stringNormalizer = new StringNormalizer();
+        System.out.println(
+                "https://allegro.pl/kategoria/" + stringNormalizer.normalize(item.getName())
+                        + "-" + stringNormalizer.normalize(category) + "-" + catID
+        );
+    }
+
+
 }
