@@ -9,7 +9,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class Parser {
 //    private static final Logger logger = Logger.getLogger(Parser.class.getName());

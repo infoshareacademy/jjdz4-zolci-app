@@ -1,10 +1,7 @@
 package pl.isa.autoparts;
 
-import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.TreeOperations;
-import pl.isa.autoparts.questions.Questionary;
 import pl.isa.autoparts.tools.Printer;
-import pl.isa.autoparts.tools.StringNormalizer;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -17,9 +14,8 @@ public class TextMenu {
 
     InitateAztec initateAztec = new InitateAztec();
 
-    String[] menuOptions = {"Wydrukuj całe drzewo kategorii", "Wydrukuj rodziców szukanej kategorii", "Pobierz dane kodu aztec ze zdjęcia",
-            "Wybór części na podstawie serii pytań", "Wyszukiwanie auta na podstawie serii pytań", "Wydrukuj link do Allegro dla szukanej kategorii"};
-
+    String[] menuOptions = {"Koniec programu", "Wydrukuj całe drzewo kategorii", "Wybierz kategorię szukanej części", "Pobierz dane kodu aztec ze zdjęcia",
+            "Wyszukiwanie auta na podstawie serii pytań"};
 
     private void showOptions() {
         for (int i = 0; i < menuOptions.length; i++)
@@ -54,6 +50,7 @@ public class TextMenu {
 
     public void options() throws IOException {
         TreeOperations treeOperations = new TreeOperations();
+        LinkGenerator linkGenerator = new LinkGenerator();
         int checkOption;
         do {
             showOptions();
@@ -62,31 +59,19 @@ public class TextMenu {
                 case 1:
                     treeOperations.printWholeTree();
                     break;
-//                case 2:
-//                    System.out.println("Wpisz szukaną kategorię. Wpisz 'back' aby wrócić");
-//                    Scanner scanner = new Scanner(System.in);
-//                    String phrase = scanner.nextLine();
-//                    if (phrase.equals("back")) {
-//                        break;
-//                    }
-//
-//                    treeOperations.setSearchedPhrase(phrase.toLowerCase());
-//                    treeOperations.printParents();
-//
-//                    break;
+                case 2:
+                    linkGenerator.printAllegroLinkToCategory(treeOperations);
+                    break;
                 case 3:
                     initateAztec.executeAztecReader();
                     break;
                 case 4:
-                    Questionary questionary = new Questionary();
-                    questionary.questionOptions();
+
                     break;
                 case 5:
                     initateAztec.executeVehicleFinder();
                     break;
-                case 2:
-                    printAllegroLinkToCategory(treeOperations);
-                    break;
+
                 case 0:
                     break;
                 default:
@@ -96,19 +81,8 @@ public class TextMenu {
         } while (checkOption != 0);
     }
 
-    private static void printAllegroLinkToCategory(TreeOperations treeOperations) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Podaj kategorię");
-        String category = input.nextLine().toString();
-        treeOperations.setSearchedPhrase(category);
-        int catID = treeOperations.getPhraseId();
-        AllegroItem item = treeOperations.getParents().get(1);
-        StringNormalizer stringNormalizer = new StringNormalizer();
-        System.out.println(
-                "https://allegro.pl/kategoria/" + stringNormalizer.normalize(item.getName())
-                        + "-" + stringNormalizer.normalize(category) + "-" + catID
-        );
-    }
-
 
 }
+
+
+
