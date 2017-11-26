@@ -1,58 +1,79 @@
 package pl.isa.autoparts.categories;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class TreeOperations {
-//    private static final Logger logger = Logger.getLogger(TreeOperations.class.getName());
+    //    private static final Logger logger = Logger.getLogger(TreeOperations.class.getName());
     static int czesciSamochodoweId = 620;
     private int czesciSamochodowePosition = 0;
+
+    public int getPhraseId() {
+        return phraseId;
+    }
+
     private int phraseId;
+    private int parentId;
     private ArrayList<AllegroItem> allegroList = new ArrayList<>();
     private ArrayList<AllegroItem> parents = new ArrayList<>();
     private AllegroItem czesciSamochodowe = new AllegroItem();
     private AllegroItem czesciSamochodoweClipboard = new AllegroItem();
-    private int flag = 0;
 
     public TreeOperations() {
         Parser parser = new Parser();
         allegroList = parser.getAllegroList();
         findCzesciSamochodowePosition();
+
     }
 
     public ArrayList<AllegroItem> getParents() {
         return parents;
     }
 
-    public AllegroItem getCzesciSamochodowe() {
-        return czesciSamochodowe;
-    }
 
 
     public void printWholeTree() {
-        printWholeTreeRecurency(0, czesciSamochodowe);
+        printWholeTreeRecurency(-1, czesciSamochodowe);
     }
 
     public void setSearchedPhrase(String phrase) {
-        int parentId = findPhrase(phrase);
+        parents.clear();
+        parentId = findPhrase(phrase);
+
         if (parentId != 0) {
 //            logger.info("Znaleziono szukaną kategorię");
 
 
-            this.parents = saveParent(parentId, this.parents);
+            saveParent(parentId);
         } else {
+
 //            logger.info("Nie znaleziono podanej kategorii");
             System.out.println("Nie znaleziono kategorii!");
         }
+    }
+
+    public void printParents() {
+        int i = 0;
+        for (int n = parents.size() - 1; n >= 0; n--) {
+            for (int d = 0; d < i; d++) {
+                System.out.print("   ");
+            }
+            i++;
+            System.out.println(parents.get(n).getName().substring(0, 1).toUpperCase() + parents.get(n).getName().substring(1).toLowerCase());
+
+        }
+        parents.clear();
+        phraseId=0;
+        parentId=0;
     }
 
     private void printWholeTreeRecurency(int stars, AllegroItem czesciSamochodowe) {
         stars++;
         for (AllegroItem item : czesciSamochodowe.getChildren()) {
             for (int i = 0; i < stars; i++) {
-                System.out.print("*");
+                System.out.print("  ");
             }
-            System.out.println(item.getName());
+            System.out.println(item.getName().substring(0, 1).toUpperCase() + item.getName().substring(1).toLowerCase());
+
             printWholeTreeRecurency(stars, item);
         }
     }
@@ -65,31 +86,30 @@ public class TreeOperations {
             }
         }
         czesciSamochodowe = allegroList.get(czesciSamochodowePosition);
-        czesciSamochodowe.setChildren(allegroList);
+        czesciSamochodowe.createChildrenList(allegroList);
         czesciSamochodoweClipboard = czesciSamochodowe; // method findPhrase overwrites czesciSamochodowe object so we have to be able to recover it
 
     }
 
-    private ArrayList<AllegroItem> saveParent(int parentId, ArrayList<AllegroItem> parentList) {
+    private void saveParent(int parentId) {
         for (AllegroItem item : allegroList) {
             if (item.getId() == parentId) {
-                parentList.add(item);
-                saveParent(item.getParent(), parentList);
+                parents.add(item);
+                saveParent(item.getParent());
                 break;
             }
         }
 
-        return parentList;
     }
 
 
-    private int findPhrase(String phrase) {   //returns ID of searched category
+    public int findPhrase(String phrase) {   //returns ID of searched category
         for (AllegroItem item : czesciSamochodowe.getChildren()) {
             if (item.getName().equals(phrase)) {
                 phraseId = item.getId();
-                flag++;
                 break;
             } else {
+
                 this.czesciSamochodowe = item;
                 findPhrase(phrase);
             }

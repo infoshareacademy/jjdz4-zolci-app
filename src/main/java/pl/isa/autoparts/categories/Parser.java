@@ -9,7 +9,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class Parser {
 //    private static final Logger logger = Logger.getLogger(Parser.class.getName());
@@ -54,7 +53,7 @@ public class Parser {
                     allegroItem.setName(eElement
                             .getElementsByTagName("ns1:catName")
                             .item(0)
-                            .getTextContent());
+                            .getTextContent().toLowerCase());
 
                     allegroItem.setParent(Integer.parseInt(eElement
                             .getElementsByTagName("ns1:catParent")
