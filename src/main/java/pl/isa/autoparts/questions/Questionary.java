@@ -9,6 +9,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 import java.io.*;
 
 public class Questionary {
@@ -16,7 +17,13 @@ public class Questionary {
 
     public void questionOptions() throws IOException {
         Functions functions = new Functions();
-//        Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
+        Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
+
+//        Logger logger = LoggerFactory.getLogger(Questionary.class);
+
+        logger.info("\nThis is how you configure Log4J with SLF4J");
+
+
 
         InputStream activitiesStream = Questionary.class
                 .getClassLoader()
