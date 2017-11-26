@@ -71,15 +71,6 @@ public class InitateAztec {
         Printer.println("Identyfikacja auta po serii pytań");
         Printer.println("Aktualizacja bazy... Poczekaj chwilę...");
 
-        Vehicle vehicle;
-
-        try {
-            vehicle = JsonParser.parseJsonFromURL(VehicleFinder.VEHICLE_DB_URL, Vehicle.class);
-        } catch (IOException e) {
-            Printer.printError("Niepowodzenie parsowania json");
-            return;
-        }
-
         Printer.printInputRequest("Podaj markę szukanego auta");
         String brandName = InputScanner.scanForStringLine();
 
@@ -92,7 +83,7 @@ public class InitateAztec {
         Printer.printInputRequest("Podaj pojemność");
         String cylinderVolume = InputScanner.scanForStringLine();
 
-        VehicleFinder vehicleFinder = new VehicleFinder(vehicle);
+        VehicleFinder vehicleFinder = new VehicleFinder();
 
         List<VehicleData> models = vehicleFinder.findVehicleModels(brandName, modelName, productionYear);
         if (models.size() > 1) {

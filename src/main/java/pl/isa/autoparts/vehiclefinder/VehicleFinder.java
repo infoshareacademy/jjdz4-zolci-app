@@ -9,21 +9,16 @@ import java.util.List;
 
 public class VehicleFinder {
 
-    public static final String VEHICLE_DB_URL = "http://infoshareacademycom.2find.ru/api/v2?lang=polish";
+    private static final String VEHICLE_DB_URL = "http://infoshareacademycom.2find.ru/api/v2?lang=polish";
     private static final String VEHICLE_DB_URL_PRE = "http://infoshareacademycom.2find.ru";
     private final String VEHICLE_DB_URL_POST = "?lang=polish";
 
-    private Vehicle vehicle;
     private Vehicle foundVehicle;
     private String link;
 
     public boolean hasError;
     public String errorMessage;
 
-    public VehicleFinder(Vehicle vehicle) {
-
-        this.vehicle = vehicle;
-    }
 
     public Vehicle getFoundVehicle() {
         return foundVehicle;
@@ -44,34 +39,23 @@ public class VehicleFinder {
 
     private List<VehicleData> findBrandNameAndModel(String brandName, String modelName, String productionYear) {
 
-        for (VehicleData data : vehicle.getData()) {
+        List<VehicleData> modelList = new ArrayList<>();
 
+        for (VehicleData data : parseFoundVehicle().getData()) {
             if (data.getName().contains(brandName.toUpperCase())) {
-
                 link = data.getLink();
 
-                try {
-                    foundVehicle = parseFoundVehicle();
-                } catch (IOException e) {
-                    setSearchError("Nie znaleziono marki pojazdu");
-                    e.printStackTrace();
-                }
-
-                break;
+                modelList.add(data);
             }
         }
 
-        List<VehicleData> modelList = new ArrayList<>();
+        for (VehicleData data : modelList) {
 
-        if (foundVehicle != null) {
-            for (VehicleData data : foundVehicle.getData()) {
 
-                if (data.getName().toUpperCase()
-                        .contains(modelName.toUpperCase())) {
-
-                    if (matchYear(data, productionYear))
-                        modelList.add(data);
-                }
+            boolean isMatch = data.getName().toUpperCase()
+                    .contains(modelName.toUpperCase()) && matchYear(data, productionYear);
+            if (isMatch) {
+                modelList.add(data);
             }
         }
 
