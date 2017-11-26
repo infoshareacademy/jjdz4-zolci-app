@@ -6,6 +6,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.LoggerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,11 +19,11 @@ public class Questionary {
 
     public void questionOptions() throws IOException {
         Functions functions = new Functions();
-        Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
-
-//        Logger logger = LoggerFactory.getLogger(Questionary.class);
-
-        logger.info("\nThis is how you configure Log4J with SLF4J");
+//        Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
+//
+////        Logger logger = LoggerFactory.getLogger(Questionary.class);
+//
+//        logger.info("\nThis is how you configure Log4J with SLF4J");
 
 
 
