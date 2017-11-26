@@ -12,9 +12,12 @@ import java.util.Scanner;
 public class TextMenu {
     Scanner sc = new Scanner(System.in);
     int input;
-    String[] menuOptions = {"koniec programu", "Wydrukuj całe drzewo kategorii", "Wydrukuj rodziców szukanej kategorii", "Pobierz dane kodu aztec ze zdjęcia",
-            "Wybór części na podstawie serii pytań", "Wyszukiwanie auta na podstawie serii pytań"};
+
     InitateAztec initateAztec = new InitateAztec();
+
+    String[] menuOptions = {"Wydrukuj całe drzewo kategorii", "Wydrukuj rodziców szukanej kategorii", "Pobierz dane kodu aztec ze zdjęcia",
+            "Wybór części na podstawie serii pytań", "Wyszukiwanie auta na podstawie serii pytań", "Wydrukuj link do Allegro dla szukanej kategorii"};
+
 
     private void showOptions() {
         for (int i = 0; i < menuOptions.length; i++)
