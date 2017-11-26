@@ -6,6 +6,7 @@ import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.questions.Questionary;
 import pl.isa.autoparts.tools.InputScanner;
+import pl.isa.autoparts.tools.JsonParser;
 import pl.isa.autoparts.tools.Printer;
 import pl.isa.autoparts.vehiclefinder.*;
 
@@ -82,7 +83,7 @@ public class Main {
         AztecVehicle vehicle = null;
 
         try {
-            vehicle = AztecJsonParser.parseAztecFromFile("AztecCodeResult.json");
+            vehicle = JsonParser.parseJsonFromFile("AztecCodeResult.json", AztecVehicle.class);
         } catch (IOException e) {
             Printer.printError("Niepowodzenie parsowania json z pliku");
         }
@@ -117,7 +118,7 @@ public class Main {
         Vehicle vehicle;
 
         try {
-            vehicle = VehicleJsonParser.parseVehicleJsonFromURL(VehicleFinder.VEHICLE_DB_URL);
+            vehicle = JsonParser.parseJsonFromURL(VehicleFinder.VEHICLE_DB_URL, Vehicle.class);
         } catch (IOException e) {
             Printer.printError("Niepowodzenie parsowania json");
             return;
