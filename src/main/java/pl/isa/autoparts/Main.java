@@ -83,7 +83,7 @@ public class Main {
         AztecVehicle vehicle = null;
 
         try {
-            vehicle = JsonParser.parseJsonFromFile("AztecCodeResult.json", new AztecVehicle());
+            vehicle = JsonParser.parseJsonFromFile("AztecCodeResult.json", AztecVehicle.class);
         } catch (IOException e) {
             Printer.printError("Niepowodzenie parsowania json z pliku");
         }
@@ -118,7 +118,7 @@ public class Main {
         Vehicle vehicle;
 
         try {
-            vehicle = JsonParser.parseJsonFromURL(VehicleFinder.VEHICLE_DB_URL, new Vehicle());
+            vehicle = JsonParser.parseJsonFromURL(VehicleFinder.VEHICLE_DB_URL, Vehicle.class);
         } catch (IOException e) {
             Printer.printError("Niepowodzenie parsowania json");
             return;

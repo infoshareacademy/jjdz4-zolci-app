@@ -32,7 +32,7 @@ public class VehicleFinder {
     private Vehicle parseFoundVehicle() throws IOException {
 
         return JsonParser.parseJsonFromURL(
-                VEHICLE_DB_URL_PRE + link + VEHICLE_DB_URL_POST, new Vehicle());
+                VEHICLE_DB_URL_PRE + link + VEHICLE_DB_URL_POST, Vehicle.class);
     }
 
     private void setSearchError(String text) {

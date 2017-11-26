@@ -19,7 +19,7 @@ public class AtenaSessionReader {
 
     public AztecVehicle parseAztecFromSession() throws IOException {
 
-        return JsonParser.parseJsonFromURL(createSessionURL(), new AztecVehicle());
+        return JsonParser.parseJsonFromURL(createSessionURL(), AztecVehicle.class);
     }
 
     private String createSessionURL() {
