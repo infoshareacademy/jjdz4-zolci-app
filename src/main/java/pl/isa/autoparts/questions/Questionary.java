@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 
 public class Questionary {
-    List<String> lista = new ArrayList<>();
-
+    private List<String> lista = new ArrayList<>();
+    private List<String> propositionsList = new ArrayList<>();
     public void questionOptions() throws IOException {
         Functions functions = new Functions();
 //        Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
@@ -50,6 +50,10 @@ public class Questionary {
         }
 
         lista.addAll(functions.getLista());
+        propositionsList = functions.getLista();
         functions.clearList();
+    }
+    public List<String> getPropositionsList(){
+        return propositionsList;
     }
 }

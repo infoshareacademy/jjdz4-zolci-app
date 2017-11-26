@@ -35,6 +35,8 @@ public class LinkGenerator {
             case 2:
                 Questionary questionary = new Questionary();
                 questionary.questionOptions();
+
+                System.out.println(questionary.getPropositionsList());
         }
     }
 }
