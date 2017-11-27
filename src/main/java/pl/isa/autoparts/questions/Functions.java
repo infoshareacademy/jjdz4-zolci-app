@@ -98,12 +98,24 @@ public class Functions {
     protected void giveParts(List<Parts> question) {
         System.out.println("\nLista proponowanych części: ");
 
-        for (int i = 0; i < question.size(); i++) {
-            System.out.println("- " + question.get(i).getPart());
-            lista.add(question.get(i).getPart());
+        for (Iterator<Parts> iterator = question.iterator(); iterator.hasNext();) {
+            Parts parts = iterator.next();
+            System.out.println("- " + parts.getPart());
+            lista.add(parts.getPart());
         }
 //        logger.info("Stop Function");
     }
+
+//    //  list of recomended parts' to repair <Parts>
+//    protected void giveParts(List<Parts> question) {
+//        System.out.println("\nLista proponowanych części: ");
+//
+//        for (int i = 0; i < question.size(); i++) {
+//            System.out.println("- " + question.get(i).getPart());
+//            lista.add(question.get(i).getPart());
+//        }
+////        logger.info("Stop Function");
+//    }
 
     // convert InputStream to String
     protected String getStringFromInputStream(InputStream is) throws IOException {

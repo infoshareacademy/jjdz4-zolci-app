@@ -30,7 +30,7 @@ public class Questionary {
 
         InputStream activitiesStream = Questionary.class
                 .getClassLoader()
-                .getResourceAsStream("questionsa.xml");
+                .getResourceAsStream("questions.xml");
 
         String file = functions.getStringFromInputStream(activitiesStream);
         XmlMapper xmlMapper = new XmlMapper();
