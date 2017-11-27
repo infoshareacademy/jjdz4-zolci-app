@@ -1,5 +1,7 @@
 package pl.isa.autoparts.questions;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.TextMenu;
 import pl.isa.autoparts.categories.TreeOperations;
 
@@ -14,11 +16,8 @@ import java.util.Scanner;
 
 public class Functions {
     private Scanner sc = new Scanner(System.in);
-//    Logger logger = LoggerFactory.getLogger(Functions.class.getName());
+    Logger logger = LoggerFactory.getLogger(Functions.class.getName());
 
-//    public Functions(){
-//        logger.info("");
-//    }
 
     private List<String> lista = new ArrayList<>();
 
@@ -39,7 +38,6 @@ public class Functions {
 
             if (sc.next().equals("y")) {
                 return questionGroup.getQuestions();
-//                    giveQuestion(question.get(i).getQuestions(), true);
             } else if (iterator.hasNext()) {
                 System.out.println("\nNastępna opcja: \n");
             }
@@ -50,7 +48,6 @@ public class Functions {
     }
 
     protected List<BreakDown> giveQuestion(List<Question> questions) throws IOException {
-        boolean questionIsNotDetected = true;
 
         for (Iterator<Question> iterator = questions.iterator(); iterator.hasNext(); ) {
             Question question = iterator.next();
@@ -63,7 +60,7 @@ public class Functions {
 
             if (sc.next().equals("y")) {
                 return question.getBreakDown();
-            }else if (iterator.hasNext())
+            } else if (iterator.hasNext())
                 System.out.println("\nNastępna opcja: ");
         }
         System.out.println("\nNie wybrałeś żadnej kategorii!\n\n\n");
@@ -109,7 +106,7 @@ public class Functions {
     }
 
     // convert InputStream to String
-    protected String getStringFromInputStream(InputStream is) {
+    protected String getStringFromInputStream(InputStream is) throws IOException {
 
         BufferedReader br = null;
         StringBuilder sb = new StringBuilder();
@@ -124,25 +121,21 @@ public class Functions {
 
         } catch (IOException e) {
             e.printStackTrace();
-//            logger.error("File not found!");
+            logger.error("File not found!");
+            textMenu.options();
+        } catch (NullPointerException e) {
+            logger.error("NullPointerException - while mapping \"questions.xm");
+            textMenu.options();
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
                     e.printStackTrace();
-//                    logger.error("File not found!");
+                    logger.error(" IOException: File not found! \"questions.xml\"");
                 }
             }
         }
         return sb.toString();
-    }
-
-    public List<String> getLista() {
-        return lista;
-    }
-
-    public void clearList() {
-        lista.clear();
     }
 }

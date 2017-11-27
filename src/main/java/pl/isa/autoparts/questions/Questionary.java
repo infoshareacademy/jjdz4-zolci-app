@@ -11,7 +11,6 @@ import org.apache.logging.log4j.core.LoggerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import java.io.*;
 
 public class Questionary {
@@ -19,22 +18,29 @@ public class Questionary {
 
     public void questionOptions() throws IOException {
         Functions functions = new Functions();
-//        Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
-//
-////        Logger logger = LoggerFactory.getLogger(Questionary.class);
-//
-//        logger.info("\nThis is how you configure Log4J with SLF4J");
 
+        Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
+        logger.info(" start of \"finding parts by questions module\" ");
 
+//        logger.error(" --- ERROR LOG ---\n");
+//        logger.warn (" --- WARN LOG ---\n");
+//        logger.info (" --- INFO LOG ---\n");
+//        logger.debug(" --- DEBUG LOG ---\n");
+//        logger.trace(" --- TRACE LOG ---\n");
 
         InputStream activitiesStream = Questionary.class
                 .getClassLoader()
-                .getResourceAsStream("questions.xml");
+                .getResourceAsStream("questionsa.xml");
 
         String file = functions.getStringFromInputStream(activitiesStream);
         XmlMapper xmlMapper = new XmlMapper();
-        TopClass topClass = xmlMapper.readValue(file, TopClass.class);
-//        logger.info("XML is mapped correctly");
+        TopClass topClass = null;
+        try {
+            topClass = xmlMapper.readValue(file, TopClass.class);
+        } catch (NullPointerException e) {
+            logger.error(" NullPointerException - while mapping \"questions.xml\"");
+        }
+        logger.info("XML is mapped correctly");
 
 
         List<BreakDown> breakDowns;
@@ -52,13 +58,13 @@ public class Questionary {
             parts = functions.giveBreakDown(breakDowns);
         }
 
-        if (parts.isEmpty()){
+        if (parts.isEmpty()) {
             return;
-        }else {
+        } else {
             functions.giveParts(parts);
         }
 
-        lista.addAll(functions.getLista());
-        functions.clearList();
+//        lista.addAll(functions.getLista());
+//        functions.clearList();
     }
 }
