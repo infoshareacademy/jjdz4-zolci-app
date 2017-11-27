@@ -20,7 +20,7 @@ public class Questionary {
         Functions functions = new Functions();
 
         Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
-        logger.info(" start of \"finding parts by questions module\" ");
+        logger.info("finding autoparts by questions module");
 
 //        logger.error(" --- ERROR LOG ---\n");
 //        logger.warn (" --- WARN LOG ---\n");
@@ -38,7 +38,7 @@ public class Questionary {
         try {
             topClass = xmlMapper.readValue(file, TopClass.class);
         } catch (NullPointerException e) {
-            logger.error(" NullPointerException - while mapping \"questions.xml\"");
+            logger.error("NullPointerException - while mapping \"questions.xml\"");
         }
         logger.info("XML is mapped correctly");
 
@@ -62,6 +62,11 @@ public class Questionary {
             return;
         } else {
             functions.giveParts(parts);
+            if(functions.getLista().isEmpty()){
+                logger.debug("Nie poprawne wywołanie działań z metody \"functions\"");
+            }else {
+                logger.debug("Poprawne wywołanie działań z metody \"functions\"");
+            }
         }
 
 //        lista.addAll(functions.getLista());
