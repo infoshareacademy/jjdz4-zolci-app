@@ -22,12 +22,6 @@ public class Questionary {
         Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
         logger.info("finding autoparts by questions module");
 
-//        logger.error(" --- ERROR LOG ---\n");
-//        logger.warn (" --- WARN LOG ---\n");
-//        logger.info (" --- INFO LOG ---\n");
-//        logger.debug(" --- DEBUG LOG ---\n");
-//        logger.trace(" --- TRACE LOG ---\n");
-
         InputStream activitiesStream = Questionary.class
                 .getClassLoader()
                 .getResourceAsStream("questions.xml");
