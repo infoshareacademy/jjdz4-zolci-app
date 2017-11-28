@@ -6,6 +6,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.LoggerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +18,9 @@ public class Questionary {
     private List<String> propositionsList = new ArrayList<>();
     public void questionOptions() throws IOException {
         Functions functions = new Functions();
-//        Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
+
+        Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
+        logger.info("finding autoparts by questions module");
 
         InputStream activitiesStream = Questionary.class
                 .getClassLoader()
@@ -24,8 +28,13 @@ public class Questionary {
 
         String file = functions.getStringFromInputStream(activitiesStream);
         XmlMapper xmlMapper = new XmlMapper();
-        TopClass topClass = xmlMapper.readValue(file, TopClass.class);
-//        logger.info("XML is mapped correctly");
+        TopClass topClass = null;
+        try {
+            topClass = xmlMapper.readValue(file, TopClass.class);
+        } catch (NullPointerException e) {
+            logger.error("NullPointerException - while mapping \"questions.xml\"");
+        }
+        logger.info("XML is mapped correctly");
 
 
         List<BreakDown> breakDowns;
@@ -43,15 +52,19 @@ public class Questionary {
             parts = functions.giveBreakDown(breakDowns);
         }
 
-        if (parts.isEmpty()){
+        if (parts.isEmpty()) {
             return;
-        }else {
+        } else {
             functions.giveParts(parts);
+            if(functions.getLista().isEmpty()){
+                logger.debug("Nie poprawne wywołanie działań z metody \"functions\"");
+            }else {
+                logger.debug("Poprawne wywołanie działań z metody \"functions\"");
+            }
         }
 
-        lista.addAll(functions.getLista());
-        this.propositionsList = lista;
-        functions.clearList();
+//        lista.addAll(functions.getLista());
+//        functions.clearList();
     }
     public List<String> getPropositionsList(){
         return propositionsList;
