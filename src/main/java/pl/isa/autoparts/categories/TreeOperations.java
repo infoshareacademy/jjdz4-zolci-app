@@ -29,7 +29,10 @@ public class TreeOperations {
         return parents;
     }
 
-
+    public void resetPhraseId(){
+        phraseId = 0;
+        parentId = 0;
+    }
 
     public void printWholeTree() {
         printWholeTreeRecurency(-1, czesciSamochodowe);

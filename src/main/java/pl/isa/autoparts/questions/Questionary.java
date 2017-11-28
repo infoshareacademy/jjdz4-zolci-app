@@ -63,8 +63,8 @@ public class Questionary {
             }
         }
 
-//        lista.addAll(functions.getLista());
-//        functions.clearList();
+        lista.addAll(functions.getLista());
+        propositionsList = lista;
     }
     public List<String> getPropositionsList(){
         return propositionsList;
