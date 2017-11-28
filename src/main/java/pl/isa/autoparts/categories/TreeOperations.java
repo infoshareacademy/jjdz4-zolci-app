@@ -40,7 +40,7 @@ public class TreeOperations {
 
     public void setSearchedPhrase(String phrase) {
         parents.clear();
-        parentId = findPhrase(phrase);
+        parentId = findPhrase(phrase.toLowerCase());
 
         if (parentId != 0) {
 //            logger.info("Znaleziono szukaną kategorię");

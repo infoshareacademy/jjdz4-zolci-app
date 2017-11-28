@@ -15,8 +15,7 @@ import java.io.*;
 
 public class Questionary {
     private List<String> lista = new ArrayList<>();
-    private List<String> propositionsList = new ArrayList<>();
-    public void questionOptions() throws IOException {
+    public List<String> questionOptions() throws IOException {
         Functions functions = new Functions();
 
         Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
@@ -41,19 +40,19 @@ public class Questionary {
         List<Parts> parts;
         List<Question> questionsGroup = functions.giveQuestionGrup(topClass.getGrupaPytan());
         if (questionsGroup.isEmpty()) {
-            return;
+            return lista;
         } else {
             breakDowns = functions.giveQuestion(questionsGroup);
         }
 
         if (breakDowns.isEmpty()) {
-            return;
+            return lista;
         } else {
             parts = functions.giveBreakDown(breakDowns);
         }
 
         if (parts.isEmpty()) {
-            return;
+            return lista;
         } else {
             functions.giveParts(parts);
             if(functions.getLista().isEmpty()){
@@ -64,9 +63,9 @@ public class Questionary {
         }
 
         lista.addAll(functions.getLista());
-        propositionsList = lista;
+        return lista;
     }
-    public List<String> getPropositionsList(){
-        return propositionsList;
-    }
+//    public List<String> getPropositionsList(){
+//        return propositionsList;
+//    }
 }

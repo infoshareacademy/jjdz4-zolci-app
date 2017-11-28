@@ -1,34 +1,15 @@
 package pl.isa.autoparts.tools;
 
-import jdk.internal.util.xml.impl.Input;
 import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.questions.Questionary;
-import pl.isa.autoparts.tools.StringNormalizer;
-import sun.reflect.generics.tree.Tree;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class LinkGenerator {
-
-    private void generateLink(TreeOperations treeOperations, String category) {
-        Integer catID = null;
-        AllegroItem item = new AllegroItem();
-        StringNormalizer stringNormalizer = new StringNormalizer();
-
-        treeOperations.resetPhraseId();
-        treeOperations.setSearchedPhrase(category);
-        catID = treeOperations.getPhraseId();
-        item = treeOperations.getParents().get(1);
-        System.out.println(
-                "https://allegro.pl/kategoria/" + stringNormalizer.normalize(item.getName())
-                        + "-" + stringNormalizer.normalize(category) + "-" + catID);
-
-    }
 
     public void printAllegroLinkToCategory(TreeOperations treeOperations) throws IOException {
         Scanner input = new Scanner(System.in);
@@ -43,29 +24,39 @@ public class LinkGenerator {
                 case 1:
                     System.out.println("Podaj kategorię");
                     category = input.nextLine().toString();
-                    try {
-                        generateLink(treeOperations, category);
-                    } catch (IndexOutOfBoundsException e) {
-                    }
+                    generateLink(treeOperations, category);
                     break;
                 case 2:
                     Questionary questionary = new Questionary();
-                    questionary.questionOptions();
-                    List<String> propositions = questionary.getPropositionsList();
+                    List<String> propositions = questionary.questionOptions();
                     for (String categoryString : propositions) {
-                        System.out.println(categoryString);
-                        try {
-                            generateLink(treeOperations, categoryString.toLowerCase());
-                        } catch (IndexOutOfBoundsException e) {
-                            continue;
-                            //TODO dodaj logger
-                        }
+                        System.out.print("- " + categoryString + ": ");
+                        generateLink(treeOperations, categoryString);
                     }
                     break;
 
             }
         } catch (InputMismatchException e) {
             System.out.println("Wpisz 1 lub 2");
+        }
+
+    }
+
+    private void generateLink(TreeOperations treeOperations, String category) {
+        Integer catID;
+        AllegroItem item;
+        StringNormalizer stringNormalizer = new StringNormalizer();
+        try {
+            treeOperations.resetPhraseId();
+            treeOperations.setSearchedPhrase(category);
+            catID = treeOperations.getPhraseId();
+            item = treeOperations.getParents().get(1);
+            System.out.println(
+                    "https://allegro.pl/kategoria/" + stringNormalizer.normalize(item.getName())
+                            + "-" + stringNormalizer.normalize(category) + "-" + catID);
+        } catch (IndexOutOfBoundsException e) {
+            //TODO dodaj logger
+
         }
 
     }
