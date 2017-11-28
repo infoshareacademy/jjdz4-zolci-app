@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class TreeOperations {
     //    private static final Logger logger = Logger.getLogger(TreeOperations.class.getName());
-    static int czesciSamochodoweId = 620;
     private int czesciSamochodowePosition = 0;
 
     public int getPhraseId() {
@@ -29,7 +28,7 @@ public class TreeOperations {
         return parents;
     }
 
-    public void resetPhraseId(){
+    public void resetPhraseId() {
         phraseId = 0;
         parentId = 0;
     }
@@ -65,8 +64,8 @@ public class TreeOperations {
 
         }
         parents.clear();
-        phraseId=0;
-        parentId=0;
+        phraseId = 0;
+        parentId = 0;
     }
 
     private void printWholeTreeRecurency(int stars, AllegroItem czesciSamochodowe) {
@@ -82,6 +81,7 @@ public class TreeOperations {
     }
 
     private void findCzesciSamochodowePosition() {
+        int czesciSamochodoweId = 620;
         for (int i = 0; i < allegroList.size(); i++) { //find collection position of category "Części Samochodowe"
             if (allegroList.get(i).getId() == czesciSamochodoweId) {
                 czesciSamochodowePosition = i;
@@ -106,7 +106,7 @@ public class TreeOperations {
     }
 
 
-    public int findPhrase(String phrase) {   //returns ID of searched category
+    private int findPhrase(String phrase) {   //returns ID of searched category
         for (AllegroItem item : czesciSamochodowe.getChildren()) {
             if (item.getName().equals(phrase)) {
                 phraseId = item.getId();

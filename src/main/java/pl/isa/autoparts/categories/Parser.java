@@ -10,19 +10,19 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class Parser {
+class Parser {
 //    private static final Logger logger = Logger.getLogger(Parser.class.getName());
     private AllegroItem allegroItem;
 
-    public Parser() {
+    Parser() {
         parse();
     }
 
-    public ArrayList<AllegroItem> getAllegroList() {
+    ArrayList<AllegroItem> getAllegroList() {
         return allegroList;
     }
 
-    private ArrayList<AllegroItem> allegroList = new ArrayList<AllegroItem>();
+    private ArrayList<AllegroItem> allegroList = new ArrayList<>();
 
     private void parse() {
 
