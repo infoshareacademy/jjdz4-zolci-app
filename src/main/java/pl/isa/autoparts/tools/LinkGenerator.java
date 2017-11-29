@@ -62,7 +62,6 @@ public class LinkGenerator {
             logger.info("Link generated");
         } catch (IndexOutOfBoundsException e) {
             logger.error("No category parent or category not found, error in link generating");
-            //TODO dodaj logger
 
         }
 
