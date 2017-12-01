@@ -2,14 +2,10 @@ package pl.isa.autoparts.questions;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.*;
 
 public class Questionary {
     private List<String> lista = new ArrayList<>();

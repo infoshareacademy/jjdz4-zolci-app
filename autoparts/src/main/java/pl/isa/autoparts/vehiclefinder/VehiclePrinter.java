@@ -14,7 +14,7 @@ public class VehiclePrinter extends Printer{
             System.out.println(YELLOW + data.getName() + data.getStart_year() + NORMAL);
         }
 
-        Printer.printInputRequest("Doprecyzuj wybór modelu");
+        printInputRequest("Doprecyzuj wybór modelu");
     }
 
     public static void printFoundVehicles(VehicleFinder vehicleFinder, List<VehicleData> vehicleData) {

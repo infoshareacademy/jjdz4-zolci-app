@@ -1,8 +1,6 @@
 package pl.isa.autoparts.aztec;
 
-import pl.isa.autoparts.tools.JsonParser;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 
 public class AztecVehicle {
