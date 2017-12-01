@@ -1,5 +1,6 @@
 package pl.isa.autoparts.vehiclefinder;
 
+import pl.isa.autoparts.tools.JsonParser;
 import pl.isa.autoparts.tools.Printer;
 
 import java.io.IOException;
@@ -30,8 +31,8 @@ public class VehicleFinder {
 
     private Vehicle parseFoundVehicle() throws IOException {
 
-        return VehicleJsonParser.parseVehicleJsonFromURL(
-                VEHICLE_DB_URL_PRE + link + VEHICLE_DB_URL_POST);
+        return JsonParser.parseJsonFromURL(
+                VEHICLE_DB_URL_PRE + link + VEHICLE_DB_URL_POST, Vehicle.class);
     }
 
     private void setSearchError(String text) {

@@ -29,9 +29,6 @@ public class TreeOperations {
         return parents;
     }
 
-    public AllegroItem getCzesciSamochodowe() {
-        return czesciSamochodowe;
-    }
 
 
     public void printWholeTree() {

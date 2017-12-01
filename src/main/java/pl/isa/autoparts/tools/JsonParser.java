@@ -1,6 +1,5 @@
 package pl.isa.autoparts.tools;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -9,29 +8,23 @@ import java.net.URL;
 
 public class JsonParser {
 
-    public static Object parseJsonFromURL(String url, Object object) throws IOException {
+    private JsonParser() {
 
-        ObjectMapper mapper = new ObjectMapper();
-
-        return mapper.readValue(new URL(url), object.getClass());
     }
 
-    public static Object parseJsonFromFile(String fileName, Object object) throws IOException {
+    public static <T> T parseJsonFromURL(String url, Class<T> JsonObjectClass ) throws IOException {
 
-        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        InputStream file = classloader.getResourceAsStream(fileName);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(new URL(url), JsonObjectClass);
+    }
 
+    public static <T> T parseJsonFromFile(String fileName, Class<T> JsonObjectClass) throws IOException {
+
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        InputStream file = classLoader.getResourceAsStream(fileName);
         if (file == null) throw new IOException();
 
         ObjectMapper mapper = new ObjectMapper();
-
-        return mapper.readValue(file, object.getClass());
-    }
-
-    public static String toJsonString(Object object) throws JsonProcessingException {
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        return mapper.writeValueAsString(object);
+        return mapper.readValue(file, JsonObjectClass);
     }
 }

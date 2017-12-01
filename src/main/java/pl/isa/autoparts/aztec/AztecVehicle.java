@@ -20,14 +20,4 @@ public class AztecVehicle {
 
         return false;
     }
-
-    @Override
-    public String toString() {
-
-        try {
-            return JsonParser.toJsonString(this);
-        } catch (JsonProcessingException e) {
-            return "";
-        }
-    }
 }
