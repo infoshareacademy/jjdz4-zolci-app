@@ -23,10 +23,6 @@
                     <id>4</id>
                     <nazwa>Uszczelki miski</nazwa>
                 </czesc>
-                <czesc>
-                    <id>5</id>
-                    <nazwa>Miski olejowe</nazwa>
-                </czesc>
             </awaria>
             <awaria>
                 <id>2</id>

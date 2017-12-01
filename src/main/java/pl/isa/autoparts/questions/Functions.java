@@ -3,7 +3,6 @@ package pl.isa.autoparts.questions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.TextMenu;
-import pl.isa.autoparts.categories.TreeOperations;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -133,7 +132,6 @@ public class Functions {
         }
         return sb.toString();
     }
-
     public List<String> getLista() {
         return lista;
     }

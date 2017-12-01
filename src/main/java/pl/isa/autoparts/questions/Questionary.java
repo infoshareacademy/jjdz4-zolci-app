@@ -64,7 +64,7 @@ public class Questionary {
         }
         lista.addAll(functions.getLista());
         propositionsList = functions.getLista();
-        functions.clearList();
+//        functions.clearList();
     }
     public List<String> getPropositionsList(){
         return propositionsList;
