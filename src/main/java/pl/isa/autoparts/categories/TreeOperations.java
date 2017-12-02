@@ -1,11 +1,14 @@
 package pl.isa.autoparts.categories;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 
 public class TreeOperations {
-    //    private static final Logger logger = Logger.getLogger(TreeOperations.class.getName());
-    static int czesciSamochodoweId = 620;
     private int czesciSamochodowePosition = 0;
+    Logger logger = LoggerFactory.getLogger(TreeOperations.class.getName());
+
 
     public int getPhraseId() {
         return phraseId;
@@ -29,13 +32,15 @@ public class TreeOperations {
         return parents;
     }
 
-    public void resetPhraseId(){
+    public void resetPhraseId() {
         phraseId = 0;
         parentId = 0;
     }
 
     public void printWholeTree() {
         printWholeTreeRecurency(-1, czesciSamochodowe);
+        logger.info("Whole tree printed");
+
     }
 
     public void setSearchedPhrase(String phrase) {
@@ -43,13 +48,13 @@ public class TreeOperations {
         parentId = findPhrase(phrase.toLowerCase());
 
         if (parentId != 0) {
-//            logger.info("Znaleziono szukaną kategorię");
+            logger.info("Category found");
 
 
             saveParent(parentId);
         } else {
 
-//            logger.info("Nie znaleziono podanej kategorii");
+            logger.info("Category not found");
             System.out.println("Nie znaleziono kategorii!");
         }
     }
@@ -64,9 +69,12 @@ public class TreeOperations {
             System.out.println(parents.get(n).getName().substring(0, 1).toUpperCase() + parents.get(n).getName().substring(1).toLowerCase());
 
         }
+
         parents.clear();
-        phraseId=0;
-        parentId=0;
+        phraseId = 0;
+        parentId = 0;
+        logger.info("Parents of category" + parents.get(0) + "printed");
+
     }
 
     private void printWholeTreeRecurency(int stars, AllegroItem czesciSamochodowe) {
@@ -76,12 +84,12 @@ public class TreeOperations {
                 System.out.print("  ");
             }
             System.out.println(item.getName().substring(0, 1).toUpperCase() + item.getName().substring(1).toLowerCase());
-
             printWholeTreeRecurency(stars, item);
         }
     }
 
     private void findCzesciSamochodowePosition() {
+        int czesciSamochodoweId = 620;
         for (int i = 0; i < allegroList.size(); i++) { //find collection position of category "Części Samochodowe"
             if (allegroList.get(i).getId() == czesciSamochodoweId) {
                 czesciSamochodowePosition = i;
@@ -106,7 +114,7 @@ public class TreeOperations {
     }
 
 
-    public int findPhrase(String phrase) {   //returns ID of searched category
+    private int findPhrase(String phrase) {   //returns ID of searched category
         for (AllegroItem item : czesciSamochodowe.getChildren()) {
             if (item.getName().equals(phrase)) {
                 phraseId = item.getId();
