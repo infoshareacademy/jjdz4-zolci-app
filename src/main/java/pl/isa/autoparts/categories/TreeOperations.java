@@ -29,7 +29,10 @@ public class TreeOperations {
         return parents;
     }
 
-
+    public void resetPhraseId(){
+        phraseId = 0;
+        parentId = 0;
+    }
 
     public void printWholeTree() {
         printWholeTreeRecurency(-1, czesciSamochodowe);
@@ -37,7 +40,7 @@ public class TreeOperations {
 
     public void setSearchedPhrase(String phrase) {
         parents.clear();
-        parentId = findPhrase(phrase);
+        parentId = findPhrase(phrase.toLowerCase());
 
         if (parentId != 0) {
 //            logger.info("Znaleziono szukaną kategorię");

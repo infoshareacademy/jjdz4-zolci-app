@@ -102,7 +102,7 @@ public class Functions {
         System.out.println("\nLista proponowanych części: ");
 
         for (int i = 0; i < question.size(); i++) {
-            System.out.println("- " + question.get(i).getPart());
+           // System.out.println("- " + question.get(i).getPart());
             lista.add(question.get(i).getPart());
         }
 //        logger.info("Stop Function");
