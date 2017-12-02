@@ -31,7 +31,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        pl.isa.pl.isa.autoparts.Main
+                                        pl.isa.Main
                                     </mainClass>
                                 </manifest>
                             </archive>
