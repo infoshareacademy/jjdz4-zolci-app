@@ -65,10 +65,9 @@ class Parser {
                                 .getTextContent()));
 
                         allegroList.add(allegroItem);
-                        logger.info("Allegro category added");
-
                     }
                 }
+                logger.info("Allegro categories added");
             } catch (Exception e) {
                 logger.error("Error in loading categories XML file");
             }

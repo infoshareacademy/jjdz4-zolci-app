@@ -6,53 +6,57 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.LoggerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
-
 public class Questionary {
-    private List<String> lista = new ArrayList<>();
-    public List<String> questionOptions() throws IOException {
+    private List<String> stringList = new ArrayList<>();
+    public void questionOptions() throws IOException {
         Functions functions = new Functions();
+
+        List<BreakDown> breakDowns;
+        List<Parts> parts;
+        List<Question> questionsGroup = null;
+        TopClass topClass = null;
+        XmlMapper xmlMapper = null;
+        String file = null;
 
         Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
         logger.info("finding autoparts by questions module");
 
-        InputStream activitiesStream = Questionary.class
-                .getClassLoader()
-                .getResourceAsStream("questions.xml");
 
-        String file = functions.getStringFromInputStream(activitiesStream);
-        XmlMapper xmlMapper = new XmlMapper();
-        TopClass topClass = null;
+
         try {
+            InputStream activitiesStream = Questionary.class
+                    .getClassLoader()
+                    .getResourceAsStream("questions.xml");
+            file = functions.getStringFromInputStream(activitiesStream);
+            xmlMapper = new XmlMapper();
+
             topClass = xmlMapper.readValue(file, TopClass.class);
+            questionsGroup = functions.giveQuestionGrup(topClass.getGrupaPytan());
         } catch (NullPointerException e) {
             logger.error("NullPointerException - while mapping \"questions.xml\"");
+            return;
         }
         logger.info("XML is mapped correctly");
 
 
-        List<BreakDown> breakDowns;
-        List<Parts> parts;
-        List<Question> questionsGroup = functions.giveQuestionGrup(topClass.getGrupaPytan());
+
         if (questionsGroup.isEmpty()) {
-            return lista;
+            return;
         } else {
             breakDowns = functions.giveQuestion(questionsGroup);
         }
 
         if (breakDowns.isEmpty()) {
-            return lista;
+            return;
         } else {
             parts = functions.giveBreakDown(breakDowns);
         }
 
         if (parts.isEmpty()) {
-            return lista;
+            return;
         } else {
             functions.giveParts(parts);
             if(functions.getLista().isEmpty()){
@@ -62,7 +66,12 @@ public class Questionary {
             }
         }
 
-        lista.addAll(functions.getLista());
-        return lista;
+        stringList.addAll(functions.getLista());
+        return;
+    }
+
+
+    public List<String> getStringList(){
+        return stringList;
     }
 }
