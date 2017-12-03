@@ -1,7 +1,5 @@
 package pl.isa.autoparts.questions;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.TextMenu;
 
 import java.io.BufferedReader;
@@ -15,12 +13,20 @@ import java.util.Scanner;
 
 public class Functions {
     private Scanner sc = new Scanner(System.in);
+//    Logger logger = LoggerFactory.getLogger(Functions.class.getName());
+
+//    public Functions(){
+//        logger.info("");
+//    }
+
     private List<String> lista = new ArrayList<>();
 
-    Logger logger = LoggerFactory.getLogger(Functions.class.getName());
+    TreeOperations treeOperations = new TreeOperations();
     TextMenu textMenu = new TextMenu();
 
     protected List<Question> giveQuestionGrup(List<QuestionGroup> questions) throws IOException {
+//        logger.info("Start Function");
+
         for (Iterator<QuestionGroup> iterator = questions.iterator(); iterator.hasNext(); ) {
             QuestionGroup questionGroup = iterator.next();
             if (questionGroup.getQuestions().isEmpty()) {
@@ -32,6 +38,7 @@ public class Functions {
 
             if (sc.next().equals("y")) {
                 return questionGroup.getQuestions();
+//                    giveQuestion(question.get(i).getQuestions(), true);
             } else if (iterator.hasNext()) {
                 System.out.println("\nNastępna opcja: \n");
             }
@@ -42,6 +49,7 @@ public class Functions {
     }
 
     protected List<BreakDown> giveQuestion(List<Question> questions) throws IOException {
+        boolean questionIsNotDetected = true;
 
         for (Iterator<Question> iterator = questions.iterator(); iterator.hasNext(); ) {
             Question question = iterator.next();
@@ -54,7 +62,7 @@ public class Functions {
 
             if (sc.next().equals("y")) {
                 return question.getBreakDown();
-            } else if (iterator.hasNext())
+            }else if (iterator.hasNext())
                 System.out.println("\nNastępna opcja: ");
         }
         System.out.println("\nNie wybrałeś żadnej kategorii!\n\n\n");
@@ -75,6 +83,7 @@ public class Functions {
                     "?\nwcisnij ('y'=Yes/'n'=No) jesli potwierdzasz: ");
 
             if (sc.next().equals("y")) {
+                breakDownIsNotDetected = false;
                 return breakDown.getParts();
             } else if (iterator.hasNext()) {
                 System.out.println("\nNastępna opcja: ");
@@ -87,19 +96,19 @@ public class Functions {
         return null;
     }
 
+    //  list of recomended parts' to repair <Parts>
     protected void giveParts(List<Parts> question) {
         System.out.println("\nLista proponowanych części: ");
 
-        for (Iterator<Parts> iterator = question.iterator(); iterator.hasNext(); ) {
-            Parts parts = iterator.next();
-            System.out.println("- " + parts.getPart());
-            lista.add(parts.getPart());
+        for (int i = 0; i < question.size(); i++) {
+           // System.out.println("- " + question.get(i).getPart());
+            lista.add(question.get(i).getPart());
         }
+//        logger.info("Stop Function");
     }
 
-
     // convert InputStream to String
-    protected String getStringFromInputStream(InputStream is) throws IOException {
+    protected String getStringFromInputStream(InputStream is) {
 
         BufferedReader br = null;
         StringBuilder sb = new StringBuilder();
@@ -114,19 +123,14 @@ public class Functions {
 
         } catch (IOException e) {
             e.printStackTrace();
-            logger.error("IOException: File not found! \"questions.xml\"");
-            textMenu.options();
-        } catch (NullPointerException e) {
-            logger.error("NullPointerException - while mapping \"questions.xm");
-            textMenu.options();
+//            logger.error("File not found!");
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    logger.error("IOException: File not found! \"questions.xml\"");
-                    textMenu.options();
+//                    logger.error("File not found!");
                 }
             }
         }
@@ -134,5 +138,9 @@ public class Functions {
     }
     public List<String> getLista() {
         return lista;
+    }
+
+    public void clearList() {
+        lista.clear();
     }
 }
