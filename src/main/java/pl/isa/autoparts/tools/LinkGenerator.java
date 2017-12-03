@@ -32,7 +32,8 @@ public class LinkGenerator {
                     break;
                 case 2:
                     Questionary questionary = new Questionary();
-                    List<String> propositions = questionary.questionOptions();
+                    questionary.questionOptions();
+                    List<String> propositions = questionary.getStringList();
                     for (String categoryString : propositions) {
                         System.out.print("- " + categoryString + ": ");
                         generateLink(treeOperations, categoryString);

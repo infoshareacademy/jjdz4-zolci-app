@@ -137,7 +137,6 @@ public class Functions {
         }
         return sb.toString();
     }
-
     public List<String> getLista() {
         return lista;
     }
