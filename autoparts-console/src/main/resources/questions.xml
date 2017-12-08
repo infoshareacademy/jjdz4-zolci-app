@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class>
+    <grupa-pytan name="przód samochodu">
+        <pytanie>
+            <id>1</id>
+            <opis>wyciek</opis>
+            <awaria>
+                <id>1</id>
+                <tresc>wyciek z silnika</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Głowice</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Miski olejowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Pompy oleju</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Uszczelki miski</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>wyciek z chlodnicy</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Przewody chłodnic wody</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Przewody chłodnic powietrza</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Chłodnice powietrza (intercoolery)</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>3</id>
+                <tresc>Płyn hamulcowy</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Pompy hamulcowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Przewody hamulcowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Zbiorniki płynu hamulcowego</nazwa>
+                </czesc>
+            </awaria>
+        </pytanie>
+        <pytanie>
+            <id>2</id>
+            <opis>hałas</opis>
+            <awaria>
+                <id>1</id>
+                <tresc>przednia półoś</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Łączniki drążków stabilizatora</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Amortyzatory Przednie</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Wahacze</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Belki przednie</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Przeguby</nazwa>
+                </czesc>
+                <czesc>
+                    <id>6</id>
+                    <nazwa>Sprężyny zawieszenia</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>silnik</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>tłoki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Wały korbowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Koła zamachowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Mechanizmy rozrządu</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Blok silnika</nazwa>
+                </czesc>
+            </awaria>
+        </pytanie>
+        <pytanie>
+            <id>3</id>
+            <opis>Światła nie włączają się</opis>
+            <awaria>
+                <id>2</id>
+                <tresc>jedno światło</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Halogeny</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Żarówki</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>oba światła</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Lampy do jazdy dziennej DRL</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Lampy przednie</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Przetwornice</nazwa>
+                </czesc>
+            </awaria>
+        </pytanie>
+        <pytanie>
+            <id>4</id>
+            <opis>Brak mocy</opis>
+            <awaria>
+                <id>1</id>
+                <tresc>Turbosprężarki</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Turbosprężarki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Przepływomierze</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Zawory EGR</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>Mechanizmy rozrządu</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Napinacze i rolki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Paski i łańcuchy rozrządu</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Wałki rozrządu</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Pokrywy, obudowy</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Łożyska</nazwa>
+                </czesc>
+            </awaria>
+        </pytanie>
+        <pytanie>
+            <id>5</id>
+            <opis>stukanie</opis>
+            <awaria>
+                <id>1</id>
+                <tresc>stukot przy kole</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Sworznie wahaczy</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Tuleje wahaczy</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Wahacze</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>stukot w silniku</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Tłoki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Koła pasowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Wały korbowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Koła zamachowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Panewki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>6</id>
+                    <nazwa>Bloki</nazwa>
+                </czesc>
+            </awaria>
+        </pytanie>
+    </grupa-pytan>
+    <grupa-pytan name="kabina">
+        <pytanie>
+            <id>1</id>
+            <opis>kontrolka</opis>
+            <awaria>
+                <id>1</id>
+                <tresc>kontrolka trakcji + ABS</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Czujniki ABS</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Przewody hamulcowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Bębny hamulcowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Tarcze hamulcowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Szczęki hamulcowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>6</id>
+                    <nazwa>Linki hamulca ręcznego</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>czujnik oleju</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Miski olejowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Pompy oleju</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Uszczelki miski</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Czujniki ciśnienia oleju</nazwa>
+                </czesc>
+            </awaria>
+        </pytanie>
+        <pytanie>
+            <id>2</id>
+            <opis>Brak prądu</opis>
+            <awaria>
+                <id>1</id>
+                <tresc>Deska rozdzielcza</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Bezpieczniki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Deski rozdzielcze, konsole</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Przekaźniki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Sterowniki</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>cała kabina</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Bezpieczniki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Kostki, złączki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Wiązki przewodów</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Akumulatory</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>3</id>
+                <tresc>Układ elektryczny, zapłon</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Bezpieczniki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Świece</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Alternatory</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Moduły zapłonowe</nazwa>
+                </czesc>
+            </awaria>
+        </pytanie>
+        <pytanie>
+            <id>3</id>
+            <opis>Uszkodzony układ zmiany biegów</opis>
+            <awaria>
+                <id>1</id>
+                <tresc>sprzęgło</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Kompletne zestawy</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Dociski sprzęgła</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Koła dwumasowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Pompy i wysprzęgliki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Łożyska oporowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>6</id>
+                    <nazwa>Tarcze</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>skrzynia biegów</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Obudowy</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Poduszki i mocowanie</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Synchronizatory</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Wybierakii</nazwa>
+                </czesc>
+            </awaria>
+        </pytanie>
+    </grupa-pytan>
+    <grupa-pytan name="tył samochodu">
+        <pytanie>
+            <id>1</id>
+            <opis>hałas</opis>
+            <awaria>
+                <id>1</id>
+                <tresc>Układ wydechowy</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Katalizatory</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Kolektory</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Sondy lambda</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Tłumiki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Zawory EGR</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>Tylnia półoś</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Amortyzatory Tylne</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Łożyska i piasty kół</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Poduszki i łożyska amortyzatorów</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Tuleje amortyzatorów</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Belki tylne</nazwa>
+                </czesc>
+                <czesc>
+                    <id>6</id>
+                    <nazwa>Sprężyny zawieszeniaa</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>4</id>
+                <tresc>Układ hamulcowy</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Tarcze hamulcowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Klocki hamulcowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Zaciski</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Jarzma</nazwa>
+                </czesc>
+            </awaria>
+        </pytanie>
+        <pytanie>
+            <id>2</id>
+            <opis>wyciek</opis>
+            <awaria>
+                <id>1</id>
+                <tresc>Wyciek paliwa</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Zbiorniki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Pompy paliwa</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Pompy wtryskowe</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>płyn hamulcowy</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Pompy hamulcowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Przewody hamulcowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Zbiorniki płynu hamulcowego</nazwa>
+                </czesc>
+            </awaria>
+        </pytanie>
+    </grupa-pytan>
+    <!--<grupa-pytan name="podwozie">-->
+    <!--</grupa-pytan>-->
+</class>
