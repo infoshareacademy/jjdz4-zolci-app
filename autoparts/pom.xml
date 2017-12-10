@@ -1,5 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.isa.autoparts</groupId>
     <artifactId>autoparts</artifactId>
@@ -7,6 +8,13 @@
     <version>1.0-SNAPSHOT</version>
     <name>autoparts</name>
     <url>http://maven.apache.org</url>
+
+    <parent>
+        <groupId>pl.isa.autoparts</groupId>
+        <artifactId>autoparts-cli</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
     <build>
         <plugins>
             <plugin>
@@ -31,7 +39,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        pl.isa.Main
+                                        pl.isa.autoparts.Main
                                     </mainClass>
                                 </manifest>
                             </archive>
@@ -44,13 +52,8 @@
             </plugin>
         </plugins>
     </build>
+
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -71,16 +74,6 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>2.9.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20160810</version>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -91,27 +84,6 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20160810</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.9.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.9.1</version>
-        </dependency>
-      <dependency>
-          <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.9.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.5</version>
         </dependency>
     </dependencies>
 </project>
