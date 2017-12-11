@@ -15,19 +15,6 @@ public class HelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         PrintWriter writer = resp.getWriter();
-        writer.println("Hello Krzysztof Muller!\n");
-//        String s1 = "";
-//        String s1 = req.getParameter("name");
-//
-//        resp.setContentType("text/html;charset=UTF-8");
-//        writer.println("<!DOCTYPE html><html><body><br/>");
-//
-//        try {
-//            writer.println("imie: " + s1);
-//        } catch (NullPointerException e) {
-//            writer.println(HttpServletResponse.SC_BAD_REQUEST);
-//        }
-//        writer.println("</body></html>");
-
+        writer.println("Hello Krzysztof Muller JEE!\n");
     }
 }
