@@ -1,6 +1,7 @@
 package pl.isa.autoparts;
 
 import pl.isa.autoparts.categories.TreeOperations;
+import pl.isa.autoparts.tools.LinkGenerator;
 import pl.isa.autoparts.tools.Printer;
 
 import java.io.IOException;
@@ -69,8 +70,7 @@ public class TextMenu {
                     initateAztec.executeVehicleFinder();
 
                     break;
-                case 5:
-                    break;
+
 
                 case 0:
                     break;
@@ -80,9 +80,5 @@ public class TextMenu {
             System.out.println("\n");
         } while (checkOption != 0);
     }
-
-
 }
-
-
 

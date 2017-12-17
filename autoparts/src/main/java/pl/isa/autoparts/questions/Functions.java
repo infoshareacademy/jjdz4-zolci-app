@@ -50,7 +50,7 @@ public class Functions {
     }
 
     protected List<BreakDown> giveQuestion(List<Question> questions) throws IOException {
-
+        boolean questionIsNotDetected = true;
 
         for (Iterator<Question> iterator = questions.iterator(); iterator.hasNext(); ) {
             Question question = iterator.next();
@@ -102,7 +102,7 @@ public class Functions {
         System.out.println("\nLista proponowanych części: ");
 
         for (int i = 0; i < question.size(); i++) {
-            System.out.println("- " + question.get(i).getPart());
+            // System.out.println("- " + question.get(i).getPart());
             lista.add(question.get(i).getPart());
         }
 //        logger.info("Stop Function");
@@ -137,7 +137,6 @@ public class Functions {
         }
         return sb.toString();
     }
-
     public List<String> getLista() {
         return lista;
     }

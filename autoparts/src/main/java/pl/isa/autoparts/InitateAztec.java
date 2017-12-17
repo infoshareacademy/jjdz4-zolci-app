@@ -1,15 +1,10 @@
 package pl.isa.autoparts;
 
-import pl.isa.autoparts.aztec.AtenaSessionReader;
-import pl.isa.autoparts.aztec.AztecPrinter;
-import pl.isa.autoparts.aztec.AztecVehicle;
+import pl.isa.autoparts.aztec.*;
 import pl.isa.autoparts.tools.InputScanner;
 import pl.isa.autoparts.tools.JsonParser;
 import pl.isa.autoparts.tools.Printer;
-import pl.isa.autoparts.vehiclefinder.Vehicle;
-import pl.isa.autoparts.vehiclefinder.VehicleData;
-import pl.isa.autoparts.vehiclefinder.VehicleFinder;
-import pl.isa.autoparts.vehiclefinder.VehiclePrinter;
+import pl.isa.autoparts.vehiclefinder.*;
 
 import java.io.IOException;
 import java.util.List;
