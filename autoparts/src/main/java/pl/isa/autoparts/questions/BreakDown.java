@@ -42,3 +42,12 @@ public class BreakDown {
     }
 }
 
+
+//<awaria>
+//<id>1</id>
+//<tresc>panel z kontrolkami</tresc>
+//<czesc>
+//<id>1</id>
+//<nazwa>bezpiecznik</nazwa>
+//</czesc>
+//</awaria>
