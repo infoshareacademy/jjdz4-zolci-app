@@ -18,7 +18,7 @@
     <div class="col-lg-10 main-container text-center">
         <div class="text-menu">
             <form>
-               <label>Podaj nazwę kategorii</label> <input type="text">
+                <label>Podaj nazwę kategorii</label> <input type="text">
                 <input type="submit">
             </form>
         </div>

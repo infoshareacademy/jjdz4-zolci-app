@@ -17,12 +17,12 @@
     </div>
     <div class="col-lg-10 main-container">
         <div class="text-menu text-center">
-        <ul>
-            <li><a href="">Drzewo kategorii</a></li>
-            <li><a href="find-category.jsp">Wyszukaj kategorię</a></li>
-            <li><a href="">Podaj kod AZTEC</a></li>
-            <li><a href="">Wyszukaj auto z formularza</a></li>
-        </ul>
+            <ul>
+                <li><a href="">Drzewo kategorii</a></li>
+                <li><a href="find-category.jsp">Wyszukaj kategorię</a></li>
+                <li><a href="">Podaj kod AZTEC</a></li>
+                <li><a href="">Wyszukaj auto z formularza</a></li>
+            </ul>
         </div>
     </div>
 </div>
