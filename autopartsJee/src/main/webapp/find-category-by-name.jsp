@@ -7,7 +7,7 @@
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
-    <title>Znajdż po formularzu</title>
+    <title>Znajdż w wyszukiwarce</title>
 </head>
 <body>
 <a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div></a>
@@ -17,9 +17,9 @@
     </div>
     <div class="col-lg-10 main-container text-center">
         <div class="text-menu">
-            <form>
-                <label>Podaj nazwę kategorii</label> <input type="text">
-                <input type="submit">
+            <form action="/find-by-name" method="GET">
+                <label>Podaj nazwę kategorii:</label> <input type="text" name="search">
+                <input type="submit" value="Szukaj">
             </form>
         </div>
     </div>
