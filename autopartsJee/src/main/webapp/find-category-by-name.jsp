@@ -10,7 +10,7 @@
     <title>Znajdż po formularzu</title>
 </head>
 <body>
-<a href="index.jsp"><div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div></a>
+<a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div></a>
 <div class="row justify-content-center" id="wrapper">
     <div class="col-lg-2 side-bar">
 

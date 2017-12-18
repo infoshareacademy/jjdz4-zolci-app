@@ -10,12 +10,12 @@
     <title>Strona główna</title>
 </head>
 <body>
-<a href="index.jsp"><div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div></a>
+<a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div></a>
 <div class="row justify-content-center" id="wrapper">
-    <div class="col-lg-2 side-bar">
+    <div class="col-lg-2 col-md-2 col-sm-2 side-bar">
 
     </div>
-    <div class="col-lg-10 main-container">
+    <div class="col-lg-10 col-md-10 col-sm-10 main-container">
         <div class="text-menu text-center">
             <ul>
                 <li><a href="">Drzewo kategorii</a></li>

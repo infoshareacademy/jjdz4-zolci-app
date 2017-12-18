@@ -1,11 +1,13 @@
-
 a {
     color: black;
 }
 
-a:hover, a:visited{
+a:hover, a:visited {
     color: black;
+
+
 }
+
 ul {
     list-style: none;
 }
@@ -17,16 +19,22 @@ ul {
     border-width: 1px;
 }
 
-#header {
-    padding: 3% 0 2% 0;
-    display: inline-block;
 
+
+
+#header {
+    min-height: 10%;
+    display: block;
+    background-color: floralwhite;
 }
+
+
 
 #header > a:hover, a:visited {
     text-decoration: none;
     color: black;
 }
+
 
 .main-container {
     background-color: floralwhite;
@@ -35,23 +43,24 @@ ul {
     border-width: 1px 0 0 0;
 }
 
-@media (min-width: 1200px) {
-    #wrapper {
 
-        height: 500px;
-    }
-
-    #header {
-        background-color: floralwhite;
-
-    }
-
-    .text-menu {
-        font-size: 28px;
-        padding-top: 10%;
-    }
+.text-menu {
+    font-size: 28px;
+    padding-top: 10%;
 }
 
+@media (max-width: 576px) {
+    .side-bar{
+        display: none;
+    }
+    .text-menu{
+        font-size: 20px;
+    }
+
+}
+#banner:hover{
+    text-decoration: none;
+}
 body {
     font-family: 'Lato', sans-serif;
     background-color: floralwhite;
