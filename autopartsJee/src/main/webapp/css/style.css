@@ -1,0 +1,62 @@
+
+a {
+    color: black;
+}
+
+a:hover, a:visited{
+    color: black;
+}
+ul {
+    list-style: none;
+}
+
+.side-bar {
+    background-color: navajowhite;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+}
+
+#header {
+    padding: 3% 0 2% 0;
+    display: inline-block;
+
+}
+
+#header > a:hover, a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.main-container {
+    background-color: floralwhite;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+}
+
+@media (min-width: 1200px) {
+    #wrapper {
+
+        height: 500px;
+    }
+
+    #header {
+        background-color: floralwhite;
+
+    }
+
+    .text-menu {
+        font-size: 28px;
+        padding-top: 10%;
+    }
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: floralwhite;
+}
+
+body > #header {
+    font-family: 'Open Sans', sans-serif;
+}

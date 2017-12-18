@@ -10,7 +10,7 @@
     <title>Znajdź kategorię</title>
 </head>
 <body>
-<div class="container-fluid text-center" id="header"><a href="index.jsp"><h1> 'autopartsFinder'</h1></a></div>
+<a href="index.jsp"><div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div></a>
 <div class="row justify-content-center" id="wrapper">
     <div class="col-lg-2 side-bar">
 
