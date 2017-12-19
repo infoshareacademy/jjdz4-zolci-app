@@ -21,7 +21,10 @@
     </div>
     <div class="col-lg-10 main-container text-center">
         <div class="text-menu">
-            <a href="<c:out value="${link}" />"><c:out value="${link}"/></a>
+            <ul>
+                <li><a href="<c:out value="${link}" />"><c:out value="${link}"/></a></li>
+                <li style="font-size: 24px;"><a href="find-category-by-name.jsp">Wróć do wyszukiwania</a></li>
+            </ul>
         </div>
     </div>
 </div>
