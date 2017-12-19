@@ -16,12 +16,11 @@ public class findByNameServlet extends HttpServlet {
 /*
 * TODO: servlet ktory wykona sie jednoczesnie z jsp findByName ktory zbuduje obiekt TreeOperations i przechowa go w sesji,
 * TODO następnie ten servlet go wczyta i przekaże do generateLink w argumencie dzięki czemu nie bedzie sie wczytywalo przy
-* TODO kazdym wyszukaniu
+* TODO kazdym wyszukaniu //inna sprawa ze i tak dziala dosc szybko
 */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String search = req.getParameter("search");
-        String link = WebLinkGenerator.generateLink(search);
+        String link = WebLinkGenerator.generateLink(req.getParameter("search"));
         req.setAttribute("link", link);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-by-name-result.jsp");
         requestDispatcher.forward(req, resp);

@@ -12,13 +12,17 @@
     <title>Wyniki wyszukiwania</title>
 </head>
 <body>
-<a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div></a>
+<a id="banner" href="index.jsp">
+    <div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div>
+</a>
 <div class="row justify-content-center" id="wrapper">
     <div class="col-lg-2 side-bar">
 
     </div>
     <div class="col-lg-10 main-container text-center">
-        <c:out value="${link}" />
+        <div class="text-menu">
+            <a href="<c:out value="${link}" />"><c:out value="${link}"/></a>
+        </div>
     </div>
 </div>
 </body>
