@@ -10,21 +10,13 @@ body {
     min-height: 100%;
 }
 
-
 a {
     color: black;
 }
 
-
-
-
 a:hover, a:visited {
     color: black;
-
-
 }
-
-
 
 ul {
     list-style: none;
@@ -69,11 +61,8 @@ ul {
     .text-menu{
         font-size: 20px;
     }
-
 }
-
 
 #banner:hover, #banner:visited{
     text-decoration: none;
-
 }
