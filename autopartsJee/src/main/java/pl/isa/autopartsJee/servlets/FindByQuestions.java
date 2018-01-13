@@ -25,10 +25,14 @@ public class FindByQuestions extends HttpServlet {
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 //        RequestDispatcher requestDispatcher;
-        Questionary questionary = new Questionary();
-        TopClass topClass = questionary.init();
+//        Questionary questionary = new Questionary();
+//        TopClass topClass = questionary.init();
+        Questionary questionary = null;
 
         if (req.getParameter("step").equals("1")) {
+            questionary = new Questionary();
+            TopClass topClass = questionary.init();
+
             System.out.println("a1");
 //            TopClass topClass = questionary.init();
 
