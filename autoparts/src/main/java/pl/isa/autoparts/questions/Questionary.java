@@ -5,17 +5,20 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Questionary {
+    public static String myFind;
 
     Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
     private List<String> stringList = new ArrayList<>();
     Functions functions = new Functions();
 
     List<Question> questionsGroup;
+//    List<Question> questionsGroupWeb;
     List<BreakDown> breakDowns;
     List<Parts> parts;
     TopClass topClass;
@@ -41,6 +44,24 @@ public class Questionary {
         logger.info("XML is mapped correctly");
         return topClass;
     }
+
+    /**                    */
+    public List<Question> tryWeb(String checkValue) throws IOException {
+        questionsGroup = functions.giveQuestionGrupWeb(topClass.getGrupaPytan(), true, checkValue); // sprawdzic
+//        questionsGroup = questionsGroupWeb();
+//        functions.giveQuestionGrupWeb(questionsGroup);
+//        Map<QuestionGroup, String> stringMap = functions.giveQuestionGrupWeb(questionsGroup);
+//        Question question = functions.g
+        return questionsGroup;
+    }
+
+
+
+
+
+    /**                    */
+
+
 
     public void questionGroupFunction() throws IOException {
         if (questionsGroup.isEmpty()) {
@@ -77,6 +98,7 @@ public class Questionary {
     public void questionOptions() throws IOException {
 
         init();
+        questionsGroup = functions.giveQuestionGrup(topClass.getGrupaPytan()); // sprawdzic
         questionGroupFunction();
         breakDownFunction(breakDowns);
         partsFunction(parts);

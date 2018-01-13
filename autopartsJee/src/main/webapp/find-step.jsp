@@ -1,21 +1,3 @@
-<<<<<<< Updated upstream
-<%--
-  Created by IntelliJ IDEA.
-  User: sony
-  Date: 04.01.18
-  Time: 13:37
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
-=======
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
@@ -48,29 +30,14 @@
 
             <br/>
 
-            <ul id="myUL">
-                <c:forEach var="entry" items="${questions}">
-                    <li><a><c:out value="${entry}"/></a></li>
-                </c:forEach>
+            <form method="get" action="find-questions">
+                <input type="hidden" name="step" value="1">
+                <input type="submit" value="start">
+            </form>
+
             </ul>
         </div>
     </div>
 </div>
 </body>
 </html>
-
-
-<%--<span id="output">abc</span>--%>
-
-<%--<div id="abc">asd</div>--%>
-<%--<div id="output"></div>--%>
-
-
-<%--<select>--%>
-<%--<option value="red">red</option>--%>
-<%--<option value="black">black</option>--%>
-<%--<option value="blue">blue</option>--%>
-<%--</select>--%>
-<%--<input type="text" id="input" value="">--%>
-<%--<div id="output"></div>--%>
->>>>>>> Stashed changes

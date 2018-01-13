@@ -20,65 +20,51 @@ import java.util.List;
 @WebServlet("find-questions")
 public class FindByQuestions extends HttpServlet {
 
-    String myName;
+//    String myName = null;
+//    String myFind;
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        RequestDispatcher requestDispatcher;
-
-
-//        if (req.getParameter("step").equals("1")) {
-//            req.getSession().setAttribute("name", req.getParameter("name"));
-
+//        RequestDispatcher requestDispatcher;
         Questionary questionary = new Questionary();
         TopClass topClass = questionary.init();
 
+        if (req.getParameter("step").equals("1")) {
+            System.out.println("a1");
+//            TopClass topClass = questionary.init();
 
-//            String questionaryName = (String) req.getSession().getAttribute("name");
-        List<String> questionaryName = new ArrayList<>();
-        for (QuestionGroup questionGroup : topClass.getGrupaPytan()) {
-            questionaryName.add(questionGroup.getName());
+            List<String> questionaryName = new ArrayList<>();
+            for (QuestionGroup questionGroup : topClass.getGrupaPytan()) {
+                questionaryName.add(questionGroup.getName());
+            }
+
+            req.setAttribute("groupQuestions", questionaryName);
+
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category-by-form.jsp");
+                requestDispatcher.forward(req, resp);
+
+//            myName = req.getParameter("name");
         }
 
-        req.setAttribute("elements", questionaryName);
+//        int tempStep = Integer.parseInt(req.getParameter("step").substring(0,1));
+//        else if (req.getParameter("step").equals(String.valueOf(tempStep))) {
+//        else if (!req.getParameter("step").equals("1")) {
+        else if (req.getParameter("step").substring(0, 1).equals("2")) {
+            System.out.println("b1");
+//            List<Question> myQuestions = questionary.tryWeb(req.getParameter("name"));
+            System.out.println("krzys " + req.getParameter("token"));
+            List<Question> myQuestions = questionary.tryWeb(req.getParameter("step").substring(1));
+            List<String> tempQuestion = new ArrayList<>();
+            for (Question a : myQuestions) {
+                System.out.println("c " + a.getDescripton());
+                tempQuestion.add(a.getDescripton());
+            }
+//            req.getSession().invalidate();
+            req.setAttribute("questions", tempQuestion);
 
-        requestDispatcher = req.getRequestDispatcher("/find-category-by-form.jsp");
-        requestDispatcher.forward(req, resp);
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category-by-form-step1.jsp");
+            requestDispatcher.forward(req, resp);
 
-        String myFind = req.getParameter("name");
-//        String userName = request.getParameter("userName");
-
-//        System.out.println(myFind);
-
-        if(myFind != null) {
-            System.out.println(myFind);
-            System.out.println("ha ha");
         }
-
-
-//            for (QuestionGroup questionGroup : topClass.getGrupaPytan()) {
-//
-//
-//
-//                if (questionaryName.equals(questionGroup.getName())) {
-//                    myName = questionGroup.getName();
-//
-//
-//
-//                    requestDispatcher = req.getRequestDispatcher("/find-category-by-form-step1.jsp");
-//                    requestDispatcher.forward(req, resp);
-//                }
-//            }
-
-
-//            if ((String) req.getSession().getAttribute("name") != null) {
-////                do something
-////                functions
-//            }
-//            else {
-//                requestDispatcher = req.getRequestDispatcher("/find1");
-//                requestDispatcher.forward(req, resp);
-//            }
-//    }
 
     }
 

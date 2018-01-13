@@ -31,9 +31,21 @@
             <br/>
 
             <ul id="myUL">
-                <c:forEach var="entry" items="${elements}">
-                    <li><a><c:out value="${entry}"/></a></li>
+                <c:forEach var="entry" items="${groupQuestions}">
+                    <li><a href="/find-questions?selected=<c:out value="${entry}"/>&step=2"><c:out value="${entry}"/></a></li>
                 </c:forEach>
+
+
+                <%--<form method="get" action="find-questions">--%>
+                    <%--<input type="hidden" name="step" value="2">--%>
+                    <%--<input type="submit" value="start">--%>
+                <%--</form>--%>
+
+                <%--<form action="get" action="find-questions">--%>
+                    <%--twoj wybor: <input type="text" name="group">--%>
+                    <%--<input type="hidden" name="step" value="1">--%>
+                <%--</form>--%>
+
             </ul>
         </div>
     </div>
