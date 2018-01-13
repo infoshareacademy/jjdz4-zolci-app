@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="JQuery/find.js"></script>
+    <link rel="stylesheet" href="css/example.css">
     <title>Znajdź kategorię</title>
 </head>
 <body>
@@ -21,7 +22,7 @@
     </div>
     <div class="col-lg-10 main-container">
         <div class="text-menu text-center">
-            <ul>
+            <ul id="myUL">
                 <%--<input type="hidden" name="step" value="1">--%>
                 <%--<input type="submit">--%>
                 <li><a href="find-category-by-name.jsp">Wpisz nazwę kategorii</a></li>
