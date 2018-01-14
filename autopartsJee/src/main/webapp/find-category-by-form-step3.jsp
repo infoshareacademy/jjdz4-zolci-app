@@ -1,3 +1,13 @@
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
@@ -30,14 +40,20 @@
 
             <br/>
 
-            <form method="get" action="find-questions">
-                <input type="hidden" name="step" value="1">
-                <input type="submit" value="start">
-            </form>
+            <%--<ul id="myUL">--%>
+            <%--<c:forEach var="entry" items="${questions}">--%>
+            <%--<li><a><c:out value="${entry}"/></a></li>--%>
+            <%--</c:forEach>--%>
+            <%----%>
+            <%--</ul>--%>
 
-            </ul>
+            <ul id="myUL">
+                <c:forEach var="entry" items="${breakDown}">
+                <li><a href="/find-questions?selected=<c:out value="${entry}"/>&step=4"><c:out value="${entry}"/></a></li>
+                </c:forEach>
         </div>
     </div>
 </div>
 </body>
 </html>
+

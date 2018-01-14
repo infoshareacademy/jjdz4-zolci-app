@@ -47,14 +47,18 @@ public class Questionary {
 
     /**                    */
     public List<Question> tryWeb(String checkValue) throws IOException {
+        myFind = checkValue;
         questionsGroup = functions.giveQuestionGrupWeb(topClass.getGrupaPytan(), true, checkValue); // sprawdzic
-//        questionsGroup = questionsGroupWeb();
-//        functions.giveQuestionGrupWeb(questionsGroup);
-//        Map<QuestionGroup, String> stringMap = functions.giveQuestionGrupWeb(questionsGroup);
-//        Question question = functions.g
         return questionsGroup;
     }
 
+    public List<BreakDown> breakDownsWeb(String checkValue) throws IOException {
+        questionsGroup = functions.giveQuestionGrupWeb(topClass.getGrupaPytan(), true, myFind);
+        List<BreakDown> breakDowns = functions.giveQuestionWeb(questionsGroup, true, checkValue);
+//        BreakDown breakDown = functions.giveQuestionWeb(questionsGroup, true, checkValue);
+
+        return breakDowns;
+    }
 
 
 

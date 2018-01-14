@@ -1,3 +1,12 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
@@ -30,16 +39,29 @@
 
             <br/>
 
+
             <ul id="myUL">
-                <c:forEach var="entry" items="${groupQuestions}">
-                    <li><a href="/find-questions?selected=<c:out value="${entry}"/>&step=2"><c:out value="${entry}"/></a></li>
+                <c:forEach var="entry" items="${questions}">
+                <li><a href="/find-questions?selected=<c:out value="${entry}"/>&step=3"><c:out value="${entry}"/></a></li>
                 </c:forEach>
-
-
-            </ul>
         </div>
     </div>
 </div>
 </body>
 </html>
 
+
+<%--<span id="output">abc</span>--%>
+
+<%--<div id="abc">asd</div>--%>
+<%--<div id="output"></div>--%>
+
+
+<%--<select>--%>
+<%--<option value="red">red</option>--%>
+<%--<option value="black">black</option>--%>
+<%--<option value="blue">blue</option>--%>
+<%--</select>--%>
+<%--<input type="text" id="input" value="">--%>
+<%--<div id="output"></div>--%>
+<%-->>>>>>> Stashed changes--%>

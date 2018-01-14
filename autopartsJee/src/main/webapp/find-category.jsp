@@ -23,16 +23,9 @@
     <div class="col-lg-10 main-container">
         <div class="text-menu text-center">
             <ul id="myUL">
-                <%--<input type="hidden" name="step" value="1">--%>
-                <%--<input type="submit">--%>
                 <li><a href="find-category-by-name.jsp">Wpisz nazwę kategorii</a></li>
-                <%--<li><a href="find-category-by-form.jsp">Odpowiedz na pytania</a></li>--%>
-                <%--<li><a href="/find-questions">Odpowiedz na pytania</a></li>--%>
-                <li><a href="find-step.jsp">Odpowiedz na pytania</a></li>
-                <%--<input type="hidden" name="step" value="1">--%>
+                <li><a href="/find-questions?step=1">Odpowiedz na pytania</a></li>
 
-                <%--<li><a>Wpisz nazwę kategorii</a></li>--%>
-                <%--<li><a>wybierz z propozycji</a></li>--%>
 
             </ul>
         </div>
