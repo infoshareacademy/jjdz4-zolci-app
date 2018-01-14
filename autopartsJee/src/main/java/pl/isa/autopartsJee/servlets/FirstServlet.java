@@ -1,4 +1,4 @@
-package pl.isa.autoparts;
+package pl.isa.autopartsJee.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,5 +17,7 @@ public class FirstServlet extends HttpServlet {
 
         PrintWriter writer = resp.getWriter();
         writer.println("Hello autoparts!");
+
+
     }
 }

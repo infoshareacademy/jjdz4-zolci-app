@@ -5,14 +5,14 @@
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
 
-    <persistence-unit name="pUnit">
+    <!--<persistence-unit name="pUnit">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>java:/mysql</jta-data-source>
+        <jta-data-source>java:/MySqlDS</jta-data-source>
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hbm2ddl.auto" value="validate"/>
         </properties>
-    </persistence-unit>
+    </persistence-unit>-->
 </persistence>
