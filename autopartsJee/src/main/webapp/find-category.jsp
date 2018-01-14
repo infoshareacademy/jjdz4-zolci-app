@@ -25,7 +25,7 @@
             <ul id="myUL">
                 <%--<input type="hidden" name="step" value="1">--%>
                 <%--<input type="submit">--%>
-                <li><a href="find-category-by-name.jsp">Wpisz nazwę kategorii</a></li>
+                <li><a href="upload-or-default.jsp">Wyszukuj po nazwie</a></li>
                 <%--<li><a href="find-category-by-form.jsp">Odpowiedz na pytania</a></li>--%>
                 <%--<li><a href="/find-questions">Odpowiedz na pytania</a></li>--%>
                 <li><a href="find-step.jsp">Odpowiedz na pytania</a></li>

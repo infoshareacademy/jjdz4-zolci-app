@@ -1,6 +1,5 @@
 package pl.isa.autopartsJee.servlets;
 
-import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autopartsJee.tools.WebLinkGenerator;
 
 import javax.servlet.RequestDispatcher;
