@@ -15,7 +15,7 @@
     <title>Znajdź kategorię</title>
 </head>
 <body>
-<a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div></a>
+<a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1>AutopartsFinder</h1></div></a>
 <div class="row justify-content-center" id="wrapper">
     <div class="col-lg-2 side-bar">
 
@@ -24,7 +24,7 @@
         <div class="text-menu text-center">
             <ul id="myUL">
                 <li><a href="find-category-by-name.jsp">Wpisz nazwę kategorii</a></li>
-                <li><a href="/find-questions?step=1">Odpowiedz na pytania</a></li>
+                <li><a href="/find-questions?step=1">wyszukaj ręcznie usterkę</a></li>
 
 
             </ul>

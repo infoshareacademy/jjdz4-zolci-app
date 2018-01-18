@@ -20,14 +20,11 @@
     <link rel="stylesheet" href="css/example.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="JQuery/find1.js"></script>
-
     <title>Znajdź po formularzu</title>
 </head>
 <body>
 <a id="banner" href="index.jsp">
-    <div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div>
+    <div class="container-fluid text-center" id="header"><h1>AutopartsFinder</h1></div>
 </a>
 <div class="row justify-content-center" id="wrapper">
     <div class="col-lg-2 side-bar">
@@ -39,29 +36,13 @@
 
             <br/>
 
-
             <ul id="myUL">
                 <c:forEach var="entry" items="${questions}">
                 <li><a href="/find-questions?selected=<c:out value="${entry}"/>&step=3"><c:out value="${entry}"/></a></li>
                 </c:forEach>
+            </ul>
         </div>
     </div>
 </div>
 </body>
 </html>
-
-
-<%--<span id="output">abc</span>--%>
-
-<%--<div id="abc">asd</div>--%>
-<%--<div id="output"></div>--%>
-
-
-<%--<select>--%>
-<%--<option value="red">red</option>--%>
-<%--<option value="black">black</option>--%>
-<%--<option value="blue">blue</option>--%>
-<%--</select>--%>
-<%--<input type="text" id="input" value="">--%>
-<%--<div id="output"></div>--%>
-<%-->>>>>>> Stashed changes--%>
