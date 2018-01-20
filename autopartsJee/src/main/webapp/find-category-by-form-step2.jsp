@@ -32,10 +32,7 @@
     </div>
     <div class="col-lg-10 main-container">
         <div class="text-menu text-center">
-            <h2>Wybierz uszkodzoną część:</h2>
-
-            <br/>
-
+            <h2>Wybierz uszkodzoną część:</h2><br/>
             <ul id="myUL">
                 <c:forEach var="entry" items="${questions}">
                 <li><a href="/find-questions?selected=<c:out value="${entry}"/>&step=3"><c:out value="${entry}"/></a></li>

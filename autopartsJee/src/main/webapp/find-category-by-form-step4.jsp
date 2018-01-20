@@ -33,21 +33,12 @@
     </div>
     <div class="col-lg-10 main-container">
         <div class="text-menu text-center">
-            <h3>Po wybraniu szukanej części strona przeniesie ciebie do serwisu allegro:</h3>
-
-            <br/>
-
+            <h3>Po wybraniu części strona przeniesie ciebie do serwisu allegro:</h3><br/>
             <ul id="myUL">
                 <c:forEach var="entry" items="${parts}">
                 <li><a href="${entry.key}"><c:out value="${entry.value}"/></a></li>
                 </c:forEach>
             </ul>
-
-            <%--<ul id="myUL">--%>
-                <%--<c:forEach var="entry" items="${parts}">--%>
-                    <%--<li><a><c:out value="${entry}"/></a></li>--%>
-                <%--</c:forEach>--%>
-            <%--</ul>--%>
         </div>
     </div>
 </div>

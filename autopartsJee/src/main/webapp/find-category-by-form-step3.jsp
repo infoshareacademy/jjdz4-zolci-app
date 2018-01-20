@@ -21,9 +21,6 @@
     <link rel="stylesheet" href="css/example.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
 
-    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>--%>
-    <%--<script src="JQuery/find1.js"></script>--%>
-
     <title>Znajdź po formularzu</title>
 </head>
 <body>
@@ -36,10 +33,7 @@
     </div>
     <div class="col-lg-10 main-container">
         <div class="text-menu text-center">
-            <h2>Wybierz uszkodzoną część:</h2>
-
-            <br/>
-
+            <h2>Wybierz uszkodzoną część:</h2><br/>
             <ul id="myUL">
                 <c:forEach var="entry" items="${breakDown}">
                 <li><a href="/find-questions?selected=<c:out value="${entry}"/>&step=4"><c:out value="${entry}"/></a></li>

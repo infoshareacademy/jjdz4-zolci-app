@@ -8,10 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="JQuery/find.js"></script>
     <link rel="stylesheet" href="css/example.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
     <title>Znajdź kategorię</title>
 </head>
 <body>
@@ -22,14 +20,10 @@
     </div>
     <div class="col-lg-10 main-container">
         <div class="text-menu text-center">
-            <h2>Wybierz jedną z opcji:</h2>
-
-            <br/>
+            <h2>Wybierz jedną z opcji:</h2><br/>
             <ul id="myUL">
-                <li><a href="find-category-by-name.jsp">Wpisz nazwę kategorii</a></li>
-                <li><a href="/find-questions?step=1">Wyszukanie usterki ręcznie</a></li>
-
-
+                <li><a href="find-category-by-name.jsp">Wpisz nazwę szukanej części</a></li>
+                <li><a href="/find-questions?step=1">Wyszukanie części z menu</a></li>
             </ul>
         </div>
     </div>

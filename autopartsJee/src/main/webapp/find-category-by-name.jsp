@@ -20,8 +20,10 @@
     </div>
     <div class="col-lg-10 main-container text-center">
         <div class="text-menu">
+            <h2>Podaj nazwę kategorii:</h2><br/>
             <form action="/find-by-name" method="GET">
-                <label>Podaj nazwę kategorii:</label> <input type="text" name="search">
+                <%--<label>Podaj nazwę kategorii:</label><br/>--%>
+                <input type="text" name="search">
                 <input type="submit" value="Szukaj">
             </form>
         </div>
