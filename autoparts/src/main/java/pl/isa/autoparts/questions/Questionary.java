@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Questionary {
-//    public static String myFind;
 
     Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
     private List<String> stringList = new ArrayList<>();
@@ -43,11 +42,10 @@ public class Questionary {
     }
 
 
-    /** nowa wersja    */
-
     public List<Question> groupJee(String checkValue) throws IOException {
         init();
-        questionsGroup = functionsWeb.giveQuestionGrupWeb(topClass.getGrupaPytan(), checkValue); // sprawdzic
+        questionsGroup = functionsWeb.giveQuestionGrupWeb(topClass.getGrupaPytan(), checkValue);
+        logger.info("JEE: checkValue find correctly for tag \'questions\'");
         return questionsGroup;
     }
 
@@ -57,16 +55,14 @@ public class Questionary {
     }
 
     public List<Parts> partsJee(String checkValue) throws IOException {
-        for(BreakDown breakDownTmp : breakDowns){
-            if(breakDownTmp.getDescription().equals(checkValue)){
-                return breakDownTmp.getParts();
+        for (BreakDown breakDownCount : breakDowns) {
+            if (breakDownCount.getDescription().equals(checkValue)) {
+                logger.info("JEE: checkValue find correctly for tag \'breakDown\'");
+                return breakDownCount.getParts();
             }
         }
         return null;
     }
-
-    /**     koniec nowej wersji    */
-
 
 
     public void questionGroupFunction() throws IOException {
@@ -99,7 +95,6 @@ public class Questionary {
         stringList.addAll(functions.getLista());
         return;
     }
-
 
     public void questionOptions() throws IOException {
 

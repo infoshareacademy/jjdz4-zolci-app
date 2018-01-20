@@ -9,11 +9,13 @@
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="css/example.css">
+
     <title>Wyniki wyszukiwania</title>
 </head>
 <body>
 <a id="banner" href="index.jsp">
-    <div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div>
+    <div class="container-fluid text-center" id="header"><h1> Autoparts Finder</h1></div>
 </a>
 <div class="row justify-content-center" id="wrapper">
     <div class="col-lg-2 side-bar">
@@ -21,12 +23,24 @@
     </div>
     <div class="col-lg-10 main-container text-center">
         <div class="text-menu">
-            <ul>
-                <li><a href="<c:out value="${link}" />"><c:out value="${link}"/></a></li>
-                <li style="font-size: 24px;"><a href="find-category-by-name.jsp">Wróć do wyszukiwania</a></li>
+            <ul id="myUL">
+                <%--<li><a href="<c:out value="${link}" />"><c:out value="${link}"/></a></li>--%>
+                <%--<li style="font-size: 24px;"><a href="find-category-by-name.jsp">Wróć do wyszukiwania</a></li>--%>
+
+                    <h3>Po wybraniu szukanej części strona przeniesie ciebie do serwisu allegro:</h3>
+
+                    <br/>
+
+                <c:forEach var="entry" items="${link}">
+                    <li><a href="${entry.key}"><c:out value="${entry.value}"/></a></li>
+                </c:forEach>
             </ul>
         </div>
     </div>
 </div>
 </body>
 </html>
+
+<c:forEach var="entry" items="${parts}">
+    <li><a href="${entry.key}"><c:out value="${entry.value}"/></a></li>
+</c:forEach>

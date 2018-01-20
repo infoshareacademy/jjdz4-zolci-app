@@ -15,16 +15,19 @@
     <title>Znajdź kategorię</title>
 </head>
 <body>
-<a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1>AutopartsFinder</h1></div></a>
+<a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1>Autoparts Finder</h1></div></a>
 <div class="row justify-content-center" id="wrapper">
     <div class="col-lg-2 side-bar">
 
     </div>
     <div class="col-lg-10 main-container">
         <div class="text-menu text-center">
+            <h2>Wybierz jedną z opcji:</h2>
+
+            <br/>
             <ul id="myUL">
                 <li><a href="find-category-by-name.jsp">Wpisz nazwę kategorii</a></li>
-                <li><a href="/find-questions?step=1">wyszukaj ręcznie usterkę</a></li>
+                <li><a href="/find-questions?step=1">Wyszukanie usterki ręcznie</a></li>
 
 
             </ul>

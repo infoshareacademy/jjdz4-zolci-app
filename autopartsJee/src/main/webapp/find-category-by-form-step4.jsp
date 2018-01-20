@@ -21,14 +21,11 @@
     <link rel="stylesheet" href="css/example.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="JQuery/find1.js"></script>
-
     <title>Znajdź po formularzu</title>
 </head>
 <body>
 <a id="banner" href="index.jsp">
-    <div class="container-fluid text-center" id="header"><h1>AutopartsFinder</h1></div>
+    <div class="container-fluid text-center" id="header"><h1>Autoparts Finder</h1></div>
 </a>
 <div class="row justify-content-center" id="wrapper">
     <div class="col-lg-2 side-bar">

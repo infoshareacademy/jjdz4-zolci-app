@@ -69,27 +69,15 @@ public class FindByQuestions extends HttpServlet {
             List<Parts> parts = questionary.partsJee(req.getParameter("selected"));
             List<String> partsView = new ArrayList<>();
 
-//            for(Parts partsTmp : parts){
-//                partsView.add(partsTmp.getPart());
-//                System.out.println(partsTmp);
-//            }
-
             LinkGenerator linkGenerator = new LinkGenerator();
             TreeOperations treeOperations = new TreeOperations();
             List<String> myTmp = new ArrayList<>();
             Map<String, String> tempMap = new HashMap<>();
 
             for(Parts partsTmp : parts){
-//                partsView.add(partsTmp.getPart());
-//                System.out.println(partsTmp);
-//                partsView.add(linkGenerator.generateLinkWeb(treeOperations, partsTmp.getPart()));
-//                System.out.println(myTmp);
                tempMap.put(linkGenerator.generateLink(partsTmp.getPart()), partsTmp.getPart());
-//                System.out.println(partsTmp.getPart());
             }
 
-//            myTmp = linkGenerator.generateLinkWeb(treeOperations, partsView);
-//            req.setAttribute("parts", partsView);
             req.setAttribute("parts", tempMap);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category-by-form-step4.jsp");
             requestDispatcher.forward(req, resp);

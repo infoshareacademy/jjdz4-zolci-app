@@ -1,6 +1,7 @@
 package pl.isa.autopartsJee.servlets;
 
 import pl.isa.autoparts.categories.TreeOperations;
+import pl.isa.autoparts.tools.LinkGenerator;
 import pl.isa.autopartsJee.tools.WebLinkGenerator;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/find-by-name")
 public class FindByNameServlet extends HttpServlet {
@@ -20,8 +23,11 @@ public class FindByNameServlet extends HttpServlet {
 */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String link = WebLinkGenerator.generateLink(req.getParameter("search"));
-        req.setAttribute("link", link);
+        LinkGenerator linkGenerator = new LinkGenerator();
+//        String link = linkGenerator.generateLink(req.getParameter("search"));
+        Map<String, String> searchedLink = new HashMap<>();
+        searchedLink.put(linkGenerator.generateLink(req.getParameter("search")), req.getParameter("search"));
+        req.setAttribute("link", searchedLink);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-by-name-result.jsp");
         requestDispatcher.forward(req, resp);
 
