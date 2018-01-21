@@ -29,12 +29,19 @@
                 <%--<li style="font-size: 24px;"><a href="find-category-by-name.jsp">Wróć do wyszukiwania</a></li>--%>
 
                 <c:forEach var="entry" items="${link}">
-                    <div <c:if test="${entry.key == ''}">style="color: red;"</c:if>>
-                        <li><a href="${entry.key}"><c:out value="${entry.value}"/></a></li>
-                    </div>
+                <li><a href="${entry.key}"><c:out value="${entry.value}"/></a></li>
                 </c:forEach>
                 <li style="font-size: 24px;"><a href="find-category-by-name.jsp">Wróć do wyszukiwania</a></li>
 
+
+                <%--<c:forEach var="entry" items="${link}">--%>
+                    <%--<div <c:if test="${entry.key.toString() == 'null'}">style="color: red;"</c:if>>--%>
+                        <%--Fail!--%>
+                        <%--<li><a href="${entry.key}"><c:out value="${entry.value}"/></a></li>--%>
+                        <%--<l1><a href ="">abcd</a></l1>--%>
+                    <%--</div>--%>
+                <%--</c:forEach>--%>
+                <%--<li style="font-size: 24px;"><a href="find-category-by-name.jsp">Wróć do wyszukiwania</a></li>--%>
 
             </ul>
         </div>
@@ -45,16 +52,20 @@
 
 <%--<c:forEach var="entry" items="${list}">--%>
 
-    <%--<div <c:if test="${entry.key.gender.toString() == 'MAN'}">style="color: blue;"</c:if>>--%>
-    <%--ID: <c:out value="${entry.key.id}"/><br/>--%>
-    <%--Name: <c:out value="${entry.key.name}"/><br/>--%>
-    <%--Surname: <c:out value="${entry.key.surname}"/><br/>--%>
-    <%--Login: <c:out value="${entry.key.login}"/><br/>--%>
-    <%--Age: <c:out value="${entry.key.age}"/><br/>--%>
-    <%--Gender: <c:out value="${entry.key.gender}"/><br/>--%>
-    <%--Stats: <c:out value="${entry.value}"/><br/>--%>
+<%--<div <c:if test="${entry.key.gender.toString() == 'MAN'}">style="color: blue;"</c:if>>--%>
+<%--ID: <c:out value="${entry.key.id}"/><br/>--%>
+<%--Name: <c:out value="${entry.key.name}"/><br/>--%>
+<%--Surname: <c:out value="${entry.key.surname}"/><br/>--%>
+<%--Login: <c:out value="${entry.key.login}"/><br/>--%>
+<%--Age: <c:out value="${entry.key.age}"/><br/>--%>
+<%--Gender: <c:out value="${entry.key.gender}"/><br/>--%>
+<%--Stats: <c:out value="${entry.value}"/><br/>--%>
 
-    <%--<c:forEach var="phoneEntry" items="${entry.key.phones}">--%>
-        <%--Phone: <c:out value="${phoneEntry.id} - (${phoneEntry.number})"/><br/>--%>
-    <%--</c:forEach>--%>
-    <%--</div>--%>
+<%--<c:forEach var="phoneEntry" items="${entry.key.phones}">--%>
+<%--Phone: <c:out value="${phoneEntry.id} - (${phoneEntry.number})"/><br/>--%>
+<%--</c:forEach>--%>
+<%--</div>--%>
+
+<%--<br/><br/>--%>
+
+<%--</c:forEach>--%>

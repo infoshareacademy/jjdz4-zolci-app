@@ -29,7 +29,7 @@ public class FindByNameServlet extends HttpServlet {
 
 //        searchedLink.put(linkGenerator.generateLink(req.getParameter("search")), req.getParameter("search"));
         if (link.equals("Category not found")) {
-            searchedLink.put("", "Nie znaleziono kategorii!");
+            searchedLink.put("null", "Nie znaleziono kategorii!");
         } else {
             searchedLink.put(link, req.getParameter("search"));
         }
