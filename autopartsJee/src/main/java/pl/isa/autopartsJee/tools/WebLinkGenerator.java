@@ -16,7 +16,7 @@ public class WebLinkGenerator {
             catID = treeOperations.getPhraseId();
             item = treeOperations.getParents().get(1);
             return "https://allegro.pl/kategoria/" + stringNormalizer.normalize(item.getName())
-                            + "-" + stringNormalizer.normalize(category) + "-" + catID;
+                    + "-" + stringNormalizer.normalize(category) + "-" + catID;
 //            logger.info("Link generated");
         } catch (IndexOutOfBoundsException e) {
 //            logger.error("No category parent or category not found, error in link generating");
@@ -25,4 +25,4 @@ public class WebLinkGenerator {
         return "Category not found";
 
     }
-    }
+}

@@ -1,5 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %><html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
 <!doctype html>
 <html lang="pl">
 <head>
@@ -11,33 +18,28 @@
     <link rel="stylesheet" href="css/example.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="JQuery/find1.js"></script>
-
     <title>Znajdź po formularzu</title>
 </head>
 <body>
 <a id="banner" href="index.jsp">
-    <div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div>
+    <div class="container-fluid text-center" id="header"><h1>Autoparts Finder</h1></div>
 </a>
 <div class="row justify-content-center" id="wrapper">
     <div class="col-lg-2 side-bar">
+        <%@ include file="carData.jsp"%>
 
     </div>
     <div class="col-lg-10 main-container">
         <div class="text-menu text-center">
-            <h2>Wybierz uszkodzoną część:</h2>
-
-            <br/>
-
-            <form method="get" action="find-questions">
-                <input type="hidden" name="step" value="1">
-                <input type="submit" value="start">
-            </form>
-
+            <h2>Wybierz uszkodzoną część:</h2><br/>
+            <ul id="myUL">
+                <c:forEach var="entry" items="${breakDown}">
+                <li><a href="/find-questions?selected=<c:out value="${entry}"/>&step=4"><c:out value="${entry}"/></a></li>
+                </c:forEach>
             </ul>
         </div>
     </div>
 </div>
 </body>
 </html>
+

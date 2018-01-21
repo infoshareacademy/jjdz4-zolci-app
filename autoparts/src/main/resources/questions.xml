@@ -244,7 +244,7 @@
             <opis>kontrolka</opis>
             <awaria>
                 <id>1</id>
-                <tresc>kontrolka trakcji + ABS</tresc>
+                <tresc>kontrolka trakcji i ABS</tresc>
                 <czesc>
                     <id>1</id>
                     <nazwa>Czujniki ABS</nazwa>

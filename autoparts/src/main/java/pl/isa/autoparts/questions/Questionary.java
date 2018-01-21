@@ -5,26 +5,24 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Questionary {
-    public static String myFind;
 
     Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
     private List<String> stringList = new ArrayList<>();
     Functions functions = new Functions();
 
     List<Question> questionsGroup;
-//    List<Question> questionsGroupWeb;
     List<BreakDown> breakDowns;
     List<Parts> parts;
     TopClass topClass;
 
-    public TopClass init() throws IOException {
+    FunctionsWeb functionsWeb = new FunctionsWeb();
 
+    public TopClass init() throws IOException {
         logger.info("finding autoparts by questions module");
 
         try {
@@ -35,32 +33,36 @@ public class Questionary {
             XmlMapper xmlMapper = new XmlMapper();
 
             topClass = xmlMapper.readValue(file, TopClass.class);
-//            questionsGroup = functions.giveQuestionGrup(topClass.getGrupaPytan());
         } catch (NullPointerException e) {
             logger.error("NullPointerException - while mapping \"questions.xml\"");
             return null;
         }
-
         logger.info("XML is mapped correctly");
         return topClass;
     }
 
-    /**                    */
-    public List<Question> tryWeb(String checkValue) throws IOException {
-        questionsGroup = functions.giveQuestionGrupWeb(topClass.getGrupaPytan(), true, checkValue); // sprawdzic
-//        questionsGroup = questionsGroupWeb();
-//        functions.giveQuestionGrupWeb(questionsGroup);
-//        Map<QuestionGroup, String> stringMap = functions.giveQuestionGrupWeb(questionsGroup);
-//        Question question = functions.g
+
+    public List<Question> groupJee(String checkValue) throws IOException {
+        init();
+        questionsGroup = functionsWeb.giveQuestionGrupWeb(topClass.getGrupaPytan(), checkValue);
+        logger.info("JEE: checkValue find correctly for tag \'questions\'");
         return questionsGroup;
     }
 
+    public List<BreakDown> breakDownsJee(String checkValue) throws IOException {
+        breakDowns = functionsWeb.giveQuestionWeb(questionsGroup, checkValue);
+        return breakDowns;
+    }
 
-
-
-
-    /**                    */
-
+    public List<Parts> partsJee(String checkValue) throws IOException {
+        for (BreakDown breakDownCount : breakDowns) {
+            if (breakDownCount.getDescription().equals(checkValue)) {
+                logger.info("JEE: checkValue find correctly for tag \'breakDown\'");
+                return breakDownCount.getParts();
+            }
+        }
+        return null;
+    }
 
 
     public void questionGroupFunction() throws IOException {
@@ -78,22 +80,21 @@ public class Questionary {
             parts = functions.giveBreakDown(breakDowns);
         }
     }
-    
+
     public void partsFunction(List<Parts> parts) {
         if (parts.isEmpty()) {
             return;
         } else {
             functions.giveParts(parts);
             if (functions.getLista().isEmpty()) {
-                logger.debug("Nie poprawne wywołanie działań z metody \"functions\"");
+                logger.debug("Uncorrectly invoke from \"functions\"");
             } else {
-                logger.debug("Poprawne wywołanie działań z metody \"functions\"");
+                logger.debug("Correctly invoke from \"functions\"");
             }
         }
         stringList.addAll(functions.getLista());
         return;
     }
-    
 
     public void questionOptions() throws IOException {
 
@@ -103,7 +104,6 @@ public class Questionary {
         breakDownFunction(breakDowns);
         partsFunction(parts);
     }
-
 
     public List<String> getStringList() {
         return stringList;

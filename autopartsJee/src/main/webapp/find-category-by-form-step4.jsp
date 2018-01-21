@@ -1,5 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %><html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
 <!doctype html>
 <html lang="pl">
 <head>
@@ -24,10 +31,10 @@
     </div>
     <div class="col-lg-10 main-container">
         <div class="text-menu text-center">
-            <h2>Wybierz uszkodzoną część:</h2><br/>
+            <h3>Po wybraniu części strona przeniesie ciebie do serwisu allegro:</h3><br/>
             <ul id="myUL">
-                <c:forEach var="entry" items="${groupQuestions}">
-                    <li><a href="/find-questions?selected=<c:out value="${entry}"/>&step=2"><c:out value="${entry}"/></a></li>
+                <c:forEach var="entry" items="${parts}">
+                <li><a href="${entry.key}"><c:out value="${entry.value}"/></a></li>
                 </c:forEach>
             </ul>
         </div>
