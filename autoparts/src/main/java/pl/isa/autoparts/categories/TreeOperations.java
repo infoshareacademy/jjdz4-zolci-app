@@ -27,7 +27,14 @@ public class TreeOperations {
         findCzesciSamochodowePosition();
 
     }
-
+    public String findName(){
+        for(AllegroItem item : allegroList){
+            if(item.getId()==phraseId){
+                return item.getName();
+            }
+        }
+        return "Not found";
+    }
     public ArrayList<AllegroItem> getParents() {
         return parents;
     }
