@@ -31,7 +31,7 @@ public class FindByNameServlet extends HttpServlet {
         if (link.equals("Category not found")) {
             searchedLink.put("null", "Nie znaleziono kategorii!");
         } else {
-            searchedLink.put(link, linkGenerator.getItemName());
+            searchedLink.put(link, linkGenerator.getItemName().substring(0,1).toUpperCase() + linkGenerator.getItemName().substring(1));
         }
         req.setAttribute("link", searchedLink);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-by-name-result.jsp");

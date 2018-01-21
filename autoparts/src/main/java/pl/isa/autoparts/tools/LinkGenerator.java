@@ -15,12 +15,12 @@ import java.util.Scanner;
 public class LinkGenerator {
     Logger logger = LoggerFactory.getLogger(LinkGenerator.class.getName());
     TreeOperations treeOperations = new TreeOperations();
+    private String itemName = new String();
+
 
     public String getItemName() {
         return itemName;
     }
-
-    private String itemName = new String();
     public void printAllegroLinkToCategory() throws IOException {
         Scanner input = new Scanner(System.in);
         Scanner chose = new Scanner(System.in);
@@ -70,7 +70,7 @@ public class LinkGenerator {
             logger.info("Link generated");
             link = "https://allegro.pl/kategoria/" + stringNormalizer.normalize(item.getName())
                     + "-" + stringNormalizer.normalize(itemName) + "-" + catID;
-            System.out.println(link);
+           // System.out.println(link);
             return link;
         } catch (IndexOutOfBoundsException e) {
             logger.warn("No category parent or category not found, error in link generating");
