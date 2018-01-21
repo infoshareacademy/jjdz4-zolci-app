@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class LinkGenerator {
     Logger logger = LoggerFactory.getLogger(LinkGenerator.class.getName());
-    TreeOperations treeOperations = new TreeOperations();
+//    TreeOperations treeOperations = new TreeOperations();
     private String itemName = new String();
 
 
@@ -35,7 +35,7 @@ public class LinkGenerator {
                 case 1:
                     System.out.println("Podaj kategorię");
                     category = input.nextLine();
-                    generateLink(category);
+                    generateLink(category, treeOperations);
                     logger.info("Link from manual inserted category printed");
                     break;
                 case 2:
@@ -56,7 +56,7 @@ public class LinkGenerator {
     }
 
 
-    public String generateLink(String category) {
+    public String generateLink(String category, TreeOperations treeOperations) {
         Integer catID;
         AllegroItem item;
         String link;

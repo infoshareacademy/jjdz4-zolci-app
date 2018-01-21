@@ -2,8 +2,11 @@ package pl.isa.autopartsJee.servlets;
 
 import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.tools.LinkGenerator;
+import pl.isa.autopartsJee.dao.TreeOperationsDao;
 import pl.isa.autopartsJee.tools.WebLinkGenerator;
+import sun.reflect.generics.tree.Tree;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +19,8 @@ import java.util.Map;
 
 @WebServlet("/find-by-name")
 public class FindByNameServlet extends HttpServlet {
+    @Inject
+    TreeOperationsDao dao;
     /*
     * TODO: servlet ktory wykona sie jednoczesnie z jsp findByName ktory zbuduje obiekt TreeOperations i przechowa go w sesji,
     * TODO następnie ten servlet go wczyta i przekaże do generateLink w argumencie dzięki czemu nie bedzie sie wczytywalo przy
