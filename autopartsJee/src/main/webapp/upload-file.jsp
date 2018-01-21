@@ -8,26 +8,24 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/example.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
-    <title>Strona główna</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="JQuery/find.js"></script>
     <link rel="stylesheet" href="css/example.css">
+    <title>Kategorie</title>
 </head>
 <body>
-<a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1>Autoparts Finder</h1></div></a>
+<a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div></a>
 <div class="row justify-content-center" id="wrapper">
-    <div class="col-lg-2 col-md-2 col-sm-2 side-bar">
-        <%@ include file="carData.jsp"%>
+    <div class="col-lg-2 side-bar">
 
     </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 main-container">
+    <div class="col-lg-10 main-container">
         <div class="text-menu text-center">
-            <h2>Wybierz jedną z opcji:</h2><br/>
-            <ul id="myUL">
-                <li><a href="find-category.jsp">Wyszukaj kategorię</a></li>
-                <li><a href="">Podaj kod AZTEC</a></li>
-                <li><a href="">Wyszukaj auto z formularza</a></li>
-            </ul>
+            <form action="/action_page.php">
+                <input type="file" name="pic" accept="image/*">
+                <input type="submit">
+            </form>
         </div>
     </div>
 </div>
