@@ -49,8 +49,6 @@ public class TreeOperations {
 
         if (parentId != 0) {
             logger.info("Category found");
-
-
             saveParent(parentId);
         } else {
 
@@ -110,7 +108,6 @@ public class TreeOperations {
                 break;
             }
         }
-
     }
 
 

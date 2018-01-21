@@ -16,17 +16,23 @@ import java.util.Map;
 
 @WebServlet("/find-by-name")
 public class FindByNameServlet extends HttpServlet {
-/*
-* TODO: servlet ktory wykona sie jednoczesnie z jsp findByName ktory zbuduje obiekt TreeOperations i przechowa go w sesji,
-* TODO następnie ten servlet go wczyta i przekaże do generateLink w argumencie dzięki czemu nie bedzie sie wczytywalo przy
-* TODO kazdym wyszukaniu //inna sprawa ze i tak dziala dosc szybko
-*/
+    /*
+    * TODO: servlet ktory wykona sie jednoczesnie z jsp findByName ktory zbuduje obiekt TreeOperations i przechowa go w sesji,
+    * TODO następnie ten servlet go wczyta i przekaże do generateLink w argumencie dzięki czemu nie bedzie sie wczytywalo przy
+    * TODO kazdym wyszukaniu //inna sprawa ze i tak dziala dosc szybko
+    */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LinkGenerator linkGenerator = new LinkGenerator();
-//        String link = linkGenerator.generateLink(req.getParameter("search"));
+        String link = linkGenerator.generateLink(req.getParameter("search"));
         Map<String, String> searchedLink = new HashMap<>();
-        searchedLink.put(linkGenerator.generateLink(req.getParameter("search")), req.getParameter("search"));
+
+//        searchedLink.put(linkGenerator.generateLink(req.getParameter("search")), req.getParameter("search"));
+        if (link.equals("Category not found")) {
+            searchedLink.put("", "Nie znaleziono kategorii!");
+        } else {
+            searchedLink.put(link, req.getParameter("search"));
+        }
         req.setAttribute("link", searchedLink);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-by-name-result.jsp");
         requestDispatcher.forward(req, resp);
