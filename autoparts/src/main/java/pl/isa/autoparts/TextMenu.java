@@ -61,7 +61,7 @@ public class TextMenu {
                     treeOperations.printWholeTree();
                     break;
                 case 2:
-                  //  linkGenerator.printAllegroLinkToCategory();
+                    linkGenerator.printAllegroLinkToCategory();
                     break;
                 case 3:
                     initateAztec.executeAztecReader();

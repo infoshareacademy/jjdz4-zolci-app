@@ -13,7 +13,7 @@ public class Questionary {
 
     Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
     private List<String> stringList = new ArrayList<>();
-    Functions functions = new Functions();
+    ConsoleFunctions consoleFunctions = new ConsoleFunctions();
 
     List<Question> questionsGroup;
     List<BreakDown> breakDowns;
@@ -29,7 +29,7 @@ public class Questionary {
             InputStream activitiesStream = Questionary.class
                     .getClassLoader()
                     .getResourceAsStream("questions.xml");
-            String file = functions.getStringFromInputStream(activitiesStream);
+            String file = consoleFunctions.getStringFromInputStream(activitiesStream);
             XmlMapper xmlMapper = new XmlMapper();
 
             topClass = xmlMapper.readValue(file, TopClass.class);
@@ -69,7 +69,7 @@ public class Questionary {
         if (questionsGroup.isEmpty()) {
             return;
         } else {
-            breakDowns = functions.giveQuestion(questionsGroup);
+            breakDowns = consoleFunctions.giveQuestion(questionsGroup);
         }
     }
 
@@ -77,7 +77,7 @@ public class Questionary {
         if (breakDowns.isEmpty()) {
             return;
         } else {
-            parts = functions.giveBreakDown(breakDowns);
+            parts = consoleFunctions.giveBreakDown(breakDowns);
         }
     }
 
@@ -85,21 +85,20 @@ public class Questionary {
         if (parts.isEmpty()) {
             return;
         } else {
-            functions.giveParts(parts);
-            if (functions.getLista().isEmpty()) {
-                logger.debug("Uncorrectly invoke from \"functions\"");
+            consoleFunctions.giveParts(parts);
+            if (consoleFunctions.getLista().isEmpty()) {
+                logger.debug("Uncorrectly invoke from \"consoleFunctions\"");
             } else {
-                logger.debug("Correctly invoke from \"functions\"");
+                logger.debug("Correctly invoke from \"consoleFunctions\"");
             }
         }
-        stringList.addAll(functions.getLista());
+        stringList.addAll(consoleFunctions.getLista());
         return;
     }
 
     public void questionOptions() throws IOException {
-
         init();
-        questionsGroup = functions.giveQuestionGrup(topClass.getGrupaPytan()); // sprawdzic
+        questionsGroup = consoleFunctions.chooseQuestionGroup(topClass.getGrupaPytan());
         questionGroupFunction();
         breakDownFunction(breakDowns);
         partsFunction(parts);

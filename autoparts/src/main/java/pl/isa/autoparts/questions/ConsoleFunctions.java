@@ -11,9 +11,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class Functions {
-    private Scanner sc = new Scanner(System.in);
-    Logger logger = LoggerFactory.getLogger(Functions.class.getName());
+public class ConsoleFunctions {
+    private Scanner scanner = new Scanner(System.in);
+    Logger logger = LoggerFactory.getLogger(ConsoleFunctions.class.getName());
 
     private List<String> lista = new ArrayList<>();
 
@@ -21,88 +21,7 @@ public class Functions {
     TextMenu textMenu = new TextMenu();
 
 
-//    /**
-//     * zmiana
-//     */
-//
-//
-//    protected List<Question> giveQuestionGrupWeb(List<QuestionGroup> questions, boolean flag, String checkValue)
-//            throws IOException {
-//        logger.info("Start Function");
-//        if (flag == false) {
-//            for (Iterator<QuestionGroup> iterator = questions.iterator(); iterator.hasNext(); ) {
-//                QuestionGroup questionGroup = iterator.next();
-//
-//                if (questionGroup.getQuestions().isEmpty()) {
-//                    break;
-//                }
-//                System.out.print("Czy awaria dotyczy: " +
-//                        questionGroup.getName() +
-//                        "?\nwcisnij ('y'=Yes/'n'=No) jesli potwierdzasz: ");
-//
-//                if (sc.next().equals("y")) {
-//                    return questionGroup.getQuestions();
-//                } else if (iterator.hasNext()) {
-//                    System.out.println("\nNastępna opcja: \n");
-//                }
-//
-//                System.out.println("\nNie wybrałeś żadnej kategorii!\n\n\n");
-//                textMenu.options();
-//                return null;
-//            }
-//        } else {
-//            for (QuestionGroup questionGroup : questions) {
-//                if (questionGroup.getName().equals(checkValue)) {
-//                    return questionGroup.getQuestions();
-//                }
-//            }
-//        }
-//        return null;
-//    }
-//
-//
-//    protected List<BreakDown> giveQuestionWeb(List<Question> questions, boolean flag, String checkvalue) throws IOException {
-//        if (flag == false) {
-//            for (Iterator<Question> iterator = questions.iterator(); iterator.hasNext(); ) {
-//                Question question = iterator.next();
-//                if (question.getBreakDown().isEmpty()) {
-//                    break;
-//                }
-//                System.out.print("\nCzy awaria dotyczy: " +
-//                        question.getDescripton() +
-//                        "?\nwcisnij ('y'=Yes/'n'=No) jesli potwierdzasz: ");
-//
-//                if (sc.next().equals("y")) {
-//                    return question.getBreakDown();
-//                } else if (iterator.hasNext())
-//                    System.out.println("\nNastępna opcja: ");
-//            }
-//            System.out.println("\nNie wybrałeś żadnej kategorii!\n\n\n");
-//            textMenu.options();
-//            return null;
-//        }
-//        else {
-//
-//            for (Iterator<Question> iterator = questions.iterator(); iterator.hasNext(); ) {
-//                Question question = iterator.next();
-//                if(question.getDescripton().equals(checkvalue)){
-//
-//
-//                    return question.getBreakDown();
-//                }
-//            }
-//        }
-//
-//        return null;
-//    }
-//
-//
-//    /**
-//     * /zmiana
-//     */
-
-
-    protected List<Question> giveQuestionGrup(List<QuestionGroup> questions) throws IOException {
+    protected List<Question> chooseQuestionGroup(List<QuestionGroup> questions) throws IOException {
         logger.info("Start Function");
 
         for (Iterator<QuestionGroup> iterator = questions.iterator(); iterator.hasNext(); ) {
@@ -114,7 +33,7 @@ public class Functions {
                     questionGroup.getName() +
                     "?\nwcisnij ('y'=Yes/'n'=No) jesli potwierdzasz: ");
 
-            if (sc.next().equals("y")) {
+            if (scanner.next().equals("y")) {
                 return questionGroup.getQuestions();
             } else if (iterator.hasNext()) {
                 System.out.println("\nNastępna opcja: \n");
@@ -124,7 +43,6 @@ public class Functions {
         textMenu.options();
         return null;
     }
-
 
     protected List<BreakDown> giveQuestion(List<Question> questions) throws IOException {
 
@@ -137,7 +55,7 @@ public class Functions {
                     question.getDescripton() +
                     "?\nwcisnij ('y'=Yes/'n'=No) jesli potwierdzasz: ");
 
-            if (sc.next().equals("y")) {
+            if (scanner.next().equals("y")) {
                 return question.getBreakDown();
             } else if (iterator.hasNext())
                 System.out.println("\nNastępna opcja: ");
@@ -159,7 +77,7 @@ public class Functions {
                     breakDown.getDescription() +
                     "?\nwcisnij ('y'=Yes/'n'=No) jesli potwierdzasz: ");
 
-            if (sc.next().equals("y")) {
+            if (scanner.next().equals("y")) {
                 return breakDown.getParts();
             } else if (iterator.hasNext()) {
                 System.out.println("\nNastępna opcja: ");

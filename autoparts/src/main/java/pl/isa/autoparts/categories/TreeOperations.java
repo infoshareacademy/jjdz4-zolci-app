@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 
 public class TreeOperations {
+
     private int czesciSamochodowePosition = 0;
     Logger logger = LoggerFactory.getLogger(TreeOperations.class.getName());
 
