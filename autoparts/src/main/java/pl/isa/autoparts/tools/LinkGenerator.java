@@ -1,5 +1,6 @@
 package pl.isa.autoparts.tools;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.categories.AllegroItem;
@@ -53,6 +54,7 @@ public class LinkGenerator {
     public String generateLink(String category) {
         Integer catID;
         AllegroItem item;
+        String link;
         StringNormalizer stringNormalizer = new StringNormalizer();
         try {
             treeOperations.resetPhraseId();
@@ -60,8 +62,10 @@ public class LinkGenerator {
             catID = treeOperations.getPhraseId();
             item = treeOperations.getParents().get(1);
             logger.info("Link generated");
-            return "https://allegro.pl/kategoria/" + stringNormalizer.normalize(item.getName())
+            link = "https://allegro.pl/kategoria/" + stringNormalizer.normalize(item.getName())
                     + "-" + stringNormalizer.normalize(category) + "-" + catID;
+            System.out.println(link);
+            return link;
         } catch (IndexOutOfBoundsException e) {
             logger.warn("No category parent or category not found, error in link generating");
 
