@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %><html>
 <head>
     <title>Title</title>
 </head>
@@ -7,8 +7,6 @@
 
 </body>
 </html>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="pl">
 <head>
@@ -28,6 +26,7 @@
 </a>
 <div class="row justify-content-center" id="wrapper">
     <div class="col-lg-2 side-bar">
+        <%@ include file="carData.jsp"%>
 
     </div>
     <div class="col-lg-10 main-container">

@@ -19,6 +19,7 @@
 </a>
 <div class="row justify-content-center" id="wrapper">
     <div class="col-lg-2 side-bar">
+        <%@ include file="carData.jsp"%>
 
     </div>
     <div class="col-lg-10 main-container">

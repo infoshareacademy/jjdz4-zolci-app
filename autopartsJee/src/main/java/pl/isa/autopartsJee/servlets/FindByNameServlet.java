@@ -32,9 +32,8 @@ public class FindByNameServlet extends HttpServlet {
         String link = linkGenerator.generateLink(req.getParameter("search"), dao.getTreeOperations());
         Map<String, String> searchedLink = new HashMap<>();
 
-//        searchedLink.put(linkGenerator.generateLink(req.getParameter("search")), req.getParameter("search"));
         if (link.equals("Category not found")) {
-            searchedLink.put("null", "Nie znaleziono kategorii!");
+            searchedLink.put("", "Nie znaleziono kategorii!");
         } else {
             searchedLink.put(link, linkGenerator.getItemName().substring(0,1).toUpperCase() + linkGenerator.getItemName().substring(1));
         }

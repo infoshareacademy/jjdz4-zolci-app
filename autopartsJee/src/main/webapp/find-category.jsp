@@ -16,6 +16,7 @@
 <a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1>Autoparts Finder</h1></div></a>
 <div class="row justify-content-center" id="wrapper">
     <div class="col-lg-2 side-bar">
+        <%@ include file="carData.jsp"%>
 
     </div>
     <div class="col-lg-10 main-container">
