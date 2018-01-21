@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class LinkGenerator {
     Logger logger = LoggerFactory.getLogger(LinkGenerator.class.getName());
-//    TreeOperations treeOperations = new TreeOperations();
+    TreeOperations treeOperations = new TreeOperations();
     private String itemName = new String();
 
 
@@ -44,7 +44,7 @@ public class LinkGenerator {
                     List<String> propositions = questionary.getStringList();
                     for (String categoryString : propositions) {
                         System.out.print("- " + categoryString + ": ");
-                        generateLink(categoryString);
+                        generateLink(categoryString, treeOperations);
                     }
                     logger.info("List of proposed links printed");
                     break;

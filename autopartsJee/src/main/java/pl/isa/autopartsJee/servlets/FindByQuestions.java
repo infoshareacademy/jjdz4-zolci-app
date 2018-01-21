@@ -4,8 +4,11 @@ package pl.isa.autopartsJee.servlets;
 import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.questions.*;
 import pl.isa.autoparts.tools.LinkGenerator;
+import pl.isa.autopartsJee.dao.TreeOperationsDao;
+import sun.reflect.generics.tree.Tree;
 
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +23,8 @@ import java.util.Map;
 
 @WebServlet("find-questions")
 public class FindByQuestions extends HttpServlet {
-
+    @Inject
+    TreeOperationsDao dao;
     Questionary questionary = new Questionary();
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -75,7 +79,7 @@ public class FindByQuestions extends HttpServlet {
             Map<String, String> tempMap = new HashMap<>();
 
             for(Parts partsTmp : parts){
-               tempMap.put(linkGenerator.generateLink(partsTmp.getPart()), partsTmp.getPart());
+               tempMap.put(linkGenerator.generateLink(partsTmp.getPart(), dao.getTreeOperations()), partsTmp.getPart());
             }
 
             req.setAttribute("parts", tempMap);

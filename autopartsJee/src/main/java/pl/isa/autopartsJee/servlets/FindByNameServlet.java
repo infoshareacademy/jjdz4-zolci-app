@@ -29,7 +29,7 @@ public class FindByNameServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LinkGenerator linkGenerator = new LinkGenerator();
-        String link = linkGenerator.generateLink(req.getParameter("search"));
+        String link = linkGenerator.generateLink(req.getParameter("search"), dao.getTreeOperations());
         Map<String, String> searchedLink = new HashMap<>();
 
 //        searchedLink.put(linkGenerator.generateLink(req.getParameter("search")), req.getParameter("search"));
