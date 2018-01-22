@@ -19,8 +19,20 @@ public class QuestionaryTest {
 
     @Test
     public void should_display_options_on_console() throws Exception {
-        systemInMock.provideLines("y","y","y","y");
+        systemInMock.provideLines("y","y","y");
         Questionary questionary = new Questionary();
+        questionary.questionOptions();
+        assertThat(systemOutRule.getLog()).isNotEmpty();
+    }
+
+    @Test
+    public void should_display_different_options_on_console() throws Exception {
+        systemInMock.provideLines("y","n","y","y");
+        Questionary questionary = new Questionary();
+        questionary.questionOptions();
+        assertThat(systemOutRule.getLog()).isNotEmpty();
+
+        systemInMock.provideLines("y","y","n","n","y");
         questionary.questionOptions();
         assertThat(systemOutRule.getLog()).isNotEmpty();
     }

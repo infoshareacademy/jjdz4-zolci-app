@@ -10,7 +10,6 @@ public class TreeOperations {
     private int czesciSamochodowePosition = 0;
     Logger logger = LoggerFactory.getLogger(TreeOperations.class.getName());
 
-
     public int getPhraseId() {
         return phraseId;
     }

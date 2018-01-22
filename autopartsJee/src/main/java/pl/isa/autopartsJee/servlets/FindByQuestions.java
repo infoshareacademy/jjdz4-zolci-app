@@ -5,6 +5,7 @@ import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.questions.*;
 import pl.isa.autoparts.tools.LinkGenerator;
 import pl.isa.autopartsJee.dao.TreeOperationsDao;
+import pl.isa.autopartsJee.tools.WebLinkGenerator;
 import sun.reflect.generics.tree.Tree;
 
 
@@ -69,17 +70,12 @@ public class FindByQuestions extends HttpServlet {
             requestDispatcher.forward(req, resp);
         }
         else if (req.getParameter("step").equals("4")) {
-
             List<Parts> parts = questionary.partsJee(req.getParameter("selected"));
-            List<String> partsView = new ArrayList<>();
-
-            LinkGenerator linkGenerator = new LinkGenerator();
-            TreeOperations treeOperations = new TreeOperations();
-            List<String> myTmp = new ArrayList<>();
+            WebLinkGenerator linkGenerator = new WebLinkGenerator();
             Map<String, String> tempMap = new HashMap<>();
 
             for(Parts partsTmp : parts){
-               tempMap.put(linkGenerator.generateLink(partsTmp.getPart(), dao.getTreeOperations()), partsTmp.getPart());
+               tempMap.put(linkGenerator.generateLink(partsTmp.getPart()), partsTmp.getPart());
             }
 
             req.setAttribute("parts", tempMap);
