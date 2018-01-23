@@ -5,7 +5,6 @@ import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.questions.*;
 import pl.isa.autoparts.tools.LinkGenerator;
 import pl.isa.autopartsJee.dao.TreeOperationsDao;
-import pl.isa.autopartsJee.tools.WebLinkGenerator;
 import sun.reflect.generics.tree.Tree;
 
 
@@ -23,14 +22,14 @@ import java.util.List;
 import java.util.Map;
 
 @WebServlet("find-questions")
-public class FindByQuestions extends HttpServlet {
+public class FindByQuestionsServlet extends HttpServlet {
     @Inject
     TreeOperationsDao dao;
     Questionary questionary = new Questionary();
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-        if(req.getParameter("step").equals("1")){
+        if (req.getParameter("step").equals("1")) {
 
             TopClass topClass = questionary.init();
             List<String> questionaryName = new ArrayList<>();
@@ -42,8 +41,7 @@ public class FindByQuestions extends HttpServlet {
             req.setAttribute("groupQuestions", questionaryName);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category-by-form-step1.jsp");
             requestDispatcher.forward(req, resp);
-        }
-        else if(req.getParameter("step").equals("2")){
+        } else if (req.getParameter("step").equals("2")) {
 
             List<Question> myQuestions = questionary.groupJee(req.getParameter("selected"));
             List<String> tempQuestion = new ArrayList<>();
@@ -55,8 +53,7 @@ public class FindByQuestions extends HttpServlet {
             req.setAttribute("questions", tempQuestion);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category-by-form-step2.jsp");
             requestDispatcher.forward(req, resp);
-        }
-        else if (req.getParameter("step").equals("3")) {
+        } else if (req.getParameter("step").equals("3")) {
 
             List<BreakDown> breakDown = questionary.breakDownsJee(req.getParameter("selected"));
             List<String> breakDownView = new ArrayList<>();
@@ -68,14 +65,17 @@ public class FindByQuestions extends HttpServlet {
             req.setAttribute("breakDown", breakDownView);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category-by-form-step3.jsp");
             requestDispatcher.forward(req, resp);
-        }
-        else if (req.getParameter("step").equals("4")) {
+        } else if (req.getParameter("step").equals("4")) {
+
             List<Parts> parts = questionary.partsJee(req.getParameter("selected"));
-            WebLinkGenerator linkGenerator = new WebLinkGenerator();
+            List<String> partsView = new ArrayList<>();
+
+            WebLinkGenerator webLinkGenerator = new WebLinkGenerator();
+            List<String> myTmp = new ArrayList<>();
             Map<String, String> tempMap = new HashMap<>();
 
-            for(Parts partsTmp : parts){
-               tempMap.put(linkGenerator.generateLink(partsTmp.getPart()), partsTmp.getPart());
+            for (Parts partsTmp : parts) {
+                tempMap.put(webLinkGenerator.generateLink(partsTmp.getPart(), dao.getTreeOperations()), partsTmp.getPart());
             }
 
             req.setAttribute("parts", tempMap);
