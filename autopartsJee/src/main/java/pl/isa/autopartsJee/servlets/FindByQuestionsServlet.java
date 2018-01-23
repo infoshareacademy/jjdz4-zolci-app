@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @WebServlet("find-questions")
-public class FindByQuestions extends HttpServlet {
+public class FindByQuestionsServlet extends HttpServlet {
     @Inject
     TreeOperationsDao dao;
     Questionary questionary = new Questionary();
