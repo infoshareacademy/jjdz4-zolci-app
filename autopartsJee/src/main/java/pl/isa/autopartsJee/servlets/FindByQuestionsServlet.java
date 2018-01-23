@@ -21,6 +21,10 @@ import java.util.Map;
 
 @WebServlet("find-questions")
 public class FindByQuestionsServlet extends HttpServlet {
+
+    public FindByQuestionsServlet() throws IOException {
+    }
+
     @EJB
     private TreeOperationsDao dao;
 
@@ -102,8 +106,5 @@ public class FindByQuestionsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doRecive(req, resp);
-    }
-
-    public FindByQuestionsServlet() throws IOException {
     }
 }

@@ -3,19 +3,15 @@ package pl.isa.autoparts.questions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.TextMenu;
-import pl.isa.autoparts.categories.TreeOperations;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.*;
 
 public class ConsoleFunctions {
     private Scanner scanner = new Scanner(System.in);
     private Logger logger = LoggerFactory.getLogger(ConsoleFunctions.class.getName());
 
-    private List<String> lista = new ArrayList<>();
+    private List<String> partsList = new ArrayList<>();
     private TextMenu textMenu = new TextMenu();
 
     protected List<Question> chooseQuestionGroup(List<QuestionGroup> questions) throws IOException {
@@ -88,16 +84,16 @@ public class ConsoleFunctions {
         System.out.println("\nLista proponowanych części: ");
 
         for (int i = 0; i < question.size(); i++) {
-            lista.add(question.get(i).getPart());
+            partsList.add(question.get(i).getPart());
         }
         logger.debug("Stop Function");
     }
 
-    public List<String> getLista() {
-        return lista;
+    public List<String> getPartsList() {
+        return partsList;
     }
 
     public void clearList() {
-        lista.clear();
+        partsList.clear();
     }
 }

@@ -11,7 +11,7 @@ public class Questionary {
 
     private Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
     private ConsoleFunctions consoleFunctions = new ConsoleFunctions();
-    private List<String> stringList = new ArrayList<>();
+    private List<String> partsListForLink = new ArrayList<>();
 
     TopClass topClass = new TopClass();
     private List<Question> questionsGroup;
@@ -42,13 +42,13 @@ public class Questionary {
             return;
         } else {
             consoleFunctions.chooseParts(parts);
-            if (consoleFunctions.getLista().isEmpty()) {
+            if (consoleFunctions.getPartsList().isEmpty()) {
                 logger.debug("Uncorrectly invoke from \"consoleFunctions\"");
             } else {
                 logger.debug("Correctly invoke from \"consoleFunctions\"");
             }
         }
-        stringList.addAll(consoleFunctions.getLista());
+        partsListForLink.addAll(consoleFunctions.getPartsList());
         return;
     }
 
@@ -61,7 +61,7 @@ public class Questionary {
         getParts(parts);
     }
 
-    public List<String> getStringList() {
-        return stringList;
+    public List<String> getPartsListForLink() {
+        return partsListForLink;
     }
 }

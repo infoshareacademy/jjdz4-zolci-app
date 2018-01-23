@@ -1,6 +1,5 @@
 package pl.isa.autoparts.questions;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
@@ -42,7 +41,7 @@ public class QuestionaryTest {
         systemInMock.provideLines("y","y","n","y");
         Questionary questionary = new Questionary();
         questionary.questionOptions();
-        assertThat(questionary.getStringList()).contains("Przewody chłodnic wody");
+        assertThat(questionary.getPartsListForLink()).contains("Przewody chłodnic wody");
 //        assertThat(systemOutRule.getLog()).contains("Przewody chłodnic wody");
     }
 }
