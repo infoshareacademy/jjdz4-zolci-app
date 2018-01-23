@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class ConvertInStreamToString {
+public class ConvertInputStreamToString {
 
-    Logger logger = LoggerFactory.getLogger(ConvertInStreamToString.class.getName());
+    Logger logger = LoggerFactory.getLogger(ConvertInputStreamToString.class.getName());
 
     public String getStringFromInputStream(InputStream is) {
 

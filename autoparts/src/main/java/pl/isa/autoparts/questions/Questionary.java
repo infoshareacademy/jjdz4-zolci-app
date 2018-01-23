@@ -10,35 +10,38 @@ import org.slf4j.LoggerFactory;
 public class Questionary {
 
     private Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
-    private List<String> stringList = new ArrayList<>();
-    private InitQuestionsParser initialingQuestionsParser = new InitQuestionsParser();
     private ConsoleFunctions consoleFunctions = new ConsoleFunctions();
+    private List<String> stringList = new ArrayList<>();
 
+    TopClass topClass = new TopClass();
     private List<Question> questionsGroup;
     private List<BreakDown> breakDowns;
     private List<Parts> parts;
 
-    public void questionGroupFunction() throws IOException {
+    public Questionary() throws IOException {
+    }
+
+    public void getQuestions() throws IOException {
         if (questionsGroup.isEmpty()) {
             return;
         } else {
-            breakDowns = consoleFunctions.giveQuestion(questionsGroup);
+            breakDowns = consoleFunctions.chooseQuestion(questionsGroup);
         }
     }
 
-    public void breakDownFunction(List<BreakDown> breakDowns) throws IOException {
+    public void getBreakDown(List<BreakDown> breakDowns) throws IOException {
         if (breakDowns.isEmpty()) {
             return;
         } else {
-            parts = consoleFunctions.giveBreakDown(breakDowns);
+            parts = consoleFunctions.chooseBreakDown(breakDowns);
         }
     }
 
-    public void partsFunction(List<Parts> parts) {
+    public void getParts(List<Parts> parts) {
         if (parts.isEmpty()) {
             return;
         } else {
-            consoleFunctions.giveParts(parts);
+            consoleFunctions.chooseParts(parts);
             if (consoleFunctions.getLista().isEmpty()) {
                 logger.debug("Uncorrectly invoke from \"consoleFunctions\"");
             } else {
@@ -50,11 +53,12 @@ public class Questionary {
     }
 
     public void questionOptions() throws IOException {
-        TopClass topClass = initialingQuestionsParser.init();
+        InitQuestionsParser initQuestionsParser = new InitQuestionsParser(topClass);
+        topClass = initQuestionsParser.getTopClass();
         questionsGroup = consoleFunctions.chooseQuestionGroup(topClass.getGrupaPytan());
-        questionGroupFunction();
-        breakDownFunction(breakDowns);
-        partsFunction(parts);
+        getQuestions();
+        getBreakDown(breakDowns);
+        getParts(parts);
     }
 
     public List<String> getStringList() {

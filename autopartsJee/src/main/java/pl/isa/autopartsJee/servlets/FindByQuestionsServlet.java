@@ -1,10 +1,12 @@
 package pl.isa.autopartsJee.servlets;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.questions.*;
 import pl.isa.autopartsJee.dao.TreeOperationsDao;
 import pl.isa.autopartsJee.tools.WebLinkGenerator;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,16 +21,25 @@ import java.util.Map;
 
 @WebServlet("find-questions")
 public class FindByQuestionsServlet extends HttpServlet {
-    @Inject
-    TreeOperationsDao dao;
-    InitQuestionsParser initialingQuestionsParser = new InitQuestionsParser();
-    FunctionsWeb functionsWeb = new FunctionsWeb();
+    @EJB
+    private TreeOperationsDao dao;
+
+    private Logger logger = LoggerFactory.getLogger(FindByQuestionsServlet.class.getName());
+    private WebFunctions webFunctions = new WebFunctions();
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
         /**     Step 1   */
         if (req.getParameter("step").equals("1")) {
-            TopClass topClass = initialingQuestionsParser.init();
+            logger.debug("Web: step 1");
+
+            TopClass topClass = new TopClass();
+            try {
+                InitQuestionsParser initQuestionsParser = new InitQuestionsParser(topClass);
+                topClass = initQuestionsParser.getTopClass();
+            } catch (IOException e) {
+
+            }
             List<String> questionaryName = new ArrayList<>();
 
             for (QuestionGroup questionGroup : topClass.getGrupaPytan()) {
@@ -40,8 +51,9 @@ public class FindByQuestionsServlet extends HttpServlet {
 
             /**     Step 2   */
         } else if (req.getParameter("step").equals("2")) {
+            logger.debug("Web: step 2");
 
-            List<Question> myQuestions = functionsWeb.groupJee(req.getParameter("selected"));
+            List<Question> myQuestions = webFunctions.findQuestion(req.getParameter("selected"));
             List<String> tempQuestion = new ArrayList<>();
 
             for (Question a : myQuestions) {
@@ -53,8 +65,9 @@ public class FindByQuestionsServlet extends HttpServlet {
 
             /**     Step 3   */
         } else if (req.getParameter("step").equals("3")) {
+            logger.debug("Web: step 3");
 
-            List<BreakDown> breakDown = functionsWeb.breakDownsJee(req.getParameter("selected"));
+            List<BreakDown> breakDown = webFunctions.findBreakDowns(req.getParameter("selected"));
             List<String> breakDownView = new ArrayList<>();
 
             for (BreakDown breakDownTmp : breakDown) {
@@ -66,8 +79,9 @@ public class FindByQuestionsServlet extends HttpServlet {
 
             /**     Step 4   */
         } else if (req.getParameter("step").equals("4")) {
+            logger.debug("Web: step 4");
 
-            List<Parts> parts = functionsWeb.partsJee(req.getParameter("selected"));
+            List<Parts> parts = webFunctions.findParts(req.getParameter("selected"));
             WebLinkGenerator webLinkGenerator = new WebLinkGenerator();
             Map<String, String> tempMap = new HashMap<>();
 
@@ -79,12 +93,17 @@ public class FindByQuestionsServlet extends HttpServlet {
             requestDispatcher.forward(req, resp);
         }
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doRecive(req, resp);
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         doRecive(req, resp);
+    }
+
+    public FindByQuestionsServlet() throws IOException {
     }
 }

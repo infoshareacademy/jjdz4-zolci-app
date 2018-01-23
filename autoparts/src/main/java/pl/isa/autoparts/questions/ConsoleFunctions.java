@@ -19,7 +19,7 @@ public class ConsoleFunctions {
     private TextMenu textMenu = new TextMenu();
 
     protected List<Question> chooseQuestionGroup(List<QuestionGroup> questions) throws IOException {
-        logger.info("Start Function");
+        logger.debug("Start Function");
 
         for (Iterator<QuestionGroup> iterator = questions.iterator(); iterator.hasNext(); ) {
             QuestionGroup questionGroup = iterator.next();
@@ -41,7 +41,7 @@ public class ConsoleFunctions {
         return null;
     }
 
-    protected List<BreakDown> giveQuestion(List<Question> questions) throws IOException {
+    protected List<BreakDown> chooseQuestion(List<Question> questions) throws IOException {
 
         for (Iterator<Question> iterator = questions.iterator(); iterator.hasNext(); ) {
             Question question = iterator.next();
@@ -62,8 +62,7 @@ public class ConsoleFunctions {
         return null;
     }
 
-    protected List<Parts> giveBreakDown(List<BreakDown> questions) throws IOException {
-        boolean breakDownIsNotDetected = true;
+    protected List<Parts> chooseBreakDown(List<BreakDown> questions) throws IOException {
 
         for (Iterator<BreakDown> iterator = questions.iterator(); iterator.hasNext(); ) {
             BreakDown breakDown = iterator.next();
@@ -85,13 +84,13 @@ public class ConsoleFunctions {
         return null;
     }
 
-    protected void giveParts(List<Parts> question) {
+    protected void chooseParts(List<Parts> question) {
         System.out.println("\nLista proponowanych części: ");
 
         for (int i = 0; i < question.size(); i++) {
             lista.add(question.get(i).getPart());
         }
-        logger.info("Stop Function");
+        logger.debug("Stop Function");
     }
 
     public List<String> getLista() {
