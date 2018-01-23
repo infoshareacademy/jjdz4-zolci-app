@@ -13,13 +13,10 @@ import java.util.*;
 
 public class ConsoleFunctions {
     private Scanner scanner = new Scanner(System.in);
-    Logger logger = LoggerFactory.getLogger(ConsoleFunctions.class.getName());
+    private Logger logger = LoggerFactory.getLogger(ConsoleFunctions.class.getName());
 
     private List<String> lista = new ArrayList<>();
-
-    TreeOperations treeOperations = new TreeOperations();
-    TextMenu textMenu = new TextMenu();
-
+    private TextMenu textMenu = new TextMenu();
 
     protected List<Question> chooseQuestionGroup(List<QuestionGroup> questions) throws IOException {
         logger.info("Start Function");
@@ -83,14 +80,10 @@ public class ConsoleFunctions {
                 System.out.println("\nNastępna opcja: ");
             }
         }
-        if (breakDownIsNotDetected) {
-            System.out.println("\nCzęść nie znaleziona \n");
-        }
+        System.out.println("\nCzęść nie znaleziona \n");
         textMenu.options();
         return null;
     }
-
-    //  list of recomended parts' to repair <Parts>
 
     protected void giveParts(List<Parts> question) {
         System.out.println("\nLista proponowanych części: ");
@@ -99,36 +92,6 @@ public class ConsoleFunctions {
             lista.add(question.get(i).getPart());
         }
         logger.info("Stop Function");
-    }
-
-    // convert InputStream to String
-    protected String getStringFromInputStream(InputStream is) {
-
-        BufferedReader br = null;
-        StringBuilder sb = new StringBuilder();
-
-        String line;
-        try {
-
-            br = new BufferedReader(new InputStreamReader(is));
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            logger.error("File not found!");
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    logger.error("File not found!");
-                }
-            }
-        }
-        return sb.toString();
     }
 
     public List<String> getLista() {
