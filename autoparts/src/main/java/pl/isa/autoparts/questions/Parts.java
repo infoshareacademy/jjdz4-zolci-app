@@ -26,9 +26,3 @@ public class Parts {
         this.part = part;
     }
 }
-
-
-//<czesc>
-//<id>1</id>
-//<nazwa>bezpiecznik</nazwa>
-//</czesc>

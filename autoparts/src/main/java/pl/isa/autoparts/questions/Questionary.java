@@ -10,68 +10,102 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Questionary {
+
+    Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
     private List<String> stringList = new ArrayList<>();
-    public void questionOptions() throws IOException {
-        Functions functions = new Functions();
+    Functions functions = new Functions();
 
-        List<BreakDown> breakDowns;
-        List<Parts> parts;
-        List<Question> questionsGroup = null;
-        TopClass topClass = null;
-        XmlMapper xmlMapper = null;
-        String file = null;
+    List<Question> questionsGroup;
+    List<BreakDown> breakDowns;
+    List<Parts> parts;
+    TopClass topClass;
 
-        Logger logger = LoggerFactory.getLogger(Questionary.class.getName());
+    FunctionsWeb functionsWeb = new FunctionsWeb();
+
+    public TopClass init() throws IOException {
         logger.info("finding autoparts by questions module");
-
-
 
         try {
             InputStream activitiesStream = Questionary.class
                     .getClassLoader()
                     .getResourceAsStream("questions.xml");
-            file = functions.getStringFromInputStream(activitiesStream);
-            xmlMapper = new XmlMapper();
+            String file = functions.getStringFromInputStream(activitiesStream);
+            XmlMapper xmlMapper = new XmlMapper();
 
             topClass = xmlMapper.readValue(file, TopClass.class);
-            questionsGroup = functions.giveQuestionGrup(topClass.getGrupaPytan());
         } catch (NullPointerException e) {
             logger.error("NullPointerException - while mapping \"questions.xml\"");
-            return;
+            return null;
         }
         logger.info("XML is mapped correctly");
+        return topClass;
+    }
 
 
+    public List<Question> groupJee(String checkValue) throws IOException {
+        init();
+        questionsGroup = functionsWeb.giveQuestionGrupWeb(topClass.getGrupaPytan(), checkValue);
+        logger.info("JEE: checkValue find correctly for tag \'questions\'");
+        return questionsGroup;
+    }
 
+    public List<BreakDown> breakDownsJee(String checkValue) throws IOException {
+        breakDowns = functionsWeb.giveQuestionWeb(questionsGroup, checkValue);
+        return breakDowns;
+    }
+
+    public List<Parts> partsJee(String checkValue) throws IOException {
+        for (BreakDown breakDownCount : breakDowns) {
+            if (breakDownCount.getDescription().equals(checkValue)) {
+                logger.info("JEE: checkValue find correctly for tag \'breakDown\'");
+                return breakDownCount.getParts();
+            }
+        }
+        return null;
+    }
+
+
+    public void questionGroupFunction() throws IOException {
         if (questionsGroup.isEmpty()) {
             return;
         } else {
             breakDowns = functions.giveQuestion(questionsGroup);
         }
+    }
 
+    public void breakDownFunction(List<BreakDown> breakDowns) throws IOException {
         if (breakDowns.isEmpty()) {
             return;
         } else {
             parts = functions.giveBreakDown(breakDowns);
         }
+    }
 
+    public void partsFunction(List<Parts> parts) {
         if (parts.isEmpty()) {
             return;
         } else {
             functions.giveParts(parts);
-            if(functions.getLista().isEmpty()){
-                logger.debug("Nie poprawne wywołanie działań z metody \"functions\"");
-            }else {
-                logger.debug("Poprawne wywołanie działań z metody \"functions\"");
+            if (functions.getLista().isEmpty()) {
+                logger.debug("Uncorrectly invoke from \"functions\"");
+            } else {
+                logger.debug("Correctly invoke from \"functions\"");
             }
         }
-
         stringList.addAll(functions.getLista());
         return;
     }
 
+    public void questionOptions() throws IOException {
 
-    public List<String> getStringList(){
+        init();
+        questionsGroup = functions.giveQuestionGrup(topClass.getGrupaPytan()); // sprawdzic
+        questionGroupFunction();
+        breakDownFunction(breakDowns);
+        partsFunction(parts);
+    }
+
+    public List<String> getStringList() {
         return stringList;
     }
 }
