@@ -66,7 +66,7 @@ public class TextMenu {
                     InitateAztec.executeAztecReader();
                     break;
                 case 4:
-                    InitateAztec.executeVehicleFinder();
+                    InitateAztec.executeVehicleSearch();
 
                     break;
 
