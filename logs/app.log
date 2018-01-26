@@ -1,1 +1,16 @@
 2017-17-12 20:16:51.821 ERROR pl.isa.autoparts.tools.LinkGenerator - No category parent or category not found, error in link generating
+2018-26-01 04:29:52.701 INFO  pl.isa.autoparts.categories.Parser - Categories XML file loaded
+2018-26-01 04:29:53.646 INFO  pl.isa.autoparts.categories.Parser - Allegro categories added
+2018-26-01 04:29:54.692 INFO  pl.isa.autoparts.categories.Parser - Categories XML file loaded
+2018-26-01 04:29:54.741 INFO  pl.isa.autoparts.categories.Parser - Allegro categories added
+2018-26-01 04:30:06.183 DEBUG pl.isa.autoparts.vehiclesearch.VehicleSearch - Created API link: http://infoshareacademycom.2find.runull?lang=polish
+2018-26-01 04:31:45.754 INFO  pl.isa.autoparts.categories.Parser - Categories XML file loaded
+2018-26-01 04:31:46.583 INFO  pl.isa.autoparts.categories.Parser - Allegro categories added
+2018-26-01 04:31:47.107 INFO  pl.isa.autoparts.categories.Parser - Categories XML file loaded
+2018-26-01 04:31:47.160 INFO  pl.isa.autoparts.categories.Parser - Allegro categories added
+2018-26-01 04:31:59.264 DEBUG pl.isa.autoparts.vehiclesearch.VehicleSearch - Created API link: http://infoshareacademycom.2find.runull?lang=polish
+2018-26-01 04:33:13.427 INFO  pl.isa.autoparts.categories.Parser - Categories XML file loaded
+2018-26-01 04:33:14.288 INFO  pl.isa.autoparts.categories.Parser - Allegro categories added
+2018-26-01 04:33:14.931 INFO  pl.isa.autoparts.categories.Parser - Categories XML file loaded
+2018-26-01 04:33:14.983 INFO  pl.isa.autoparts.categories.Parser - Allegro categories added
+2018-26-01 04:33:22.977 DEBUG pl.isa.autoparts.vehiclesearch.VehicleSearch - Created API link: http://infoshareacademycom.2find.ru?lang=polish

@@ -1,5 +1,7 @@
 package pl.isa.autoparts.vehiclesearch;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.tools.JsonParser;
 import pl.isa.autoparts.tools.Printer;
 
@@ -8,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VehicleSearch {
+
+    Logger logger = LoggerFactory.getLogger(VehicleSearch.class.getName());
 
     private static final String API_URL_PRE = "http://infoshareacademycom.2find.ru";
     private static final String API_URL_POST = "?lang=polish";
@@ -31,8 +35,14 @@ public class VehicleSearch {
 
     private Vehicle parseFoundVehicle() throws IOException {
 
-        return JsonParser.parseJsonFromURL(
-                API_URL_PRE + link + API_URL_POST, Vehicle.class);
+        if (link == null) {
+            link = "";
+        }
+
+        String apiLink = API_URL_PRE + link + API_URL_POST;
+        logger.debug("Created API link: " + apiLink);
+
+        return JsonParser.parseJsonFromURL(apiLink, Vehicle.class);
     }
 
     private List<VehicleData> findBrandNameAndModel(String brandName, String modelName, String productionYear) throws IOException {
@@ -42,6 +52,7 @@ public class VehicleSearch {
         for (VehicleData data : parseFoundVehicle().getData()) {
             if (data.getName().contains(brandName.toUpperCase())) {
                 link = data.getLink();
+                logger.debug("Searched link: " + link);
 
                 modelList.add(data);
             }
@@ -75,6 +86,8 @@ public class VehicleSearch {
         if (data.getEnd_year() == null) endYear = year;
         else endYear = Integer.parseInt(data.getEnd_year());
 
+        logger.debug("Year: " + year + "; Start Year: " + startYear + "End Year: " + endYear);
+
         return (startYear <= year && endYear >= year);
     }
 
@@ -93,6 +106,7 @@ public class VehicleSearch {
 
             if (vehicleData != null) {
                 link = vehicleData.getLink();
+                logger.debug("Searched link: " + link);
             }
         }
 
@@ -100,6 +114,7 @@ public class VehicleSearch {
             foundVehicle = parseFoundVehicle();
         } catch (IOException e) {
             Printer.printError("Błąd parsowania znalezionego modelu");
+            logger.error("Error parsing found model");
         }
 
         List<VehicleData> vehicleDataList = new ArrayList<>();
