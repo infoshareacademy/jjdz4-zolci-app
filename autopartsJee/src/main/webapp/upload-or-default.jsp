@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="JQuery/find.js"></script>
     <link rel="stylesheet" href="css/example.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <title>Kategorie</title>
 </head>
 <body>

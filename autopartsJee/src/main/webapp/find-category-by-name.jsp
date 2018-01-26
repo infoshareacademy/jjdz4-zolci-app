@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
 
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <title>Znajdż w wyszukiwarce</title>
 </head>
 <body>

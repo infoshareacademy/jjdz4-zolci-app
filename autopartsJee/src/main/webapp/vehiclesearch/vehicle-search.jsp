@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/example.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 </head>
 <body>
 <a id="banner" href="../index.jsp"><div class="container-fluid text-center" id="header"><h1>Wyszukiwarka aut</h1></div></a>
