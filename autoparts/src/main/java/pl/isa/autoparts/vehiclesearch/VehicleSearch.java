@@ -1,4 +1,4 @@
-package pl.isa.autoparts.vehiclefinder;
+package pl.isa.autoparts.vehiclesearch;
 
 import pl.isa.autoparts.tools.JsonParser;
 import pl.isa.autoparts.tools.Printer;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VehicleFinder {
+public class VehicleSearch {
 
     private static final String API_URL_PRE = "http://infoshareacademycom.2find.ru";
     private static final String API_URL_POST = "?lang=polish";

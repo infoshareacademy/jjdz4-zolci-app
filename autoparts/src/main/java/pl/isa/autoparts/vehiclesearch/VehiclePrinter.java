@@ -1,4 +1,4 @@
-package pl.isa.autoparts.vehiclefinder;
+package pl.isa.autoparts.vehiclesearch;
 
 import pl.isa.autoparts.tools.Printer;
 
@@ -17,7 +17,7 @@ public class VehiclePrinter extends Printer {
         printInputRequest("Doprecyzuj wybór modelu");
     }
 
-    public static void printFoundVehicles(VehicleFinder vehicleFinder, List<VehicleData> vehicleData) {
+    public static void printFoundVehicles(VehicleSearch vehicleSearch, List<VehicleData> vehicleData) {
 
         println("Znalezione auta:\n");
 
@@ -27,7 +27,7 @@ public class VehiclePrinter extends Printer {
         else {
             for (VehicleData data : vehicleData) {
 
-                System.out.print(YELLOW + '\n' + vehicleFinder.getFoundVehicle().getDataname() + NORMAL);
+                System.out.print(YELLOW + '\n' + vehicleSearch.getFoundVehicle().getDataname() + NORMAL);
 
                 System.out.println(RED
                         + "\n\tId: " + data.getId()

@@ -4,7 +4,7 @@ import pl.isa.autoparts.aztec.*;
 import pl.isa.autoparts.tools.InputScanner;
 import pl.isa.autoparts.tools.JsonParser;
 import pl.isa.autoparts.tools.Printer;
-import pl.isa.autoparts.vehiclefinder.*;
+import pl.isa.autoparts.vehiclesearch.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -88,13 +88,13 @@ public class InitateAztec {
         Printer.printInputRequest("Podaj pojemność");
         String cylinderVolume = InputScanner.scanForStringLine();
 
-        VehicleFinder vehicleFinder = new VehicleFinder();
+        VehicleSearch vehicleSearch = new VehicleSearch();
 
         List<VehicleData> models = null;
 
         try {
 
-            models = vehicleFinder.findVehicleModels(brandName, modelName, productionYear);
+            models = vehicleSearch.findVehicleModels(brandName, modelName, productionYear);
 
         } catch (IOException e) {
 
@@ -125,8 +125,8 @@ public class InitateAztec {
             }
         }
 
-        List<VehicleData> vehicles = vehicleFinder.foundVehicles(modelName, cylinderVolume);
+        List<VehicleData> vehicles = vehicleSearch.foundVehicles(modelName, cylinderVolume);
 
-        VehiclePrinter.printFoundVehicles(vehicleFinder, vehicles);
+        VehiclePrinter.printFoundVehicles(vehicleSearch, vehicles);
     }
 }
