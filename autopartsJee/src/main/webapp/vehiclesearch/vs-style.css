@@ -3,10 +3,16 @@
     margin-bottom: 30px;
 }
 
-.form-group {
-    width: 45%;
-    margin: auto;
+li .form-group label {
+    margin-right: 20px;
+}
+
+li {
     margin-bottom: 20px;
+}
+
+.form-inline form {
+    margin: 0 auto;
 }
 
 .btn {
