@@ -11,7 +11,7 @@ import java.util.List;
 
 public class VehicleSearch {
 
-    Logger logger = LoggerFactory.getLogger(VehicleSearch.class.getName());
+    private Logger logger = LoggerFactory.getLogger(VehicleSearch.class.getName());
 
     private static final String API_URL_PRE = "http://infoshareacademycom.2find.ru";
     private static final String API_URL_POST = "?lang=polish";

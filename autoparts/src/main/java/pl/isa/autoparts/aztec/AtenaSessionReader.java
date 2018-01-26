@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class AtenaSessionReader {
 
-    Logger logger = LoggerFactory.getLogger(AtenaSessionReader.class.getName());
+    private Logger logger = LoggerFactory.getLogger(AtenaSessionReader.class.getName());
 
     private static final String SESSION_URL_PREAMBLE = "https://aztec.atena.pl/PWM2/rest/aztec/getbysession?";
     private static final String ATENA_API_KEY = "qY2?0Pw!";
