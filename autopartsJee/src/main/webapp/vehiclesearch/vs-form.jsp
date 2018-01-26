@@ -1,28 +1,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<form class="form-inline">
+<form class="vehicle form-inline">
     <ul>
         <li>
             <div class="form-group">
-                <label for="brand">Marka:</label>
-                <input type="text" class="form-control block" id="brand">
+                <label for="brand">Marka: </label>
+                <input type="text" class="form-control" value="${brandName}" id="brand">
             </div>
         </li>
         <li>
             <div class="form-group">
                 <label for="model">Model:</label>
-                <input type="text" class="form-control" id="model">
+                <input type="text" class="form-control" value="${modelName}" id="model">
             </div>
         </li>
         <li>
             <div class="form-group">
                 <label for="year">Rok produkcji:</label>
-                <input type="number" min="1955" max="2100" class="form-control" id="year">
+                <input type="number" min="1955" max="2100" class="form-control" value="${productionYear}" id="year">
             </div>
         </li>
         <li>
             <div class="form-group">
                 <label for="volume">Pojemność silnika [cm&sup3;]:</label>
-                <input type="number" min="100" max="90000" class="form-control" id="volume">
+                <input type="number" min="100" max="90000" class="form-control" value="${vehicleVolume}" id="volume">
             </div>
         </li>
         <li>
