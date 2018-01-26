@@ -3,24 +3,38 @@
     margin-bottom: 30px;
 }
 
-li .form-group label {
+.vehicle li .form-group label {
     margin-right: 20px;
 }
 
-li {
+.vehicle li {
     margin-bottom: 20px;
 }
 
-.form-inline form {
+.vehicle input {
+    color: #007bff;
+    font-size: 20px;
+}
+
+.vehicle .form-inline form {
     margin: 0 auto;
 }
 
-.btn {
+.vehicle .btn {
     margin-top: 30px;
     cursor: pointer;
     font-size: 20px;
 }
 
-.form-check-label {
+.vehicle .form-check-label {
     font-size: 20px;
+}
+
+.car-data .btn {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.car-data .blue-data {
+    color: #007bff;
 }
