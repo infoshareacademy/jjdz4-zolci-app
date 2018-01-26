@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class InitateAztec {
+
     public static void executeAztecReader() {
 
         Printer.println("Pokaż dane kodu aztec");
@@ -33,6 +34,8 @@ public class InitateAztec {
 
 
     }
+
+    private InitateAztec() {}
 
     private static void readAztecFromFile() {
 
@@ -60,16 +63,18 @@ public class InitateAztec {
             Printer.printError("Błąd parsowania json");
         }
 
-        if (vehicle.hasError())
-            AztecPrinter.printSessionError(vehicle);
-        else
-            AztecPrinter.printAztecVehicleData(vehicle);
+
+        if (vehicle != null) {
+            if (vehicle.hasError())
+                AztecPrinter.printSessionError(vehicle);
+            else
+                AztecPrinter.printAztecVehicleData(vehicle);
+        }
     }
 
     public static void executeVehicleFinder() {
 
         Printer.println("Identyfikacja auta po serii pytań");
-        Printer.println("Aktualizacja bazy... Poczekaj chwilę...");
 
         Printer.printInputRequest("Podaj markę szukanego auta");
         String brandName = InputScanner.scanForStringLine();
@@ -85,7 +90,18 @@ public class InitateAztec {
 
         VehicleFinder vehicleFinder = new VehicleFinder();
 
-        List<VehicleData> models = vehicleFinder.findVehicleModels(brandName, modelName, productionYear);
+        List<VehicleData> models = null;
+
+        try {
+
+            models = vehicleFinder.findVehicleModels(brandName, modelName, productionYear);
+
+        } catch (IOException e) {
+
+            Printer.printError("Problem połączenia z bazą danych.");
+            return;
+        }
+
         if (models.size() > 1) {
 
             VehiclePrinter.printModels(models);
@@ -102,6 +118,11 @@ public class InitateAztec {
         else {
             if (!models.isEmpty())
                 modelName = models.get(0).getName();
+
+            else {
+                Printer.printError("Nie udało się odnaleźć szukanego elementu");
+                return;
+            }
         }
 
         List<VehicleData> vehicles = vehicleFinder.foundVehicles(modelName, cylinderVolume);
