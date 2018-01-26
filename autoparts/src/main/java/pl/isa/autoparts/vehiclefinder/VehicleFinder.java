@@ -9,35 +9,33 @@ import java.util.List;
 
 public class VehicleFinder {
 
-    private static final String VEHICLE_DB_URL = "http://infoshareacademycom.2find.ru/api/v2?lang=polish";
-    private static final String VEHICLE_DB_URL_PRE = "http://infoshareacademycom.2find.ru";
-    private final String VEHICLE_DB_URL_POST = "?lang=polish";
+    private static final String API_URL_PRE = "http://infoshareacademycom.2find.ru";
+    private static final String API_URL_POST = "?lang=polish";
 
     private Vehicle foundVehicle;
     private String link;
-
-    public boolean hasError;
-    public String errorMessage;
-
 
     public Vehicle getFoundVehicle() {
         return foundVehicle;
     }
 
+    public List<VehicleData> findVehicleModels(String brandName, String modelName, String productionYear) throws IOException {
+
+        return findBrandNameAndModel(brandName, modelName, productionYear);
+    }
+
+    public List<VehicleData> foundVehicles(String modelName, String cylinderVolume
+    ) {
+        return findProductionYearAndCylinderVolume(modelName, cylinderVolume);
+    }
+
     private Vehicle parseFoundVehicle() throws IOException {
 
         return JsonParser.parseJsonFromURL(
-                VEHICLE_DB_URL_PRE + link + VEHICLE_DB_URL_POST, Vehicle.class);
+                API_URL_PRE + link + API_URL_POST, Vehicle.class);
     }
 
-    private void setSearchError(String text) {
-
-        foundVehicle = null;
-        if (!hasError) hasError = true;
-        errorMessage += '\n' + text;
-    }
-
-    private List<VehicleData> findBrandNameAndModel(String brandName, String modelName, String productionYear) {
+    private List<VehicleData> findBrandNameAndModel(String brandName, String modelName, String productionYear) throws IOException {
 
         List<VehicleData> modelList = new ArrayList<>();
 
@@ -77,11 +75,7 @@ public class VehicleFinder {
         if (data.getEnd_year() == null) endYear = year;
         else endYear = Integer.parseInt(data.getEnd_year());
 
-        if (startYear <= year && endYear >= year) {
-            return true;
-        }
-
-        return false;
+        return (startYear <= year && endYear >= year);
     }
 
     private List<VehicleData> findProductionYearAndCylinderVolume(String modelName, String cylinderVolume) {
@@ -97,7 +91,9 @@ public class VehicleFinder {
                     vehicleData = data;
             }
 
-            link = vehicleData.getLink();
+            if (vehicleData != null) {
+                link = vehicleData.getLink();
+            }
         }
 
         try {
@@ -118,15 +114,5 @@ public class VehicleFinder {
         }
 
         return vehicleDataList;
-    }
-
-    public List<VehicleData> findVehicleModels(String brandName, String modelName, String productionYear) {
-
-        return findBrandNameAndModel(brandName, modelName, productionYear);
-    }
-
-    public List<VehicleData> foundVehicles(String modelName, String cylinderVolume
-    ) {
-        return findProductionYearAndCylinderVolume(modelName, cylinderVolume);
     }
 }
