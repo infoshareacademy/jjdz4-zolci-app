@@ -6,4 +6,4 @@ pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.next
 release.properties
-app.log
+logs/app.log
