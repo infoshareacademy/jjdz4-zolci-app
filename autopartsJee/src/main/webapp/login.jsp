@@ -26,18 +26,8 @@
         <div class="text-menu text-center">
             <h2>Podaj nazwę użytkownika i hasło: </h2><br/>
             <form action="/login" method="POST">
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-2 col-form-label">Login</label>
-                    <div class="col-10">
-                        <input class="form-control" type="login"  id="example-text-input">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-password-input" class="col-2 col-form-label">Hasło</label>
-                    <div class="col-10">
-                        <input class="form-control" type="password" name="password" id="example-password-input">
-                    </div>
-                </div>
+                <label>Login:</label> <input type="text" name="login"></br>
+                <label>Hasło:</label> <input type="password" name="password"></br>
                 <input type="submit" value="Szukaj">
             </form>
         </div>
