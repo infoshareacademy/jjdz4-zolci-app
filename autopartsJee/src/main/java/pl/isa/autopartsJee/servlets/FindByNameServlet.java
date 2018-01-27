@@ -19,23 +19,13 @@ import java.util.Map;
 public class FindByNameServlet extends HttpServlet {
     @Inject
     TreeOperationsRepositoryDao dao;
-    /*
-    * TODO: servlet ktory wykona sie jednoczesnie z jsp findByName ktory zbuduje obiekt TreeOperations i przechowa go w sesji,
-    * TODO następnie ten servlet go wczyta i przekaże do generateLinkMap w argumencie dzięki czemu nie bedzie sie wczytywalo przy
-    * TODO kazdym wyszukaniu //inna sprawa ze i tak dziala dosc szybko
-    */
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebLinkGenerator linkGenerator = new WebLinkGenerator();
-//        TreeOperations treeOperations = new TreeOperations();
         linkGenerator.generateLinkMap(req.getParameter("search"), dao.getRepository());
         Map<String, String> link = linkGenerator.getNameLink();
 
-//        if (link.equals("Category not found")) {
-//            searchedLink.put("", "Nie znaleziono kategorii!");
-//        } else {
-//            searchedLink.put(link, linkGenerator.getItemName().substring(0,1).toUpperCase() + linkGenerator.getItemName().substring(1));
-//        }
         req.setAttribute("link", link);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-by-name-result.jsp");
         requestDispatcher.forward(req, resp);
