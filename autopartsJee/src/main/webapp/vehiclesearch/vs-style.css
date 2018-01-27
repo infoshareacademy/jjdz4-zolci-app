@@ -38,3 +38,11 @@
 .car-data .blue-data {
     color: #007bff;
 }
+
+.car-data .hidden {
+    display: none;
+}
+
+.car-data input {
+    color: #007bff;
+}
