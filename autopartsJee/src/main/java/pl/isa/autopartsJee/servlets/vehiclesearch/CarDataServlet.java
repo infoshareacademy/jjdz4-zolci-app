@@ -86,7 +86,7 @@ public class CarDataServlet extends HttpServlet {
 
     private void verifySessionErrors(AztecVehicle vehicle) throws NullPointerException {
 
-        if(!vehicle.getAztecData().getErrorText().isEmpty()) {
+        if(vehicle.hasError()) {
            throw new NullPointerException();
         }
     }
