@@ -25,7 +25,9 @@
     <div class="col-lg-10 col-md-10 col-sm-10 main-container">
         <div class="text-menu text-center">
             <c:if test="${errorMessage != null}">
-                <div class="alert alert-danger"><strong>Błąd!</strong> ${errorMessage}</div>
+                <div class="alert alert-danger">
+                    <strong>Błąd!</strong> ${errorMessage}
+                </div>
             </c:if>
             <h2>Wypełnij podstawowe dane</h2>
             <%@include file="vs-form.jsp"%>

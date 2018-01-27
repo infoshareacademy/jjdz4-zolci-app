@@ -2,6 +2,7 @@ package pl.isa.autopartsJee.servlets.vehiclesearch;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.isa.autoparts.aztec.AtenaSessionReader;
 import pl.isa.autoparts.aztec.AztecVehicle;
 import pl.isa.autoparts.tools.JsonParser;
 
@@ -18,22 +19,38 @@ public class CarDataServlet extends HttpServlet {
 
     private Logger logger = LoggerFactory.getLogger(CarDataServlet.class.getName());
 
+    private static final String FORWARD_URL = "/vehiclesearch/vehicle-search.jsp";
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         AztecVehicle vehicle = null;
+        String session = request.getAttribute("session").toString();
 
-        try {
-            vehicle = JsonParser.parseJsonFromFile("AztecCodeResult.json", AztecVehicle.class);
-            logger.info("Json file loaded to servlet");
+        if (session != null) {
+            try {
+                vehicle = loadAztecFromSession(session);
+                verifySessionErrors(vehicle);
+            }
+            catch (IOException e) {
+                forwardToPageWithError("Nie udało się załadować sesji Aztec",request, response);
+                return;
+            }
+            catch (NullPointerException e) {
+                forwardToPageWithError(vehicle.getAztecData().getErrorText(), request, response);
+                return;
+            }
+        }
 
-        } catch (IOException e) {
+        else {
+            try {
+                vehicle = JsonParser.parseJsonFromFile("AztecCodeResult.json", AztecVehicle.class);
+                logger.info("Json file loaded to servlet");
 
-            logger.error("Could not load Json file to servlet");
-            request.setAttribute("errorMessage", "Nie udało się załadować pliku z danymi auta");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/vehiclesearch/vehicle-search.jsp");
-            dispatcher.forward(request, response);
-            return;
+            } catch (IOException e) {
+                forwardToPageWithError("Nie udało się załadować pliku z danymi.", request, response);
+                return;
+            }
         }
 
         String brandName = vehicle.getAztecData().getVehicleMakeField_D1();
@@ -51,7 +68,33 @@ public class CarDataServlet extends HttpServlet {
         String fuelType = vehicle.getAztecData().getFuelTypeField_P3();
         request.setAttribute("fuelType", fuelType);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/vehiclesearch/vehicle-search.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher(FORWARD_URL);
+        dispatcher.forward(request, response);
+    }
+
+    private AztecVehicle loadAztecFromFile() throws IOException {
+
+        return JsonParser.parseJsonFromFile("AztecCodeResult.json", AztecVehicle.class);
+    }
+
+    private AztecVehicle loadAztecFromSession(String sessionKey) throws IOException {
+
+        AtenaSessionReader atenaSession = new AtenaSessionReader(sessionKey);
+
+        return atenaSession.parseAztecFromSession();
+    }
+
+    private void verifySessionErrors(AztecVehicle vehicle) throws NullPointerException {
+
+        if(!vehicle.getAztecData().getErrorText().isEmpty()) {
+           throw new NullPointerException();
+        }
+    }
+
+    private void forwardToPageWithError(String errorMessage, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.error("Could not load Aztec JSON");
+        request.setAttribute("errorMessage", errorMessage);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(FORWARD_URL);
         dispatcher.forward(request, response);
     }
 
