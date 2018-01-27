@@ -1,8 +1,11 @@
 package pl.isa.autopartsJee.servlets;
 
 import pl.isa.autoparts.categories.TreeOperations;
+import pl.isa.autopartsJee.dao.TreeOperationsRepositoryDao;
+import pl.isa.autopartsJee.repository.TreeOperationsRepository;
 import pl.isa.autopartsJee.tools.WebLinkGenerator;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +17,8 @@ import java.util.Map;
 
 @WebServlet("/find-by-name")
 public class FindByNameServlet extends HttpServlet {
-    //@Inject
-   // TreeOperationsDao dao;
+    @Inject
+    TreeOperationsRepositoryDao dao;
     /*
     * TODO: servlet ktory wykona sie jednoczesnie z jsp findByName ktory zbuduje obiekt TreeOperations i przechowa go w sesji,
     * TODO następnie ten servlet go wczyta i przekaże do generateLinkMap w argumencie dzięki czemu nie bedzie sie wczytywalo przy
@@ -24,8 +27,8 @@ public class FindByNameServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebLinkGenerator linkGenerator = new WebLinkGenerator();
-        TreeOperations treeOperations = new TreeOperations();
-        linkGenerator.generateLinkMap(req.getParameter("search"), treeOperations);
+//        TreeOperations treeOperations = new TreeOperations();
+        linkGenerator.generateLinkMap(req.getParameter("search"), dao.getRepository());
         Map<String, String> link = linkGenerator.getNameLink();
 
 //        if (link.equals("Category not found")) {

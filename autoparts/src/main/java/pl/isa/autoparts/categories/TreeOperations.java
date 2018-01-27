@@ -12,7 +12,9 @@ public class TreeOperations {
     private ArrayList<AllegroItem> partsList = new ArrayList<>();
     private AllegroItem czesciSamochodowe = new AllegroItem();
     private ArrayList<AllegroItem> similarList = new ArrayList<>();
-
+    public void clearList(){
+        similarList.clear();
+    }
     public TreeOperations() {
         Parser parser = new Parser();
         allegroList = parser.getAllegroList();

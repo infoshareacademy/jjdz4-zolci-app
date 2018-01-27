@@ -24,11 +24,14 @@ public class WebLinkGenerator {
         return itemName;
     }
 
+
+
     public void generateLinkMap(String category, TreeOperations treeOperations) {
         AllegroItem parent;
         StringNormalizer stringNormalizer = new StringNormalizer();
 
         try {
+            treeOperations.clearList();
             treeOperations.findCarPartCategoryList(category);
             ArrayList<AllegroItem> similarList = treeOperations.getSimilarList();
             for (AllegroItem item : similarList) {
@@ -52,6 +55,7 @@ public class WebLinkGenerator {
         AllegroItem categoryItem;
         StringNormalizer stringNormalizer = new StringNormalizer();
         try {
+            treeOperations.clearList();
             categoryItem = treeOperations.findExactCarPartCategory(category.toLowerCase());
             parent = treeOperations.findParent(categoryItem);
             return "https://allegro.pl/kategoria/" + stringNormalizer.normalize(parent.getName())
