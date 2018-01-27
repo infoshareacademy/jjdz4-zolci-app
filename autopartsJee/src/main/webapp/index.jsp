@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/example.css">
+    <link rel="stylesheet" href="css/menu.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
     <title>Strona główna</title>
-    <link rel="stylesheet" href="css/example.css">
+    <link rel="stylesheet" href="css/menu.css">
 </head>
 <body>
 <a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1>Autoparts Finder</h1></div></a>
@@ -24,6 +24,7 @@
         <div class="text-menu text-center">
             <h2>Wybierz jedną z opcji:</h2><br/>
             <ul id="myUL">
+                <li><%@ include file="check-login.jsp" %></li>
                 <li><a href="find-category.jsp">Wyszukaj kategorię</a></li>
                 <li><a href="">Podaj kod AZTEC</a></li>
                 <li><a href="">Wyszukaj auto z formularza</a></li>

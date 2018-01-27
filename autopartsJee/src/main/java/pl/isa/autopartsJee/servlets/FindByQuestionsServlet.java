@@ -3,7 +3,7 @@ package pl.isa.autopartsJee.servlets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.questions.*;
-import pl.isa.autopartsJee.dao.TreeOperationsDao;
+import pl.isa.autopartsJee.dao.TreeOperationsRepositoryDao;
 import pl.isa.autopartsJee.tools.WebLinkGenerator;
 
 import javax.ejb.EJB;
@@ -26,7 +26,7 @@ public class FindByQuestionsServlet extends HttpServlet {
     }
 
     @EJB
-    private TreeOperationsDao dao;
+    private TreeOperationsRepositoryDao dao;
 
     private Logger logger = LoggerFactory.getLogger(FindByQuestionsServlet.class.getName());
     private WebFunctions webFunctions = new WebFunctions();
@@ -90,7 +90,7 @@ public class FindByQuestionsServlet extends HttpServlet {
             Map<String, String> tempMap = new HashMap<>();
 
             for (Parts partsTmp : parts) {
-                tempMap.put(webLinkGenerator.generateLink(partsTmp.getPart(), dao.getTreeOperations()), partsTmp.getPart());
+                tempMap.put(webLinkGenerator.generateLink(partsTmp.getPart(), dao.getRepository()), partsTmp.getPart());
             }
             req.setAttribute("parts", tempMap);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category-by-form-step4.jsp");

@@ -10,24 +10,28 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/menu.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
-    <title>Znajdż w wyszukiwarce</title>
+    <title>Zaloguj się</title>
+    <link rel="stylesheet" href="css/menu.css">
 </head>
 <body>
 <a id="banner" href="index.jsp">
     <div class="container-fluid text-center" id="header"><h1>Autoparts Finder</h1></div>
 </a>
 <div class="row justify-content-center" id="wrapper">
-    <div class="col-lg-2 side-bar">
+    <div class="col-lg-2 col-md-2 col-sm-2 side-bar">
         <%@ include file="carData.jsp" %>
 
     </div>
-    <div class="col-lg-10 main-container text-center">
-        <div class="text-menu">
-            <h2>Podaj nazwę kategorii:</h2><br/>
-            <form action="/find-by-name" method="GET">
-                <input type="text" name="search">
+    <div class="col-lg-10 col-md-10 col-sm-10 main-container">
+        <div class="text-menu text-center">
+            <h2>Podaj nazwę użytkownika i hasło: </h2><br/>
+            <form action="/login" method="POST">
+                <label>Login:</label> <input type="text" name="login"></br>
+                <label>Hasło:</label> <input type="password" name="password"></br>
                 <input type="submit" value="Szukaj">
+
             </form>
+
             <br>
             <br>
             <ul id="myUL">
