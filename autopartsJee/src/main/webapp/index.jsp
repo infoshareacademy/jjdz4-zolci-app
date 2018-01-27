@@ -24,7 +24,7 @@
         <div class="text-menu text-center">
             <h2>Wybierz jedną z opcji:</h2><br/>
             <ul id="myUL">
-                <li><a href="login.jsp">Zaloguj się</a></li>
+                <li><%@ include file="check-login.jsp" %></li>
                 <li><a href="find-category.jsp">Wyszukaj kategorię</a></li>
                 <li><a href="">Podaj kod AZTEC</a></li>
                 <li><a href="">Wyszukaj auto z formularza</a></li>
