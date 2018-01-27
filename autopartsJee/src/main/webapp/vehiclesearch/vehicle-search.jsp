@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/vehiclesearch/vs-style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <script type="text/javascript" src="../scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../scripts/vehicle-search-jq.js"></script>
 </head>
 <body>
 <a id="banner" href="../index.jsp"><div class="container-fluid text-center" id="header"><h1>Wyszukiwarka aut</h1></div></a>
