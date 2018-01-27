@@ -1,16 +1,23 @@
 package pl.isa.autoparts;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.aztec.*;
 import pl.isa.autoparts.tools.InputScanner;
 import pl.isa.autoparts.tools.JsonParser;
 import pl.isa.autoparts.tools.Printer;
-import pl.isa.autoparts.vehiclefinder.*;
+import pl.isa.autoparts.vehiclesearch.*;
 
 import java.io.IOException;
 import java.util.List;
 
 public class InitateAztec {
+
+    private static Logger logger = LoggerFactory.getLogger(InitateAztec.class.getName());
+
     public static void executeAztecReader() {
+
+        logger.info("Aztec Reader executed");
 
         Printer.println("Pokaż dane kodu aztec");
         Printer.println("1. Pobierz dane z pliku");
@@ -34,51 +41,11 @@ public class InitateAztec {
 
     }
 
-    private static void readAztecFromFile() {
+    public static void executeVehicleSearch() {
 
-        AztecVehicle vehicle = null;
-
-        try {
-            vehicle = JsonParser.parseJsonFromFile("AztecCodeResult.json", AztecVehicle.class);
-        } catch (IOException e) {
-            Printer.printError("Niepowodzenie parsowania json z pliku");
-        }
-
-        AztecPrinter.printAztecVehicleData(vehicle);
-    }
-
-    private static void readAztecFromSession() {
-
-        Printer.printInputRequest("Podaj otrzymany kod sesji");
-        AtenaSessionReader session = new AtenaSessionReader(InputScanner.scanForStringLine());
-
-        AztecVehicle vehicle = null;
-
-        try {
-            vehicle = session.parseAztecFromSession();
-        } catch (IOException e) {
-            Printer.printError("Błąd parsowania json");
-        }
-
-        if (vehicle.hasError())
-            AztecPrinter.printSessionError(vehicle);
-        else
-            AztecPrinter.printAztecVehicleData(vehicle);
-    }
-
-    public static void executeVehicleFinder() {
+        logger.info("Vehicle Search executed");
 
         Printer.println("Identyfikacja auta po serii pytań");
-        Printer.println("Aktualizacja bazy... Poczekaj chwilę...");
-
-        Vehicle vehicle;
-
-        try {
-            vehicle = JsonParser.parseJsonFromURL(VehicleFinder.VEHICLE_DB_URL, Vehicle.class);
-        } catch (IOException e) {
-            Printer.printError("Niepowodzenie parsowania json");
-            return;
-        }
 
         Printer.printInputRequest("Podaj markę szukanego auta");
         String brandName = InputScanner.scanForStringLine();
@@ -92,9 +59,21 @@ public class InitateAztec {
         Printer.printInputRequest("Podaj pojemność");
         String cylinderVolume = InputScanner.scanForStringLine();
 
-        VehicleFinder vehicleFinder = new VehicleFinder(vehicle);
+        VehicleSearch vehicleSearch = new VehicleSearch();
 
-        List<VehicleData> models = vehicleFinder.findVehicleModels(brandName, modelName, productionYear);
+        List<VehicleData> models = null;
+
+        try {
+
+            models = vehicleSearch.findVehicleModels(brandName, modelName, productionYear);
+
+        } catch (IOException e) {
+
+            logger.error("Problem connecting with database");
+            Printer.printError("Problem połączenia z bazą danych.");
+            return;
+        }
+
         if (models.size() > 1) {
 
             VehiclePrinter.printModels(models);
@@ -111,10 +90,56 @@ public class InitateAztec {
         else {
             if (!models.isEmpty())
                 modelName = models.get(0).getName();
+
+            else {
+                logger.error("Searched item not found");
+                Printer.printError("Nie udało się odnaleźć szukanego elementu");
+                return;
+            }
         }
 
-        List<VehicleData> vehicles = vehicleFinder.foundVehicles(modelName, cylinderVolume);
+        List<VehicleData> vehicles = vehicleSearch.foundVehicles(modelName, cylinderVolume);
 
-        VehiclePrinter.printFoundVehicles(vehicleFinder, vehicles);
+        VehiclePrinter.printFoundVehicles(vehicleSearch, vehicles);
+    }
+
+    private InitateAztec() {}
+
+    private static void readAztecFromFile() {
+
+        AztecVehicle vehicle = null;
+
+        try {
+            vehicle = JsonParser.parseJsonFromFile("AztecCodeResult.json", AztecVehicle.class);
+            logger.info("Json file loaded");
+        } catch (IOException e) {
+            logger.error("Could not load Json file");
+            Printer.printError("Niepowodzenie parsowania json z pliku");
+        }
+
+        AztecPrinter.printAztecVehicleData(vehicle);
+    }
+
+    private static void readAztecFromSession() {
+
+        Printer.printInputRequest("Podaj otrzymany kod sesji");
+        AtenaSessionReader session = new AtenaSessionReader(InputScanner.scanForStringLine());
+
+        AztecVehicle vehicle = null;
+
+        try {
+            vehicle = session.parseAztecFromSession();
+        } catch (IOException e) {
+            logger.error("Could not parse Json from URL session");
+            Printer.printError("Błąd parsowania json");
+        }
+
+
+        if (vehicle != null) {
+            if (vehicle.hasError())
+                AztecPrinter.printSessionError(vehicle);
+            else
+                AztecPrinter.printAztecVehicleData(vehicle);
+        }
     }
 }
