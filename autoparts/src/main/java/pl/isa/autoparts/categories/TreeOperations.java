@@ -65,10 +65,10 @@ public class TreeOperations {
 
     public AllegroItem findParent(AllegroItem child) {
         for (AllegroItem item : partsList) {
-            if (item.getId() == child.getId())
+            if (item.getId() == child.getParent())
                 return item;
         }
-        return null;
+        return child;
     }
 
 
