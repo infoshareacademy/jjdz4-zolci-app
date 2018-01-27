@@ -18,16 +18,3 @@
 <a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1> 'autopartsFinder'</h1></div></a>
 <div class="row justify-content-center" id="wrapper">
     <div class="col-lg-2 side-bar">
-
-    </div>
-    <div class="col-lg-10 main-container">
-        <div class="text-menu text-center">
-            <form action="/action_page.php">
-                <input type="file" name="pic" accept="image/*">
-                <input type="submit">
-            </form>
-        </div>
-    </div>
-</div>
-</body>
-</html>

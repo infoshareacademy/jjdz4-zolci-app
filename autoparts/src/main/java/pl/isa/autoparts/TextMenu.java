@@ -57,7 +57,7 @@ public class TextMenu {
             checkOption = choseOptions();
             switch (checkOption) {
                 case 1:
-                    treeOperations.printWholeTree();
+                  //  treeOperations.printWholeTree();
                     break;
                 case 2:
                     linkGenerator.printAllegroLinkToCategory();
