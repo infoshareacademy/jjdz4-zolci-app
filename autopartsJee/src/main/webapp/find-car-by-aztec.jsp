@@ -21,7 +21,7 @@
     </div>
     <div class="col-lg-10 main-container">
         <div class="text-menu text-center">
-            <h2>Podaj kod AZTEC:</h2><br/>
+            <h2>Podaj kod sesji Atena:</h2><br/>
             <form action="/find-by-aztec" method="GET">
                 <input type="text" name="search">
                 <input type="submit" value="Szukaj">

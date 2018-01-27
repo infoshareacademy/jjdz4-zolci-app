@@ -25,7 +25,7 @@
             <h2>Wybierz jedną z opcji:</h2><br/>
             <ul id="myUL">
                 <li><a href="find-category.jsp">Wyszukaj kategorię</a></li>
-                <li><a href="">Podaj kod AZTEC</a></li>
+                <li><a href="find-car-by-aztec.jsp">Podaj kod AZTEC</a></li>
                 <li><a href="">Wyszukaj auto z formularza</a></li>
             </ul>
         </div>
