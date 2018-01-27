@@ -35,7 +35,7 @@ public class FindByQuestionsServlet extends HttpServlet {
 
         /**     Step 1   */
         if (req.getParameter("step").equals("1")) {
-            logger.debug("Web: step 1");
+            logger.debug("Web: invoke step 1");
 
             TopClass topClass = new TopClass();
             try {
@@ -55,7 +55,7 @@ public class FindByQuestionsServlet extends HttpServlet {
 
             /**     Step 2   */
         } else if (req.getParameter("step").equals("2")) {
-            logger.debug("Web: step 2");
+            logger.debug("Web: invoke step 2");
 
             List<Question> myQuestions = webFunctions.findQuestion(req.getParameter("selected"));
             List<String> tempQuestion = new ArrayList<>();
@@ -69,7 +69,7 @@ public class FindByQuestionsServlet extends HttpServlet {
 
             /**     Step 3   */
         } else if (req.getParameter("step").equals("3")) {
-            logger.debug("Web: step 3");
+            logger.debug("Web: invoke step 3");
 
             List<BreakDown> breakDown = webFunctions.findBreakDowns(req.getParameter("selected"));
             List<String> breakDownView = new ArrayList<>();
@@ -83,7 +83,7 @@ public class FindByQuestionsServlet extends HttpServlet {
 
             /**     Step 4   */
         } else if (req.getParameter("step").equals("4")) {
-            logger.debug("Web: step 4");
+            logger.debug("Web: invoke step 4");
 
             List<Parts> parts = webFunctions.findParts(req.getParameter("selected"));
             WebLinkGenerator webLinkGenerator = new WebLinkGenerator();
