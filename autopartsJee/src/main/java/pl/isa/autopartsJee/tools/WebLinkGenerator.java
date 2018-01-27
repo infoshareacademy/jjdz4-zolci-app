@@ -6,6 +6,7 @@ import pl.isa.autoparts.tools.StringNormalizer;
 import sun.reflect.generics.tree.Tree;
 
 public class WebLinkGenerator {
+
     private String itemName = new String();
 
 
