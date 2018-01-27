@@ -11,12 +11,8 @@ public class TreeOperations {
     private ArrayList<AllegroItem> allegroList = new ArrayList<>();
     private ArrayList<AllegroItem> partsList = new ArrayList<>();
     private AllegroItem czesciSamochodowe = new AllegroItem();
-
-    public ArrayList<AllegroItem> getSimilarList() {
-        return similarList;
-    }
-
     private ArrayList<AllegroItem> similarList = new ArrayList<>();
+
     public TreeOperations() {
         Parser parser = new Parser();
         allegroList = parser.getAllegroList();
@@ -24,9 +20,13 @@ public class TreeOperations {
 
     }
 
+    public ArrayList<AllegroItem> getSimilarList() {
+        return similarList;
+    }
+
     private void createCarPartsList(int parentId) {
         for (AllegroItem item : allegroList) {
-            if (item.getParent() == parentId){
+            if (item.getParent() == parentId) {
                 partsList.add(item);
                 createCarPartsList(item.getId());
             }
@@ -46,23 +46,24 @@ public class TreeOperations {
         createCarPartsList(czesciSamochodowe.getId());
     }
 
-    public AllegroItem findExactCarPartCategory(String phrase){
-        for(AllegroItem item : partsList){
-            if(item.getName().startsWith(phrase))
+    public AllegroItem findExactCarPartCategory(String phrase) {
+        for (AllegroItem item : partsList) {
+            if (item.getName().startsWith(phrase))
                 return item;
         }
         return null;
     }
-    public void findCarPartCategoryList(String phrase){
-        for(AllegroItem item : partsList){
-            if(item.getName().contains(phrase))
+
+    public void findCarPartCategoryList(String phrase) {
+        for (AllegroItem item : partsList) {
+            if (item.getName().contains(phrase))
                 similarList.add(item);
         }
     }
 
-    public AllegroItem findParent(AllegroItem child){
-        for(AllegroItem item : partsList){
-            if(item.getId()==child.getId())
+    public AllegroItem findParent(AllegroItem child) {
+        for (AllegroItem item : partsList) {
+            if (item.getId() == child.getId())
                 return item;
         }
         return null;
