@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 
 public class TreeOperations {
+
     private int czesciSamochodowePosition = 0;
     Logger logger = LoggerFactory.getLogger(TreeOperations.class.getName());
-
 
     public int getPhraseId() {
         return phraseId;
@@ -46,7 +46,7 @@ public class TreeOperations {
 
     public void printWholeTree() {
         printWholeTreeRecurency(-1, czesciSamochodowe);
-        logger.info("Whole tree printed");
+        logger.debug("Whole tree printed");
 
     }
 
@@ -55,11 +55,11 @@ public class TreeOperations {
         parentId = findPhrase(phrase.toLowerCase());
 
         if (parentId != 0) {
-            logger.info("Category found");
+            logger.debug("Category found");
             saveParent(parentId);
         } else {
 
-            logger.info("Category not found");
+            logger.debug("Category not found");
             System.out.println("Nie znaleziono kategorii!");
         }
     }
@@ -78,7 +78,7 @@ public class TreeOperations {
         parents.clear();
         phraseId = 0;
         parentId = 0;
-        logger.info("Parents of category" + parents.get(0) + "printed");
+        logger.debug("Parents of category" + parents.get(0) + "printed");
 
     }
 
