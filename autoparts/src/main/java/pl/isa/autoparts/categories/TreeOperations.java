@@ -46,16 +46,16 @@ public class TreeOperations {
         createCarPartsList(czesciSamochodowe.getId());
     }
 
-//    public AllegroItem findCarPartCategory(String phrase){
-//        for(AllegroItem item : partsList){
-//            if(item.getName().startsWith(phrase))
-//                return item;
-//        }
-//        return null;
-//    }
-    public void findCarPartCategory(String phrase){
+    public AllegroItem findExactCarPartCategory(String phrase){
         for(AllegroItem item : partsList){
             if(item.getName().startsWith(phrase))
+                return item;
+        }
+        return null;
+    }
+    public void findCarPartCategoryList(String phrase){
+        for(AllegroItem item : partsList){
+            if(item.getName().contains(phrase))
                 similarList.add(item);
         }
     }
