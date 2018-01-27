@@ -16,16 +16,14 @@ public class WebLinkGenerator {
 
     public String generateLink(String category, TreeOperations treeOperations) {
         Integer catID;
-        AllegroItem item;
+        AllegroItem parent;
+        AllegroItem categoryItem;
         StringNormalizer stringNormalizer = new StringNormalizer();
         try {
-            treeOperations.resetPhraseId();
-            treeOperations.setSearchedPhrase(category);
-            catID = treeOperations.getPhraseId();
-            item = treeOperations.getParents().get(1);
-            itemName = treeOperations.findName();
-            return "https://allegro.pl/kategoria/" + stringNormalizer.normalize(item.getName())
-                    + "-" + stringNormalizer.normalize(category) + "-" + catID;
+            categoryItem = treeOperations.findCarPartCategory(category);
+            parent = treeOperations.findParent(categoryItem);
+            return "https://allegro.pl/kategoria/" + stringNormalizer.normalize(parent.getName())
+                    + "-" + stringNormalizer.normalize(categoryItem.getName()) + "-" + categoryItem.getId();
 //            logger.info("Link generated");
         } catch (IndexOutOfBoundsException e) {
 //            logger.error("No category parent or category not found, error in link generating");
