@@ -1,11 +1,10 @@
 package pl.isa.autopartsJee.servlets;
 
 
+import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.questions.*;
-import pl.isa.autopartsJee.dao.TreeOperationsDao;
 import pl.isa.autopartsJee.tools.WebLinkGenerator;
 
-import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,8 +19,8 @@ import java.util.Map;
 
 @WebServlet("find-questions")
 public class FindByQuestions extends HttpServlet {
-    @Inject
-    TreeOperationsDao dao;
+//    @Inject
+//    TreeOperationsDao dao;
     Questionary questionary = new Questionary();
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
@@ -70,9 +69,9 @@ public class FindByQuestions extends HttpServlet {
             WebLinkGenerator webLinkGenerator = new WebLinkGenerator();
             List<String> myTmp = new ArrayList<>();
             Map<String, String> tempMap = new HashMap<>();
-
+            TreeOperations treeOperations = new TreeOperations();
             for (Parts partsTmp : parts) {
-                tempMap.put(webLinkGenerator.generateLink(partsTmp.getPart(), dao.getTreeOperations()), partsTmp.getPart());
+                tempMap.put(webLinkGenerator.generateLink(partsTmp.getPart(), treeOperations), partsTmp.getPart());
             }
 
             req.setAttribute("parts", tempMap);
