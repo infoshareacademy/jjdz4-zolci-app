@@ -6,9 +6,10 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class TreeOperationsRepository {
-    TreeOperations treeOperations = new TreeOperations();
+    TreeOperations treeOperations;
 
     public TreeOperations getRepository() {
         return treeOperations;
     }
+    public void initRepository() {treeOperations = new TreeOperations();}
 }

@@ -26,7 +26,7 @@
             <h2>Podaj nazwę kategorii:</h2><br/>
             <form action="/find-by-name" method="GET">
                 <input type="text" name="search">
-                <input type="submit" value="Szukaj">
+                <input type="submit" value="Szukaj" class="hidden btn btn-primary">
             </form>
             <br>
             <br>

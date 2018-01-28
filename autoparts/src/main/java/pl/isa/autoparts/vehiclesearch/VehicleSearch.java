@@ -33,6 +33,11 @@ public class VehicleSearch {
         return findProductionYearAndCylinderVolume(modelName, cylinderVolume);
     }
 
+    public static Vehicle searchVehicleFromURL() throws IOException {
+
+        return JsonParser.parseJsonFromURL(API_URL_PRE + API_URL_POST, Vehicle.class);
+    }
+
     private Vehicle parseFoundVehicle() throws IOException {
 
         if (link == null) {

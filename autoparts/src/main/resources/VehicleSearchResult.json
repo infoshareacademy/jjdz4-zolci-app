@@ -1,5 +1,5 @@
 {
-  "data": {
+  "data": [{
     "kw": "80",
     "end_year": "2013",
     "hp": "80",
@@ -7,9 +7,10 @@
     "engine": "Czterosów",
     "brand_id": "Kia",
     "axle": "9,26",
-    "ccm": "1396",
+    "ccm": "1.4",
     "model_id": "Rio",
     "fuel" : "Benzyna",
-    "max_wieght": "1050"
-  }
+    "max_weight": "1050",
+    "link": ""
+  }]
 }

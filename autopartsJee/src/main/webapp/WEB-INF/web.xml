@@ -4,17 +4,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-
+    <listener>
+        <listener-class>
+            pl.isa.autopartsJee.listener.StartUp
+        </listener-class>
+    </listener>
 
     <display-name>Archetype Created Web Application</display-name>
 
     <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <!--<welcome-file>default.html</welcome-file>-->
-    <!--<welcome-file>default.htm</welcome-file>-->
-    <!--<welcome-file>default.jsp</welcome-file>-->
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <!--<welcome-file>default.html</welcome-file>-->
+        <!--<welcome-file>default.htm</welcome-file>-->
+        <!--<welcome-file>default.jsp</welcome-file>-->
     </welcome-file-list>
 
     <security-constraint>
@@ -22,8 +26,7 @@
             <web-resource-name>HtmlAuth</web-resource-name>
             <description>application security constraints
             </description>
-            <!--<url-pattern>/find-category.jsp</url-pattern>-->
-            <url-pattern></url-pattern>
+            <url-pattern>/find-category.jsp</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
