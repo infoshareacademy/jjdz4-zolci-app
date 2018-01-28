@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<form class="vehicle form-inline">
+<form class="vehicle form-inline" method="post" action="vehicle-search">
     <ul>
         <li>
             <div class="form-group">
