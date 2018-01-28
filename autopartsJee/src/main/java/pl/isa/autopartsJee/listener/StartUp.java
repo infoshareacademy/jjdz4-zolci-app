@@ -11,7 +11,7 @@ public class StartUp implements ServletContextListener {
     TreeOperationsRepositoryDao dao;
 
     public void contextInitialized(ServletContextEvent e) {
-        dao.getRepository();
+        dao.initRepository();
     }
 
     public void contextDestroyed(ServletContextEvent e) {
