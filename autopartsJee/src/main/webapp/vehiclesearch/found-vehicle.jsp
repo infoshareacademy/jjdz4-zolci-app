@@ -26,6 +26,7 @@
     <div class="col-lg-10 col-md-10 col-sm-10 main-container">
         <div class="text-menu text-center">
             <h2>Znalezione auto</h2>
+            <%@include file="fv-data.jsp"%>
         </div>
     </div>
 </div>
