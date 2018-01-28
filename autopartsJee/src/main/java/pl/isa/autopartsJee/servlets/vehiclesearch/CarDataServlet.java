@@ -135,14 +135,8 @@ public class CarDataServlet extends HttpServlet {
 
         if (matcher.find()) {
             Double vol = Double.parseDouble(matcher.group(1));
-            logger.info("Integer vol value: " + matcher.group(1));
             String f = changeFormat(vol);
-            logger.info("Change format: " + f);
             return f;
-        }
-
-        else {
-            logger.info("Match not found");
         }
 
         return volume;
