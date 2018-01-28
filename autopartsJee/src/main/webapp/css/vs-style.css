@@ -35,7 +35,8 @@
     font-size: 15px;
 }
 
-.car-data .blue-data {
+.car-data .blue-data,
+.found-data .blue-data{
     color: #007bff;
 }
 
