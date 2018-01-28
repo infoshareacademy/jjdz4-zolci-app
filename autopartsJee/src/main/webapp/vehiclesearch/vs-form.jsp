@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<form class="vehicle form-inline">
+<form class="vehicle form-inline" method="post" action="vehicle-search">
     <ul>
         <li>
             <div class="form-group">
                 <label for="brand">Marka: </label>
-                <input type="text" class="form-control" value="${brand}" id="brand">
+                <input type="text" class="form-control" name="brand" value="${brand}" id="brand">
             </div>
         </li>
         <li>
@@ -16,7 +16,7 @@
         <li>
             <div class="form-group">
                 <label for="year">Rok produkcji:</label>
-                <input type="number" min="1955" max="2100" class="form-control" value="${year}" id="year">
+                <input type="number" min="1955" max="2100" class="form-control" name="year" value="${year}" id="year">
             </div>
         </li>
         <li>
