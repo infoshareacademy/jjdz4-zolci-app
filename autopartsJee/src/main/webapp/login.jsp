@@ -28,7 +28,7 @@
             <form action="/login" method="POST">
                 <label>Login:</label> <input type="text" name="login"></br>
                 <label>Hasło:</label> <input type="password" name="password"></br>
-                <input type="submit" value="Szukaj">
+                <input type="submit" value="Szukaj" class="hidden btn btn-primary">
 
             </form>
 

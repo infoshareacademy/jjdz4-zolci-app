@@ -14,4 +14,9 @@ public class TreeOperationsRepositoryDaoBean implements TreeOperationsRepository
     public TreeOperations getRepository() {
         return treeOperationsRepository.getRepository();
     }
+
+    @Override
+    public void initRepository() {
+        treeOperationsRepository.initRepository();
+    }
 }
