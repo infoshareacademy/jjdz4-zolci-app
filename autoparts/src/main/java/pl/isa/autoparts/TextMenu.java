@@ -13,7 +13,6 @@ public class TextMenu {
     Scanner sc = new Scanner(System.in);
     int input;
 
-    InitateAztec initateAztec = new InitateAztec();
 
     String[] menuOptions = {"Koniec programu", "Wydrukuj całe drzewo kategorii", "Wybierz kategorię szukanej części", "Pobierz dane kodu aztec ze zdjęcia",
             "Wyszukiwanie auta na podstawie serii pytań"};
@@ -58,16 +57,16 @@ public class TextMenu {
             checkOption = choseOptions();
             switch (checkOption) {
                 case 1:
-                    treeOperations.printWholeTree();
+                  //  treeOperations.printWholeTree();
                     break;
                 case 2:
                     linkGenerator.printAllegroLinkToCategory();
                     break;
                 case 3:
-                    initateAztec.executeAztecReader();
+                    InitateAztec.executeAztecReader();
                     break;
                 case 4:
-                    initateAztec.executeVehicleFinder();
+                    InitateAztec.executeVehicleSearch();
 
                     break;
 

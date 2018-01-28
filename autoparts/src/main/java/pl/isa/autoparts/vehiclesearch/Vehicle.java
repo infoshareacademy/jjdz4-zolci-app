@@ -1,4 +1,4 @@
-package pl.isa.autoparts.vehiclefinder;
+package pl.isa.autoparts.vehiclesearch;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

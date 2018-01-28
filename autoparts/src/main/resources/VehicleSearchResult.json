@@ -1,0 +1,15 @@
+{
+  "data": {
+    "kw": "80",
+    "end_year": "2013",
+    "hp": "80",
+    "cylinders": "4",
+    "engine": "Czterosów",
+    "brand_id": "Kia",
+    "axle": "9,26",
+    "ccm": "1396",
+    "model_id": "Rio",
+    "fuel" : "Benzyna",
+    "max_wieght": "1050"
+  }
+}
