@@ -4,37 +4,37 @@
         <li>
             <div class="form-group">
                 <label for="brand">Marka: </label>
-                <input type="text" class="form-control" value="${brandName}" id="brand">
+                <input type="text" class="form-control" value="${brand}" id="brand">
             </div>
         </li>
         <li>
             <div class="form-group">
                 <label for="model">Model:</label>
-                <input type="text" class="form-control" value="${modelName}" id="model">
+                <input type="text" class="form-control" value="${model}" id="model">
             </div>
         </li>
         <li>
             <div class="form-group">
                 <label for="year">Rok produkcji:</label>
-                <input type="number" min="1955" max="2100" class="form-control" value="${productionYear}" id="year">
+                <input type="number" min="1955" max="2100" class="form-control" value="${year}" id="year">
             </div>
         </li>
         <li>
             <div class="form-group">
                 <label for="volume">Pojemność silnika [cm&sup3;]:</label>
-                <input type="number" min="100" max="90000" class="form-control" value="${vehicleVolume}" id="volume">
+                <input type="text" class="form-control" value="${formattedVolume}" id="volume">
             </div>
         </li>
         <li>
             <div class="form-group">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="fuelType" id="fuelGasoline" value="gasoline" checked>
+                    <input class="form-check-input" type="radio" name="fuelType" id="fuelGasoline" value="gasoline" <c:if test="${checkFuel != null}">checked</c:if>>
                     <label class="form-check-label" for="fuelGasoline">
                         Benzyna
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="fuelType" id="fuelDiesel" value="diesel">
+                    <input class="form-check-input" type="radio" name="fuelType" id="fuelDiesel" value="diesel" <c:if test="${checkFuel == null}">checked</c:if>>
                     <label class="form-check-label" for="fuelDiesel">
                         Olej napędowy
                     </label>
