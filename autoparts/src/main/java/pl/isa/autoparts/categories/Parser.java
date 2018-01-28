@@ -59,7 +59,7 @@ class Parser {
                                 .item(0)
                                 .getTextContent().toLowerCase());
 
-                        allegroItem.setParent(Integer.parseInt(eElement
+                        allegroItem.setParentId(Integer.parseInt(eElement
                                 .getElementsByTagName("ns1:catParent")
                                 .item(0)
                                 .getTextContent()));

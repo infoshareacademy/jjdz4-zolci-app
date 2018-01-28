@@ -9,6 +9,15 @@ public class AllegroItem {
 
     private ArrayList<AllegroItem> children = new ArrayList<AllegroItem>();
 
+    public AllegroItem getParent() {
+        return parent;
+    }
+
+    public void setParent(AllegroItem parent) {
+        this.parent = parent;
+    }
+
+    private AllegroItem parent;
 
     public int getId() {
         return id;
@@ -26,11 +35,11 @@ public class AllegroItem {
         this.name = name;
     }
 
-    public int getParent() {
+    public int getParentId() {
         return parentId;
     }
 
-    public void setParent(int parent) {
+    public void setParentId(int parent) {
         this.parentId = parent;
     }
 
@@ -39,7 +48,7 @@ public class AllegroItem {
         for (int i = 0; i < allegroList.size(); i++) {
             AllegroItem child = allegroList.get(i);
 
-            if (this.id == child.getParent()) {
+            if (this.id == child.getParentId()) {
                 this.children.add(child);
 
                 child.createChildrenList(allegroList);
