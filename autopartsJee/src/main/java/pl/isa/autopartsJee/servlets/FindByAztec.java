@@ -3,6 +3,7 @@ package pl.isa.autopartsJee.servlets;
 import org.hibernate.Session;
 import pl.isa.autoparts.aztec.AtenaSessionReader;
 import pl.isa.autoparts.aztec.AztecVehicle;
+import pl.isa.autoparts.tools.JsonParser;
 import pl.isa.autopartsJee.repository.CarData;
 import pl.isa.autopartsJee.repository.ICarRepository;
 
@@ -26,6 +27,7 @@ public class FindByAztec extends HttpServlet{
         AtenaSessionReader sessionReader = new AtenaSessionReader(req.getParameter("search"));
 //        try {
             AztecVehicle vehicle = sessionReader.parseAztecFromSession();
+//            AztecVehicle vehicle = JsonParser.parseJsonFromFile("AztecCodeResult.json", AztecVehicle.class);
 
             String vehicleMake = vehicle.getAztecData().getVehicleMakeField_D1();
             String vehicleModel = vehicle.getAztecData().getVehicleModelField_D5();

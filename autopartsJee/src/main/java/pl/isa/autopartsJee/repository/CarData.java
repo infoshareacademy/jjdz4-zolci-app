@@ -7,9 +7,11 @@ public class CarData {
 
 
     @Id
-    @Column(name = "id", unique = true)
+    @Column(unique = true)
     @GeneratedValue(strategy= GenerationType.AUTO)
     int carID;
+
+    @Column
     String vehicleMake;
     String vehicleModel;
     String vehicleVersion;
@@ -18,7 +20,7 @@ public class CarData {
     String capacity;
     String power;
     int prodYear;
-    @Column(unique = true)
+    //@Column(unique = true)
     String vin;
     String registryNumber;
 
