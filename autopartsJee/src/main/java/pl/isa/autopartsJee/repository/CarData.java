@@ -1,8 +1,6 @@
 package pl.isa.autopartsJee.repository;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class CarData {
@@ -10,6 +8,7 @@ public class CarData {
 
     @Id
     @Column(name = "id", unique = true)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     int carID;
     String vehicleMake;
     String vehicleModel;

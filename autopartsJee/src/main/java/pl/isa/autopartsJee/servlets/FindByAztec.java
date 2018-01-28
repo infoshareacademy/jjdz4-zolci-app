@@ -1,9 +1,12 @@
 package pl.isa.autopartsJee.servlets;
 
+import org.hibernate.Session;
 import pl.isa.autoparts.aztec.AtenaSessionReader;
 import pl.isa.autoparts.aztec.AztecVehicle;
 import pl.isa.autopartsJee.repository.CarData;
+import pl.isa.autopartsJee.repository.ICarRepository;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,11 +18,15 @@ import java.io.IOException;
 @WebServlet("/find-by-aztec")
 public class FindByAztec extends HttpServlet{
 
+    @Inject
+    ICarRepository carRepository;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AtenaSessionReader sessionReader = new AtenaSessionReader(req.getParameter("search"));
 //        try {
             AztecVehicle vehicle = sessionReader.parseAztecFromSession();
+
             String vehicleMake = vehicle.getAztecData().getVehicleMakeField_D1();
             String vehicleModel = vehicle.getAztecData().getVehicleModelField_D5();
             String vehicleVersion = vehicle.getAztecData().getVehicleVersionField_D4();
@@ -44,6 +51,8 @@ public class FindByAztec extends HttpServlet{
  //       } catch (Exception e) {
  //           throw new ServletException(e);
  //       }
+
+
         CarData carData = new CarData();
         carData.setVehicleMake(vehicleMake);
         carData.setVehicleModel(vehicleModel);
@@ -56,7 +65,11 @@ public class FindByAztec extends HttpServlet{
         carData.setVin(vin);
         carData.setRegistryNumber(registryNumber);
 
+        carRepository.addCar(carData);
+
         RequestDispatcher dispatcher = req.getRequestDispatcher("find-by-aztec-result.jsp");
         dispatcher.forward(req, resp);
     }
+
+
 }
