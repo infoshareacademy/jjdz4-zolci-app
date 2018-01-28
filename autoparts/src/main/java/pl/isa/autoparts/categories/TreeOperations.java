@@ -12,9 +12,11 @@ public class TreeOperations {
     private ArrayList<AllegroItem> partsList = new ArrayList<>();
     private AllegroItem czesciSamochodowe = new AllegroItem();
     private ArrayList<AllegroItem> similarList = new ArrayList<>();
-    public void clearList(){
+
+    public void clearList() {
         similarList.clear();
     }
+
     public TreeOperations() {
         Parser parser = new Parser();
         allegroList = parser.getAllegroList();
@@ -28,7 +30,7 @@ public class TreeOperations {
 
     private void createCarPartsList(int parentId) {
         for (AllegroItem item : allegroList) {
-            if (item.getParent() == parentId) {
+            if (item.getParentId() == parentId) {
                 partsList.add(item);
                 createCarPartsList(item.getId());
             }
@@ -65,7 +67,7 @@ public class TreeOperations {
 
     public AllegroItem findParent(AllegroItem child) {
         for (AllegroItem item : partsList) {
-            if (item.getId() == child.getParent())
+            if (item.getId() == child.getParentId())
                 return item;
         }
         return child;
