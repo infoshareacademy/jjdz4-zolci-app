@@ -1,0 +1,49 @@
+.text-menu h2 {
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.vehicle li .form-group label {
+    margin-right: 20px;
+}
+
+.vehicle li {
+    margin-bottom: 20px;
+}
+
+.vehicle input {
+    color: #007bff;
+    font-size: 20px;
+}
+
+.vehicle .form-inline form {
+    margin: 0 auto;
+}
+
+.vehicle .btn {
+    margin-top: 30px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.vehicle .form-check-label {
+    font-size: 20px;
+}
+
+.car-data button {
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+.car-data .blue-data {
+    color: #007bff;
+}
+
+.car-data .hidden {
+    display: none;
+}
+
+.car-data input {
+    color: #007bff;
+    width: 130px;
+}
