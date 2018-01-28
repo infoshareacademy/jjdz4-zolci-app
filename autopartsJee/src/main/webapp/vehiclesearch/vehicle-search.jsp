@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="/vehiclesearch/vs-style.css">
+    <link rel="stylesheet" href="vs-style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
     <script type="text/javascript" src="../scripts/jquery-3.3.1.min.js"></script>
@@ -19,7 +19,7 @@
 <div class="row justify-content-center" id="wrapper">
 
     <div class="col-lg-2 col-md-2 col-sm-2 side-bar">
-        <%@ include file="../carData.jsp"%>
+        <%@ include file="carData.jsp"%>
     </div>
 
     <div class="col-lg-10 col-md-10 col-sm-10 main-container">

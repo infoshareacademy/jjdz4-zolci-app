@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $("#aztec-btn").onclick(function () {
+    $("#atena-btn").click(function () {
         $(".car-data .hide-btn").hide();
         $(".car-data .hidden").show();
     });

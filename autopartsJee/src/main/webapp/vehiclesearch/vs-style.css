@@ -30,8 +30,8 @@
     font-size: 20px;
 }
 
-.car-data .btn {
-    margin-top: 10px;
+.car-data button {
+    margin-top: 15px;
     font-size: 15px;
 }
 
@@ -45,4 +45,5 @@
 
 .car-data input {
     color: #007bff;
+    width: 130px;
 }
