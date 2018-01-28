@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.tools.JsonParser;
 import pl.isa.autoparts.vehiclesearch.Vehicle;
+import pl.isa.autoparts.vehiclesearch.VehicleData;
+import pl.isa.autoparts.vehiclesearch.VehicleSearch;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,31 +26,46 @@ public class VehicleSearchServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) {
 
+
         request = req;
         response = res;
 
-        request.setAttribute("brand", request.getParameter("brand"));
-        request.setAttribute("model", request.getParameter("model"));
-        request.setAttribute("year", request.getParameter("year"));
-        request.setAttribute("version", request.getParameter("version"));
-        request.setAttribute("variant", request.getParameter("variant"));
-        request.setAttribute("fuel", request.getParameter("fuel"));
-        request.setAttribute("volume", request.getParameter("volume"));
-        request.setAttribute("formattedVolume", request.getParameter("formattedVolume"));
-        request.setAttribute("power", request.getParameter("power"));
-        request.setAttribute("vin", request.getParameter("vin"));
-        request.setAttribute("registry", request.getParameter("registry"));
 
 
         Vehicle vehicle = null;
+        String brand = request.getParameter("brand");
+
+        if (brand != null) {
+            if (!brand.equals("KIA")) {
+                try {
+                    vehicle = VehicleSearch.searchVehicleFromURL();
+                } catch (IOException e) {
+                    forwardToPageWithError("Nie udało się połączyć z bazą danych");
+                    logger.error("Could not connect to database.");
+                    return;
+                }
+            }
+        }
 
         try {
             vehicle = JsonParser.parseJsonFromFile("VehicleSearchResult.json", Vehicle.class);
         } catch (IOException e) {
-            forwardToPageWithError("Błąd pobrania dummy json");
+            forwardToPageWithError("Nie udało się pobrać dummy json. " + e.toString());
             logger.error("Json file load error");
             return;
         }
+
+        VehicleData[] d = vehicle.getData();
+        request.setAttribute("fBrand", d[0].getBrand_id());
+        request.setAttribute("fModel", d[0].getModel_id());
+        request.setAttribute("fYear", d[0].getEnd_year());
+        request.setAttribute("fVolume", d[0].getCcm());
+        request.setAttribute("fHp", d[0].getHp());
+        request.setAttribute("fCylinders", d[0].getCylinders());
+        request.setAttribute("fEngtype", d[0].getEngine());
+        request.setAttribute("fFuel", d[0].getFuel());
+        request.setAttribute("fAxle", d[0].getAxle());
+        request.setAttribute("fWeight", d[0].getMax_weight());
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("found-vehicle.jsp");
         try {
@@ -73,4 +90,5 @@ public class VehicleSearchServlet extends HttpServlet{
             logger.error("IO Servlet request dispatcher error." + e.toString());
         }
     }
+
 }
