@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/menu.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
     <title>Strona główna</title>
-    <link rel="stylesheet" href="css/menu.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
 <a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1>Autoparts Finder</h1></div></a>
@@ -27,7 +27,7 @@
                 <li><%@ include file="check-login.jsp" %></li>
                 <li><a href="find-category.jsp">Wyszukaj kategorię</a></li>
                 <li><a href="">Podaj kod AZTEC</a></li>
-                <li><a href="">Wyszukaj auto z formularza</a></li>
+                <li><a href="vehiclesearch/vehicle-search.jsp">Wyszukaj auto z formularza</a></li>
             </ul>
         </div>
     </div>

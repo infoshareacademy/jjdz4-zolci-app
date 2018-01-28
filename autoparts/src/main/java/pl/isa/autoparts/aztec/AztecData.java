@@ -160,10 +160,6 @@ public class AztecData {
         return errorText;
     }
 
-    public String getAztecSession() {
-        return aztecSession;
-    }
-
     public String getRegistryCardNumber() {
         return registryCardNumber;
     }
