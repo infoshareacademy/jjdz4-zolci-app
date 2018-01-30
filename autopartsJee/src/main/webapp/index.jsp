@@ -13,24 +13,38 @@
     <title>Strona główna</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
-<body>
-<a id="banner" href="index.jsp"><div class="container-fluid text-center" id="header"><h1>Autoparts Finder</h1></div></a>
-<div class="row justify-content-center" id="wrapper">
-    <div class="col-lg-2 col-md-2 col-sm-2 side-bar">
-        <%@ include file="carData.jsp"%>
 
-    </div>
-    <div class="col-lg-10 col-md-10 col-sm-10 main-container">
-        <div class="text-menu text-center">
-            <h2>Wybierz jedną z opcji:</h2><br/>
-            <ul id="myUL">
-                <li><%@ include file="check-login.jsp" %></li>
-                <li><a href="find-category.jsp">Wyszukaj kategorię</a></li>
-                <li><a href="">Podaj kod AZTEC</a></li>
-                <li><a href="vehiclesearch/vehicle-search.jsp">Wyszukaj auto z formularza</a></li>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
             </ul>
         </div>
     </div>
-</div>
+</nav>
+
+
+
 </body>
+
 </html>

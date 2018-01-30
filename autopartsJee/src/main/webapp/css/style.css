@@ -1,68 +1,23 @@
-html{
-    height: 100%;
-    min-height: 100%;
-}
-
 body {
-    font-family: 'Lato', sans-serif;
-    background-color: floralwhite;
-    height: 100%;
-    min-height: 100%;
-}
-
-a {
-    color: black;
-}
-
-a:hover, a:visited {
-    color: black;
-}
-
-ul {
-    list-style: none;
-}
-
-#wrapper{
-    min-height: 89%;
-}
-.side-bar {
-    background-color: navajowhite;
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
+    background: url('../images/backgroundImage.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 
 
-#header {
-    padding: 3vh 0 2vh 0;
-    display: block;
-    background-color: floralwhite;
-    font-family: 'Open Sans', sans-serif;
-}
-#header > a:hover, a:visited {
-    text-decoration: none;
-    color: black;
-}
-.main-container {
-    background-color: floralwhite;
-    border-style: solid;
-    border-color: black;
-    border-width: 1px 0 0 0;
-}
-.text-menu {
-    font-size: 28px;
-    padding-top: 10%;
+.navbar-dark{
+    background:transparent;
+    background-image:none;
+    border-color:transparent;
+    box-shadow:none;
 }
 
-@media (max-width: 576px) {
-    .side-bar{
-        display: none;
-    }
-    .text-menu{
-        font-size: 20px;
-    }
-}
 
-#banner:hover, #banner:visited{
-    text-decoration: none;
+.bg-dark{
+    background:transparent;
+    background-image:none;
+    border-color:transparent;
+    box-shadow:none;
 }
