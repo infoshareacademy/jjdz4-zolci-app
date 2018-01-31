@@ -27,8 +27,9 @@
             <http-method>POST</http-method>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>admin</role-name>
+            <role-name>user</role-name>
         </auth-constraint>
+
     </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
@@ -37,6 +38,9 @@
             <form-error-page>/index.jsp</form-error-page>
         </form-login-config>
     </login-config>
+    <security-role>
+        <role-name>user</role-name>
+    </security-role>
     <security-role>
         <role-name>admin</role-name>
     </security-role>
