@@ -7,17 +7,13 @@ body {
 }
 
 
-.navbar-dark{
-    background:transparent;
-    background-image:none;
-    border-color:transparent;
-    box-shadow:none;
-}
 
-
-.bg-dark{
-    background:transparent;
-    background-image:none;
-    border-color:transparent;
-    box-shadow:none;
-}
+/*.navbar a.navbar-brand {*/
+    /*color: white;*/
+/*}*/
+/*.navbar a.navbar-brand:hover{*/
+    /*color: #EEEEEE;*/
+/*}*/
+/*.navbar navbar-collapse navbar-nav a.nav-item{*/
+    /*color: white;*/
+/*}*/

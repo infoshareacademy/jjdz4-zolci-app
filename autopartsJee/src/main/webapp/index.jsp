@@ -16,45 +16,41 @@
 
 <body>
 
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style=" background-color:rgba(41,41,41,0.8);">
+    <div class="container">
+        <a class="navbar-brand" href="index.jsp">
+            <i class="demo-icon icon-wrench-outline"></i>
+            Autoparts Finder
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<%--<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style=" background-color:rgba(41,41,41,0.8);">--%>
-<%--<div class="container">--%>
-<%--<a class="navbar-brand" href="index.jsp">--%>
-<%--<i class="demo-icon icon-wrench-outline"></i>--%>
-<%--Autoparts Finder--%>
-<%--</a>--%>
-
-<%--<div class="navbar" id="navbarResponsive">--%>
-<%--<ul class="navbar-nav ml-auto">--%>
-<%--<%@include file="check-login.jsp"%>--%>
-<%--</ul>--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--</nav>--%>
-
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgba(41,41,41,0.8);">
-    <a class="navbar-brand" href="index.jsp">
-        <i class="demo-icon icon-wrench-outline"></i>
-        Autoparts Finder
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <%@include file="check-login.jsp" %>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav ml-auto">
+                <%@include file="context-menu.jsp" %>
+            </ul>
         </div>
     </div>
 </nav>
+<div class="container">
+    <div class="h-50" style=" background-color:rgba(41,41,41,0.8);">
+
+    </div>
+
+</div>
 
 
-
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
