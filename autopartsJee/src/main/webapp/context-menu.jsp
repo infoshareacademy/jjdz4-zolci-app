@@ -3,7 +3,9 @@
 
 <c:choose>
 <c:when test="${not empty sessionScope.isLogged && sessionScope.isLogged == true}">
-    Zalogowano jako ${sessionScope.loggedUser} <a href="<c:url value="/logout"/>">Wyloguj</a>
+    <a class="nav-item nav-link active" href="/logout">Wyloguj [${sessionScope.loggedUser}]
+        <span class="sr-only">(current)</span>
+    </a>
 </c:when>
 <c:otherwise>
         <a class="nav-item nav-link active" href="login.jsp">Logowanie
