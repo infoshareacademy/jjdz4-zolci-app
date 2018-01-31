@@ -16,7 +16,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style=" background-color:rgba(41,41,41,0.8);">
+<nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
     <div class="container">
         <a class="navbar-brand" href="index.jsp">
             <i class="demo-icon icon-wrench-outline"></i>
@@ -35,9 +35,15 @@
     </div>
 </nav>
 <div class="container">
-    <div class="h-50" style=" background-color:rgba(41,41,41,0.8);">
 
+    <div class="content">
+        <h1> Autoparts Finder</h1><br/>
+        <h3>Autoparts Finder jest aplikacją, która pomoże Ci zlokalizować uszkodzoną część w Twoim aucie oraz
+            przekieruje Cię
+            do kategorii Allegro, w której znajdziesz część zamienną. </h3><br/>
+        <h4>Zaloguj się, aby wprowadzić do naszej bazy danych swój pojazd i skorzystać z funkcjonalności serwisu.</h4>
     </div>
+
 
 </div>
 

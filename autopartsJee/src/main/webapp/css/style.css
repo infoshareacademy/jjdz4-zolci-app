@@ -6,14 +6,10 @@ body {
     -o-background-size: cover;
 }
 
-
-
-/*.navbar a.navbar-brand {*/
-    /*color: white;*/
-/*}*/
-/*.navbar a.navbar-brand:hover{*/
-    /*color: #EEEEEE;*/
-/*}*/
-/*.navbar navbar-collapse navbar-nav a.nav-item{*/
-    /*color: white;*/
-/*}*/
+.content {
+    background-color:rgba(41,41,41,0.8);
+    margin-top: 10rem;
+    color: white;
+    text-align: justify;
+    padding: 4rem;
+}
