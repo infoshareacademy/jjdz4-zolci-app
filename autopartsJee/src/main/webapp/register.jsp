@@ -36,8 +36,8 @@
 <div class="container">
 
     <div class="content">
-        <h1>Logowanie</h1><br/>
-        <form action="/login" method="POST">
+        <h1>Rejestracja</h1><br/>
+        <form action="/register" method="POST">
             <div class="form-group">
                 <label>Login</label>
                 <input type="text" class="form-control" name="login">
@@ -46,7 +46,19 @@
                 <label>Hasło</label>
                 <input type="password" class="form-control" name="password">
             </div>
-            <button type="submit" class="btn btn-primary">Zaloguj się</button>
+            <div class="form-group">
+                <label>Adres Email</label>
+                <input type="email" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+                <label>Imię</label>
+                <input type="text" class="form-control" name="name">
+            </div>
+            <div class="form-group">
+                <label>Nazwisko</label>
+                <input type="text" class="form-control" name="surname">
+            </div>
+            <button type="submit" class="btn btn-primary">Zarejestruj się</button>
         </form>
     </div>
 
