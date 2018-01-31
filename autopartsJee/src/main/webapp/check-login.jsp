@@ -6,7 +6,10 @@
     Zalogowano jako ${sessionScope.loggedUser} <a href="<c:url value="/logout"/>">Wyloguj</a>
 </c:when>
 <c:otherwise>
-    <a href="<c:url value="login.jsp"/>">Zaloguj się</a>
+        <a class="nav-item nav-link active" href="login.jsp">Logowanie
+            <span class="sr-only">(current)</span>
+        </a>
+        <a class="nav-item nav-link" href="register.jsp">Rejestracja</a>
 </c:otherwise>
 </c:choose>
 <c:if test="${errorMessage != null}">
