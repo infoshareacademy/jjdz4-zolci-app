@@ -46,9 +46,13 @@ public class RegisterServlet extends HttpServlet {
         user.setName(req.getParameter("name"));
         user.setSurname(req.getParameter("surname"));
         user.setLogin(req.getParameter("login"));
-        user.setUser_role("user");
-        user.setUser_group("user");
+        role.setRole_group("user");
+        role.setUser_role("user");
+        role.setUser_id(user.getId());
+        role.setUser_login(user.getLogin());
         usersRepositoryDao.addUser(user);
+        rolesRepositoryDao.addUser(role);
+        //TODO rozdzielic to na dwa servlety, do rol dodawac id usera
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
         requestDispatcher.forward(req, resp);
     }
