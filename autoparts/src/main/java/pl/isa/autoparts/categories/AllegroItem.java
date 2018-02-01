@@ -44,22 +44,4 @@ public class AllegroItem {
     }
 
 
-    public void createChildrenList(ArrayList<AllegroItem> allegroList) {
-        for (int i = 0; i < allegroList.size(); i++) {
-            AllegroItem child = allegroList.get(i);
-
-            if (this.id == child.getParentId()) {
-                this.children.add(child);
-
-                child.createChildrenList(allegroList);
-            }
-        }
-    }
-
-
-    public ArrayList<AllegroItem> getChildren() {
-        return children;
-    }
-
-
 }

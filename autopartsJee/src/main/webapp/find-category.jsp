@@ -37,13 +37,15 @@
 <div class="container">
 
     <div class="content">
-        <h1> Autoparts Finder</h1><br/>
-        <div class="card" style="width: 18rem;">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><a href="find-category-by-name.jsp">Wpisz nazwę szukanej części</a></li>
-                <li class="list-group-item"><a href="/find-questions?step=1">Wyszukanie części z menu</a></li>
-                <li class="list-group-item"><a href="/index.jsp">Wróć</a></li>
-            </ul>
+        <h1>Znajdź kategorię allegro</h1><br/>
+
+        <div class="row justify-content-center">
+            <a href="find-category-by-name.jsp" class="btn btn-secondary btn-lg active" role="button"
+               aria-pressed="true">Wyszukaj
+                ręcznie</a>
+            <a href="find-questions?step=1" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Odpowiedz
+                na pytania</a>
+
         </div>
     </div>
 

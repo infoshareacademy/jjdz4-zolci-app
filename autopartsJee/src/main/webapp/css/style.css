@@ -7,9 +7,14 @@ body {
 }
 
 .content {
-    background-color:rgba(41,41,41,0.8);
+    background-color: rgba(41, 41, 41, 0.8);
     margin-top: 10rem;
     color: white;
     text-align: justify;
     padding: 4rem;
+}
+
+.btn {
+    margin: 4px;
+    width: 20%;
 }

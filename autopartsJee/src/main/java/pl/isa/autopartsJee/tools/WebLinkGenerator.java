@@ -32,7 +32,7 @@ public class WebLinkGenerator {
 
         try {
             treeOperations.clearList();
-            treeOperations.findCarPartCategoryList(category);
+            treeOperations.findCarPartCategoryList(category.toLowerCase());
             ArrayList<AllegroItem> similarList = treeOperations.getSimilarList();
             for (AllegroItem item : similarList) {
                 parent = treeOperations.findParent(item);
