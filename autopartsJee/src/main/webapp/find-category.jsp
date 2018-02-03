@@ -40,10 +40,10 @@
         <h1>Znajdź kategorię allegro</h1><br/>
 
         <div class="row justify-content-center">
-            <a href="find-category-by-name.jsp" class="btn btn-secondary btn-lg active" role="button"
+            <a href="find-category-by-name.jsp" class="btn btn-secondary btn-lg listing" role="button"
                aria-pressed="true">Wyszukaj
                 ręcznie</a>
-            <a href="find-questions?step=1" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Odpowiedz
+            <a href="find-questions?step=1" class="btn btn-secondary btn-lg listing" role="button" aria-pressed="true">Odpowiedz
                 na pytania</a>
 
         </div>

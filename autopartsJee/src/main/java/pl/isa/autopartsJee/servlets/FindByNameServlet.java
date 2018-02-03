@@ -2,6 +2,7 @@ package pl.isa.autopartsJee.servlets;
 
 import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autopartsJee.dao.TreeOperationsRepositoryDao;
+import pl.isa.autopartsJee.domain.ItemParentName;
 import pl.isa.autopartsJee.repository.TreeOperationsRepository;
 import pl.isa.autopartsJee.tools.WebLinkGenerator;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 @WebServlet("/find-by-name")
@@ -24,7 +26,7 @@ public class FindByNameServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebLinkGenerator linkGenerator = new WebLinkGenerator();
         linkGenerator.generateLinkMap(req.getParameter("search"), dao.getRepository());
-        Map<String, String> link = linkGenerator.getNameLink();
+        Map<String, ItemParentName> link = linkGenerator.getLinkAndNames();
 
         req.setAttribute("link", link);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-by-name-result.jsp");

@@ -42,7 +42,7 @@
 
             <div class="row justify-content-center">
                 <a href="/find-questions?selected=<c:out value="${entry}"/>&step=4"
-                   class="btn btn-secondary btn-lg active" role="button"
+                   class="btn btn-secondary btn-lg listing" role="button"
                    aria-pressed="true"><c:out value="${entry}"/></a>
             </div>
         </c:forEach>

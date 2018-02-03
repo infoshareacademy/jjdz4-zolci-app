@@ -42,7 +42,7 @@
 
             <div class="row justify-content-center">
                 <a href="${entry.key}"
-                   class="btn btn-secondary btn-lg active" role="button"
+                   class="btn btn-secondary btn-lg listing" role="button"
                    aria-pressed="true" target="_blank"><c:out value="${entry.value}"/></a>
             </div>
         </c:forEach>

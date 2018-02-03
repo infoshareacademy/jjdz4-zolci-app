@@ -3,6 +3,7 @@ package pl.isa.autopartsJee.tools;
 import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.tools.StringNormalizer;
+import pl.isa.autopartsJee.domain.ItemParentName;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +21,12 @@ public class WebLinkGenerator {
 
     Map<String, String> nameLink = new HashMap<>();
 
+    public Map<String, ItemParentName> getLinkAndNames() {
+        return linkAndNames;
+    }
+
+    Map<String, ItemParentName> linkAndNames = new HashMap<>();
+
     public String getItemName() {
         return itemName;
     }
@@ -35,10 +42,16 @@ public class WebLinkGenerator {
             treeOperations.findCarPartCategoryList(category.toLowerCase());
             ArrayList<AllegroItem> similarList = treeOperations.getSimilarList();
             for (AllegroItem item : similarList) {
+                ItemParentName itemParentName = new ItemParentName();
                 parent = treeOperations.findParent(item);
-                nameLink.put("https://allegro.pl/kategoria/" + stringNormalizer.normalize(parent.getName())
-                        + "-" + stringNormalizer.normalize(item.getName()) + "-" + item.getId(), item.getName().substring(0, 1).toUpperCase()
+                itemParentName.setItemName(item.getName().substring(0, 1).toUpperCase()
                         + item.getName().substring(1).toLowerCase());
+                itemParentName.setParentName(parent.getName().substring(0, 1).toUpperCase()
+                        + parent.getName().substring(1).toLowerCase());
+
+                linkAndNames.put("https://allegro.pl/kategoria/" + stringNormalizer.normalize(parent.getName())
+                        + "-" + stringNormalizer.normalize(item.getName()) + "-" + item.getId(), itemParentName);
+
 //            logger.info("Link generated");
             }
         } catch (IndexOutOfBoundsException e) {
