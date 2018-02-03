@@ -1,11 +1,9 @@
 package pl.isa.autopartsJee.servlets;
 
-import org.hibernate.Session;
 import pl.isa.autoparts.aztec.AtenaSessionReader;
 import pl.isa.autoparts.aztec.AztecVehicle;
-import pl.isa.autoparts.tools.JsonParser;
-import pl.isa.autopartsJee.repository.CarData;
-import pl.isa.autopartsJee.repository.ICarRepository;
+import pl.isa.autopartsJee.domain.CarData;
+import pl.isa.autopartsJee.dao.CarRepositoryDao;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -20,7 +18,7 @@ import java.io.IOException;
 public class FindByAztec extends HttpServlet{
 
     @Inject
-    ICarRepository carRepository;
+    CarRepositoryDao carRepository;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

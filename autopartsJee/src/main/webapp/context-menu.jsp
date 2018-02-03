@@ -8,8 +8,9 @@
         <%--TUTAJ MOZNA DODAWAC KOLEJNE FUNKCJONALNOSCI--%>
 
 
+        <a class="nav-item nav-link" href="add-car-to-database.jsp">Dodaj auto do bazy danych</a>
         <a class="nav-item nav-link" href="find-category.jsp">Znajdź kategorię</a>
-        <a class="nav-item nav-link active" href="/logout">Wyloguj [${sessionScope.loggedUser}]
+        <a class="nav-item nav-link active" href="/logout">Wyloguj [${sessionScope.loggedUser} ${sessionScope.userId}]
             <span class="sr-only">(current)</span>
         </a>
     </c:when>

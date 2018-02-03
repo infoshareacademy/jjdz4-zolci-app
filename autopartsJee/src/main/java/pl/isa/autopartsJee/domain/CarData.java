@@ -1,4 +1,4 @@
-package pl.isa.autopartsJee.repository;
+package pl.isa.autopartsJee.domain;
 
 import javax.persistence.*;
 
@@ -8,21 +8,31 @@ public class CarData {
 
     @Id
     @Column(unique = true)
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int carID;
 
     @Column
-    String vehicleMake;
-    String vehicleModel;
-    String vehicleVersion;
-    String vehicleVariant;
-    String fuel;
-    String capacity;
-    String power;
-    int prodYear;
+    private String vehicleMake;
+    private String vehicleModel;
+    private String vehicleVersion;
+    private String vehicleVariant;
+    private String fuel;
+    private String capacity;
+    private String power;
+    private int prodYear;
     //@Column(unique = true)
-    String vin;
-    String registryNumber;
+    private String vin;
+    private String registryNumber;
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    private int ownerId;
 
     public void setCarID(int carID) {
         this.carID = carID;

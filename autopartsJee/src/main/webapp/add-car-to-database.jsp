@@ -37,13 +37,14 @@
 <div class="container">
 
     <div class="content">
-        <h1>Podaj kod sesji Atena:</h1><br/>
-        <form action="/find-by-aztec" method="GET">
-            <div class="form-group">
-                <input type="text" class="form-control" name="search">
-            </div>
-            <button type="submit" class="btn btn-primary">Szukaj</button>
-        </form>
+        <h1>Znajdź kategorię allegro</h1><br/>
+
+        <div class="row justify-content-center">
+            <a href="find-car-by-aztec.jsp" class="btn btn-secondary btn-lg listing" role="button"
+               aria-pressed="true">Dodaj poprzez kod Aztec</a>
+            <a href="vehiclesearch/vehicle-search.jsp" class="btn btn-secondary btn-lg listing" role="button" aria-pressed="true">Wprowadź auto ręcznie</a>
+
+        </div>
     </div>
 
 
@@ -62,4 +63,3 @@
 </body>
 
 </html>
-

@@ -8,4 +8,6 @@ import javax.ejb.Local;
 public interface UsersRepositoryDao {
 
     void addUser(User user);
+
+    User findUserByLogin(String login);
 }

@@ -15,4 +15,9 @@ public class UsersRepositoryDaoBean implements UsersRepositoryDao{
     usersRepository.addUser(user);
 
     }
+
+    @Override
+    public User findUserByLogin(String login) {
+        return usersRepository.findUserByLogin(login);
+    }
 }

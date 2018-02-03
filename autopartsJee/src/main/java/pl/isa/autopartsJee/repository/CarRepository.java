@@ -1,11 +1,13 @@
 package pl.isa.autopartsJee.repository;
 
+import pl.isa.autopartsJee.domain.CarData;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-public class CarRepository implements ICarRepository {
+public class CarRepository {
     @PersistenceContext(unitName = "pUnit")
     private EntityManager entityManager;
 

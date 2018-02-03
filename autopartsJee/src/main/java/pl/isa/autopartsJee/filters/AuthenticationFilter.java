@@ -1,5 +1,8 @@
 package pl.isa.autopartsJee.filters;
 
+import pl.isa.autopartsJee.domain.User;
+import pl.isa.autopartsJee.repository.UsersRepository;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +26,6 @@ public class AuthenticationFilter implements Filter {
         Principal user = ((HttpServletRequest) servletRequest).getUserPrincipal();
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpSession session = req.getSession();
-
         if (user != null) {
             String userName = user.getName();
             session.setAttribute("loggedUser", userName);
