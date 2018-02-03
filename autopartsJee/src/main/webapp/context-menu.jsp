@@ -3,6 +3,11 @@
 
 <c:choose>
     <c:when test="${not empty sessionScope.isLogged && sessionScope.isLogged == true}">
+
+
+        <%--TUTAJ MOZNA DODAWAC KOLEJNE FUNKCJONALNOSCI--%>
+
+
         <a class="nav-item nav-link" href="find-category.jsp">Znajdź kategorię</a>
         <a class="nav-item nav-link active" href="/logout">Wyloguj [${sessionScope.loggedUser}]
             <span class="sr-only">(current)</span>
