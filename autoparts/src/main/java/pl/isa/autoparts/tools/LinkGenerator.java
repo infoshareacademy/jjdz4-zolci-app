@@ -1,6 +1,5 @@
 package pl.isa.autoparts.tools;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.categories.AllegroItem;
