@@ -62,7 +62,7 @@
         <div class="row justify-content-center">
             <a class="listing" href="find-category-by-name.jsp">
                 <button type="button" class="listing btn btn-secondary btn-lg">
-                    Ppwrót
+                    Powrót
                 </button>
 
             </a>
