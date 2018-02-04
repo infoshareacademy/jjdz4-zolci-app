@@ -1,6 +1,6 @@
 package pl.isa.autopartsJee.listener;
 
-import pl.isa.autopartsJee.dao.TreeOperationsRepositoryDao;
+import pl.isa.autopartsJee.linkGenerating.dao.TreeOperationsRepositoryDao;
 
 import javax.inject.Inject;
 import javax.servlet.ServletContextEvent;

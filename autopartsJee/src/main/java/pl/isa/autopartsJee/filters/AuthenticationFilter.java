@@ -1,7 +1,7 @@
 package pl.isa.autopartsJee.filters;
 
-import pl.isa.autopartsJee.domain.User;
-import pl.isa.autopartsJee.repository.UsersRepository;
+import pl.isa.autopartsJee.loginAndRegister.domain.User;
+import pl.isa.autopartsJee.loginAndRegister.repository.UsersRepository;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
