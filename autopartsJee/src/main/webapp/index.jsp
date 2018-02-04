@@ -41,7 +41,7 @@
         <h3>Autoparts Finder jest aplikacją, która pomoże Ci zlokalizować uszkodzoną część w Twoim aucie oraz
             przekieruje Cię
             do kategorii Allegro, w której znajdziesz część zamienną. </h3><br/>
-        <h4>Zaloguj się, aby wprowadzić do naszej bazy danych swój pojazd i skorzystać z funkcjonalności serwisu.</h4>
+        <h4>Jako zalogowany użytkownik możesz wprowadzić do naszej bazy danych swój pojazd i skorzystać z funkcjonalności serwisu.</h4>
     </div>
 
 
