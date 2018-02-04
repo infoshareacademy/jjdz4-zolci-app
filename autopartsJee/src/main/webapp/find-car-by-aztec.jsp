@@ -17,7 +17,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand" href="index.jsp">
             <i class="demo-icon icon-wrench-outline"></i>
             Autoparts Finder
@@ -34,7 +34,7 @@
         </div>
     </div>
 </nav>
-<div class="container">
+<div class="container-fluid">
 
     <div class="content">
         <h1>Podaj kod sesji Atena:</h1><br/>

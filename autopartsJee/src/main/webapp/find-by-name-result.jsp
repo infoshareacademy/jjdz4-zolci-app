@@ -17,7 +17,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand" href="index.jsp">
             <i class="demo-icon icon-wrench-outline"></i>
             Autoparts Finder
@@ -34,7 +34,7 @@
         </div>
     </div>
 </nav>
-<div class="container">
+<div class="container-fluid">
 
     <div class="content">
 
@@ -44,12 +44,15 @@
 
                 <c:forEach var="entry" items="${link}">
                     <div class="row justify-content-center">
-                        <a class="listing" href="${entry.key}" target="_blank">
-                            <button type="button" class="listing btn btn-secondary btn-lg">
-                                <span style="font-size: 14px;">  <c:out value="${entry.value.parentName}"/></span><br/>
-                                <c:out value="${entry.value.itemName}"/>
-                            </button>
-
+                        <%--<a class="listing" href="${entry.key}" target="_blank">--%>
+                            <%--<button type="button" class="listing btn btn-secondary btn-lg">--%>
+                                <%--<span style="font-size: 14px;">  <c:out value="${entry.value.parentName}"/></span><br/>--%>
+                                <%--<c:out value="${entry.value.itemName}"/>--%>
+                            <%--</button>--%>
+                            <a href="${entry.key}"
+                               class="btn btn-secondary btn-lg listing" role="button"
+                               aria-pressed="true" target="_blank"><span style="font-size: 14px;">  <c:out value="${entry.value.parentName}"/></span><br/>
+                                <c:out value="${entry.value.itemName}"/></a>
                         </a>
 
                     </div>

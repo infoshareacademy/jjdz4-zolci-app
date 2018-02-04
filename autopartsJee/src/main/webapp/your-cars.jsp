@@ -17,7 +17,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand" href="index.jsp">
             <i class="demo-icon icon-wrench-outline"></i>
             Autoparts Finder
@@ -34,59 +34,62 @@
         </div>
     </div>
 </nav>
-<div class="container">
+<div class="container-fluid">
 
     <div class="content">
         <h1>Twoje samochody</h1><br/>
 
-
         <c:choose>
             <c:when test="${not empty cars}">
-                <c:forEach var="entry" items="${cars}">
-                    <div class="row justify-content-center">
-                        <ul id="myUL">
-                            <li>Marka pojazdu: ${entry.vehicleMake}</li>
-                            <li>Model: ${entry.vehicleModel}</li>
-                            <li>Rok produkcji: ${entry.prodYear}</li>
-                            <li>Wersja: ${entry.vehicleVersion}</li>
-                            <li>Wariant: ${entry.vehicleVariant}</li>
-                            <li>Rodzaj paliwa: ${entry.fuel}</li>
-                            <li>Pojemność silnika: ${entry.capacity}</li>
-                            <li>Moc silnika: ${entry.power}</li>
-                            <li>Numer VIN: ${entry.vin}</li>
-                            <li>Numer rejestracyjny: ${entry.registryNumber}</li>
-                        </ul>
+                <div class="table-responsive">
+                    <table class="table" style="font-size: 15px;">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Marka</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Rocznik</th>
+                            <th scope="col">Wersja</th>
+                            <th scope="col">Wariant</th>
+                            <th scope="col">Paliwo</th>
+                            <th scope="col">Pojemnosć</th>
+                            <th scope="col">Moc</th>
+                            <th scope="col">VIN</th>
+                            <th scope="col">Rejestracja</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                    </div>
-                </c:forEach>
+                        <c:forEach var="entry" items="${cars}">
+                            <tr>
+                                <th scope="row">${entry.carID}</th>
+                                <td>${entry.vehicleMake}</td>
+                                <td>${entry.vehicleModel}</td>
+                                <td>${entry.prodYear}</td>
+                                <td>${entry.vehicleVersion}</td>
+                                <td>${entry.vehicleVariant}</td>
+                                <td>${entry.fuel}</td>
+                                <td>${entry.capacity}</td>
+                                <td>${entry.power}</td>
+                                <td>${entry.vin}</td>
+                                <td>${entry.registryNumber}</td>
+
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </c:when>
             <c:otherwise>
-                Nie znaleziono kategorii
+                Brak aut
             </c:otherwise>
         </c:choose>
-
 
 
     </div>
 
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
