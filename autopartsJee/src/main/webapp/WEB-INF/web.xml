@@ -27,6 +27,9 @@
             <description>application security constraints
             </description>
             <url-pattern>/find-category.jsp</url-pattern>
+            <url-pattern>/find-car-by-aztec.jsp</url-pattern>
+            <url-pattern>/find-category-by-name.jsp</url-pattern>
+            <url-pattern>/add-car-to-database.jsp</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>

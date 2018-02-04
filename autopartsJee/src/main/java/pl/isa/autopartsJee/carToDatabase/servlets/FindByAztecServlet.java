@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/find-by-aztec")
-public class FindByAztec extends HttpServlet {
+public class FindByAztecServlet extends HttpServlet {
 
     @Inject
     CarRepositoryDao carRepository;
@@ -51,7 +51,7 @@ public class FindByAztec extends HttpServlet {
         req.setAttribute("prodYear", prodYear);
         req.setAttribute("vin", vin);
         req.setAttribute("registryNumber", registryNumber);
-        //       } catch (Exception e) {
+        //       } cat  ch (Exception e) {
         //           throw new ServletException(e);
         //       }
 
@@ -70,7 +70,7 @@ public class FindByAztec extends HttpServlet {
         carData.setOwnerId((int) req.getSession().getAttribute("userId"));
         carRepository.addCar(carData);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("find-by-aztec-result.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/show-cars");
         dispatcher.forward(req, resp);
     }
 

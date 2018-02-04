@@ -24,6 +24,50 @@ public class CarData {
     private String vin;
     private String registryNumber;
 
+    public int getCarID() {
+        return carID;
+    }
+
+    public String getVehicleMake() {
+        return vehicleMake;
+    }
+
+    public String getVehicleModel() {
+        return vehicleModel;
+    }
+
+    public String getVehicleVersion() {
+        return vehicleVersion;
+    }
+
+    public String getVehicleVariant() {
+        return vehicleVariant;
+    }
+
+    public String getFuel() {
+        return fuel;
+    }
+
+    public String getCapacity() {
+        return capacity;
+    }
+
+    public String getPower() {
+        return power;
+    }
+
+    public int getProdYear() {
+        return prodYear;
+    }
+
+    public String getVin() {
+        return vin;
+    }
+
+    public String getRegistryNumber() {
+        return registryNumber;
+    }
+
     public int getOwnerId() {
         return ownerId;
     }
