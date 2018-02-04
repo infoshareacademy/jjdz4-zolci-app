@@ -2,8 +2,8 @@ package pl.isa.autopartsJee.carToDatabase.servlets;
 
 import pl.isa.autoparts.aztec.AtenaSessionReader;
 import pl.isa.autoparts.aztec.AztecVehicle;
-import pl.isa.autopartsJee.carToDatabase.domain.CarData;
 import pl.isa.autopartsJee.carToDatabase.dao.CarRepositoryDao;
+import pl.isa.autopartsJee.carToDatabase.domain.CarData;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
 
 import javax.inject.Inject;
@@ -26,51 +26,39 @@ public class FindByAztecServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AtenaSessionReader sessionReader = new AtenaSessionReader(req.getParameter("search"));
-//        try {
-        AztecVehicle vehicle = sessionReader.parseAztecFromSession();
+        try {
+            AztecVehicle vehicle = sessionReader.parseAztecFromSession();
 //            AztecVehicle vehicle = JsonParser.parseJsonFromFile("AztecCodeResult.json", AztecVehicle.class);
 
-        String vehicleMake = vehicle.getAztecData().getVehicleMakeField_D1();
-        String vehicleModel = vehicle.getAztecData().getVehicleModelField_D5();
-        String vehicleVersion = vehicle.getAztecData().getVehicleVersionField_D4();
-        String vehicleVariant = vehicle.getAztecData().getVehicleVariantField_D3();
-        String fuel = vehicle.getAztecData().getFuelTypeField_P3();
-        String capacity = vehicle.getAztecData().getCylinderCapacityField_P1();
-        String power = vehicle.getAztecData().getMaxNetEnginePowerField_P2();
-        Integer prodYear = Integer.parseInt(vehicle.getAztecData().getProductionYear());
-        String vin = vehicle.getAztecData().getVehicleIdentificationNumberField_E();
-        String registryNumber = vehicle.getAztecData().getRegistryNumberField_A();
-
-        req.setAttribute("vehicleMake", vehicleMake);
-        req.setAttribute("vehicleModel", vehicleModel);
-        req.setAttribute("vehicleVersion", vehicleVersion);
-        req.setAttribute("vehicleVariant", vehicleVariant);
-        req.setAttribute("fuel", fuel);
-        req.setAttribute("capacity", capacity);
-        req.setAttribute("power", power);
-        req.setAttribute("prodYear", prodYear);
-        req.setAttribute("vin", vin);
-        req.setAttribute("registryNumber", registryNumber);
-        //       } cat  ch (Exception e) {
-        //           throw new ServletException(e);
-        //       }
+            String vehicleMake = vehicle.getAztecData().getVehicleMakeField_D1();
+            String vehicleModel = vehicle.getAztecData().getVehicleModelField_D5();
+            String vehicleVersion = vehicle.getAztecData().getVehicleVersionField_D4();
+            String vehicleVariant = vehicle.getAztecData().getVehicleVariantField_D3();
+            String fuel = vehicle.getAztecData().getFuelTypeField_P3();
+            String capacity = vehicle.getAztecData().getCylinderCapacityField_P1();
+            String power = vehicle.getAztecData().getMaxNetEnginePowerField_P2();
+            Integer prodYear = Integer.parseInt(vehicle.getAztecData().getProductionYear());
+            String vin = vehicle.getAztecData().getVehicleIdentificationNumberField_E();
+            String registryNumber = vehicle.getAztecData().getRegistryNumberField_A();
 
 
-        CarData carData = new CarData();
-        carData.setVehicleMake(vehicleMake);
-        carData.setVehicleModel(vehicleModel);
-        carData.setVehicleVersion(vehicleVersion);
-        carData.setVehicleVariant(vehicleVariant);
-        carData.setFuel(fuel);
-        carData.setCapacity(capacity);
-        carData.setPower(power);
-        carData.setProdYear(prodYear);
-        carData.setVin(vin);
-        carData.setRegistryNumber(registryNumber);
-        carData.setOwnerId((int) req.getSession().getAttribute("userId"));
-        carRepository.addCar(carData);
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/show-cars");
+            CarData carData = new CarData();
+            carData.setVehicleMake(vehicleMake);
+            carData.setVehicleModel(vehicleModel);
+            carData.setVehicleVersion(vehicleVersion);
+            carData.setVehicleVariant(vehicleVariant);
+            carData.setFuel(fuel);
+            carData.setCapacity(capacity);
+            carData.setPower(power);
+            carData.setProdYear(prodYear);
+            carData.setVin(vin);
+            carData.setRegistryNumber(registryNumber);
+            carData.setOwnerId((int) req.getSession().getAttribute("userId"));
+            carRepository.addCar(carData);
+        } catch (Exception e){
+            req.setAttribute("wrongCode", "Nie znaleziono kodu sesji");
+        }
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/find-car-by-aztec.jsp");
         dispatcher.forward(req, resp);
     }
 

@@ -38,6 +38,7 @@
 
     <div class="content">
         <h1>Podaj kod sesji Atena:</h1><br/>
+        <span style="color: red;"><c:out value="${wrongCode}"/></span>
         <form action="/find-by-aztec" method="GET">
             <div class="form-group">
                 <input type="text" class="form-control" name="search">
