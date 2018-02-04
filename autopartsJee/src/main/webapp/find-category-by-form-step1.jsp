@@ -37,7 +37,7 @@
 <div class="container">
 
     <div class="content">
-        <h1>Wybierz uszkodzoną część lub c:</h1><br/>
+        <h1>Wybierz uszkodzoną część lub usterkę:</h1><br/>
         <c:forEach var="entry" items="${groupQuestions}">
 
             <div class="row justify-content-center">

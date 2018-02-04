@@ -37,7 +37,7 @@
 <div class="container">
 
     <div class="content">
-        <h1>Wybierz uszkodzoną część lub objaw:</h1><br/>
+        <h1>Wybierz uszkodzoną część lub usterkę:</h1><br/>
         <c:forEach var="entry" items="${questions}">
 
             <div class="row justify-content-center">
