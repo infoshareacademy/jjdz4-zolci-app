@@ -67,7 +67,7 @@ public class FindByAztec extends HttpServlet {
         carData.setProdYear(prodYear);
         carData.setVin(vin);
         carData.setRegistryNumber(registryNumber);
-        carData.setOwnerId(usersRepositoryDao.findUserByLogin((String) req.getSession().getAttribute("loggedUser")).getId());
+        carData.setOwnerId((int) req.getSession().getAttribute("userId"));
         carRepository.addCar(carData);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("find-by-aztec-result.jsp");
