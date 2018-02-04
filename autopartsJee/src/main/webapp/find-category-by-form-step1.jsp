@@ -37,7 +37,7 @@
 <div class="container">
 
     <div class="content">
-        <h1>Wybierz uszkodzoną część:</h1><br/>
+        <h1>Wybierz uszkodzoną część lub c:</h1><br/>
         <c:forEach var="entry" items="${groupQuestions}">
 
             <div class="row justify-content-center">
@@ -46,8 +46,21 @@
                    aria-pressed="true"><c:out value="${entry}"/></a>
             </div>
         </c:forEach>
+        <div class="row justify-content-center">
+            <a class="listing" href="find-category.jsp">
+                <button type="button" class="listing btn btn-secondary btn-lg">
+                    Powrót
+                </button>
 
+            </a>
 
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
     </div>
 
 

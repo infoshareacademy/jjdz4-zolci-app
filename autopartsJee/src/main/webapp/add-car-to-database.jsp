@@ -37,7 +37,7 @@
 <div class="container">
 
     <div class="content">
-        <h1>Znajdź kategorię allegro</h1><br/>
+        <h1>Wybierz sposób</h1><br/>
 
         <div class="row justify-content-center">
             <a href="find-car-by-aztec.jsp" class="btn btn-secondary btn-lg listing" role="button"

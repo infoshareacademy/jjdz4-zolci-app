@@ -46,8 +46,22 @@
                    aria-pressed="true" target="_blank"><c:out value="${entry.value}"/></a>
             </div>
         </c:forEach>
+        <div class="row justify-content-center">
+            <a class="listing" href="find-category-by-form-step3.jsp">
+                <button type="button" class="listing btn btn-secondary btn-lg">
+                    Powrót
+                </button>
 
+            </a>
 
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0"
+                 aria-valuemax="100"></div>
+        </div>
     </div>
 
 

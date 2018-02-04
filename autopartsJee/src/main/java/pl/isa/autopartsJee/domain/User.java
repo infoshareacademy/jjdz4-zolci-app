@@ -2,8 +2,14 @@ package pl.isa.autopartsJee.domain;
 
 import javax.persistence.*;
 
+
 @Entity
 @Access(AccessType.FIELD)
+
+//@NamedQueries({
+//        @NamedQuery(name = "findUserByLogin", query = "from users u where u.login=:login")
+//})
+
 @Table(name = "users")
 public class User {
     private String login;

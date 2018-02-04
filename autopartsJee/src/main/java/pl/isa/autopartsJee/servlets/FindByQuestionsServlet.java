@@ -49,7 +49,7 @@ public class FindByQuestionsServlet extends HttpServlet {
             for (QuestionGroup questionGroup : topClass.getGrupaPytan()) {
                 questionaryName.add(questionGroup.getName());
             }
-            req.setAttribute("groupQuestions", questionaryName);
+            req.getSession().setAttribute("groupQuestions", questionaryName);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category-by-form-step1.jsp");
             requestDispatcher.forward(req, resp);
 
@@ -63,7 +63,7 @@ public class FindByQuestionsServlet extends HttpServlet {
             for (Question a : myQuestions) {
                 tempQuestion.add(a.getDescripton());
             }
-            req.setAttribute("questions", tempQuestion);
+            req.getSession().setAttribute("questions", tempQuestion);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category-by-form-step2.jsp");
             requestDispatcher.forward(req, resp);
 
@@ -77,7 +77,7 @@ public class FindByQuestionsServlet extends HttpServlet {
             for (BreakDown breakDownTmp : breakDown) {
                 breakDownView.add(breakDownTmp.getDescription());
             }
-            req.setAttribute("breakDown", breakDownView);
+            req.getSession().setAttribute("breakDown", breakDownView);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category-by-form-step3.jsp");
             requestDispatcher.forward(req, resp);
 
@@ -92,7 +92,7 @@ public class FindByQuestionsServlet extends HttpServlet {
             for (Parts partsTmp : parts) {
                 tempMap.put(webLinkGenerator.generateLink(partsTmp.getPart(), dao.getRepository()), partsTmp.getPart());
             }
-            req.setAttribute("parts", tempMap);
+            req.getSession().setAttribute("parts", tempMap);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category-by-form-step4.jsp");
             requestDispatcher.forward(req, resp);
         }

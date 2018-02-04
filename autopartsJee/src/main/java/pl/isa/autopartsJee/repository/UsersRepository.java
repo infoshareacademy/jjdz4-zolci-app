@@ -13,9 +13,12 @@ public class UsersRepository {
     public void addUser(User user){
         entityManager.persist(user);
     }
+
+
     public User findUserByLogin(String login){
-        return (User) entityManager.createQuery("from users u where u.login=:login")
-                .setParameter("login", login)
-                .getSingleResult();
+//        return (User) entityManager.createNamedQuery("findUserByLogin")
+//                .setParameter("login", login)
+//                .getSingleResult();
+        return null;
     }
 }

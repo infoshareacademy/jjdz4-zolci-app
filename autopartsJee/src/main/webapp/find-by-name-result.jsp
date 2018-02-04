@@ -46,7 +46,7 @@
                     <div class="row justify-content-center">
                         <a class="listing" href="${entry.key}" target="_blank">
                             <button type="button" class="listing btn btn-secondary btn-lg">
-                             <span style="font-size: 14px;" >  <c:out value="${entry.value.parentName}"/></span><br/>
+                                <span style="font-size: 14px;">  <c:out value="${entry.value.parentName}"/></span><br/>
                                 <c:out value="${entry.value.itemName}"/>
                             </button>
 
@@ -59,6 +59,13 @@
                 Nie znaleziono kategorii
             </c:otherwise>
         </c:choose>
+        <div class="row justify-content-center">
+            <a class="listing" href="find-category-by-name.jsp">
+                <button type="button" class="listing btn btn-secondary btn-lg">
+                    Ppwrót
+                </button>
+
+            </a>
 
     </div>
 
