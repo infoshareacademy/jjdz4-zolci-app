@@ -18,5 +18,5 @@ body {
 .listing {
     margin: 4px;
     text-align: center;
-    width: 40%;
+    min-width: 40%;
 }
