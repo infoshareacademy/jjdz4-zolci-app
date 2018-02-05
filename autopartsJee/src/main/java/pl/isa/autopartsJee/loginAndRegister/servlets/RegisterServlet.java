@@ -31,7 +31,9 @@ public class RegisterServlet extends HttpServlet {
     private Boolean checkIfUserExists(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> users = usersRepositoryDao.getAllUsers();
         for (User user : users) {
-
+            if (user.getEmail().equals(null) || user.getLogin().equals(null)) {
+                continue;
+            }
             if (user.getLogin().equals(req.getParameter("login"))) {
                 req.setAttribute("userExists", "Użytkownik o podanym loginie istnieje");
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
@@ -42,9 +44,6 @@ public class RegisterServlet extends HttpServlet {
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
                 requestDispatcher.forward(req, resp);
                 return true;
-            }
-            if (user.getEmail().equals(null) || user.getLogin().equals(null)) {
-                continue;
             }
 
         }
