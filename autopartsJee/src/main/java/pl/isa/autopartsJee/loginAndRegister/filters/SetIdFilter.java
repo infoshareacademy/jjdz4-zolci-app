@@ -2,6 +2,7 @@ package pl.isa.autopartsJee.loginAndRegister.filters;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.isa.autopartsJee.loginAndRegister.dao.RolesRepositoryDao;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
 
 import javax.inject.Inject;
@@ -17,6 +18,8 @@ import java.io.IOException;
 public class SetIdFilter implements Filter {
     @Inject
     UsersRepositoryDao usersRepositoryDao;
+    @Inject
+    RolesRepositoryDao rolesRepositoryDao;
     private Logger logger = LoggerFactory.getLogger(SetIdFilter.class.getName());
 
     @Override
@@ -31,8 +34,14 @@ public class SetIdFilter implements Filter {
         HttpSession session = req.getSession();
 //        try {
         if ((Boolean) session.getAttribute("isLogged")) {
-            session.setAttribute("userId", usersRepositoryDao.findUserByLogin((String) req.getSession().getAttribute("loggedUser")).getId());
-            session.setAttribute("userName", usersRepositoryDao.findUserByLogin((String) req.getSession().getAttribute("loggedUser")).getName());
+            session.setAttribute("userId", usersRepositoryDao.findUserByLogin((String) req.getSession()
+                    .getAttribute("loggedUser")).getId());
+
+            session.setAttribute("userName", usersRepositoryDao.findUserByLogin((String) req.getSession()
+                    .getAttribute("loggedUser")).getName());
+
+            session.setAttribute("userRole", rolesRepositoryDao.findUsersRole(usersRepositoryDao
+                    .findUserByLogin((String) req.getSession().getAttribute("loggedUser"))).getUser_role());
             logger.debug("User id found");
         }
 //        } catch (NullPointerException e) {

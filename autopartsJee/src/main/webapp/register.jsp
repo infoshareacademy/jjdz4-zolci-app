@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom02">Hasło</label>
-                    <input type="text" class="form-control" id="validationCustom02" name="password" placeholder="Hasło"
+                    <input type="password" class="form-control" id="validationCustom02" name="password" placeholder="Hasło"
                            required>
                     <div class="invalid-feedback">
                         Podaj hasło!
@@ -60,7 +60,7 @@
             <div class="form-row">
                 <div class="col-md-12 mb-3">
                     <label for="validationCustom03">Adres Email</label>
-                    <input type="text" class="form-control" id="validationCustom03" name="email"
+                    <input type="email" class="form-control" id="validationCustom03" name="email"
                            placeholder="Adres Email"
                            required>
                     <div class="invalid-feedback">
