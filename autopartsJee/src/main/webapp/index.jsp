@@ -35,7 +35,7 @@
     </div>
 </nav>
 <div class="container">
-
+    <c:set var="admin" scope="request" value="admin"/>
     <div class="content">
         <h1><i class="demo-icon icon-wrench-outline"></i>Autoparts Finder</h1><br/>
         <span style="color: limegreen;"><c:out value="${success}"/></span>
@@ -43,6 +43,13 @@
             <c:when test="${not empty sessionScope.isLogged && sessionScope.isLogged == true}">
                 <h3>Cześć, ${userName}!</h3>
                 <h4>Użyj menu w górnym pasku aby skorzystać z funkcjonalności serwisu.</h4>
+
+                <c:if test="${userRole == admin}">
+                    <div class="justify-content-center">
+                        <h4>Przejdż do panelu admina:</h4>
+                        <a class="listing btn btn-primary" href="admin-panel.jsp" role="button">Panel</a>
+                    </div>
+                </c:if>
             </c:when>
             <c:otherwise>
                 <h3>Autoparts Finder jest aplikacją, która pomoże Ci zlokalizować uszkodzoną część w Twoim aucie oraz
