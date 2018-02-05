@@ -1,11 +1,13 @@
 package pl.isa.autopartsJee.carToDatabase.repository;
 
 import pl.isa.autopartsJee.carToDatabase.domain.CarData;
+import pl.isa.autopartsJee.loginAndRegister.domain.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
+import java.util.List;
 
 @Stateless
 public class CarRepository {
@@ -24,6 +26,5 @@ public class CarRepository {
         return carDataList;
 
     }
-
 
 }

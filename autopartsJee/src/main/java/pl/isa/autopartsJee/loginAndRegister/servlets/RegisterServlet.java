@@ -35,12 +35,12 @@ public class RegisterServlet extends HttpServlet {
                 continue;
             }
             if (user.getLogin().equals(req.getParameter("login"))) {
-                req.setAttribute("userExists", "Użytkownik o podanym loginie istnieje");
+                req.setAttribute("registrationError", "Użytkownik o podanym loginie istnieje");
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
                 requestDispatcher.forward(req, resp);
                 return true;
             } else if (user.getEmail().equals(req.getParameter("email"))) {
-                req.setAttribute("userExists", "Użytkownik o podanym emailu istnieje");
+                req.setAttribute("registrationError", "Użytkownik o podanym emailu istnieje");
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
                 requestDispatcher.forward(req, resp);
                 return true;
@@ -56,7 +56,7 @@ public class RegisterServlet extends HttpServlet {
                 req.getParameter("name").isEmpty() || req.getParameter("name").equals(null) ||
                 req.getParameter("surname").isEmpty() || req.getParameter("surname").equals(null) ||
                 req.getParameter("password").isEmpty() || req.getParameter("password").equals(null)) {
-            req.setAttribute("userExists", "Wprowadź wszystkie dane");
+            req.setAttribute("registrationError", "Wprowadź wszystkie dane");
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
             requestDispatcher.forward(req, resp);
             return true;
@@ -96,6 +96,7 @@ public class RegisterServlet extends HttpServlet {
         role.setUser_id(usersRepositoryDao.findUserByLogin(user.getLogin()).getId());
         role.setUser_login(user.getLogin());
         rolesRepositoryDao.addUser(role);
+        req.setAttribute("success", "Użytkownik zarejestrowany pomyślnie");
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
         requestDispatcher.forward(req, resp);
     }

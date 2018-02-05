@@ -38,6 +38,7 @@
 
     <div class="content">
         <h1> Autoparts Finder</h1><br/>
+        <span style="color: limegreen;"><c:out value="${success}"/></span>
         <h3>Autoparts Finder jest aplikacją, która pomoże Ci zlokalizować uszkodzoną część w Twoim aucie oraz
             przekieruje Cię
             do kategorii Allegro, w której znajdziesz część zamienną. </h3><br/>

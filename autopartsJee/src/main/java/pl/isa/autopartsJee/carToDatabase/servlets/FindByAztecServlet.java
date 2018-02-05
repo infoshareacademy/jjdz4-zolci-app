@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet("/find-by-aztec")
 public class FindByAztecServlet extends HttpServlet {
@@ -22,6 +23,20 @@ public class FindByAztecServlet extends HttpServlet {
     CarRepositoryDao carRepository;
     @Inject
     UsersRepositoryDao usersRepositoryDao;
+
+    private Boolean checkIfCarExists(HttpServletRequest req, HttpServletResponse resp, String vin) throws ServletException, IOException {
+        ArrayList<CarData> cars = carRepository.findCarsByOwnerId((int) req.getSession().getAttribute("userId"));
+
+        for(CarData carData : cars){
+            if (carData.getVin().equals(vin)){
+                req.setAttribute("wrongCode", "Podane auto znajduje się w twojej bazie danych");
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/find-car-by-aztec.jsp");
+                dispatcher.forward(req, resp);
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,7 +56,9 @@ public class FindByAztecServlet extends HttpServlet {
             String vin = vehicle.getAztecData().getVehicleIdentificationNumberField_E();
             String registryNumber = vehicle.getAztecData().getRegistryNumberField_A();
 
-
+            if (checkIfCarExists(req, resp, vin)) {
+                return;
+            }
             CarData carData = new CarData();
             carData.setVehicleMake(vehicleMake);
             carData.setVehicleModel(vehicleModel);
@@ -55,7 +72,7 @@ public class FindByAztecServlet extends HttpServlet {
             carData.setRegistryNumber(registryNumber);
             carData.setOwnerId((int) req.getSession().getAttribute("userId"));
             carRepository.addCar(carData);
-        } catch (Exception e){
+        } catch (Exception e) {
             req.setAttribute("wrongCode", "Nie znaleziono kodu sesji");
         }
         RequestDispatcher dispatcher = req.getRequestDispatcher("/find-car-by-aztec.jsp");
