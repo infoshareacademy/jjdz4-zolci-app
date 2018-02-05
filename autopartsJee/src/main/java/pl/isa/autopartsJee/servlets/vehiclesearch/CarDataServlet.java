@@ -54,7 +54,7 @@ public class CarDataServlet extends HttpServlet {
         else {
             try {
                 vehicle = loadAztecFromFile();
-                logger.info("Json file loaded to servlet");
+                logger.info("Json file loaded to servlets");
 
             } catch (IOException e) {
                 forwardToPageWithError("Nie udało się załadować pliku z danymi.");

@@ -4,45 +4,82 @@
 <html lang="pl">
 <head>
     <meta charset="utf-8">
-    <title>Strona główna</title>
+    <title>Wyniki wyszukiwania</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/fontello-css/fontello.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <title>Wyniki wyszukiwania</title>
 </head>
+
 <body>
-<a id="banner" href="index.jsp">
-    <div class="container-fluid text-center" id="header"><h1> Autoparts Finder</h1></div>
-</a>
-<div class="row justify-content-center" id="wrapper">
-    <div class="col-lg-2 side-bar">
-        <%@ include file="carData.jsp" %>
-    </div>
-    <div class="col-lg-10 main-container text-center">
-        <div class="text-menu">
 
+<nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
+    <div class="container">
+        <a class="navbar-brand" href="index.jsp">
+            <i class="demo-icon icon-wrench-outline"></i>
+            Autoparts Finder
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <c:choose>
-                <c:when test="${not empty link}">
-                    <h3>Po wybraniu części strona przeniesie Cię do serwisu allegro:</h3><br/>
-                    <ul id="myUL">
-                        <c:forEach var="entry" items="${link}">
-                            <li><a href="${entry.key}"><c:out value="${entry.value}"/></a></li>
-                        </c:forEach>
-                    </ul>
-                </c:when>
-                <c:otherwise>
-                    Nie znaleziono kategorii
-                </c:otherwise>
-            </c:choose>
-            <ul id="myUL">
-                <li style="font-size: 24px;"><a href="find-category-by-name.jsp">Wróć do wyszukiwania</a></li>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav ml-auto">
+                <%@include file="context-menu.jsp" %>
             </ul>
         </div>
     </div>
+</nav>
+<div class="container">
+
+    <div class="content">
+
+        <c:choose>
+            <c:when test="${not empty link}">
+                <h1>Po wybraniu części strona przeniesie Cię do serwisu Allegro:</h1><br/>
+
+                <c:forEach var="entry" items="${link}">
+                    <div class="row justify-content-center">
+                            <a href="${entry.key}"
+                               class="btn btn-secondary btn-lg listing" role="button"
+                               aria-pressed="true" target="_blank"><span style="font-size: 14px;">  <c:out value="${entry.value.parentName}"/></span><br/>
+                                <c:out value="${entry.value.itemName}"/></a>
+                        </a>
+
+                    </div>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                Nie znaleziono kategorii
+            </c:otherwise>
+        </c:choose>
+        <div class="row justify-content-center">
+            <a class="listing" href="find-category-by-name.jsp">
+                <button type="button" class="listing btn btn-secondary btn-lg">
+                    Powrót
+                </button>
+
+            </a>
+
+    </div>
+
+
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
+

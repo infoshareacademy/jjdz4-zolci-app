@@ -1,45 +1,81 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %><html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="pl">
 <head>
     <meta charset="utf-8">
-    <title>Znajdź po formularzu</title>
+    <title>Wybierz usterkę</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/fontello-css/fontello.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <title>Znajdź po formularzu</title>
 </head>
-<body>
-<a id="banner" href="index.jsp">
-    <div class="container-fluid text-center" id="header"><h1>Autoparts Finder</h1></div>
-</a>
-<div class="row justify-content-center" id="wrapper">
-    <div class="col-lg-2 side-bar">
-        <%@ include file="carData.jsp"%>
 
-    </div>
-    <div class="col-lg-10 main-container">
-        <div class="text-menu text-center">
-            <h2>Wybierz uszkodzoną część:</h2><br/>
-            <ul id="myUL">
-                <c:forEach var="entry" items="${breakDown}">
-                <li><a href="/find-questions?selected=<c:out value="${entry}"/>&step=4"><c:out value="${entry}"/></a></li>
-                </c:forEach>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
+    <div class="container">
+        <a class="navbar-brand" href="index.jsp">
+            <i class="demo-icon icon-wrench-outline"></i>
+            Autoparts Finder
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav ml-auto">
+                <%@include file="context-menu.jsp" %>
             </ul>
         </div>
     </div>
+</nav>
+<div class="container">
+
+    <div class="content">
+        <h1>Wybierz uszkodzoną część lub usterkę:</h1><br/>
+        <c:forEach var="entry" items="${breakDown}">
+
+            <div class="row justify-content-center">
+                <a href="/find-questions?selected=<c:out value="${entry}"/>&step=4"
+                   class="btn btn-secondary btn-lg listing" role="button"
+                   aria-pressed="true"><c:out value="${entry}"/></a>
+            </div>
+        </c:forEach>
+        <div class="row justify-content-center">
+            <a class="listing" href="find-category-by-form-step2.jsp">
+                <button type="button" class="listing btn btn-secondary btn-lg">
+                    Powrót
+                </button>
+
+            </a>
+
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+    </div>
+
+
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
 
