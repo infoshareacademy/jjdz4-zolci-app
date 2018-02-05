@@ -28,44 +28,49 @@ public class RegisterServlet extends HttpServlet {
     RolesRepositoryDao rolesRepositoryDao;
 
 
-    private Boolean checkIfExists(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private Boolean checkIfUserExists(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> users = usersRepositoryDao.getAllUsers();
         for (User user : users) {
-            if (user.getLogin().equals(req.getParameter("login")) ||
-                    (!req.getParameter("email").isEmpty() || !req.getParameter("email").equals(null) &&
-                            user.getEmail().equals(req.getParameter("email")))
-                    ) {
-                req.setAttribute("userExists", "Użytkownik o podanym loginie lub emailu już istnieje");
+
+            if (user.getLogin().equals(req.getParameter("login"))) {
+                req.setAttribute("userExists", "Użytkownik o podanym loginie istnieje");
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
                 requestDispatcher.forward(req, resp);
                 return true;
+            } else if (user.getEmail().equals(req.getParameter("email"))) {
+                req.setAttribute("userExists", "Użytkownik o podanym emailu istnieje");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
+                requestDispatcher.forward(req, resp);
+                return true;
+            }
+            if (user.getEmail().equals(null) || user.getLogin().equals(null)) {
+                continue;
             }
 
         }
         return false;
     }
-    private Boolean checkIfEmpty(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(req.getParameter("login").isEmpty() || req.getParameter("login").equals(null) ||
+
+    private Boolean checkIfFieldsAreEmpty(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getParameter("login").isEmpty() || req.getParameter("login").equals(null) ||
                 req.getParameter("email").isEmpty() || req.getParameter("email").equals(null) ||
                 req.getParameter("name").isEmpty() || req.getParameter("name").equals(null) ||
                 req.getParameter("surname").isEmpty() || req.getParameter("surname").equals(null) ||
-                req.getParameter("password").isEmpty() || req.getParameter("password").equals(null)){
+                req.getParameter("password").isEmpty() || req.getParameter("password").equals(null)) {
             req.setAttribute("userExists", "Wprowadź wszystkie dane");
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
             requestDispatcher.forward(req, resp);
             return true;
         }
-            return false;
+        return false;
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(checkIfEmpty(req, resp))
-        {
+        if (checkIfFieldsAreEmpty(req, resp)) {
             return;
         }
-        if(checkIfExists(req, resp))
-        {
+        if (checkIfUserExists(req, resp)) {
             return;
         }
         User user = new User();
