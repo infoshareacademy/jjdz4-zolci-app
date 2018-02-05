@@ -3,11 +3,11 @@ package pl.isa.autopartsJee.carToDatabase.dao;
 import pl.isa.autopartsJee.carToDatabase.domain.CarData;
 
 import javax.ejb.Local;
-import java.util.ArrayList;
+import java.util.List;
 
 @Local
 public interface CarRepositoryDao {
     void addCar(CarData carData);
 
-    ArrayList<CarData> findCarsByOwnerId(int ownerId);
+    List<CarData> findCarsByOwnerId(int ownerId);
 }

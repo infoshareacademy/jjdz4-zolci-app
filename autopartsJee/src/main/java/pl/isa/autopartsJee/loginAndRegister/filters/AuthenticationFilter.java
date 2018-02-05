@@ -1,8 +1,6 @@
-package pl.isa.autopartsJee.filters;
+package pl.isa.autopartsJee.loginAndRegister.filters;
 
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
-import pl.isa.autopartsJee.loginAndRegister.domain.User;
-import pl.isa.autopartsJee.loginAndRegister.repository.UsersRepository;
 
 import javax.inject.Inject;
 import javax.servlet.*;
@@ -34,7 +32,6 @@ public class AuthenticationFilter implements Filter {
             String userName = user.getName();
             session.setAttribute("loggedUser", userName);
             session.setAttribute("isLogged", true);
-
         } else {
             session.setAttribute("loggedUser", null);
             session.setAttribute("isLogged", false);

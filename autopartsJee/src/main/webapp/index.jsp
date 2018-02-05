@@ -37,32 +37,25 @@
 <div class="container">
 
     <div class="content">
-        <h1> Autoparts Finder</h1><br/>
+        <h1><i class="demo-icon icon-wrench-outline"></i>Autoparts Finder</h1><br/>
         <span style="color: limegreen;"><c:out value="${success}"/></span>
-        <h3>Autoparts Finder jest aplikacją, która pomoże Ci zlokalizować uszkodzoną część w Twoim aucie oraz
-            przekieruje Cię
-            do kategorii Allegro, w której znajdziesz część zamienną. </h3><br/>
-        <h4>Jako zalogowany użytkownik możesz wprowadzić do naszej bazy danych swój pojazd i skorzystać z funkcjonalności serwisu.</h4>
+        <c:choose>
+            <c:when test="${not empty sessionScope.isLogged && sessionScope.isLogged == true}">
+                <h3>Cześć, ${userName}!</h3>
+                <h4>Użyj menu w górnym pasku aby skorzystać z funkcjonalności serwisu.</h4>
+            </c:when>
+            <c:otherwise>
+                <h3>Autoparts Finder jest aplikacją, która pomoże Ci zlokalizować uszkodzoną część w Twoim aucie oraz
+                    przekieruje Cię
+                    do kategorii Allegro, w której znajdziesz część zamienną. </h3><br/>
+                <h4>Jako zalogowany użytkownik możesz wprowadzić do naszej bazy danych swój pojazd i skorzystać z
+                    funkcjonalności serwisu.</h4>
+            </c:otherwise>
+        </c:choose>
     </div>
 
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

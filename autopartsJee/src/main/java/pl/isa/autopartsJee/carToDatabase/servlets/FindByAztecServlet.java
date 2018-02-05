@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/find-by-aztec")
 public class FindByAztecServlet extends HttpServlet {
@@ -25,10 +25,10 @@ public class FindByAztecServlet extends HttpServlet {
     UsersRepositoryDao usersRepositoryDao;
 
     private Boolean checkIfCarExists(HttpServletRequest req, HttpServletResponse resp, String vin) throws ServletException, IOException {
-        ArrayList<CarData> cars = carRepository.findCarsByOwnerId((int) req.getSession().getAttribute("userId"));
+        List<CarData> cars = carRepository.findCarsByOwnerId((int) req.getSession().getAttribute("userId"));
 
-        for(CarData carData : cars){
-            if (carData.getVin().equals(vin)){
+        for (CarData carData : cars) {
+            if (carData.getVin().equals(vin)) {
                 req.setAttribute("wrongCode", "Podane auto znajduje się w twojej bazie danych");
                 RequestDispatcher dispatcher = req.getRequestDispatcher("/find-car-by-aztec.jsp");
                 dispatcher.forward(req, resp);

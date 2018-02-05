@@ -5,19 +5,20 @@ import pl.isa.autopartsJee.carToDatabase.repository.CarRepository;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.util.ArrayList;
+import java.util.List;
 
 @Stateless
 public class CarRepositoryDaoBean implements CarRepositoryDao {
     @EJB
     CarRepository carRepository;
+
     @Override
     public void addCar(CarData carData) {
         carRepository.addCar(carData);
     }
 
     @Override
-    public ArrayList<CarData> findCarsByOwnerId(int ownerId) {
+    public List<CarData> findCarsByOwnerId(int ownerId) {
         return carRepository.findCarsByOwnerId(ownerId);
     }
 }

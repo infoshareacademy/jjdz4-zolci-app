@@ -1,4 +1,4 @@
-package pl.isa.autopartsJee.filters;
+package pl.isa.autopartsJee.loginAndRegister.filters;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,14 +29,15 @@ public class SetIdFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpSession session = req.getSession();
-        try {
-            if ((Boolean) session.getAttribute("isLogged")) {
-                session.setAttribute("userId", usersRepositoryDao.findUserByLogin((String) req.getSession().getAttribute("loggedUser")).getId());
-                logger.debug("User id found");
-            }
-        } catch (NullPointerException e) {
-            logger.debug("User not logged");
+//        try {
+        if ((Boolean) session.getAttribute("isLogged")) {
+            session.setAttribute("userId", usersRepositoryDao.findUserByLogin((String) req.getSession().getAttribute("loggedUser")).getId());
+            session.setAttribute("userName", usersRepositoryDao.findUserByLogin((String) req.getSession().getAttribute("loggedUser")).getName());
+            logger.debug("User id found");
         }
+//        } catch (NullPointerException e) {
+//            logger.debug("User not logged");
+//        }
 
 
         filterChain.doFilter(servletRequest, servletResponse);
