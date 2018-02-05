@@ -4,13 +4,12 @@
 <html lang="pl">
 <head>
     <meta charset="utf-8">
-    <title>Strona główna</title>
+    <title>Znajdź kategorię</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fontello-css/fontello.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
-    <title>Strona główna</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 

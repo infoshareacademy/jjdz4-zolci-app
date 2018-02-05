@@ -15,10 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 @WebServlet("/find-by-aztec")
 public class FindByAztecServlet extends HttpServlet {
-
+    private Logger logger = Logger.getLogger(FindByAztecServlet.class.getName());
     @Inject
     CarRepositoryDao carRepository;
     @Inject
@@ -32,7 +33,9 @@ public class FindByAztecServlet extends HttpServlet {
                 req.setAttribute("wrongCode", "Podane auto znajduje się w twojej bazie danych");
                 RequestDispatcher dispatcher = req.getRequestDispatcher("/find-car-by-aztec.jsp");
                 dispatcher.forward(req, resp);
+                logger.warning("Car is in user's database");
                 return true;
+
             }
         }
         return false;
@@ -72,7 +75,9 @@ public class FindByAztecServlet extends HttpServlet {
             carData.setRegistryNumber(registryNumber);
             carData.setOwnerId((int) req.getSession().getAttribute("userId"));
             carRepository.addCar(carData);
+            logger.info("Car added to users database");
         } catch (Exception e) {
+            logger.warning("Session code not found");
             req.setAttribute("wrongCode", "Nie znaleziono kodu sesji");
         }
         RequestDispatcher dispatcher = req.getRequestDispatcher("/find-car-by-aztec.jsp");

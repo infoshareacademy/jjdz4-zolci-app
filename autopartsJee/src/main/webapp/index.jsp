@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fontello-css/fontello.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
-    <title>Strona główna</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 
@@ -45,9 +44,8 @@
                 <h4>Użyj menu w górnym pasku aby skorzystać z funkcjonalności serwisu.</h4>
 
                 <c:if test="${userRole == admin}">
-                    <div class="justify-content-center">
-                        <h4>Przejdż do panelu admina:</h4>
-                        <a class="listing btn btn-primary" href="admin-panel.jsp" role="button">Panel</a>
+                    <div class="text-center">
+                        <a class="listing btn btn-primary" href="admin-panel.jsp" role="button">Panel admina</a>
                     </div>
                 </c:if>
             </c:when>
