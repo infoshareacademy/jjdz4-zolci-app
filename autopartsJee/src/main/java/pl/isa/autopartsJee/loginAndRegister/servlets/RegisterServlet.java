@@ -16,6 +16,7 @@ import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.logging.Logger;
 
 @WebServlet("/register")
@@ -26,8 +27,47 @@ public class RegisterServlet extends HttpServlet {
     @Inject
     RolesRepositoryDao rolesRepositoryDao;
 
+
+    private Boolean checkIfExists(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<User> users = usersRepositoryDao.getAllUsers();
+        for (User user : users) {
+            if (user.getLogin().equals(req.getParameter("login")) ||
+                    (!req.getParameter("email").isEmpty() || !req.getParameter("email").equals(null) &&
+                            user.getEmail().equals(req.getParameter("email")))
+                    ) {
+                req.setAttribute("userExists", "Użytkownik o podanym loginie lub emailu już istnieje");
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
+                requestDispatcher.forward(req, resp);
+                return true;
+            }
+
+        }
+        return false;
+    }
+    private Boolean checkIfEmpty(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if(req.getParameter("login").isEmpty() || req.getParameter("login").equals(null) ||
+                req.getParameter("email").isEmpty() || req.getParameter("email").equals(null) ||
+                req.getParameter("name").isEmpty() || req.getParameter("name").equals(null) ||
+                req.getParameter("surname").isEmpty() || req.getParameter("surname").equals(null) ||
+                req.getParameter("password").isEmpty() || req.getParameter("password").equals(null)){
+            req.setAttribute("userExists", "Wprowadź wszystkie dane");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
+            requestDispatcher.forward(req, resp);
+            return true;
+        }
+            return false;
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if(checkIfEmpty(req, resp))
+        {
+            return;
+        }
+        if(checkIfExists(req, resp))
+        {
+            return;
+        }
         User user = new User();
         Role role = new Role();
         MessageDigest md = null;
@@ -46,13 +86,12 @@ public class RegisterServlet extends HttpServlet {
         user.setName(req.getParameter("name"));
         user.setSurname(req.getParameter("surname"));
         user.setLogin(req.getParameter("login"));
+        usersRepositoryDao.addUser(user);
         role.setRole_group("user");
         role.setUser_role("user");
-        role.setUser_id(user.getId());
+        role.setUser_id(usersRepositoryDao.findUserByLogin(user.getLogin()).getId());
         role.setUser_login(user.getLogin());
-        usersRepositoryDao.addUser(user);
         rolesRepositoryDao.addUser(role);
-        //TODO rozdzielic to na dwa servlety, do rol dodawac id usera
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
         requestDispatcher.forward(req, resp);
     }

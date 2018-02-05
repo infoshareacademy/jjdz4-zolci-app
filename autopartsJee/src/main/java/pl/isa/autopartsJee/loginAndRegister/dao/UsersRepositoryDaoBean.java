@@ -5,6 +5,7 @@ import pl.isa.autopartsJee.loginAndRegister.repository.UsersRepository;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
 
 @Stateless
 public class UsersRepositoryDaoBean implements UsersRepositoryDao{
@@ -19,5 +20,10 @@ UsersRepository usersRepository;
     @Override
     public User findUserByLogin(String login) {
         return usersRepository.findUserByLogin(login);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return usersRepository.getAllUsers();
     }
 }

@@ -38,6 +38,7 @@
     <div class="content">
         <h1>Rejestracja</h1><br/>
         <form action="/register" method="POST">
+            <span style="color: red;"><c:out value="${userExists}"/></span>
             <div class="form-group">
                 <label>Login</label>
                 <input type="text" class="form-control" name="login">
