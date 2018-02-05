@@ -41,8 +41,21 @@
             <div class="form-group">
                 <input type="text" class="form-control" name="search">
             </div>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="carID">
+                    <option value="0" selected>-</option>
+                    <c:choose>
+                        <c:when test="${not empty cars}">
+                            <c:forEach var="entry" items="${cars}">
+                                <option value="${entry.carID}">${entry.vehicleMake} ${entry.vehicleModel} ${entry.prodYear}</option>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                        </c:otherwise>
+                    </c:choose>
+                </select>
             <button type="submit" class="btn btn-primary">Szukaj</button>
         </form>
+
     </div>
 
 

@@ -21,4 +21,9 @@ public class CarRepositoryDaoBean implements CarRepositoryDao {
     public List<CarData> findCarsByOwnerId(int ownerId) {
         return carRepository.findCarsByOwnerId(ownerId);
     }
+
+    @Override
+    public CarData findCarById(Integer carID) {
+        return carRepository.findCarById(carID);
+    }
 }

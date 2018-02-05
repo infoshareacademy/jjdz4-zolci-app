@@ -1,7 +1,6 @@
 package pl.isa.autopartsJee.carToDatabase.repository;
 
 import pl.isa.autopartsJee.carToDatabase.domain.CarData;
-import pl.isa.autopartsJee.loginAndRegister.domain.User;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -18,13 +17,17 @@ public class CarRepository {
         entityManager.persist(carData);
     }
 
-    public ArrayList<CarData> findCarsByOwnerId(int ownerId) {
-        ArrayList<CarData> carDataList = new ArrayList<>();
+    public List<CarData> findCarsByOwnerId(int ownerId) {
+        List<CarData> carDataList = new ArrayList<>();
 
-        carDataList = (ArrayList<CarData>) entityManager.createQuery("from CarData u where u.ownerId=:ownerId")
+        carDataList = (List<CarData>) entityManager.createQuery("from CarData u where u.ownerId=:ownerId")
                 .setParameter("ownerId", ownerId).getResultList();
         return carDataList;
 
+    }
+
+    public CarData findCarById(Integer carID) {
+        return entityManager.find(CarData.class, carID);
     }
 
 }

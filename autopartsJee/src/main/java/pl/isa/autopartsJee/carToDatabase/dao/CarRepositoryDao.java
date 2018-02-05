@@ -10,4 +10,6 @@ public interface CarRepositoryDao {
     void addCar(CarData carData);
 
     List<CarData> findCarsByOwnerId(int ownerId);
+
+    CarData findCarById(Integer carID);
 }
