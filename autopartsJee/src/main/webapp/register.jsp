@@ -50,7 +50,8 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom02">Hasło</label>
-                    <input type="password" class="form-control" id="validationCustom02" name="password" placeholder="Hasło"
+                    <input type="password" class="form-control" id="validationCustom02" name="password"
+                           placeholder="Hasło"
                            required>
                     <div class="invalid-feedback">
                         Podaj hasło!
@@ -87,9 +88,19 @@
                     </div>
                 </div>
             </div>
+            <%--<div class="form-row">--%>
+                    <%--<input id="validationCustom06" class="form-control" type="checkbox" name="termsCheckbox"--%>
+                           <%--required>Akceptuję <a href="#">regulamin</a>--%>
+                    <%--<div class="invalid-feedback">--%>
+                        <%--Zaakceptuj regulamin!--%>
+                    <%--</div>--%>
+            <%--</div>--%>
+
+
             <button type="submit" class="btn btn-primary">Zarejestruj się</button>
-        </form>
     </div>
+    </form>
+</div>
 
 
 </div>
