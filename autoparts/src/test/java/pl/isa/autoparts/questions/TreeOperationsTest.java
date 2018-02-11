@@ -5,6 +5,9 @@ import org.junit.Test;
 import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.TreeOperations;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class TreeOperationsTest {
     TreeOperations treeOperations;
 
@@ -14,8 +17,8 @@ public class TreeOperationsTest {
     }
 
     @Test
-    public void should_return_parent() {
-        AllegroItem allegroItem = new AllegroItem();
+    public void should_return_category() {
 
+        assertThat(treeOperations.findExactCarPartCategory("drzwi boczne").getId(), is(18702));
     }
 }
