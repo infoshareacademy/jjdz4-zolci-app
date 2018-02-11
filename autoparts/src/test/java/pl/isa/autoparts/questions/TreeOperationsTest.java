@@ -21,4 +21,9 @@ public class TreeOperationsTest {
 
         assertThat(treeOperations.findExactCarPartCategory("drzwi boczne").getId(), is(18702));
     }
+    @Test
+    public void should_find_car_parts_category_list(){
+        treeOperations.findCarPartCategoryList("drzwi");
+        assertThat(treeOperations.getSimilarList().size(), is(6));
+    }
 }
