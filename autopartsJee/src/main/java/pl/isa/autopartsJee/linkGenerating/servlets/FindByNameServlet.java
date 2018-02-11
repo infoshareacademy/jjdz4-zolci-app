@@ -26,7 +26,7 @@ public class FindByNameServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebLinkGenerator linkGenerator = new WebLinkGenerator();
 
-        linkGenerator.generateLinkMap(req.getParameter("search"), carRepositoryDao.findCarById(Integer.parseInt(req.getParameter("carID"))), dao.getRepository());
+        linkGenerator.generateLinkMap(req.getParameter("search"), carRepositoryDao.findCarById(Long.parseLong(req.getParameter("carID"))), dao.getRepository());
         Map<String, ItemParentName> link = linkGenerator.getLinkAndNames();
 
         req.setAttribute("link", link);

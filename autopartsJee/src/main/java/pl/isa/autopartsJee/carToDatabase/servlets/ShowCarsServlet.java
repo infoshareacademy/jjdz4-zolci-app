@@ -22,7 +22,9 @@ public class ShowCarsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().setAttribute("cars", carRepository.findCarsByOwnerId((int) req.getSession().getAttribute("userId")));
+        req.getSession().setAttribute("cars",
+                carRepository.findCarsByOwnerId(Long.parseLong(req.getSession().getAttribute("userId").toString())));
+
         logger.info("Cars of users id: " + req.getSession().getAttribute("userID") + " found");
         RequestDispatcher dispatcher = req.getRequestDispatcher("/your-cars.jsp");
         dispatcher.forward(req, resp);

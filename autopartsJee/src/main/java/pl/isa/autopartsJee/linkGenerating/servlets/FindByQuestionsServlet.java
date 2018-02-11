@@ -5,8 +5,11 @@ import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.questions.*;
 import pl.isa.autopartsJee.linkGenerating.dao.TreeOperationsRepositoryDao;
 import pl.isa.autopartsJee.linkGenerating.WebLinkGenerator;
+import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
+import pl.isa.autopartsJee.raportModule.dao.LogRepositoryDao;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +24,10 @@ import java.util.Map;
 
 @WebServlet("find-questions")
 public class FindByQuestionsServlet extends HttpServlet {
+    @Inject
+    LogRepositoryDao logRepositoryDao;
+    @Inject
+    UsersRepositoryDao usersRepositoryDao;
 
     public FindByQuestionsServlet() throws IOException {
     }
@@ -32,6 +39,9 @@ public class FindByQuestionsServlet extends HttpServlet {
     private WebFunctions webFunctions = new WebFunctions();
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+
+//        logRepositoryDao.addSingleLog("Manualy search parts by ",
+//                (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "login");
 
         /**     Step 1   */
         if (req.getParameter("step").equals("1")) {

@@ -18,12 +18,12 @@ public class CarRepositoryDaoBean implements CarRepositoryDao {
     }
 
     @Override
-    public List<CarData> findCarsByOwnerId(int ownerId) {
+    public List<CarData> findCarsByOwnerId(Long ownerId) {
         return carRepository.findCarsByOwnerId(ownerId);
     }
 
     @Override
-    public CarData findCarById(Integer carID) {
+    public CarData findCarById(Long carID) {
         return carRepository.findCarById(carID);
     }
 }

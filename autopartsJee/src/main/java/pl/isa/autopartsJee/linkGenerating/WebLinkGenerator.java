@@ -7,7 +7,6 @@ import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.tools.StringNormalizer;
 import pl.isa.autopartsJee.carToDatabase.domain.CarData;
 import pl.isa.autopartsJee.linkGenerating.domain.ItemParentName;
-import pl.isa.autopartsJee.loginAndRegister.servlets.RegisterServlet;
 
 import java.util.ArrayList;
 import java.util.HashMap;

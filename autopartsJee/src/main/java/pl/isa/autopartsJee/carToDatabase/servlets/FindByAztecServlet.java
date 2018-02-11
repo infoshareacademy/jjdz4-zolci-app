@@ -28,7 +28,7 @@ public class FindByAztecServlet extends HttpServlet {
     UsersRepositoryDao usersRepositoryDao;
 
     private Boolean checkIfCarExists(HttpServletRequest req, HttpServletResponse resp, String vin) throws ServletException, IOException {
-        List<CarData> cars = carRepository.findCarsByOwnerId((int) req.getSession().getAttribute("userId"));
+        List<CarData> cars = carRepository.findCarsByOwnerId(Long.parseLong(req.getSession().getAttribute("userId").toString()));
 
         for (CarData carData : cars) {
             if (carData.getVin().equals(vin)) {
@@ -75,7 +75,7 @@ public class FindByAztecServlet extends HttpServlet {
             carData.setProdYear(prodYear);
             carData.setVin(vin);
             carData.setRegistryNumber(registryNumber);
-            carData.setOwnerId((int) req.getSession().getAttribute("userId"));
+            carData.setOwnerId(Long.parseLong(req.getSession().getAttribute("userId").toString()));
             carRepository.addCar(carData);
             logger.info("Car added to users database");
         } catch (Exception e) {

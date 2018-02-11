@@ -21,7 +21,9 @@ public class ListMakerAndModelServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-        req.getSession().setAttribute("cars", carRepository.findCarsByOwnerId((int) req.getSession().getAttribute("userId")));
+        req.getSession().setAttribute("cars",
+                carRepository.findCarsByOwnerId(Long.parseLong(req.getSession().getAttribute("userId").toString())));
+
         logger.info("Cars of users id: " + req.getSession().getAttribute("userID") + " found");
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category.jsp");
         requestDispatcher.forward(req, resp);

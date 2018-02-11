@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
             requestDispatcher.forward(req, resp);
             logger.error(e.getMessage(), e);
             logRepositoryDao.addSingleLog("Login error",
-                    null, "login");
+                    null, "login-error");
             return;
         }
 
