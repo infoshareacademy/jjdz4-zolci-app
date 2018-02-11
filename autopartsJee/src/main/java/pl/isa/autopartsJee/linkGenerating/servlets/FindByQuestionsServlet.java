@@ -40,8 +40,8 @@ public class FindByQuestionsServlet extends HttpServlet {
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-//        logRepositoryDao.addSingleLog("Manualy search parts by ",
-//                (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "login");
+        logRepositoryDao.addSingleLog("Searching by form ",
+                (usersRepositoryDao.findUserByLogin(req.getSession().getAttribute("loggedUser").toString()).getId()), "link-generation");
 
         /**     Step 1   */
         if (req.getParameter("step").equals("1")) {
