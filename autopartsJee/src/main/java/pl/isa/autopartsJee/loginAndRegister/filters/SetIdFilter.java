@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.autopartsJee.loginAndRegister.dao.RolesRepositoryDao;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
+import pl.isa.autopartsJee.loginAndRegister.domain.User;
 import pl.isa.autopartsJee.raportModule.dao.LogRepositoryDao;
 
 import javax.inject.Inject;
@@ -35,12 +36,13 @@ public class SetIdFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpSession session = req.getSession();
-        if ((Boolean) session.getAttribute("isLogged")) {
-            session.setAttribute("userId", usersRepositoryDao.findUserByLogin((String) req.getSession()
-                    .getAttribute("loggedUser")).getId());
 
-            session.setAttribute("userName", usersRepositoryDao.findUserByLogin((String) req.getSession()
-                    .getAttribute("loggedUser")).getName());
+        if ((Boolean) session.getAttribute("isLogged")) {
+            User user = usersRepositoryDao.findUserByLogin((String) req.getSession()
+                    .getAttribute("loggedUser"));
+            session.setAttribute("userId", user.getId()) ;
+
+            session.setAttribute("userName", user.getName());
 
             session.setAttribute("userRole", rolesRepositoryDao.findUsersRole(usersRepositoryDao
                     .findUserByLogin((String) req.getSession().getAttribute("loggedUser"))).getUser_role());

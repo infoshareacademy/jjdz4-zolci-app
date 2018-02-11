@@ -6,6 +6,7 @@ import pl.isa.autopartsJee.loginAndRegister.dao.RolesRepositoryDao;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
 import pl.isa.autopartsJee.loginAndRegister.domain.Role;
 import pl.isa.autopartsJee.loginAndRegister.domain.User;
+import pl.isa.autopartsJee.raportModule.dao.LogRepositoryDao;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -27,6 +28,8 @@ public class RegisterServlet extends HttpServlet {
     UsersRepositoryDao usersRepositoryDao;
     @Inject
     RolesRepositoryDao rolesRepositoryDao;
+    @Inject
+    LogRepositoryDao logRepositoryDao;
 
 
     private Boolean checkIfUserExists(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -71,9 +74,13 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (checkIfFieldsAreEmpty(req, resp)) {
+            logRepositoryDao.addSingleLog("Register error - empty fields",
+                    null, "register-error");
             return;
         }
         if (checkIfUserExists(req, resp)) {
+            logRepositoryDao.addSingleLog("Register error - user exists",
+                    null, "register-error");
             return;
         }
         User user = new User();
@@ -101,6 +108,8 @@ public class RegisterServlet extends HttpServlet {
         role.setUser_login(user.getLogin());
         rolesRepositoryDao.addUser(role);
         logger.info("User registered successfully");
+        logRepositoryDao.addSingleLog("User registered successfully",
+                user.getId(), "register");
         req.setAttribute("success", "Użytkownik zarejestrowany pomyślnie");
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
         requestDispatcher.forward(req, resp);

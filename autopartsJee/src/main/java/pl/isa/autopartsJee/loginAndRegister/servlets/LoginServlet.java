@@ -22,7 +22,6 @@ public class LoginServlet extends HttpServlet {
     LogRepositoryDao logRepositoryDao;
     @Inject
     UsersRepositoryDao usersRepositoryDao;
-    private Logger logger = Logger.getLogger(LoginServlet.class.getName());
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,13 +32,15 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
             requestDispatcher.forward(req, resp);
             logger.error(e.getMessage(), e);
+            logRepositoryDao.addSingleLog("Login error",
+                    null, "login");
             return;
         }
 
         if (req.getHeader("Referer").contains("login.jsp")) {
             resp.sendRedirect("/index.jsp");
             logRepositoryDao.addSingleLog("User logged successfully",
-                    (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "logging");
+                    (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "login");
             return;
         }
         resp.sendRedirect(req.getHeader("Referer"));
