@@ -1,16 +1,19 @@
 package pl.isa.autopartsJee.listener;
 
+import org.slf4j.LoggerFactory;
 import pl.isa.autopartsJee.linkGenerating.dao.TreeOperationsRepositoryDao;
+import pl.isa.autopartsJee.loginAndRegister.servlets.RegisterServlet;
 
 import javax.inject.Inject;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import java.util.logging.Logger;
 
 public class StartUp implements ServletContextListener {
     @Inject
     TreeOperationsRepositoryDao dao;
-    private Logger logger = Logger.getLogger(StartUp.class.getName());
+
+    private org.slf4j.Logger logger = LoggerFactory.getLogger(StartUp.class.getName());
+
     public void contextInitialized(ServletContextEvent e) {
         dao.initRepository();
         logger.info("File parsed");

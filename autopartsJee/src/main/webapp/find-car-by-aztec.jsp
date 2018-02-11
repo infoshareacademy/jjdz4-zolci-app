@@ -39,6 +39,7 @@
         <h1>Podaj kod sesji Atena:</h1><br/>
         <h3>Aby uzyskać kod sesji Atena, zeskanuj kod Aztec z dowodu rejestracyjnego twojego pojazdu przy pomocy
             aplikacji na telefon Atena Aztec Reader</h3>
+        <span style="color: limegreen;"><c:out value="${carAdded}"/></span>
         <span style="color: red;"><c:out value="${wrongCode}"/></span>
         <form action="/find-by-aztec" method="GET">
             <div class="form-group">

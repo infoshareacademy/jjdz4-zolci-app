@@ -1,5 +1,7 @@
 package pl.isa.autopartsJee.carToDatabase.servlets;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.isa.autopartsJee.carToDatabase.dao.CarRepositoryDao;
 
 import javax.inject.Inject;
@@ -10,12 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 
 @WebServlet("/cars")
 public class ShowCarsServlet extends HttpServlet {
-    private Logger logger = Logger.getLogger(ShowCarsServlet.class.getName());
+    private Logger logger = LoggerFactory.getLogger(ShowCarsServlet.class.getName());
     @Inject
     CarRepositoryDao carRepository;
 

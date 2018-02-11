@@ -1,21 +1,22 @@
 package pl.isa.autopartsJee.linkGenerating;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autoparts.categories.TreeOperations;
 import pl.isa.autoparts.tools.StringNormalizer;
 import pl.isa.autopartsJee.carToDatabase.domain.CarData;
 import pl.isa.autopartsJee.linkGenerating.domain.ItemParentName;
+import pl.isa.autopartsJee.loginAndRegister.servlets.RegisterServlet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class WebLinkGenerator {
 
     private String itemName = new String();
-    private Logger logger = Logger.getLogger(WebLinkGenerator.class.getName());
-
+    private Logger logger = LoggerFactory.getLogger(WebLinkGenerator.class.getName());
     public Map<String, ItemParentName> getLinkAndNames() {
         return linkAndNames;
     }
@@ -58,7 +59,7 @@ public class WebLinkGenerator {
             logger.info("Links list generated");
             }
         } catch (IndexOutOfBoundsException e) {
-            logger.warning("No category parent or category not found, error in link generating");
+            logger.warn("No category parent or category not found, error in link generating");
 
         }
 //        return "Category not found";
@@ -77,7 +78,7 @@ public class WebLinkGenerator {
             return "https://allegro.pl/kategoria/" + stringNormalizer.normalize(parent.getName())
                     + "-" + stringNormalizer.normalize(categoryItem.getName()) + "-" + categoryItem.getId();
         } catch (IndexOutOfBoundsException e) {
-            logger.warning("No category parent or category not found, error in link generating");
+            logger.warn("No category parent or category not found, error in link generating");
 
         }
         return "Category not found";

@@ -1,10 +1,13 @@
 package pl.isa.autopartsJee.carToDatabase.servlets;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.aztec.AtenaSessionReader;
 import pl.isa.autoparts.aztec.AztecVehicle;
 import pl.isa.autopartsJee.carToDatabase.dao.CarRepositoryDao;
 import pl.isa.autopartsJee.carToDatabase.domain.CarData;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
+import pl.isa.autopartsJee.loginAndRegister.servlets.RegisterServlet;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -15,11 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
 
 @WebServlet("/find-by-aztec")
 public class FindByAztecServlet extends HttpServlet {
-    private Logger logger = Logger.getLogger(FindByAztecServlet.class.getName());
+    private Logger logger = LoggerFactory.getLogger(FindByAztecServlet.class.getName());
     @Inject
     CarRepositoryDao carRepository;
     @Inject
@@ -33,7 +35,7 @@ public class FindByAztecServlet extends HttpServlet {
                 req.setAttribute("wrongCode", "Podane auto znajduje się w twojej bazie danych");
                 RequestDispatcher dispatcher = req.getRequestDispatcher("/find-car-by-aztec.jsp");
                 dispatcher.forward(req, resp);
-                logger.warning("Car is in user's database");
+                logger.warn("Car is in user's database");
                 return true;
 
             }
@@ -77,9 +79,10 @@ public class FindByAztecServlet extends HttpServlet {
             carRepository.addCar(carData);
             logger.info("Car added to users database");
         } catch (Exception e) {
-            logger.warning("Session code not found");
+            logger.warn("Session code not found");
             req.setAttribute("wrongCode", "Nie znaleziono kodu sesji");
         }
+        req.getSession().setAttribute("carAdded", "Auto poprawnie dodane do bazy danych");
         RequestDispatcher dispatcher = req.getRequestDispatcher("/find-car-by-aztec.jsp");
         dispatcher.forward(req, resp);
     }
