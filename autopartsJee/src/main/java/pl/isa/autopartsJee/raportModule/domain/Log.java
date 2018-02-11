@@ -14,6 +14,8 @@ public class Log {
 
     private String message;
     private LocalDateTime localDateTime;
+
+    @Column(nullable = true)
     private Long userId;
     private String logLevel;
 
@@ -21,9 +23,6 @@ public class Log {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getMessage() {
         return message;

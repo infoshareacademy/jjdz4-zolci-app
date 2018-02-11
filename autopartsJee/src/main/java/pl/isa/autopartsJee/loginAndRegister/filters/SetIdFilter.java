@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.autopartsJee.loginAndRegister.dao.RolesRepositoryDao;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
+import pl.isa.autopartsJee.raportModule.dao.LogRepositoryDao;
 
 import javax.inject.Inject;
 import javax.servlet.*;
@@ -20,6 +21,8 @@ public class SetIdFilter implements Filter {
     UsersRepositoryDao usersRepositoryDao;
     @Inject
     RolesRepositoryDao rolesRepositoryDao;
+
+
     private Logger logger = LoggerFactory.getLogger(SetIdFilter.class.getName());
 
     @Override
@@ -32,7 +35,6 @@ public class SetIdFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpSession session = req.getSession();
-//        try {
         if ((Boolean) session.getAttribute("isLogged")) {
             session.setAttribute("userId", usersRepositoryDao.findUserByLogin((String) req.getSession()
                     .getAttribute("loggedUser")).getId());
@@ -44,9 +46,6 @@ public class SetIdFilter implements Filter {
                     .findUserByLogin((String) req.getSession().getAttribute("loggedUser"))).getUser_role());
             logger.debug("User id found");
         }
-//        } catch (NullPointerException e) {
-//            logger.debug("User not logged");
-//        }
 
 
         filterChain.doFilter(servletRequest, servletResponse);
