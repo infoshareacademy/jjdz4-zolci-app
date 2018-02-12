@@ -36,6 +36,7 @@
 <div class="container">
 
     <div class="content">
+        <h1>kategoria: <c:out value="${selected}"/></h1><br/>
         <h1>Kliknij link, aby przejść do kategorii Allegro</h1><br/>
         <c:forEach var="entry" items="${parts}">
 

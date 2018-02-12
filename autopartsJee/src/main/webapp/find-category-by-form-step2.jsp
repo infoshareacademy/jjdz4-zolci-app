@@ -36,11 +36,12 @@
 <div class="container">
 
     <div class="content">
+        <h1>kategoria: <c:out value="${selected}"/></h1><br/>
         <h1>Wybierz uszkodzoną część lub usterkę:</h1><br/>
         <c:forEach var="entry" items="${questions}">
 
             <div class="row justify-content-center">
-                <a href="/find-questions?selected=<c:out value="${entry}"/>&step=3"
+                <a href="/find-questions?selected_2=<c:out value="${entry}"/>&step=3"
                    class="btn btn-secondary btn-lg listing" role="button"
                    aria-pressed="true"><c:out value="${entry}"/></a>
             </div>
