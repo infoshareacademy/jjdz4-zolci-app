@@ -57,11 +57,9 @@
                 </c:if>
             </c:when>
             <c:otherwise>
-                <h3>Autoparts Finder jest aplikacją, która pomoże Ci zlokalizować uszkodzoną część w Twoim aucie oraz
-                    przekieruje Cię
-                    do kategorii Allegro, w której znajdziesz część zamienną. </h3><br/>
-                <h4>Jako zalogowany użytkownik możesz wprowadzić do naszej bazy danych swój pojazd i skorzystać z
-                    funkcjonalności serwisu.</h4>
+
+                <h3><fmt:message key="banner.instruction.introduce"/></h3><br/>
+                <h4><fmt:message key="banner.instruction.main"/></h4>
             </c:otherwise>
         </c:choose>
     </div>

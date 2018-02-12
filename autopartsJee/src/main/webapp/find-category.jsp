@@ -1,7 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
+
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
     <title>Znajdź kategorię</title>
@@ -30,20 +34,20 @@
             <ul class="navbar-nav ml-auto">
                 <%@include file="context-menu.jsp" %>
             </ul>
+            <%@include file="choose-language.jsp" %>
         </div>
     </div>
 </nav>
 <div class="container">
 
     <div class="content">
-        <h1>Znajdź kategorię allegro</h1><br/>
+        <h1><fmt:message key="findCategory.header"/></h1><br/>
 
         <div class="row justify-content-center">
             <a href="find-category-by-name.jsp" class="btn btn-secondary btn-lg listing" role="button"
-               aria-pressed="true">Wyszukaj
-                ręcznie</a>
-            <a href="find-questions?step=1" class="btn btn-secondary btn-lg listing" role="button" aria-pressed="true">Odpowiedz
-                na pytania</a>
+               aria-pressed="true"><fmt:message key="findCategory.search"/></a>
+            <a href="find-questions?step=1" class="btn btn-secondary btn-lg listing" role="button" aria-pressed="true">
+                <fmt:message key="findCategory.questionary"/></a>
 
         </div>
     </div>
