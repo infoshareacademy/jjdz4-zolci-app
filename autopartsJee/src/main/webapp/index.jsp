@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
     <title>Strona główna</title>
@@ -30,6 +30,13 @@
             <ul class="navbar-nav ml-auto">
                 <%@include file="context-menu.jsp" %>
             </ul>
+            <form>
+                <select id="language" name="language" onchange="submit()">
+                    <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
+                    <option value="pl" ${language == 'pl' ? 'selected' : ''}>Polish</option>
+                    <option value="es" ${language == 'es' ? 'selected' : ''}>Español</option>
+                </select>
+            </form>
         </div>
     </div>
 </nav>

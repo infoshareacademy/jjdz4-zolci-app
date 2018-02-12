@@ -37,15 +37,19 @@ public class FindByQuestionsServlet extends HttpServlet {
 
     private Logger logger = LoggerFactory.getLogger(FindByQuestionsServlet.class.getName());
     private WebFunctions webFunctions = new WebFunctions();
+    private boolean findLog;
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-        logRepositoryDao.addSingleLog("Searching by form ",
-                (usersRepositoryDao.findUserByLogin(req.getSession().getAttribute("loggedUser").toString()).getId()), "link-generation");
+        if (findLog == false) {
+            logRepositoryDao.addSingleLog("Searching by form ",
+                    (usersRepositoryDao.findUserByLogin(req.getSession().getAttribute("loggedUser").toString()).getId()), "link-generation");
+        }
 
         /**     Step 1   */
         if (req.getParameter("step").equals("1")) {
             logger.debug("Web: invoke step 1");
+            findLog = true;
 
             TopClass topClass = new TopClass();
             try {
