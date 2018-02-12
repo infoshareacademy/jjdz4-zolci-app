@@ -1,5 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
 <!doctype html>
 <html lang="${language}">
 <head>
@@ -30,13 +35,7 @@
             <ul class="navbar-nav ml-auto">
                 <%@include file="context-menu.jsp" %>
             </ul>
-            <form>
-                <select id="language" name="language" onchange="submit()">
-                    <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
-                    <option value="pl" ${language == 'pl' ? 'selected' : ''}>Polish</option>
-                    <option value="es" ${language == 'es' ? 'selected' : ''}>Español</option>
-                </select>
-            </form>
+            <%@include file="choose-language.jsp" %>
         </div>
     </div>
 </nav>
@@ -47,8 +46,9 @@
         <span style="color: limegreen;"><c:out value="${success}"/></span>
         <c:choose>
             <c:when test="${not empty sessionScope.isLogged && sessionScope.isLogged == true}">
-                <h3>Cześć, ${userName}!</h3>
-                <h4>Użyj menu w górnym pasku aby skorzystać z funkcjonalności serwisu.</h4>
+                <h3><fmt:message key="banner.hello"/>, ${userName}!</h3>
+                <h4><fmt:message key="banner.message"/></h4>
+                <%--<h4>Użyj menu w górnym pasku aby skorzystać z funkcjonalności serwisu.</h4>--%>
 
                 <c:if test="${userRole == admin}">
                     <div class="text-center">

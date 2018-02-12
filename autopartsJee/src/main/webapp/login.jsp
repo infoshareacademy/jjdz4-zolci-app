@@ -1,7 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
     <title>Logowanie</title>
@@ -30,30 +35,24 @@
             <ul class="navbar-nav ml-auto">
                 <%@include file="context-menu.jsp" %>
             </ul>
-            <form>
-                <select id="language" name="language" onchange="submit()">
-                    <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
-                    <option value="pl" ${language == 'pl' ? 'selected' : ''}>Polish</option>
-                    <option value="es" ${language == 'es' ? 'selected' : ''}>Español</option>
-                </select>
-            </form>
+            <%@include file="choose-language.jsp" %>
         </div>
     </div>
 </nav>
 <div class="container">
 
     <div class="content">
-        <h1>Logowanie</h1><br/>
+        <h1><fmt:message key="logging.header"/></h1><br/>
         <form action="/login" method="POST">
             <div class="form-group">
                 <label>Login</label>
                 <input type="text" class="form-control" name="login">
             </div>
             <div class="form-group">
-                <label>Hasło</label>
+                <label><fmt:message key="logging.password"/></label>
                 <input type="password" class="form-control" name="password">
             </div>
-            <button type="submit" class="btn btn-primary">Zaloguj się</button>
+            <button type="submit" class="btn btn-primary"><fmt:message key="logging.passwordButton"/></button>
         </form>
     </div>
 

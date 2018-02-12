@@ -5,8 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <fmt:setLocale value="${language}" />
-<fmt:setBundle basename="abc.language" />
-<%--<fmt:setBundle basename="abc.l1" />--%>
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
 
 <html lang="${language}">
 <c:choose>
@@ -18,10 +17,8 @@
         <a class="nav-item nav-link" href="/cars"><fmt:message key="menu.cars"/></a>
         <a class="nav-item nav-link" href="add-car-to-database.jsp"><fmt:message key="menu.addCarToDatabase"/></a>
         <a class="nav-item nav-link" href="/find-category"><fmt:message key="menu.findCategory"/></a>
-            <a class="nav-item nav-link active" href="/logout"><fmt:message key="menu.logout"/> [${sessionScope.loggedUser}]
+        <a class="nav-item nav-link active" href="/logout"><fmt:message key="menu.logout"/> [${sessionScope.loggedUser}]
                 <span class="sr-only">(current)</span></a>
-
-
 
         <%--<a class="nav-item nav-link" href="/cars">Twoje auta</a>--%>
         <%--<a class="nav-item nav-link" href="add-car-to-database.jsp">Dodaj auto do bazy danych</a>--%>
@@ -29,7 +26,6 @@
         <%--<a class="nav-item nav-link active" href="/logout">Wyloguj [${sessionScope.loggedUser}]--%>
             <%--<span class="sr-only">(current)</span>--%>
         <%--</a>--%>
-
     </c:when>
     <c:otherwise>
         <a class="nav-item nav-link active" href="login.jsp"><fmt:message key="menu.login"/>
