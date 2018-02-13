@@ -52,7 +52,7 @@
 
                 <c:if test="${userRole == admin}">
                     <div class="text-center">
-                        <a class="listing btn btn-primary" href="admin-panel.jsp" role="button">Panel admina</a>
+                        <a class="listing btn btn-primary" href="admin-panel.jsp" role="button"><fmt:message key="banner.adminPanel"/></a>
                     </div>
                 </c:if>
             </c:when>

@@ -30,13 +30,14 @@
             <ul class="navbar-nav ml-auto">
                 <%@include file="context-menu.jsp" %>
             </ul>
+            <%@include file="choose-language.jsp" %>
         </div>
     </div>
 </nav>
 <div class="container">
 
     <div class="content">
-        <h1>Twoje samochody</h1><br/>
+        <h1><fmt:message key="yourcars.header"/></h1><br/>
 
         <c:choose>
             <c:when test="${not empty cars}">
@@ -80,7 +81,7 @@
                 </div>
             </c:when>
             <c:otherwise>
-                Brak aut
+                <fmt:message key="yourcars.info"/>
             </c:otherwise>
         </c:choose>
 

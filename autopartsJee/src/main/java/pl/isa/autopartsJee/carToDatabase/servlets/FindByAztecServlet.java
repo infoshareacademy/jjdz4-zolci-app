@@ -80,9 +80,11 @@ public class FindByAztecServlet extends HttpServlet {
             logger.info("Car added to users database");
         } catch (Exception e) {
             logger.warn("Session code not found");
-            req.setAttribute("wrongCode", "Nie znaleziono kodu sesji");
+//            req.setAttribute("wrongCode", "Nie znaleziono kodu sesji");
+            req.setAttribute("carAdded", false);
         }
-        req.getSession().setAttribute("carAdded", "Auto poprawnie dodane do bazy danych");
+//        req.getSession().setAttribute("carAdded", "Auto poprawnie dodane do bazy danych");
+        req.getSession().setAttribute("carAdded", true);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/find-car-by-aztec.jsp");
         dispatcher.forward(req, resp);
     }
