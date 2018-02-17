@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="${language}">
 <form>
     <select id="language" name="language" onchange="submit()">
