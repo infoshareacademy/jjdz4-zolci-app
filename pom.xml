@@ -11,6 +11,7 @@
     <modules>
         <module>autopartsJee</module>
         <module>autoparts</module>
+        <module>raportmodule</module>
     </modules>
 
     <properties>

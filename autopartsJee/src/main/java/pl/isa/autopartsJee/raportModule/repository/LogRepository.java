@@ -15,12 +15,12 @@ public class LogRepository {
 
     public void addSingleLog(String message, Long userId, String logLevel){
 
-//        Log log = new Log();
-//        log.setMessage(message);
-//        log.setLocalDateTime(LocalDateTime.now());
-//        log.setLogLevel(logLevel);
-//        log.setUserId(userId);
-//
-//        entityManager.persist(log);
+        Log log = new Log();
+        log.setMessage(message);
+        log.setLocalDateTime(LocalDateTime.now());
+        log.setLogLevel(logLevel);
+        log.setUserId(userId);
+
+        entityManager.persist(log);
     }
 }
