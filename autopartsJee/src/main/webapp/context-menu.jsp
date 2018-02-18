@@ -6,13 +6,6 @@
 <fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language"/>
 <fmt:requestEncoding value = "UTF-8" />
 
-<%--<%@ page contentType="text/html; charset=UTF-8" language="java" %>--%>
-<%--<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>--%>
-<%--<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" var="lang" />--%>
-<%--<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />--%>
-<%--<fmt:setLocale value="${language}" />--%>
-<%--<fmt:requestEncoding value = "UTF-8" />--%>
-
 <html lang="${language}">
 <c:choose>
     <c:when test="${not empty sessionScope.isLogged && sessionScope.isLogged == true}">
@@ -26,12 +19,6 @@
         <a class="nav-item nav-link active" href="/logout"><fmt:message key="menu.logout"/> [${sessionScope.loggedUser}]
                 <span class="sr-only">(current)</span></a>
 
-        <%--<a class="nav-item nav-link" href="/cars">Twoje auta</a>--%>
-        <%--<a class="nav-item nav-link" href="add-car-to-database.jsp">Dodaj auto do bazy danych</a>--%>
-        <%--<a class="nav-item nav-link" href="/find-category">Znajdź kategorię</a>--%>
-        <%--<a class="nav-item nav-link active" href="/logout">Wyloguj [${sessionScope.loggedUser}]--%>
-            <%--<span class="sr-only">(current)</span>--%>
-        <%--</a>--%>
     </c:when>
     <c:otherwise>
         <a class="nav-item nav-link active" href="login.jsp"><fmt:message key="menu.login"/>
