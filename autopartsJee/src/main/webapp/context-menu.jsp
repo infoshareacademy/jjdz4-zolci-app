@@ -9,7 +9,7 @@
 
 
         <%--TUTAJ MOZNA DODAWAC KOLEJNE FUNKCJONALNOSCI--%>
-
+        <fmt:requestEncoding value="UTF-8" />
         <a class="nav-item nav-link" href="/cars"><fmt:message key="menu.cars"/></a>
         <a class="nav-item nav-link" href="add-car-to-database.jsp"><fmt:message key="menu.addCarToDatabase"/></a>
         <a class="nav-item nav-link" href="/find-category"><fmt:message key="menu.findCategory"/></a>

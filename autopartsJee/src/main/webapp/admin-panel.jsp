@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
 <html lang="${language}">
 <head>
@@ -14,7 +14,7 @@
 </head>
 
 <body>
-
+<fmt:requestEncoding value="UTF-8" />
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
     <div class="container">
         <a class="navbar-brand" href="index.jsp">

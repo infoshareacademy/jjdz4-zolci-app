@@ -1,4 +1,5 @@
 <html lang="${language}">
+<meta charset="UTF-8">
 <form>
     <select id="language" name="language" onchange="submit()">
         <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
