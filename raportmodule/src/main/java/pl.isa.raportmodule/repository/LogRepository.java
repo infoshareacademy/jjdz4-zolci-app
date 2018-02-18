@@ -14,8 +14,6 @@ public class LogRepository {
     private EntityManager entityManager;
 
     public void addSingleLog(Log log) {
-
-
         entityManager.persist(log);
     }
 }
