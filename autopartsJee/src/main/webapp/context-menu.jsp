@@ -1,9 +1,19 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <fmt:setLocale value="${language}" />
-<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language"/>
+<fmt:requestEncoding value = "UTF-8" />
 
+<%--<%@ page contentType="text/html; charset=UTF-8" language="java" %>--%>
+<%--<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>--%>
+<%--<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" var="lang" />--%>
+<%--<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />--%>
+<%--<fmt:setLocale value="${language}" />--%>
+<%--<fmt:requestEncoding value = "UTF-8" />--%>
+
+<html lang="${language}">
 <c:choose>
     <c:when test="${not empty sessionScope.isLogged && sessionScope.isLogged == true}">
 
@@ -37,3 +47,4 @@
 <c:if test="${okMessage != null}">
     <div style="color: green;">${okMessage}</div>
 </c:if>
+</html>
