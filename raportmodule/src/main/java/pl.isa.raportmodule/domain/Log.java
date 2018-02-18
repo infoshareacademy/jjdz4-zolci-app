@@ -37,7 +37,6 @@ public class Log {
         return localDateTime;
     }
 
-    @JsonIgnore
     public void setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
     }
