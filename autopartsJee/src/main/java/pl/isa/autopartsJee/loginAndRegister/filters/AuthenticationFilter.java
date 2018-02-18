@@ -1,6 +1,5 @@
 package pl.isa.autopartsJee.loginAndRegister.filters;
 
-import pl.isa.autopartsJee.raportModule.dao.LogRepositoryDao;
 
 import javax.inject.Inject;
 import javax.servlet.*;

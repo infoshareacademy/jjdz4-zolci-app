@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import pl.isa.autopartsJee.loginAndRegister.dao.RolesRepositoryDao;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
 import pl.isa.autopartsJee.loginAndRegister.domain.User;
-import pl.isa.autopartsJee.raportModule.dao.LogRepositoryDao;
 
 import javax.inject.Inject;
 import javax.servlet.*;

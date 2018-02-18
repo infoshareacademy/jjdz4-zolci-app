@@ -1,4 +1,4 @@
-package pl.isa.raportmodule.domain;
+package pl.isa.autopartsJee.raportModule.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
