@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
-import pl.isa.autopartsJee.raportModule.dao.LogRepositoryDao;
+//import pl.isa.autopartsJee.raportModule.dao.LogRepositoryDao;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -18,8 +18,8 @@ import java.io.IOException;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(LoginServlet.class.getName());
-    @Inject
-    LogRepositoryDao logRepositoryDao;
+//    @Inject
+//    LogRepositoryDao logRepositoryDao;
     @Inject
     UsersRepositoryDao usersRepositoryDao;
 
@@ -32,15 +32,15 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
             requestDispatcher.forward(req, resp);
             logger.error(e.getMessage(), e);
-            logRepositoryDao.addSingleLog("Login error",
-                    null, "login-error");
+//            logRepositoryDao.addSingleLog("Login error",
+//                    null, "login-error");
             return;
         }
 
         if (req.getHeader("Referer").contains("login.jsp")) {
             resp.sendRedirect("/index.jsp");
-            logRepositoryDao.addSingleLog("User logged successfully",
-                    (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "login");
+//            logRepositoryDao.addSingleLog("User logged successfully",
+//                    (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "login");
             return;
         }
         resp.sendRedirect(req.getHeader("Referer"));

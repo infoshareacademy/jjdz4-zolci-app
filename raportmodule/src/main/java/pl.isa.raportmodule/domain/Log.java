@@ -1,11 +1,10 @@
-package pl.isa.autopartsJee.raportModule.domain;
+package pl.isa.raportmodule.domain;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "logs")
+//@Table(name = "logs")
 public class Log {
 
     @Id
