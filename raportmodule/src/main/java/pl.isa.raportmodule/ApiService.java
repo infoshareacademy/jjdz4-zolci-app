@@ -1,5 +1,7 @@
 package pl.isa.raportmodule;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.isa.raportmodule.domain.Log;
 import pl.isa.raportmodule.repository.LogRepository;
 
@@ -13,6 +15,7 @@ import java.time.LocalDateTime;
 public class ApiService {
     @Inject
     LogRepository logRepository;
+    Logger logger = LoggerFactory.getLogger(ApiService.class);
 
     @POST
     @Path("/addlog")
@@ -21,11 +24,23 @@ public class ApiService {
     public Response addLog(Log log) {
         log.setLocalDateTime(LocalDateTime.now());
         logRepository.addSingleLog(log);
-        return Response.ok(log.getLogLevel()).build();
+        logger.info("log added in api");
+        return Response.ok(log).build();
     }
+
     @GET
-    @Path("/servicestate")
-    public Response serviceState(){
+    @Path("/servicestatus")
+    public Response serviceState() {
         return Response.ok("Service online").build();
     }
+
+
+    @GET
+    @Path("/getlogs")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getlogs() {
+        logger.info("logs returned in api");
+        return Response.ok(logRepository.getLogs()).build();
+    }
+
 }

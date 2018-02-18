@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
+import pl.isa.autopartsJee.raportModule.rest.LogRequest;
 //import pl.isa.autopartsJee.raportModule.dao.LogRepositoryDao;
 
 import javax.inject.Inject;
@@ -18,8 +19,8 @@ import java.io.IOException;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(LoginServlet.class.getName());
-//    @Inject
-//    LogRepositoryDao logRepositoryDao;
+    @Inject
+    LogRequest logRequest;
     @Inject
     UsersRepositoryDao usersRepositoryDao;
 
@@ -32,8 +33,8 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
             requestDispatcher.forward(req, resp);
             logger.error(e.getMessage(), e);
-//            logRepositoryDao.addSingleLog("Login error",
-//                    null, "login-error");
+            logRequest.createLog("Login error",
+                    null, "login-error");
             return;
         }
 
