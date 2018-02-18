@@ -1,5 +1,8 @@
 package pl.isa.raportmodule.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -12,6 +15,8 @@ public class Log {
     private Long id;
 
     private String message;
+
+    @JsonFormat(pattern = "YYYY-MM-dd HH:mm")
     private LocalDateTime localDateTime;
 
     @Column(nullable = true)

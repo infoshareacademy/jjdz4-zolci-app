@@ -10,12 +10,12 @@ import javax.persistence.PersistenceContext;
 @Singleton
 public class LogRepository {
 
-//    @PersistenceContext(unitName = "raportmodule")
+    @PersistenceContext(unitName = "raportmodule")
     private EntityManager entityManager;
 
     public void addSingleLog(Log log) {
 
 
-//        entityManager.persist(log);
+        entityManager.persist(log);
     }
 }

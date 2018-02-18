@@ -16,10 +16,16 @@ public class ApiService {
     @Inject
     LogRepository logRepository;
 
-    @GET
+    @POST
     @Path("/addlog")
-    public Response addLog() {
-//        logRepository.addSingleLog(log);
-        return Response.ok("test").build();
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addLog(Log log) {
+        logRepository.addSingleLog(log);
+        return Response.ok(log.getLogLevel()).build();
+    }
+    @GET
+    @Path("/servicestate")
+    public Response serviceState(){
+        return Response.ok("Service online").build();
     }
 }
