@@ -1,13 +1,12 @@
 package pl.isa.raportmodule.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-//@Table(name = "logs")
+@Table(name = "logs")
 public class Log {
 
     @Id
@@ -15,8 +14,8 @@ public class Log {
     private Long id;
 
     private String message;
-
-    @JsonFormat(pattern = "YYYY-MM-dd HH:mm")
+    //    @JsonIgnore
+//    @JsonFormat(pattern = "YYYY-MM-dd HH:mm")
     private LocalDateTime localDateTime;
 
     @Column(nullable = true)
@@ -40,6 +39,7 @@ public class Log {
         return localDateTime;
     }
 
+    @JsonIgnore
     public void setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
     }
