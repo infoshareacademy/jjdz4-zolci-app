@@ -6,6 +6,7 @@ import pl.isa.autoparts.questions.*;
 import pl.isa.autopartsJee.linkGenerating.dao.TreeOperationsRepositoryDao;
 import pl.isa.autopartsJee.linkGenerating.WebLinkGenerator;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
+import pl.isa.autopartsJee.raportModule.rest.LogRequest;
 //import pl.isa.autopartsJee.raportModule.dao.LogRepositoryDao;
 
 import javax.ejb.EJB;
@@ -24,8 +25,8 @@ import java.util.Map;
 
 @WebServlet("find-questions")
 public class FindByQuestionsServlet extends HttpServlet {
-//    @Inject
-//    LogRepositoryDao logRepositoryDao;
+    @Inject
+    LogRequest logRequest;
     @Inject
     UsersRepositoryDao usersRepositoryDao;
 
@@ -40,8 +41,8 @@ public class FindByQuestionsServlet extends HttpServlet {
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-//        logRepositoryDao.addSingleLog("Searching by form ",
-//                (usersRepositoryDao.findUserByLogin(req.getSession().getAttribute("loggedUser").toString()).getId()), "link-generation");
+        logRequest.createLog("Searching by form ",
+                ((Long) req.getSession().getAttribute("userId")), "link-generation");
 
         /**     Step 1   */
         if (req.getParameter("step").equals("1")) {

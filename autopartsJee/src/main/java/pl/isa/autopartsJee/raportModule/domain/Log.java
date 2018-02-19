@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "logs")
 public class Log {
 
     @Id

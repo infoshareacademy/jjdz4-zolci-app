@@ -40,8 +40,8 @@ public class LoginServlet extends HttpServlet {
 
         if (req.getHeader("Referer").contains("login.jsp")) {
             resp.sendRedirect("/index.jsp");
-//            logRepositoryDao.addSingleLog("User logged successfully",
-//                    (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "login");
+            logRequest.createLog("User logged successfully",
+                    (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "login");
             return;
         }
         resp.sendRedirect(req.getHeader("Referer"));

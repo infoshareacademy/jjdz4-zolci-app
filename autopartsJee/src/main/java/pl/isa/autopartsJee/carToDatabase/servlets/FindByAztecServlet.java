@@ -7,7 +7,7 @@ import pl.isa.autoparts.aztec.AztecVehicle;
 import pl.isa.autopartsJee.carToDatabase.dao.CarRepositoryDao;
 import pl.isa.autopartsJee.carToDatabase.domain.CarData;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
-import pl.isa.autopartsJee.loginAndRegister.servlets.RegisterServlet;
+import pl.isa.autopartsJee.raportModule.rest.LogRequest;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -26,7 +26,8 @@ public class FindByAztecServlet extends HttpServlet {
     CarRepositoryDao carRepository;
     @Inject
     UsersRepositoryDao usersRepositoryDao;
-
+    @Inject
+    LogRequest logRequest;
     private Boolean checkIfCarExists(HttpServletRequest req, HttpServletResponse resp, String vin) throws ServletException, IOException {
         List<CarData> cars = carRepository.findCarsByOwnerId(Long.parseLong(req.getSession().getAttribute("userId").toString()));
 
@@ -35,6 +36,7 @@ public class FindByAztecServlet extends HttpServlet {
                 req.setAttribute("wrongCode", "Podane auto znajduje się w twojej bazie danych");
                 RequestDispatcher dispatcher = req.getRequestDispatcher("/find-car-by-aztec.jsp");
                 dispatcher.forward(req, resp);
+
                 logger.warn("Car is in user's database");
                 return true;
 
@@ -77,8 +79,10 @@ public class FindByAztecServlet extends HttpServlet {
             carData.setRegistryNumber(registryNumber);
             carData.setOwnerId(Long.parseLong(req.getSession().getAttribute("userId").toString()));
             carRepository.addCar(carData);
+            logRequest.createLog("Car added to database",(Long) req.getSession().getAttribute("userId"), "Car-added");
             logger.info("Car added to users database");
         } catch (Exception e) {
+            logRequest.createLog("Atena session not found",(Long) req.getSession().getAttribute("userId"), "Atena-session-error");
             logger.warn("Session code not found");
             req.setAttribute("wrongCode", "Nie znaleziono kodu sesji");
         }
