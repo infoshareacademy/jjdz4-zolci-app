@@ -1,6 +1,7 @@
 package pl.isa.raportmodule.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -24,10 +25,12 @@ public class Log {
     @Transient
     private int key;
 
+    @JsonIgnore
     public int getKey() {
         return key;
     }
-    @JsonIgnore
+
+    @JsonProperty
     public void setKey(int key) {
         this.key = key;
     }

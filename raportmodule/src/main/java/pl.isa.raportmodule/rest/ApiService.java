@@ -12,11 +12,17 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 
+//import pl.isa.raportmodule.domain.ClientKey;
+//import pl.isa.raportmodule.repository.ClientKeyRepository;
+
 @Path("/")
 public class ApiService {
+//    @Inject
+//    ClientKeyRepository clientKeyRepository;
     @Inject
     LogRepository logRepository;
     Logger logger = LoggerFactory.getLogger(ApiService.class);
+    ClientKeyOperator clientKeyOperator = new ClientKeyOperator();
 
     @POST
     @Path("/addlog")
@@ -24,9 +30,9 @@ public class ApiService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addLog(Log log) {
         log.setLocalDateTime(LocalDateTime.now());
-        if (ClientKeyOperator.checkKey(log)) {
+        logger.info(Integer.toString(log.getKey()));
+        if (clientKeyOperator.checkKey(log)) {
             logRepository.addSingleLog(log);
-            logger.info(Integer.toString(log.getKey()));
             return Response.ok(log).build();
         }
         return Response.status(Response.Status.BAD_REQUEST).build();
@@ -37,6 +43,15 @@ public class ApiService {
     public Response serviceState() {
         return Response.ok("Service online").build();
     }
+
+//    @POST
+//    @Path("/addkey")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response addKey(ClientKey clientKey) {
+//        clientKeyRepository.addKey(clientKey);
+//        return Response.ok(clientKey).build();
+//    }
 
 
     @GET

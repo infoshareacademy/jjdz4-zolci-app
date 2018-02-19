@@ -1,0 +1,26 @@
+version: '2'
+services:
+  raportmodule-db:
+    container_name: "raportmodule-db"
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=raportmodule-db
+      - MYSQL_USER=jakub
+      - MYSQL_PASSWORD=jakub
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3307:3306
+  raportmodule:
+    container_name: "raportmodule"
+    build: .
+    environment:
+      - MYSQL_URI=raportmodule-db:3306
+      - MYSQL_DATABASE=raportmodule-db
+      - MYSQL_USER=jakub
+      - MYSQL_PASSWORD=jakub
+      - DATASOURCE_NAME=java:/ISAraportModule
+    ports:
+      - 8081:8080
+      - 9991:9990
+    depends_on:
+      - raportmodule-db
