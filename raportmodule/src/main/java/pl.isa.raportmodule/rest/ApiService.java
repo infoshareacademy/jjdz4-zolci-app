@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 
 @Path("/")
 public class ApiService {
-//    @Inject
+    //    @Inject
 //    ClientKeyRepository clientKeyRepository;
     @Inject
     LogRepository logRepository;
@@ -43,15 +43,6 @@ public class ApiService {
     public Response serviceState() {
         return Response.ok("Service online").build();
     }
-
-//    @POST
-//    @Path("/addkey")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response addKey(ClientKey clientKey) {
-//        clientKeyRepository.addKey(clientKey);
-//        return Response.ok(clientKey).build();
-//    }
 
 
     @GET
