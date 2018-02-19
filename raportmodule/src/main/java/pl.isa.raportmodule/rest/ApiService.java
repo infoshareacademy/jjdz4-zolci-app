@@ -1,8 +1,9 @@
-package pl.isa.raportmodule;
+package pl.isa.raportmodule.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.raportmodule.domain.Log;
+import pl.isa.raportmodule.raportCreator.ClientKeyOperator;
 import pl.isa.raportmodule.repository.LogRepository;
 
 import javax.inject.Inject;
@@ -23,9 +24,12 @@ public class ApiService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addLog(Log log) {
         log.setLocalDateTime(LocalDateTime.now());
-        logRepository.addSingleLog(log);
-        logger.info("log added in api");
-        return Response.ok(log).build();
+        if (ClientKeyOperator.checkKey(log)) {
+            logRepository.addSingleLog(log);
+            logger.info("log added in api");
+            return Response.ok(log).build();
+        }
+        return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
     @GET

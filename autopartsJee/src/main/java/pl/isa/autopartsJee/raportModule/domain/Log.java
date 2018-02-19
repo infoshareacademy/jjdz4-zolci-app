@@ -17,6 +17,16 @@ public class Log {
     @Column(nullable = true)
     private Long userId;
     private String logLevel;
+    
+    private int key;
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
+    }
 
     public Long getId() {
         return id;

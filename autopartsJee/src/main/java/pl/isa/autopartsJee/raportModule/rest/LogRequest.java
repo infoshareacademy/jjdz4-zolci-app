@@ -23,6 +23,7 @@ public class LogRequest {
         log.setLogLevel(logLevel);
         log.setUserId(userId);
         log.setMessage(message);
+//        log.setKey(2137);
         sendLog(log);
     }
 }

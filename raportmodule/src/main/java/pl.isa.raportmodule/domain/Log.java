@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "logs", schema="logs")
+@Table(name = "logs", schema = "logs")
 public class Log {
 
     @Id
@@ -19,6 +19,18 @@ public class Log {
     @Column(nullable = true)
     private Long userId;
     private String logLevel;
+
+    @JsonIgnore
+    @Transient
+    private int key;
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
+    }
 
     public Long getId() {
         return id;
