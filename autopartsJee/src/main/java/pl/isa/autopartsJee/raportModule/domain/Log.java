@@ -17,7 +17,7 @@ public class Log {
     @Column(nullable = true)
     private Long userId;
     private String logLevel;
-    
+//    @JsonIgnore
     private int key;
 
     public int getKey() {

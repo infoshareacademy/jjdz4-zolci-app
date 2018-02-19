@@ -20,14 +20,14 @@ public class Log {
     private Long userId;
     private String logLevel;
 
-    @JsonIgnore
+
     @Transient
     private int key;
 
     public int getKey() {
         return key;
     }
-
+    @JsonIgnore
     public void setKey(int key) {
         this.key = key;
     }

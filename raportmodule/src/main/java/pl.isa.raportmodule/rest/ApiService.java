@@ -26,7 +26,7 @@ public class ApiService {
         log.setLocalDateTime(LocalDateTime.now());
         if (ClientKeyOperator.checkKey(log)) {
             logRepository.addSingleLog(log);
-            logger.info("log added in api");
+            logger.info(Integer.toString(log.getKey()));
             return Response.ok(log).build();
         }
         return Response.status(Response.Status.BAD_REQUEST).build();
