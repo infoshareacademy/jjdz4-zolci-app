@@ -1,4 +1,4 @@
-package pl.isa.autopartsJee.servlets.vehiclesearch;
+package pl.isa.autopartsJee.vehiclesearch;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
