@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ page contentType="text/html;charset=UTF-8"%>--%>
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
     <title>Twoje auta</title>
@@ -14,7 +14,7 @@
 </head>
 
 <body>
-
+<fmt:requestEncoding value="UTF-8" />
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
     <div class="container">
         <a class="navbar-brand" href="index.jsp">
@@ -30,13 +30,14 @@
             <ul class="navbar-nav ml-auto">
                 <%@include file="context-menu.jsp" %>
             </ul>
+            <%@include file="choose-language.jsp" %>
         </div>
     </div>
 </nav>
 <div class="container">
 
     <div class="content">
-        <h1>Twoje samochody</h1><br/>
+        <h1><fmt:message key="yourcars.header"/></h1><br/>
 
         <c:choose>
             <c:when test="${not empty cars}">
@@ -80,7 +81,7 @@
                 </div>
             </c:when>
             <c:otherwise>
-                Brak aut
+                <fmt:message key="yourcars.info"/>
             </c:otherwise>
         </c:choose>
 

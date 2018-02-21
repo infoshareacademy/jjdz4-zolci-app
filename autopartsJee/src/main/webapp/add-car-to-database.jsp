@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
     <title>Dodaj auto</title>
@@ -30,18 +30,20 @@
             <ul class="navbar-nav ml-auto">
                 <%@include file="context-menu.jsp" %>
             </ul>
+            <%@include file="choose-language.jsp" %>
         </div>
     </div>
 </nav>
 <div class="container">
 
     <div class="content">
-        <h1>Wybierz sposób</h1><br/>
+        <h1><fmt:message key="addCarToDB.header"/></h1><br/>
 
         <div class="row justify-content-center">
             <a href="find-car-by-aztec.jsp" class="btn btn-secondary btn-lg listing" role="button"
-               aria-pressed="true">Dodaj poprzez kod Aztec</a>
-            <a href="vehiclesearch/vehicle-search.jsp" class="btn btn-secondary btn-lg listing" role="button" aria-pressed="true">Wprowadź auto ręcznie</a>
+               aria-pressed="true"><fmt:message key="addCarToDB.aztecCode"/></a>
+            <a href="vehiclesearch/vehicle-search.jsp" class="btn btn-secondary btn-lg listing" role="button"
+               aria-pressed="true"><fmt:message key="addCarToDB.questionary"/></a>
 
         </div>
     </div>
