@@ -41,7 +41,8 @@
 
     <div class="content">
         <h1><fmt:message key="addCarToDB.header"/></h1><br/>
-
+        <span style="color: red;"><c:out value="${wrongCode}"/></span><br/>
+        <span style="color: limegreen;"><c:out value="${carAdded}"/></span><br/>
         <div class="row justify-content-center">
             <a href="find-car-by-aztec.jsp" class="btn btn-secondary btn-lg listing" role="button"
                aria-pressed="true"><fmt:message key="addCarToDB.aztecCode"/></a>

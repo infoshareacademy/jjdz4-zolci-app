@@ -60,7 +60,12 @@
                 </c:if>
             </c:when>
             <c:otherwise>
-
+                <c:if test="${errorMessage != null}">
+                    <div style="color: red;"><fmt:message key="menu.errorMessage"/></div>
+                </c:if>
+                <c:if test="${okMessage != null}">
+                    <div style="color: green;">${okMessage}</div>
+                </c:if>
                 <h3><fmt:message key="banner.instruction.introduce"/></h3><br/>
                 <h4><fmt:message key="banner.instruction.main"/></h4>
             </c:otherwise>
