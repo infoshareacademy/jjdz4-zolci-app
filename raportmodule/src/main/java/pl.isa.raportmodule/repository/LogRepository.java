@@ -23,8 +23,8 @@ public class LogRepository {
         logger.info("Log added");
     }
 
-    public String getLogs() {
+    public List<Log> getLogs() {
         logger.info("Logs returned");
-        return new Gson().toJson((List<Log>) entityManager.createQuery("from Log").getResultList());
+        return (List<Log>) entityManager.createQuery("from Log").getResultList();
     }
 }

@@ -1,9 +1,12 @@
 package pl.isa.raportmodule.rest;
 
+import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.isa.raportmodule.domain.ClientKey;
 import pl.isa.raportmodule.domain.Log;
 import pl.isa.raportmodule.raportCreator.ClientKeyOperator;
+import pl.isa.raportmodule.repository.ClientKeysRepository;
 import pl.isa.raportmodule.repository.LogRepository;
 
 import javax.inject.Inject;
@@ -17,8 +20,8 @@ import java.time.LocalDateTime;
 
 @Path("/")
 public class ApiService {
-    //    @Inject
-//    ClientKeyRepository clientKeyRepository;
+    @Inject
+    ClientKeysRepository clientKeysRepository;
     @Inject
     LogRepository logRepository;
     Logger logger = LoggerFactory.getLogger(ApiService.class);
@@ -50,7 +53,22 @@ public class ApiService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getlogs() {
         logger.info("logs returned in api");
-        return Response.ok(logRepository.getLogs()).build();
+        return Response.ok(new Gson().toJson(logRepository.getLogs())).build();
     }
 
+    @POST
+    @Path("/addkey")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addkey(ClientKey clientKey) {
+        clientKeysRepository.addKey(clientKey);
+        return Response.ok(clientKey).build();
+    }
+
+    @GET
+    @Path("/getkeys")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getkeys() {
+        return Response.ok(new Gson().toJson(clientKeysRepository.getAllKeys())).build();
+    }
 }
