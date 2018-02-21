@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.raportmodule.domain.ClientKey;
 import pl.isa.raportmodule.domain.Log;
-import pl.isa.raportmodule.raportCreator.ClientKeyOperator;
 import pl.isa.raportmodule.repository.ClientKeysRepository;
 import pl.isa.raportmodule.repository.LogRepository;
 
@@ -15,8 +14,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 
-//import pl.isa.raportmodule.domain.ClientKey;
-//import pl.isa.raportmodule.repository.ClientKeyRepository;
 
 @Path("/")
 public class ApiService {
@@ -25,7 +22,6 @@ public class ApiService {
     @Inject
     LogRepository logRepository;
     Logger logger = LoggerFactory.getLogger(ApiService.class);
-    ClientKeyOperator clientKeyOperator = new ClientKeyOperator();
 
     @POST
     @Path("/addlog")
@@ -33,10 +29,12 @@ public class ApiService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addLog(Log log) {
         log.setLocalDateTime(LocalDateTime.now());
-        logger.info(log.getKey());
-        if (clientKeyOperator.checkKey(log)) {
-            logRepository.addSingleLog(log);
-            return Response.ok(log).build();
+
+        for (ClientKey clientKey : clientKeysRepository.getAllKeys()) {
+            if (clientKey.getClientKey().equals(log.getKey())) {
+                logRepository.addSingleLog(log);
+                return Response.ok(log).build();
+            }
         }
         return Response.status(Response.Status.BAD_REQUEST).build();
     }
