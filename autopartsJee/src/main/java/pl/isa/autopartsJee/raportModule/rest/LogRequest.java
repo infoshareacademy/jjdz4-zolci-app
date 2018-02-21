@@ -52,7 +52,5 @@ public class LogRequest {
         sendLog(log);
     }
 
-    public void updatePreferences(AdminPreferences adminPreferences){
 
-    }
 }

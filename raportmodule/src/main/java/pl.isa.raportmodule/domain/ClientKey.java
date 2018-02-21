@@ -1,17 +1,20 @@
 package pl.isa.raportmodule.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class ClientKey {
 
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String clientKey;
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

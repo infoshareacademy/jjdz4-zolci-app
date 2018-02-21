@@ -77,12 +77,12 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (checkIfFieldsAreEmpty(req, resp)) {
-            logRequest.createLog("empty-fields",
+            logRequest.createLog("register-error",
                     null, "register");
             return;
         }
         if (checkIfUserExists(req, resp)) {
-            logRequest.createLog("user-exists",
+            logRequest.createLog("register-error",
                     null, "register");
             return;
         }

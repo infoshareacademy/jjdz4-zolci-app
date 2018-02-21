@@ -86,7 +86,19 @@ public class ApiService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response updatePreferences(AdminPreferences adminPreferences) {
-        adminPreferencesRepository.updatePreferences(adminPreferences);
-        return Response.ok(adminPreferences).build();
+        for (ClientKey clientKey : clientKeysRepository.getAllKeys()) {
+            if (clientKey.getClientKey().equals(adminPreferences.getClientKey())) {
+                adminPreferencesRepository.updatePreferences(adminPreferences);
+                return Response.ok(adminPreferences.getPreferences()).build();
+            }
+        }
+        return Response.status(Response.Status.BAD_REQUEST).build();
+    }
+
+    @GET
+    @Path("/getpreferences")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPreferences(){
+        return Response.ok(adminPreferencesRepository.getAdminPreferences()).build();
     }
 }

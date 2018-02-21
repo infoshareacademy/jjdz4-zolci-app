@@ -37,7 +37,44 @@
     <c:set var="admin" scope="request" value="admin"/>
     <div class="content">
         <h1>Panel administratora</h1><br/>
+        <span style="color: limegreen;"><c:out value="${updatemessage}"/></span><br/>
+        Wybierz zawartość cyklicznego raportu:
+        <form method="post" action="/updatepreferences">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check1" name="login">
+                <label class="form-check-label" for="check1">Zalogowania użytkowników</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check2" name="logout">
+                <label class="form-check-label" for="check2">Wylogowania użytkowników</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check9" name="failedlogins">
+                <label class="form-check-label" for="check9">Nieudane logowania</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check3" name="manualsearch">
+                <label class="form-check-label" for="check3">Wyszukiwania ręczne</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check4" name="formsearch">
+                <label class="form-check-label" for="check4">Wyszukiwania z formularza</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check5" name="register">
+                <label class="form-check-label" for="check5">Ilość rejestracji</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check7" name="failedregisters">
+                <label class="form-check-label" for="check7">Nieudane rejestracje</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check8" name="addedcars">
+                <label class="form-check-label" for="check8">Dodane auta</label>
+            </div>
 
+            <button type="submit" class="btn btn-primary">Zaktualizuj preferencje</button>
+        </form>
     </div>
 
 

@@ -1,14 +1,21 @@
 package pl.isa.raportmodule.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class AdminPreferences {
-    @Id
-    private Integer id;
 
-    public Integer getId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String clientKey;
+    private String preferences;
+
+
+    public Long getId() {
         return id;
     }
 
@@ -21,10 +28,7 @@ public class AdminPreferences {
         this.preferences = preferences;
     }
 
-    //    private Boolean login;
-//    private Boolean register;
-//    private Boolean carsDisplay;
-//    private Boolean linkGeneration;
-//    private Boolean carDatabase;
-    String preferences;
+    public String getClientKey() {
+        return clientKey;
+    }
 }
