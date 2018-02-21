@@ -22,6 +22,7 @@ public class ApiService {
     @Inject
     LogRepository logRepository;
     Logger logger = LoggerFactory.getLogger(ApiService.class);
+    private KeyVerifier keyVerifier;
 
     @POST
     @Path("/addlog")
@@ -36,6 +37,11 @@ public class ApiService {
                 return Response.ok(log).build();
             }
         }
+//        if (keyVerifier.checkKey(log)) {
+//            logRepository.addSingleLog(log);
+//            return Response.ok(log).build();
+//
+//        }
         return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
