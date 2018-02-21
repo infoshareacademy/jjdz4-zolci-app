@@ -27,7 +27,7 @@ public class LogRepository {
         return (List<Log>) entityManager.createQuery("from Log").getResultList();
     }
 
-    public List<Log> getLoginLogs(String message) {
+    public List<Log> getSpecifiedLogs(String message) {
         logger.info("Logs returned");
         return (List<Log>) entityManager.createQuery("from Log where message= :message").setParameter("message", message).getResultList();
     }
