@@ -27,4 +27,16 @@ public class LogRepository {
         logger.info("Logs returned");
         return (List<Log>) entityManager.createQuery("from Log").getResultList();
     }
+    public List<Log> getLoginLogs() {
+        logger.info("Logs returned");
+        return (List<Log>) entityManager.createQuery("from Log where message= :message").setParameter("message", "logged-in").getResultList();
+    }
+    public List<Log> getLoginErrorLogs() {
+        logger.info("Logs returned");
+        return (List<Log>) entityManager.createQuery("from Log where message= :message").setParameter("message", "login-error").getResultList();
+    }
+    public List<Log> getLogoutLogs() {
+        logger.info("Logs returned");
+        return (List<Log>) entityManager.createQuery("from Log where message= :message").setParameter("message", "logged-out").getResultList();
+    }
 }

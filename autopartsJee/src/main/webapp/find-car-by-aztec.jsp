@@ -42,8 +42,8 @@
     <div class="content">
         <h1><fmt:message key="findAztec.header"/></h1><br/>
         <h3><fmt:message key="findAztec.instruction"/></h3>
-        <%--<span style="color: limegreen;"><c:out value="${carAdded}"/></span>--%>
-        <%--<span style="color: red;"><c:out value="${wrongCode}"/></span>--%>
+        <span style="color: limegreen;"><c:out value="${carAdded}"/></span>
+        <span style="color: red;"><c:out value="${wrongCode}"/></span>
         <%--<c:when test="${carAdded == true}">--%>
             <%--<fmt:message key="findAztec.message.correct"/>--%>
         <%--</c:when>--%>

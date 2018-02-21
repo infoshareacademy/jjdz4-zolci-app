@@ -28,6 +28,7 @@ public class FindByAztecServlet extends HttpServlet {
     UsersRepositoryDao usersRepositoryDao;
     @Inject
     LogRequest logRequest;
+
     private Boolean checkIfCarExists(HttpServletRequest req, HttpServletResponse resp, String vin) throws ServletException, IOException {
         List<CarData> cars = carRepository.findCarsByOwnerId(Long.parseLong(req.getSession().getAttribute("userId").toString()));
 
@@ -79,15 +80,15 @@ public class FindByAztecServlet extends HttpServlet {
             carData.setRegistryNumber(registryNumber);
             carData.setOwnerId(Long.parseLong(req.getSession().getAttribute("userId").toString()));
             carRepository.addCar(carData);
-            logRequest.createLog("car-added",(Long) req.getSession().getAttribute("userId"), "car-database");
+            logRequest.createLog("car-added", (Long) req.getSession().getAttribute("userId"), "car-database");
             logger.info("Car added to users database");
+            req.getSession().setAttribute("carAdded", "Auto poprawnie dodane do bazy danych");
         } catch (Exception e) {
-            logRequest.createLog("atena-session-not-found",(Long) req.getSession().getAttribute("userId"), "car-database");
+            logRequest.createLog("atena-session-not-found", (Long) req.getSession().getAttribute("userId"), "car-database");
             logger.warn("Session code not found");
             req.setAttribute("wrongCode", "Nie znaleziono kodu sesji");
 //            req.setAttribute("carAdded", false);
         }
-        req.getSession().setAttribute("carAdded", "Auto poprawnie dodane do bazy danych");
 //        req.getSession().setAttribute("carAdded", true);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/find-car-by-aztec.jsp");
         dispatcher.forward(req, resp);
