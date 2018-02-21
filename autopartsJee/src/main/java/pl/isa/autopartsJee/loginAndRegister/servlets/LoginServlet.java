@@ -33,14 +33,14 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
             requestDispatcher.forward(req, resp);
             logger.error(e.getMessage(), e);
-            logRequest.createLog("Login error",
-                    null, "login-error");
+            logRequest.createLog("login-error",
+                    null, "login");
             return;
         }
 
         if (req.getHeader("Referer").contains("login.jsp")) {
             resp.sendRedirect("/index.jsp");
-            logRequest.createLog("User logged successfully",
+            logRequest.createLog("logged-in",
                     (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "login");
             return;
         }

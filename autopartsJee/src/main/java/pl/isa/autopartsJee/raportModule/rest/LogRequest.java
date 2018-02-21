@@ -2,6 +2,7 @@ package pl.isa.autopartsJee.raportModule.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.isa.autopartsJee.raportModule.domain.AdminPreferences;
 import pl.isa.autopartsJee.raportModule.domain.Log;
 
 import javax.ejb.Singleton;
@@ -30,7 +31,7 @@ public class LogRequest {
         try {
             log.setKey(prop.getProperty("clientkey"));
 //        log.setKey("2137");
-            String address = prop.getProperty("address");
+            String address = prop.getProperty("addlogaddress");
             logger.info(address);
 //        String address = "http://localhost:8081/raportmodule/addlog";
             Client client = ClientBuilder.newClient();
@@ -49,5 +50,9 @@ public class LogRequest {
         log.setMessage(message);
 
         sendLog(log);
+    }
+
+    public void updatePreferences(AdminPreferences adminPreferences){
+
     }
 }

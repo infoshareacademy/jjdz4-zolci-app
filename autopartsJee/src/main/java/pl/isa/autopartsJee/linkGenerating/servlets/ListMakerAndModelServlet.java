@@ -26,7 +26,7 @@ public class ListMakerAndModelServlet extends HttpServlet {
 
         req.getSession().setAttribute("cars",
                 carRepository.findCarsByOwnerId(Long.parseLong(req.getSession().getAttribute("userId").toString())));
-        logRequest.createLog("Users cars displayed", (Long) req.getSession().getAttribute("userID"), "cars-display");
+        logRequest.createLog("cars-displayed", (Long) req.getSession().getAttribute("userID"), "cars-display");
         logger.info("Cars of users id: " + req.getSession().getAttribute("userID") + " found");
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category.jsp");
         requestDispatcher.forward(req, resp);

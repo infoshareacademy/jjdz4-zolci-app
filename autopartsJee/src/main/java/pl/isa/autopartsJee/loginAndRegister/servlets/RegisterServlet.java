@@ -77,13 +77,13 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (checkIfFieldsAreEmpty(req, resp)) {
-            logRequest.createLog("Register error - empty fields",
-                    null, "register-error");
+            logRequest.createLog("empty-fields",
+                    null, "register");
             return;
         }
         if (checkIfUserExists(req, resp)) {
-            logRequest.createLog("Register error - user exists",
-                    null, "register-error");
+            logRequest.createLog("user-exists",
+                    null, "register");
             return;
         }
         User user = new User();
@@ -111,7 +111,7 @@ public class RegisterServlet extends HttpServlet {
         role.setUser_login(user.getLogin());
         rolesRepositoryDao.addUser(role);
         logger.info("User registered successfully");
-        logRequest.createLog("User registered successfully",
+        logRequest.createLog("user-registered",
                 user.getId(), "register");
         req.setAttribute("success", "Użytkownik zarejestrowany pomyślnie");
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");

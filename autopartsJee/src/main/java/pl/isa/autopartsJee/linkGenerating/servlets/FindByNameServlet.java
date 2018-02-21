@@ -31,7 +31,7 @@ public class FindByNameServlet extends HttpServlet {
 
         linkGenerator.generateLinkMap(req.getParameter("search"), carRepositoryDao.findCarById(Long.parseLong(req.getParameter("carID"))), dao.getRepository());
         Map<String, ItemParentName> linkMap = linkGenerator.getLinkAndNames();
-        logRequest.createLog("Searching manually",
+        logRequest.createLog("searching-manually",
                 (Long) req.getSession().getAttribute("userId"), "link-generation");
 
         req.setAttribute("link", linkMap);

@@ -41,7 +41,7 @@ public class FindByQuestionsServlet extends HttpServlet {
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-        logRequest.createLog("Searching by form ",
+        logRequest.createLog("searching-form",
                 ((Long) req.getSession().getAttribute("userId")), "link-generation");
 
         /**     Step 1   */

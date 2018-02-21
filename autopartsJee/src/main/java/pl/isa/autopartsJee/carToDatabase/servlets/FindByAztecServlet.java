@@ -79,10 +79,10 @@ public class FindByAztecServlet extends HttpServlet {
             carData.setRegistryNumber(registryNumber);
             carData.setOwnerId(Long.parseLong(req.getSession().getAttribute("userId").toString()));
             carRepository.addCar(carData);
-            logRequest.createLog("Car added to database",(Long) req.getSession().getAttribute("userId"), "Car-added");
+            logRequest.createLog("car-added",(Long) req.getSession().getAttribute("userId"), "car-database");
             logger.info("Car added to users database");
         } catch (Exception e) {
-            logRequest.createLog("Atena session not found",(Long) req.getSession().getAttribute("userId"), "Atena-session-error");
+            logRequest.createLog("atena-session-not-found",(Long) req.getSession().getAttribute("userId"), "car-database");
             logger.warn("Session code not found");
             req.setAttribute("wrongCode", "Nie znaleziono kodu sesji");
         }

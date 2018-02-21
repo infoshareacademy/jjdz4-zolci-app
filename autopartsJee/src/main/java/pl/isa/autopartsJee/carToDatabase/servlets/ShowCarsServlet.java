@@ -26,7 +26,7 @@ public class ShowCarsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().setAttribute("cars",
                 carRepository.findCarsByOwnerId(Long.parseLong(req.getSession().getAttribute("userId").toString())));
-        logRequest.createLog("Users cars displayed", (Long) req.getSession().getAttribute("userID"), "cars-display");
+        logRequest.createLog("cars-displayed", (Long) req.getSession().getAttribute("userID"), "cars-display");
         logger.info("Cars of users id: " + req.getSession().getAttribute("userID") + " found");
         RequestDispatcher dispatcher = req.getRequestDispatcher("/your-cars.jsp");
         dispatcher.forward(req, resp);
