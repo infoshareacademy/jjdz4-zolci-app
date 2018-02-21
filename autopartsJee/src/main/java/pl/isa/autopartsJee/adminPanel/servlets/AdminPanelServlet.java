@@ -20,49 +20,49 @@ public class AdminPanelServlet extends HttpServlet {
     @Inject
     PreferencesRequest preferencesRequest;
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        Boolean manualSearch;
-//        Boolean formSearch;
-//        Boolean login;
-//        Boolean logout;
-//        Boolean register;
-//        Boolean addedCars;
-//        Boolean failedLogins;
-//        Boolean failedRegisters;
-//        logger.info(req.getParameter("manualsearch"));
-//        manualSearch = Boolean.valueOf(req.getParameter("manualsearch"));
-//        formSearch = Boolean.valueOf(req.getParameter("formsearch"));
-//        login = Boolean.valueOf(req.getParameter("login"));
-//        logout = Boolean.valueOf(req.getParameter("logout"));
-//        register = Boolean.valueOf(req.getParameter("register"));
-//        addedCars = Boolean.valueOf(req.getParameter("addedcars"));
-//        failedLogins = Boolean.valueOf(req.getParameter("failedlogins"));
-//        failedRegisters = Boolean.valueOf(req.getParameter("failedregisters"));
+        Boolean manualSearch;
+        Boolean formSearch;
+        Boolean login;
+        Boolean logout;
+        Boolean register;
+        Boolean addedCars;
+        Boolean failedLogins;
+        Boolean failedRegisters;
+
+        manualSearch = Boolean.valueOf(req.getParameter("manualsearch"));
+        formSearch = Boolean.valueOf(req.getParameter("formsearch"));
+        login = Boolean.valueOf(req.getParameter("login"));
+        logout = Boolean.valueOf(req.getParameter("logout"));
+        register = Boolean.valueOf(req.getParameter("register"));
+        addedCars = Boolean.valueOf(req.getParameter("addedcars"));
+        failedLogins = Boolean.valueOf(req.getParameter("failedlogins"));
+        failedRegisters = Boolean.valueOf(req.getParameter("failedregisters"));
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        if (req.getParameter("manualsearch").equals("on")) {
+        if (manualSearch) {
             stringBuilder.append("searching-manually.");
         }
-        if (req.getParameter("formsearch").equals("on")) {
-            stringBuilder.append("searching-form. ");
+        if (formSearch) {
+            stringBuilder.append("searching-form.");
         }
-        if (req.getParameter("login").equals("on")) {
-            stringBuilder.append("logged-in");
+        if (login) {
+            stringBuilder.append("logged-in.");
         }
-        if (req.getParameter("logout").equals("on")) {
-            stringBuilder.append("logged-out");
+        if (logout) {
+            stringBuilder.append("logged-out.");
         }
-        if (req.getParameter("register").equals("on")) {
-            stringBuilder.append("user-registered");
+        if (register) {
+            stringBuilder.append("user-registered.");
         }
-        if (req.getParameter("manualsearch").equals("on")) {
-            stringBuilder.append("car-added");
+        if (addedCars) {
+            stringBuilder.append("car-added.");
         }
-        if (req.getParameter("failedlogins").equals("on")) {
-            stringBuilder.append("login-error");
+        if (failedLogins) {
+            stringBuilder.append("login-error.");
         }
-        if (req.getParameter("failedregisters").equals("on")) {
-            stringBuilder.append("register-error");
+        if (failedRegisters) {
+            stringBuilder.append("register-error.");
         }
         String preferences = stringBuilder.toString();
 
