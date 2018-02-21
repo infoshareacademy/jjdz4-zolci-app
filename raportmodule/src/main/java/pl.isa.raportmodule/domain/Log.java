@@ -23,15 +23,15 @@ public class Log {
 
 
     @Transient
-    private int key;
+    private String key;
 
     @JsonIgnore
-    public int getKey() {
+    public String getKey() {
         return key;
     }
 
     @JsonProperty
-    public void setKey(int key) {
+    public void setKey(String key) {
         this.key = key;
     }
 

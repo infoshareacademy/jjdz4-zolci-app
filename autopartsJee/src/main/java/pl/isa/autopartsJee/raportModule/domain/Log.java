@@ -18,13 +18,13 @@ public class Log {
     private Long userId;
     private String logLevel;
 //    @JsonIgnore
-    private int key;
+    private String key;
 
-    public int getKey() {
+    public String getKey() {
         return key;
     }
 
-    public void setKey(int key) {
+    public void setKey(String key) {
         this.key = key;
     }
 

@@ -30,7 +30,7 @@ public class ApiService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addLog(Log log) {
         log.setLocalDateTime(LocalDateTime.now());
-        logger.info(Integer.toString(log.getKey()));
+        logger.info(log.getKey());
         if (clientKeyOperator.checkKey(log)) {
             logRepository.addSingleLog(log);
             return Response.ok(log).build();
