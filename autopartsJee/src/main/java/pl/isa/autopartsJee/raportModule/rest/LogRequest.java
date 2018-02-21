@@ -10,9 +10,6 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -30,16 +27,19 @@ public class LogRequest {
         } catch (java.io.IOException e) {
             logger.warn("Properties file not found");
         }
-
-        log.setKey(prop.getProperty("clientkey"));
+        try {
+            log.setKey(prop.getProperty("clientkey"));
 //        log.setKey("2137");
-        String address = prop.getProperty("address");
-        logger.info(address);
+            String address = prop.getProperty("address");
+            logger.info(address);
 //        String address = "http://localhost:8081/raportmodule/addlog";
-        Client client = ClientBuilder.newClient();
-        WebTarget webTarget = client.target(address);
+            Client client = ClientBuilder.newClient();
+            WebTarget webTarget = client.target(address);
 
-        Response response = webTarget.request().post(Entity.json(log));
+            Response response = webTarget.request().post(Entity.json(log));
+        } catch (Exception e) {
+            return;
+        }
     }
 
     public void createLog(String message, Long userId, String logLevel) {
