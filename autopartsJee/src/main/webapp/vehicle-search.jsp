@@ -11,7 +11,12 @@
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    <script type="text/javascript" src="/scripts/jquery-3.3.1.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script type="text/javascript" src="/scripts/vehicle-search-jq.js"></script>
 </head>
 <body>
@@ -36,17 +41,23 @@
 <div class="container">
 
     <div class="content">
-        <h1>Wyszukiwarka autoczęści</h1><br/>
-
+        <h1>Wyszukiwarka autoczęści</h1>
+        <div class="row">
+            <div class="ui-widget">
+                <label>Procedure: </label>
+                <select class="js-example-basic-single" name="make">
+                    <option value="Audi">Audi</option>
+                    <option value="Mitsubishi">Mitsubishi</option>
+                    <option value="Renault">Renault</option>
+                </select>
+            </div>
+        </div>
         </div>
 
 
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
