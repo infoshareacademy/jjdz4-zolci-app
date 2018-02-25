@@ -21,13 +21,13 @@
     <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js"></script>--%>
 <%--</head>--%>
 <%--<body>--%>
-    <%--<form>--%>
-        <%--<select id="language" name="language" onchange="submit()">--%>
-            <%--<option value="en" ${language == 'en' ? 'selected' : ''}>English</option>--%>
-            <%--<option value="pl" ${language == 'pl' ? 'selected' : ''}>Polish</option>--%>
-            <%--<option value="de" ${language == 'de' ? 'selected' : ''}>Deutsch</option>--%>
-        <%--</select>--%>
-    <%--</form>--%>
+    <form>
+        <select id="language" name="language" onchange="submit()">
+            <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
+            <option value="pl" ${language == 'pl' ? 'selected' : ''}>Polish</option>
+            <option value="de" ${language == 'de' ? 'selected' : ''}>Deutsch</option>
+        </select>
+    </form>
 
     <form>
         <select class="selectpicker" data-width="fit">
