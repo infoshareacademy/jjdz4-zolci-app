@@ -6,6 +6,7 @@
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" var="lang" />
 <fmt:requestEncoding value = "UTF-8" />
+<meta charset="UTF-8">
 <!doctype html>
 <html lang="${language}">
 <head>

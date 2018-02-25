@@ -124,7 +124,7 @@ public class FindByQuestionsServlet extends HttpServlet {
             logger.info("language changed");
 
             RequestDispatcher requestDispatcher = req.
-                    getRequestDispatcher("/find-category-by-form-step" + step +".jsp");
+                    getRequestDispatcher("/find-category-by-form-step" + step + ".jsp");
             requestDispatcher.forward(req, resp);
         }
     }
