@@ -28,10 +28,11 @@ public class LogCalculator {
         Properties props = System.getProperties();
         props.put("mail.smtp.starttls.enable", true); // added this line
         props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.user", "yellowautopartsfinder@gmail.com");
+        props.put("mail.smtp.user", address);
         props.put("mail.smtp.password", "JeeAutoParts");
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.auth", true);
+        //address = yellowautopartsfinder, password: JeeAutoParts
         Session session = Session.getInstance(props, null);
         try {
             MimeMessage message = new MimeMessage(session);
@@ -40,7 +41,7 @@ public class LogCalculator {
             message.setSubject("Weekly Raport" + LocalDateTime.now().toString());
             message.setText(raport);
             Transport transport = session.getTransport("smtp");
-            transport.connect("smtp.gmail.com", "yellowautopartsfinder@gmail.com", "JeeAutoParts");
+            transport.connect("smtp.gmail.com", address, "JeeAutoParts");
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
             System.out.println("Sent message successfully....");
