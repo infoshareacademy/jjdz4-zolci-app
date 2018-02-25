@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
@@ -35,7 +34,6 @@
             <ul class="navbar-nav ml-auto">
                 <%@include file="context-menu.jsp" %>
             </ul>
-            <%@include file="choose-language.jsp" %>
         </div>
     </div>
 </nav>
@@ -94,14 +92,6 @@
                     </div>
                 </div>
             </div>
-            <%--<div class="form-row">--%>
-                    <%--<input id="validationCustom06" class="form-control" type="checkbox" name="termsCheckbox"--%>
-                           <%--required>Akceptuję <a href="#">regulamin</a>--%>
-                    <%--<div class="invalid-feedback">--%>
-                        <%--Zaakceptuj regulamin!--%>
-                    <%--</div>--%>
-            <%--</div>--%>
-
 
             <button type="submit" class="btn btn-primary"><fmt:message key="register.registerButton"/></button>
     </div>
