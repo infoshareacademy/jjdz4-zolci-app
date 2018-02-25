@@ -112,7 +112,6 @@ public class ApiService {
 
     @GET
     @Path("/sendraport")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response sendRaport(){
         LogCalculator logCalculator = new LogCalculator();
         String raport = logCalculator.buildRaport(logRepository, adminPreferencesRepository);
