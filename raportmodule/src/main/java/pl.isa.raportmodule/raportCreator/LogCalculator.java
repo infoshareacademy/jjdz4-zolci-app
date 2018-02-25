@@ -14,6 +14,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -25,27 +26,28 @@ public class LogCalculator {
 //    AdminPreferencesRepository adminPreferencesRepository;
 
     private void sendRaport(String raport, String address) {
-        address = "yellowautopartsfinder@gmail.com";
+        String originAddress = "yellowautopartsfinder@gmail.com";
+        String password = "JeeAutoParts";
+        String host = "smtp.gmail.com";
         Properties props = System.getProperties();
         props.put("mail.smtp.starttls.enable", true); // added this line
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.user", address);
-        props.put("mail.smtp.password", "JeeAutoParts");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.user", originAddress);
+        props.put("mail.smtp.password", password);
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.auth", true);
-//        password: JeeAutoParts
         Session session = Session.getInstance(props, null);
         try {
             MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(address));
+            message.setFrom(new InternetAddress(originAddress));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(address));
-            message.setSubject("Weekly Raport" + LocalDateTime.now().toString());
+            message.setSubject("Weekly Raport " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.mm.yyyy")));
             message.setText(raport);
             Transport transport = session.getTransport("smtp");
-            transport.connect("smtp.gmail.com", address, "JeeAutoParts");
+            transport.connect(host, originAddress, password);
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
-            System.out.println("Sent message successfully....");
+
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
