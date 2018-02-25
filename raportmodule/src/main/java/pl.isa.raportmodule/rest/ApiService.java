@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import pl.isa.raportmodule.domain.AdminPreferences;
 import pl.isa.raportmodule.domain.ClientKey;
 import pl.isa.raportmodule.domain.Log;
+import pl.isa.raportmodule.raportCreator.LogCalculator;
 import pl.isa.raportmodule.repository.AdminPreferencesRepository;
 import pl.isa.raportmodule.repository.ClientKeysRepository;
 import pl.isa.raportmodule.repository.LogRepository;
@@ -107,5 +108,14 @@ public class ApiService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPreferences(){
         return Response.ok(adminPreferencesRepository.getAdminPreferences()).build();
+    }
+
+    @GET
+    @Path("/sendraport")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response sendRaport(){
+        LogCalculator logCalculator = new LogCalculator();
+        String raport = logCalculator.buildRaport(logRepository, adminPreferencesRepository);
+        return Response.ok(raport).build();
     }
 }

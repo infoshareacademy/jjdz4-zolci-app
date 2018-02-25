@@ -19,19 +19,24 @@ import java.util.List;
 import java.util.Properties;
 
 public class LogCalculator {
-    @Inject
-    LogRepository logRepository;
-    @Inject
-    AdminPreferencesRepository adminPreferencesRepository;
+//    @Inject
+//    LogRepository logRepository;
+//    @Inject
+//    AdminPreferencesRepository adminPreferencesRepository;
 
-    public void sendRaport(String raport, String address){
-        Properties properties = System.getProperties();
-        properties.setProperty("aspmx.l.google.com", "localhost");
-        Session session = Session.getDefaultInstance(properties);
+    private void sendRaport(String raport, String address){
+        Properties props = System.getProperties();
+        props.put("mail.smtp.starttls.enable", true); // added this line
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.user", "yellowautopartsfinder@gmail.com");
+        props.put("mail.smtp.password", "JeeAutoParts");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", true);
+        Session session = Session.getInstance(props, null);
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(address));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(address()));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(address));
             message.setSubject("Weekly Raport" + LocalDateTime.now().toString());
             message.setText(raport);
             Transport.send(message);
@@ -41,7 +46,7 @@ public class LogCalculator {
         }
     }
 
-    public void buildRaport() {
+    public String buildRaport(LogRepository logRepository, AdminPreferencesRepository adminPreferencesRepository) {
         List<AdminPreferences> adminPreferencesList = adminPreferencesRepository.getAdminPreferences();
 
         for (AdminPreferences adminPreferences : adminPreferencesList) {
@@ -98,7 +103,7 @@ public class LogCalculator {
 
             sendRaport(raport.toString(), adminPreferences.getEmail());
 
-
+            return raport.toString();
         }
     }
 
