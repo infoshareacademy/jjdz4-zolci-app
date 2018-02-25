@@ -27,7 +27,8 @@ public class AdminPreferencesRepository {
                 entityManager.createNamedQuery("update")
                         .setParameter("preferences", adminPreferences.getPreferences())
                         .setParameter("clientKey", adminPreferences.getClientKey()).executeUpdate();
-                break;
+//                break;
+                return;
             }
         }
         logger.info(keyExists.toString());
