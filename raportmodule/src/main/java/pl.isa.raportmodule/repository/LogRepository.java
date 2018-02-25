@@ -32,3 +32,13 @@ public class LogRepository {
         return (List<Log>) entityManager.createQuery("from Log where message= :message").setParameter("message", message).getResultList();
     }
 }
+//        logged-in
+//        login-error
+//        logged-out
+//        register-error
+//        user-registered
+//        searching-manually
+//        searching-form
+//        cars-displayed
+//        car-added
+//        atena-session-not-found

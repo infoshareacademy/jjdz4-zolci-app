@@ -1,11 +1,9 @@
 package pl.isa.raportmodule.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@NamedQuery(name = "update", query = "UPDATE AdminPreferences SET preferences=:preferences WHERE clientKey=:clientKey")
 public class AdminPreferences {
 
     @Id
@@ -30,5 +28,15 @@ public class AdminPreferences {
 
     public String getClientKey() {
         return clientKey;
+    }
+
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

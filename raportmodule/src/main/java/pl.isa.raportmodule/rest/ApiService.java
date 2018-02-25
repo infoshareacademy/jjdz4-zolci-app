@@ -81,6 +81,13 @@ public class ApiService {
         return Response.ok(new Gson().toJson(clientKeysRepository.getAllKeys())).build();
     }
 
+    @GET
+    @Path("/getspecifiedlogs")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSpecifiedLogs(@QueryParam("message") String message){
+        return Response.ok(new Gson().toJson(logRepository.getSpecifiedLogs(message))).build();
+    }
+
     @POST
     @Path("/updatepreferences")
     @Consumes(MediaType.APPLICATION_JSON)

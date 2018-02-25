@@ -30,10 +30,8 @@ public class LogRequest {
         }
         try {
             log.setKey(prop.getProperty("clientkey"));
-//        log.setKey("2137");
             String address = prop.getProperty("addlogaddress");
             logger.info(address);
-//        String address = "http://localhost:8081/raportmodule/addlog";
             Client client = ClientBuilder.newClient();
             WebTarget webTarget = client.target(address);
 

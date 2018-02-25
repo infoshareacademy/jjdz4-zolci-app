@@ -32,6 +32,7 @@ public class PreferencesRequest {
         try {
 
             adminPreferences.setClientKey(prop.getProperty("clientkey"));
+            adminPreferences.setEmail(prop.getProperty("email"));
             String address = prop.getProperty("updatepreferencesaddress");
             logger.info(address);
             Client client = ClientBuilder.newClient();

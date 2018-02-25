@@ -24,20 +24,14 @@ public class AdminPreferencesRepository {
         List<AdminPreferences> adminPreferencesList = getAdminPreferences();
         for (AdminPreferences adminPreferencesSet : adminPreferencesList) {
             if (adminPreferencesSet.getClientKey().equals(adminPreferences.getClientKey())) {
-                keyExists = true;
+                entityManager.createNamedQuery("update")
+                        .setParameter("preferences", adminPreferences.getPreferences())
+                        .setParameter("clientKey", adminPreferences.getClientKey()).executeUpdate();
+                break;
             }
         }
         logger.info(keyExists.toString());
-        if (keyExists) {
-            entityManager.createQuery("UPDATE AdminPreferences SET preferences=:preferences WHERE clientKey=:clientKey")
-                    .setParameter("preferences", adminPreferences.getPreferences())
-                    .setParameter("clientKey", adminPreferences.getClientKey()).executeUpdate();
-        }
-//        logger.info(adminPreferences.getPreferences()+adminPreferences.getClientKey());
-//        entityManager.createQuery("DELETE FROM AdminPreferences ap WHERE ap.clientKey=:clientKey")
-//                .setParameter("clientKey", adminPreferences.getClientKey()).executeUpdate();
-        else {
-            entityManager.persist(adminPreferences);
-        }
+        entityManager.persist(adminPreferences);
     }
 }
+
