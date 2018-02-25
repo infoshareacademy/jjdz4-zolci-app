@@ -25,6 +25,7 @@ public class LogCalculator {
 //    AdminPreferencesRepository adminPreferencesRepository;
 
     private void sendRaport(String raport, String address) {
+        address = "yellowautopartsfinder@gmail.com";
         Properties props = System.getProperties();
         props.put("mail.smtp.starttls.enable", true); // added this line
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -32,7 +33,7 @@ public class LogCalculator {
         props.put("mail.smtp.password", "JeeAutoParts");
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.auth", true);
-        //address = yellowautopartsfinder, password: JeeAutoParts
+//        password: JeeAutoParts
         Session session = Session.getInstance(props, null);
         try {
             MimeMessage message = new MimeMessage(session);
