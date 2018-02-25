@@ -4,7 +4,7 @@
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language"/>
-<fmt:requestEncoding value = "UTF-8" />
+<%--<fmt:requestEncoding value = "UTF-8" />--%>
 
 <html lang="${language}">
 <c:choose>
@@ -18,6 +18,7 @@
         <a class="nav-item nav-link" href="/find-category"><fmt:message key="menu.findCategory"/></a>
         <a class="nav-item nav-link active" href="/logout"><fmt:message key="menu.logout"/> [${sessionScope.loggedUser}]
                 <span class="sr-only">(current)</span></a>
+
 
     </c:when>
     <c:otherwise>
@@ -34,4 +35,12 @@
 <c:if test="${okMessage != null}">
     <div style="color: green;">${okMessage}</div>
 </c:if>
+
+<form>
+    <select id="language" name="language" onchange="submit()">
+        <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
+        <option value="pl" ${language == 'pl' ? 'selected' : ''}>Polishąę</option>
+        <option value="de" ${language == 'de' ? 'selected' : ''}>Deutschü</option>
+    </select>
+</form>
 </html>

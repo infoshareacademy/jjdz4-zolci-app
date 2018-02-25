@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--<%@ page contentType="text/html; charset=UTF-8" language="java" %>--%>
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" var="lang"/>
 <c:set var="language"
@@ -22,14 +23,13 @@
     <script src="../resources/language.js"></script>
 </head>
 <body>
-    <form>
-        <select id="language" name="language" onchange="submit()">
-            <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
-            <option value="pl" ${language == 'pl' ? 'selected' : ''}>Polishąę</option>
-            <%--<option value="es" ${language == 'es' ? 'selected' : ''}>Español</option>--%>
-            <option value="de" ${language == 'de' ? 'selected' : ''}>Deutsch</option>
-        </select>
-    </form>
+    <%--<form>--%>
+        <%--<select id="language" name="language" onchange="submit()">--%>
+            <%--<option value="en" ${language == 'en' ? 'selected' : ''}>English</option>--%>
+            <%--<option value="pl" ${language == 'pl' ? 'selected' : ''}>Polishąę</option>--%>
+            <%--<option value="de" ${language == 'de' ? 'selected' : ''}>Deutschü</option>--%>
+        <%--</select>--%>
+    <%--</form>--%>
 
     <%--<nav class="navbar navbar-inverse navbar-fixed-top">--%>
         <%--<div class="container">--%>
