@@ -11,9 +11,8 @@
 <form>
     <select id="language" name="language" onchange="submit()">
         <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
-        <option value="pl" ${language == 'pl' ? 'selected' : ''}>Polishąę</option>
+        <option value="pl" ${language == 'pl' ? 'selected' : ''}>Polish</option>
         <option value="es" ${language == 'es' ? 'selected' : ''}>Español</option>
-        <option value="de" ${language == 'de' ? 'selected' : ''}><fmt:message key="choose.option.de"/></option>
     </select>
 </form>
 </html>
