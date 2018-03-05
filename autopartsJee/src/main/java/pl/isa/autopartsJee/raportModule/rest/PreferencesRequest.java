@@ -35,6 +35,7 @@ public class PreferencesRequest {
             adminPreferences.setEmail(prop.getProperty("email"));
             String address = prop.getProperty("updatepreferencesaddress");
             logger.info(address);
+            logger.info(prop.getProperty("email"));
             Client client = ClientBuilder.newClient();
             WebTarget webTarget = client.target(address);
 

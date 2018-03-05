@@ -20,7 +20,6 @@ public class AdminPreferencesRepository {
     }
 
     public void updatePreferences(AdminPreferences adminPreferences) {
-        Boolean keyExists = false;
         List<AdminPreferences> adminPreferencesList = getAdminPreferences();
         for (AdminPreferences adminPreferencesSet : adminPreferencesList) {
             if (adminPreferencesSet.getClientKey().equals(adminPreferences.getClientKey())) {
@@ -31,7 +30,6 @@ public class AdminPreferencesRepository {
                 return;
             }
         }
-        logger.info(keyExists.toString());
         entityManager.persist(adminPreferences);
     }
 }

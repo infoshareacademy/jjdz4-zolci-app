@@ -3,6 +3,7 @@ package pl.isa.raportmodule.repository;
 import pl.isa.raportmodule.domain.ClientKey;
 
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
