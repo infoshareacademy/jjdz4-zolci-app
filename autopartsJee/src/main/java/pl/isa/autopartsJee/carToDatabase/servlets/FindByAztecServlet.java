@@ -7,7 +7,7 @@ import pl.isa.autoparts.aztec.AztecVehicle;
 import pl.isa.autopartsJee.carToDatabase.dao.CarRepositoryDao;
 import pl.isa.autopartsJee.carToDatabase.domain.CarData;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
-import pl.isa.autopartsJee.raportModule.rest.LogRequest;
+import pl.isa.autopartsJee.adminPanel.raportModule.rest.LogRequest;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;

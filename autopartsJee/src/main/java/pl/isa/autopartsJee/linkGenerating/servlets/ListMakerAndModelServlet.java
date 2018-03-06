@@ -1,7 +1,7 @@
 package pl.isa.autopartsJee.linkGenerating.servlets;
 
 import pl.isa.autopartsJee.carToDatabase.dao.CarRepositoryDao;
-import pl.isa.autopartsJee.raportModule.rest.LogRequest;
+import pl.isa.autopartsJee.adminPanel.raportModule.rest.LogRequest;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;

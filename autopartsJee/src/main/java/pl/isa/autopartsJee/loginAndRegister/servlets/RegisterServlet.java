@@ -6,7 +6,7 @@ import pl.isa.autopartsJee.loginAndRegister.dao.RolesRepositoryDao;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
 import pl.isa.autopartsJee.loginAndRegister.domain.Role;
 import pl.isa.autopartsJee.loginAndRegister.domain.User;
-import pl.isa.autopartsJee.raportModule.rest.LogRequest;
+import pl.isa.autopartsJee.adminPanel.raportModule.rest.LogRequest;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -21,7 +21,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-//import pl.isa.autopartsJee.raportModule.dao.LogRepositoryDao;
+//import pl.isa.autopartsJee.adminPanel.raportModule.dao.LogRepositoryDao;
 
 
 @WebServlet("/register")

@@ -4,8 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
-import pl.isa.autopartsJee.raportModule.rest.LogRequest;
-//import pl.isa.autopartsJee.raportModule.dao.LogRepositoryDao;
+import pl.isa.autopartsJee.adminPanel.raportModule.rest.LogRequest;
+//import pl.isa.autopartsJee.adminPanel.raportModule.dao.LogRepositoryDao;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;

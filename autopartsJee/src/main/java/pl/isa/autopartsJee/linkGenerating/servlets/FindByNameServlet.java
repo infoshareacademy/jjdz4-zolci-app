@@ -4,7 +4,7 @@ import pl.isa.autopartsJee.carToDatabase.dao.CarRepositoryDao;
 import pl.isa.autopartsJee.linkGenerating.WebLinkGenerator;
 import pl.isa.autopartsJee.linkGenerating.dao.TreeOperationsRepositoryDao;
 import pl.isa.autopartsJee.linkGenerating.domain.ItemParentName;
-import pl.isa.autopartsJee.raportModule.rest.LogRequest;
+import pl.isa.autopartsJee.adminPanel.raportModule.rest.LogRequest;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;

@@ -49,11 +49,7 @@ public class ApiService {
                 return Response.ok(log).build();
             }
         }
-//        if (keyVerifier.checkKey(log)) {
-//            logRepository.addSingleLog(log);
-//            return Response.ok(log).build();
-//
-//        }
+
         return Response.status(Response.Status.BAD_REQUEST).build();
     }
 
@@ -117,4 +113,19 @@ public class ApiService {
         String raport = logCalculator.buildRaport(logRepository, adminPreferencesRepository);
         return Response.ok(raport).build();
     }
+
+    @GET
+    @Path("/getalllogs")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllLogs(@QueryParam("clientKey") String clientKey) {
+        for (ClientKey clientKeyRepo : clientKeysRepository.getAllKeys()) {
+            if (clientKeyRepo.getClientKey().equals(clientKey)) {
+                logger.info("logs returned to autopartsfinder");
+                return Response.ok(new Gson().toJson(logRepository.getLogs())).build();
+            }
+        }
+        return Response.status(Response.Status.BAD_REQUEST).build();
+    }
+
+
 }

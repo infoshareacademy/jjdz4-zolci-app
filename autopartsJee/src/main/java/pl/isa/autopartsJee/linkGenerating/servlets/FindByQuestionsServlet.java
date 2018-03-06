@@ -6,8 +6,8 @@ import pl.isa.autoparts.questions.*;
 import pl.isa.autopartsJee.linkGenerating.dao.TreeOperationsRepositoryDao;
 import pl.isa.autopartsJee.linkGenerating.WebLinkGenerator;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
-import pl.isa.autopartsJee.raportModule.rest.LogRequest;
-//import pl.isa.autopartsJee.raportModule.dao.LogRepositoryDao;
+import pl.isa.autopartsJee.adminPanel.raportModule.rest.LogRequest;
+//import pl.isa.autopartsJee.adminPanel.raportModule.dao.LogRepositoryDao;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;

@@ -2,8 +2,8 @@ package pl.isa.autopartsJee.adminPanel.servlets;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.isa.autopartsJee.raportModule.domain.AdminPreferences;
-import pl.isa.autopartsJee.raportModule.rest.PreferencesRequest;
+import pl.isa.autopartsJee.adminPanel.raportModule.domain.AdminPreferences;
+import pl.isa.autopartsJee.adminPanel.raportModule.rest.PreferencesRequest;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
