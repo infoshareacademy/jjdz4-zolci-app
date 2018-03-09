@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
-<html lang="${language}">
+<html>
 <head>
     <meta charset="utf-8">
     <title>Panel administratora</title>
@@ -13,7 +13,6 @@
 </head>
 
 <body>
-<fmt:requestEncoding value="UTF-8" />
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
     <div class="container">
         <a class="navbar-brand" href="index.jsp">

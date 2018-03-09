@@ -5,7 +5,7 @@
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <%--<c:set var="language" value="${selectpicker}" scope="session" />--%>
 <%--<fmt:setLocale value="${language}" />--%>
-<fmt:setLocale value="${selectpicker}" />
+<fmt:setLocale value="selectpicker" />
 <fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" var="lang" />
 <fmt:requestEncoding value = "UTF-8" />
 <meta charset="UTF-8">
@@ -20,11 +20,17 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fontello-css/fontello.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+
+
+    <!-- Bootstrap -->
+    <link href="Bootstrap/dist/css/bootstrap-formhelpers.min.css" rel="stylesheet" media="screen">
+    <!-- Bootstrap Form Helpers -->
+    <link href="Bootstrap/dist/css/bootstrap-formhelpers.css" rel="stylesheet" media="screen">
+
 </head>
 
 <body>
 <fmt:requestEncoding value="UTF-8" />
-<%--<fmt:setLocale value="pl"/>--%>
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
     <div class="container">
         <a class="navbar-brand" href="index.jsp">
@@ -82,13 +88,41 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
+
+
+
+<%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">--%>
+<%--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>--%>
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>--%>
+<%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>--%>
+
+
+<%--&lt;%&ndash;           stare                 &ndash;%&gt;--%>
+<%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">--%>
+<%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css">--%>
+<%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">--%>
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>--%>
+<%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>--%>
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js"></script>--%>
+
+
+
+
+
+
+<!-- jQuery -->
+<%--<script src="js/jquery-1.10.2.min.js"></script>--%>
+<script src="Bootstrap/dist/js/bootstrap-formhelpers.min.js"></script>
+<script src="Bootstrap/dist/js/bootstrap-formhelpers.js"></script>
+
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Bootstrap Form Helpers -->
+<script src="js/bootstrap-formhelpers.min.js"></script>
+
 <script src="scripts/selectpicker.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js"></script>
 </body>
 
 </html>
