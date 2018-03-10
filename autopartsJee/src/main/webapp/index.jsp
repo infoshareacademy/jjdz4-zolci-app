@@ -109,20 +109,6 @@
 
 
 
-
-<!-- jQuery -->
-<%--<script src="js/jquery-1.10.2.min.js"></script>--%>
-<script src="Bootstrap/dist/js/bootstrap-formhelpers.min.js"></script>
-<script src="Bootstrap/dist/js/bootstrap-formhelpers.js"></script>
-
-<!-- Bootstrap -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-
-<!-- Bootstrap Form Helpers -->
-<script src="js/bootstrap-formhelpers.min.js"></script>
-
-<script src="scripts/selectpicker.js"></script>
 </body>
 
 </html>
