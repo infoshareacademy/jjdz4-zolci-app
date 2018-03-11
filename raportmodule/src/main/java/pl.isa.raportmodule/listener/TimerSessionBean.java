@@ -30,7 +30,7 @@ public class TimerSessionBean {
 //        timerService.createCalendarTimer(new ScheduleExpression().dayOfWeek("*").second("0"));
 //    }
 
-    @Schedule(hour = "*", minute = "*", second = "0", persistent = false)
+    @Schedule(hour = "*", minute = "*/2", second = "0", persistent = false)
     public void execute(Timer timer) {
         LogCalculator logCalculator = new LogCalculator();
         logger.info(logCalculator.buildRaport(logRepository, adminPreferencesRepository));

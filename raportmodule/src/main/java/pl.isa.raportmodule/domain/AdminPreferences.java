@@ -9,6 +9,11 @@ public class AdminPreferences {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public void setClientKey(String clientKey) {
+        this.clientKey = clientKey;
+    }
+
     private String clientKey;
     private String preferences;
 
