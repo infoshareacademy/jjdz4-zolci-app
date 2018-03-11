@@ -1,11 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" var="lang" />
 <fmt:requestEncoding value = "UTF-8" />
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<meta charset="UTF-8">
 <!doctype html>
 <html lang="${language}">
 <head>
@@ -17,11 +18,10 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fontello-css/fontello.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
 </head>
 
 <body>
-<%--<fmt:setLocale value="pl"/>--%>
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
     <div class="container">
         <a class="navbar-brand" href="index.jsp">

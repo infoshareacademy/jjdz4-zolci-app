@@ -1,13 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" var="lang" />
-<fmt:requestEncoding value = "UTF-8" />
-<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <!doctype html>
-<html lang="${language}">
+<html>
 <head>
     <meta charset="utf-8">
     <title>Panel administratora</title>
