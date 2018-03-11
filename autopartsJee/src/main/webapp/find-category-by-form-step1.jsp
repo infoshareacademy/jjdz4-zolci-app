@@ -34,7 +34,6 @@
             <ul class="navbar-nav ml-auto">
                 <%@include file="context-menu.jsp" %>
             </ul>
-            <%@include file="choose-language.jsp" %>
         </div>
     </div>
 </nav>
