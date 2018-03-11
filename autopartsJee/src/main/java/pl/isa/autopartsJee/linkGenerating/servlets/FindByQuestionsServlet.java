@@ -3,9 +3,8 @@ package pl.isa.autopartsJee.linkGenerating.servlets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.questions.*;
-import pl.isa.autopartsJee.findParts.dao.FindQuestionDao;
+import pl.isa.autopartsJee.linkGenerating.dao.FindQuestionDao;
 import pl.isa.autopartsJee.linkGenerating.dao.TreeOperationsRepositoryDao;
-import pl.isa.autopartsJee.linkGenerating.WebLinkGenerator;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
 import pl.isa.autopartsJee.adminPanel.raportModule.rest.LogRequest;
 //import pl.isa.autopartsJee.adminPanel.raportModule.dao.LogRepositoryDao;
@@ -19,10 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @WebServlet("find-questions")
 public class FindByQuestionsServlet extends HttpServlet {

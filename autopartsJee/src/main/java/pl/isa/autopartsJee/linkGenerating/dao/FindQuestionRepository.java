@@ -1,4 +1,4 @@
-package pl.isa.autopartsJee.findParts.dao;
+package pl.isa.autopartsJee.linkGenerating.dao;
 
 import pl.isa.autoparts.questions.*;
 import pl.isa.autopartsJee.linkGenerating.WebLinkGenerator;
