@@ -1,7 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
+
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
     <title>Znajdź po nazwie</title>
@@ -36,7 +40,7 @@
 <div class="container">
 
     <div class="content">
-        <h1>Podaj nazwę kategorii:</h1><br/>
+        <h1><fmt:message key="findByName.header"/></h1><br/>
         <form action="/find-by-name" method="GET">
             <div class="form-group">
                 <input type="text" class="form-control" name="search">
@@ -53,7 +57,8 @@
                         </c:otherwise>
                     </c:choose>
                 </select>
-            <button type="submit" class="btn btn-primary">Szukaj</button>
+            <button type="submit" class="btn btn-primary">
+                <fmt:message key="findByName.searchButton"/></button>
         </form>
 
     </div>

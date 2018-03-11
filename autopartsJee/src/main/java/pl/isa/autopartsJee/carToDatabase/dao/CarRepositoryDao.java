@@ -9,7 +9,7 @@ import java.util.List;
 public interface CarRepositoryDao {
     void addCar(CarData carData);
 
-    List<CarData> findCarsByOwnerId(int ownerId);
+    List<CarData> findCarsByOwnerId(Long ownerId);
 
-    CarData findCarById(Integer carID);
+    CarData findCarById(Long carID);
 }

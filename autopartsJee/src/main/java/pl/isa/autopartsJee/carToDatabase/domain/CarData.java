@@ -9,7 +9,7 @@ public class CarData {
     @Id
     @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int carID;
+    Long carID;
 
     @Column
     private String vehicleMake;
@@ -24,7 +24,7 @@ public class CarData {
     private String vin;
     private String registryNumber;
 
-    public int getCarID() {
+    public Long getCarID() {
         return carID;
     }
 
@@ -68,17 +68,17 @@ public class CarData {
         return registryNumber;
     }
 
-    public int getOwnerId() {
+    public Long getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(int ownerId) {
+    public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
     }
 
-    private int ownerId;
+    private Long ownerId;
 
-    public void setCarID(int carID) {
+    public void setCarID(Long carID) {
         this.carID = carID;
     }
 

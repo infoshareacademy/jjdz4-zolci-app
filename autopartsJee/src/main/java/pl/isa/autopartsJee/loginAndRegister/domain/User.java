@@ -19,14 +19,14 @@ public class User {
     private String surname;
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
-    private Integer id;
+    private Long id;
 
     public String getLogin() {
 

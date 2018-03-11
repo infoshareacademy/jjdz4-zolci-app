@@ -403,7 +403,7 @@
                 </czesc>
                 <czesc>
                     <id>4</id>
-                    <nazwa>Wybierakii</nazwa>
+                    <nazwa>Wybieraki</nazwa>
                 </czesc>
             </awaria>
         </pytanie>
@@ -461,7 +461,7 @@
                 </czesc>
                 <czesc>
                     <id>6</id>
-                    <nazwa>Sprężyny zawieszeniaa</nazwa>
+                    <nazwa>Sprężyny zawieszenia</nazwa>
                 </czesc>
             </awaria>
             <awaria>
@@ -518,6 +518,232 @@
                 <czesc>
                     <id>3</id>
                     <nazwa>Zbiorniki płynu hamulcowego</nazwa>
+                </czesc>
+            </awaria>
+        </pytanie>
+    </grupa-pytan>
+    <grupa-pytan name="akcesoria">
+        <pytanie>
+            <id>1</id>
+            <opis>Układ elektryczny, zapłon</opis>
+            <awaria>
+                <id>1</id>
+                <tresc>Materiały instalacyjney</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Bezpieczniki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Kostki, złączki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Wiązki przewodów</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Przekaźniki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Stacyjki i kluczyki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>6</id>
+                    <nazwa>Świece</nazwa>
+                </czesc>
+                <czesc>
+                    <id>7</id>
+                    <nazwa>Centralne zamki</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>Czujniki</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Ciśnienia</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Deszczu</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>ESP</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Położenia wału</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Poziomu płynu</nazwa>
+                </czesc>
+                <czesc>
+                    <id>6</id>
+                    <nazwa>Prędkości/uderzenia</nazwa>
+                </czesc>
+                <czesc>
+                    <id>7</id>
+                    <nazwa>Przepływomierze</nazwa>
+                </czesc>
+                <czesc>
+                    <id>8</id>
+                    <nazwa>Spalania stukowego</nazwa>
+                </czesc>
+                <czesc>
+                    <id>9</id>
+                    <nazwa>Temperatury</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>3</id>
+                <tresc>Układ elektryczny silnika</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Alternatory</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Aparaty zapłonowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Cewki zapłonowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Moduły zapłonowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Przewody zapłonowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>6</id>
+                    <nazwa>Rozruszniki</nazwa>
+                </czesc>
+            </awaria>
+        </pytanie>
+        <pytanie>
+            <id>2</id>
+            <opis>Wygląd samochodu</opis>
+            <awaria>
+                <id>1</id>
+                <tresc>Wyposażenie wnętrza</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Deski rozdzielcze, konsole</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Fotele, kanapy</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Gałki zmiany biegów</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Kierownice</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Klamki wewnętrzne</nazwa>
+                </czesc>
+                <czesc>
+                    <id>6</id>
+                    <nazwa>Korbki szyb</nazwa>
+                </czesc>
+                <czesc>
+                    <id>7</id>
+                    <nazwa>Kratki nawiewu</nazwa>
+                </czesc>
+                <czesc>
+                    <id>8</id>
+                    <nazwa>Liczniki, zegary</nazwa>
+                </czesc>
+                <czesc>
+                    <id>9</id>
+                    <nazwa>Lusterka wewnętrzne</nazwa>
+                </czesc>
+                <czesc>
+                    <id>10</id>
+                    <nazwa>Pasy bezpieczeństwa</nazwa>
+                </czesc>
+                <czesc>
+                    <id>11</id>
+                    <nazwa>Podłokietniki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>12</id>
+                    <nazwa>Podsufitki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>13</id>
+                    <nazwa>Poduszki powietrzne</nazwa>
+                </czesc>
+                <czesc>
+                    <id>14</id>
+                    <nazwa>Zagłówki</nazwa>
+                </czesc>
+                <czesc>
+                    <id>15</id>
+                    <nazwa>Schowki, półki</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>2</id>
+                <tresc>Tuning mechaniczny</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Chipy</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Klaksony, fanfary</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Magnetyzery</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Strumienice</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Tłumiki sportowe</nazwa>
+                </czesc>
+            </awaria>
+            <awaria>
+                <id>3</id>
+                <tresc>Części karoserii</tresc>
+                <czesc>
+                    <id>1</id>
+                    <nazwa>Cięgna drzwi</nazwa>
+                </czesc>
+                <czesc>
+                    <id>2</id>
+                    <nazwa>Osłony silnika</nazwa>
+                </czesc>
+                <czesc>
+                    <id>3</id>
+                    <nazwa>Lusterka zewnętrzne</nazwa>
+                </czesc>
+                <czesc>
+                    <id>4</id>
+                    <nazwa>Nadkola</nazwa>
+                </czesc>
+                <czesc>
+                    <id>5</id>
+                    <nazwa>Relingi dachowe</nazwa>
+                </czesc>
+                <czesc>
+                    <id>6</id>
+                    <nazwa>Uszczelki drzwi</nazwa>
                 </czesc>
             </awaria>
         </pytanie>

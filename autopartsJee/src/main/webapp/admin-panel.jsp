@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
-<html lang="pl">
+<html>
 <head>
     <meta charset="utf-8">
     <title>Panel administratora</title>
@@ -14,7 +13,6 @@
 </head>
 
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
     <div class="container">
         <a class="navbar-brand" href="index.jsp">
@@ -37,7 +35,44 @@
     <c:set var="admin" scope="request" value="admin"/>
     <div class="content">
         <h1>Panel administratora</h1><br/>
+        <span style="color: limegreen;"><c:out value="${updatemessage}"/></span><br/>
+        Wybierz zawartość cyklicznego raportu:
+        <form method="post" action="/updatepreferences">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check1" name="login" value="true">
+                <label class="form-check-label" for="check1">Zalogowania użytkowników</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check2" name="logout" value="true">
+                <label class="form-check-label" for="check2">Wylogowania użytkowników</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check9" name="failedlogins" value="true">
+                <label class="form-check-label" for="check9">Nieudane logowania</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check3" name="manualsearch" value="true">
+                <label class="form-check-label" for="check3">Wyszukiwania ręczne</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check4" name="formsearch" value="true">
+                <label class="form-check-label" for="check4">Wyszukiwania z formularza</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check5" name="register" value="true">
+                <label class="form-check-label" for="check5">Ilość rejestracji</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check7" name="failedregisters" value="true">
+                <label class="form-check-label" for="check7">Nieudane rejestracje</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="check8" name="addedcars" value="true">
+                <label class="form-check-label" for="check8">Dodane auta</label>
+            </div>
 
+            <button type="submit" class="btn btn-primary">Zaktualizuj preferencje</button>
+        </form>
     </div>
 
 
