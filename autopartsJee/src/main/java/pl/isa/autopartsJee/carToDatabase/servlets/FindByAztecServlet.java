@@ -1,10 +1,13 @@
 package pl.isa.autopartsJee.carToDatabase.servlets;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.aztec.AtenaSessionReader;
 import pl.isa.autoparts.aztec.AztecVehicle;
 import pl.isa.autopartsJee.carToDatabase.dao.CarRepositoryDao;
 import pl.isa.autopartsJee.carToDatabase.domain.CarData;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
+import pl.isa.autopartsJee.adminPanel.raportModule.rest.LogRequest;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -15,25 +18,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Logger;
 
 @WebServlet("/find-by-aztec")
 public class FindByAztecServlet extends HttpServlet {
-    private Logger logger = Logger.getLogger(FindByAztecServlet.class.getName());
+    private Logger logger = LoggerFactory.getLogger(FindByAztecServlet.class.getName());
     @Inject
     CarRepositoryDao carRepository;
     @Inject
     UsersRepositoryDao usersRepositoryDao;
+    @Inject
+    LogRequest logRequest;
 
     private Boolean checkIfCarExists(HttpServletRequest req, HttpServletResponse resp, String vin) throws ServletException, IOException {
-        List<CarData> cars = carRepository.findCarsByOwnerId((int) req.getSession().getAttribute("userId"));
+        List<CarData> cars = carRepository.findCarsByOwnerId(Long.parseLong(req.getSession().getAttribute("userId").toString()));
 
         for (CarData carData : cars) {
             if (carData.getVin().equals(vin)) {
                 req.setAttribute("wrongCode", "Podane auto znajduje się w twojej bazie danych");
                 RequestDispatcher dispatcher = req.getRequestDispatcher("/find-car-by-aztec.jsp");
                 dispatcher.forward(req, resp);
-                logger.warning("Car is in user's database");
+
+                logger.warn("Car is in user's database");
                 return true;
 
             }
@@ -73,13 +78,18 @@ public class FindByAztecServlet extends HttpServlet {
             carData.setProdYear(prodYear);
             carData.setVin(vin);
             carData.setRegistryNumber(registryNumber);
-            carData.setOwnerId((int) req.getSession().getAttribute("userId"));
+            carData.setOwnerId(Long.parseLong(req.getSession().getAttribute("userId").toString()));
             carRepository.addCar(carData);
+            logRequest.createLog("car-added", (Long) req.getSession().getAttribute("userId"), "car-database");
             logger.info("Car added to users database");
+            req.getSession().setAttribute("carAdded", "Auto poprawnie dodane do bazy danych");
         } catch (Exception e) {
-            logger.warning("Session code not found");
+            logRequest.createLog("atena-session-not-found", (Long) req.getSession().getAttribute("userId"), "car-database");
+            logger.warn("Session code not found");
             req.setAttribute("wrongCode", "Nie znaleziono kodu sesji");
+//            req.setAttribute("carAdded", false);
         }
+//        req.getSession().setAttribute("carAdded", true);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/find-car-by-aztec.jsp");
         dispatcher.forward(req, resp);
     }

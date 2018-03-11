@@ -17,7 +17,7 @@ public class CarRepository {
         entityManager.persist(carData);
     }
 
-    public List<CarData> findCarsByOwnerId(int ownerId) {
+    public List<CarData> findCarsByOwnerId(Long ownerId) {
         List<CarData> carDataList = new ArrayList<>();
 
         carDataList = (List<CarData>) entityManager.createQuery("from CarData u where u.ownerId=:ownerId")
@@ -26,7 +26,7 @@ public class CarRepository {
 
     }
 
-    public CarData findCarById(Integer carID) {
+    public CarData findCarById(Long carID) {
         return entityManager.find(CarData.class, carID);
     }
 

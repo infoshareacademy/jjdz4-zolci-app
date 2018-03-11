@@ -1,7 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
     <title>Twoje auta</title>
@@ -14,7 +17,7 @@
 </head>
 
 <body>
-
+<fmt:requestEncoding value="UTF-8" />
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
     <div class="container">
         <a class="navbar-brand" href="index.jsp">
@@ -36,7 +39,7 @@
 <div class="container">
 
     <div class="content">
-        <h1>Twoje samochody</h1><br/>
+        <h1><fmt:message key="yourcars.header"/></h1><br/>
 
         <c:choose>
             <c:when test="${not empty cars}">
@@ -80,7 +83,7 @@
                 </div>
             </c:when>
             <c:otherwise>
-                Brak aut
+                <fmt:message key="yourcars.info"/>
             </c:otherwise>
         </c:choose>
 

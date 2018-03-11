@@ -1,7 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
     <title>Rejestracja</title>
@@ -14,7 +18,7 @@
 </head>
 
 <body>
-
+<fmt:requestEncoding value="UTF-8" />
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
     <div class="container">
         <a class="navbar-brand" href="index.jsp">
@@ -36,7 +40,7 @@
 <div class="container">
 
     <div class="content">
-        <h1>Rejestracja</h1><br/>
+        <h1><fmt:message key="register.header"/></h1><br/>
         <form action="/register" method="POST" class="needs-validation" novalidate>
             <span style="color: red;"><c:out value="${registrationError}"/></span>
             <div class="form-row">
@@ -45,51 +49,62 @@
                     <input type="text" class="form-control" id="validationCustom01" name="login" placeholder="Login"
                            required>
                     <div class="invalid-feedback">
-                        Podaj login!
+                        <fmt:message key="register.giveLogin"/>
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="validationCustom02">Hasło</label>
-                    <input type="password" class="form-control" id="validationCustom02" name="password" placeholder="Hasło"
+                    <label for="validationCustom02"><fmt:message key="register.password"/></label>
+                    <input type="password" class="form-control" id="validationCustom02" name="password"
+                           placeholder="Hasło"
                            required>
                     <div class="invalid-feedback">
-                        Podaj hasło!
+                        <fmt:message key="register.givePassword"/>
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                    <label for="validationCustom03">Adres Email</label>
+                    <label for="validationCustom03"><fmt:message key="register.email"/></label>
                     <input type="email" class="form-control" id="validationCustom03" name="email"
                            placeholder="Adres Email"
                            required>
                     <div class="invalid-feedback">
-                        Podaj adres Email!
+                        <fmt:message key="register.giveEmail"/>
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-6 mb-3">
-                    <label for="validationCustom04">Imię</label>
+                    <label for="validationCustom04"><fmt:message key="register.name"/></label>
                     <input type="text" class="form-control" id="validationCustom04" name="name" placeholder="Imię"
                            required>
                     <div class="invalid-feedback">
-                        Podaj imię!
+                        <fmt:message key="register.giveName"/>
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="validationCustom05">Nazwisko</label>
+                    <label for="validationCustom05"><fmt:message key="register.surname"/></label>
                     <input type="text" class="form-control" id="validationCustom05" name="surname"
                            placeholder="Nazwisko"
                            required>
                     <div class="invalid-feedback">
-                        Podaj nazwisko!
+                        <fmt:message key="register.giveSurname"/>
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Zarejestruj się</button>
-        </form>
+            <%--<div class="form-row">--%>
+                    <%--<input id="validationCustom06" class="form-control" type="checkbox" name="termsCheckbox"--%>
+                           <%--required>Akceptuję <a href="#">regulamin</a>--%>
+                    <%--<div class="invalid-feedback">--%>
+                        <%--Zaakceptuj regulamin!--%>
+                    <%--</div>--%>
+            <%--</div>--%>
+
+
+            <button type="submit" class="btn btn-primary"><fmt:message key="register.registerButton"/></button>
     </div>
+    </form>
+</div>
 
 
 </div>

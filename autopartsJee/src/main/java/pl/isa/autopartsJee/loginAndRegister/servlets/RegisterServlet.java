@@ -1,9 +1,12 @@
 package pl.isa.autopartsJee.loginAndRegister.servlets;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.isa.autopartsJee.loginAndRegister.dao.RolesRepositoryDao;
 import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
 import pl.isa.autopartsJee.loginAndRegister.domain.Role;
 import pl.isa.autopartsJee.loginAndRegister.domain.User;
+import pl.isa.autopartsJee.adminPanel.raportModule.rest.LogRequest;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -17,15 +20,19 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.logging.Logger;
+
+//import pl.isa.autopartsJee.adminPanel.raportModule.dao.LogRepositoryDao;
+
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
-    private Logger logger = Logger.getLogger(LoginServlet.class.getName());
+    private Logger logger = LoggerFactory.getLogger(RegisterServlet.class.getName());
     @Inject
     UsersRepositoryDao usersRepositoryDao;
     @Inject
     RolesRepositoryDao rolesRepositoryDao;
+    @Inject
+    LogRequest logRequest;
 
 
     private Boolean checkIfUserExists(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,12 +43,12 @@ public class RegisterServlet extends HttpServlet {
             }
             if (user.getLogin().equals(req.getParameter("login"))) {
                 req.setAttribute("registrationError", "Użytkownik o podanym loginie istnieje");
-                logger.warning("User with this login exists");
+                logger.error("User with this login exists");
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
                 requestDispatcher.forward(req, resp);
                 return true;
             } else if (user.getEmail().equals(req.getParameter("email"))) {
-                logger.warning("User with this email exists");
+                logger.error("User with this email exists");
                 req.setAttribute("registrationError", "Użytkownik o podanym emailu istnieje");
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
                 requestDispatcher.forward(req, resp);
@@ -58,7 +65,7 @@ public class RegisterServlet extends HttpServlet {
                 req.getParameter("name").isEmpty() || req.getParameter("name").equals(null) ||
                 req.getParameter("surname").isEmpty() || req.getParameter("surname").equals(null) ||
                 req.getParameter("password").isEmpty() || req.getParameter("password").equals(null)) {
-            logger.warning("User had left empty fields");
+            logger.error("User had left empty fields");
             req.setAttribute("registrationError", "Wprowadź wszystkie dane");
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
             requestDispatcher.forward(req, resp);
@@ -70,9 +77,13 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (checkIfFieldsAreEmpty(req, resp)) {
+                logRequest.createLog("register-error",
+                    null, "register");
             return;
         }
         if (checkIfUserExists(req, resp)) {
+            logRequest.createLog("register-error",
+                    null, "register");
             return;
         }
         User user = new User();
@@ -100,6 +111,8 @@ public class RegisterServlet extends HttpServlet {
         role.setUser_login(user.getLogin());
         rolesRepositoryDao.addUser(role);
         logger.info("User registered successfully");
+        logRequest.createLog("user-registered",
+                user.getId(), "register");
         req.setAttribute("success", "Użytkownik zarejestrowany pomyślnie");
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
         requestDispatcher.forward(req, resp);

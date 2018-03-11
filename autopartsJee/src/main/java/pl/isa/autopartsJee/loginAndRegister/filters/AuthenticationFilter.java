@@ -1,6 +1,5 @@
 package pl.isa.autopartsJee.loginAndRegister.filters;
 
-import pl.isa.autopartsJee.loginAndRegister.dao.UsersRepositoryDao;
 
 import javax.inject.Inject;
 import javax.servlet.*;
@@ -14,8 +13,7 @@ import java.security.Principal;
         filterName = "AuthenticationFilter",
         urlPatterns = {"/*"})
 public class AuthenticationFilter implements Filter {
-    @Inject
-    UsersRepositoryDao usersRepositoryDao;
+
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -35,8 +33,8 @@ public class AuthenticationFilter implements Filter {
         } else {
             session.setAttribute("loggedUser", null);
             session.setAttribute("isLogged", false);
-        }
 
+        }
 
 
         filterChain.doFilter(servletRequest, servletResponse);

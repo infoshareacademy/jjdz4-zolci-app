@@ -92,8 +92,4 @@ public class ConsoleFunctions {
     public List<String> getPartsList() {
         return partsList;
     }
-
-    public void clearList() {
-        partsList.clear();
-    }
 }
