@@ -44,8 +44,9 @@
         <h1>Wyszukiwarka autoczęści</h1>
         <div class="row">
             <div class="ui-widget">
-                <label>Procedure: </label>
+                <label>Marka pojazdu: </label>
                 <select class="js-example-basic-single" name="make">
+                    <option value="" selected disabled hidden>Wybierz...</option>
                     <option value="Audi">Audi</option>
                     <option value="Mitsubishi">Mitsubishi</option>
                     <option value="Renault">Renault</option>
