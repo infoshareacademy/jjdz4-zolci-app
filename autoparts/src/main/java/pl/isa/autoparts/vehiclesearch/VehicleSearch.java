@@ -6,8 +6,7 @@ import pl.isa.autoparts.tools.JsonParser;
 import pl.isa.autoparts.tools.Printer;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class VehicleSearch {
 
@@ -25,6 +24,17 @@ public class VehicleSearch {
         return foundVehicle;
     }
 
+    public static Map<String,String> getVehicleMakesFromApi(String api) throws IOException {
+
+        Map<String,String> makes = new TreeMap<>();
+
+        for (VehicleData vd : searchVehicleFromURL(api).getData()) {
+            makes.put(vd.getName(), vd.getLink());
+        }
+
+        return makes;
+    }
+
     public List<VehicleData> findVehicleModels(String brandName, String modelName, String productionYear) throws IOException {
 
         return findBrandNameAndModel(brandName, modelName, productionYear);
@@ -35,9 +45,9 @@ public class VehicleSearch {
         return findProductionYearAndCylinderVolume(modelName, cylinderVolume);
     }
 
-    public static Vehicle searchVehicleFromURL() throws IOException {
+    private static Vehicle searchVehicleFromURL(String api) throws IOException {
 
-        return JsonParser.parseJsonFromURL(API_URL_PRE + API_URL_POST, Vehicle.class);
+        return JsonParser.parseJsonFromURL(API_URL_PRE + api, Vehicle.class);
     }
 
     private Vehicle parseFoundVehicle() throws IOException {
