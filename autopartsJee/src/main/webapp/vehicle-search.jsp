@@ -38,7 +38,6 @@
         </div>
     </div>
 </nav>
-
 <div class="container">
     <div class="content">
         <h1><i class="demo-icon icon-wrench-outline"></i>Wyszukiwarka autoczęści</h1>
@@ -47,7 +46,7 @@
             <select class="select2" name="make">
                 <option value="" selected disabled hidden>Wybierz...</option>
                 <c:forEach items="${makes}" var="make">
-                    <option value="${make.value}">${make.key}</option>
+                    <option value='{"api":"${make.value}","name":"${make.key}"}'>${make.key}</option>
                 </c:forEach>
             </select>
             <button class="btn btn-secondary btn-lg" type="submit">Dalej</button>

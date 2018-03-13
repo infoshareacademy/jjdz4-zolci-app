@@ -42,14 +42,17 @@
 <div class="container">
     <div class="content">
         <h1><i class="demo-icon icon-wrench-outline"></i>Wyszukiwarka autoczęści</h1>
+        <h4>Marka: <b><c:out value="${sessionScope.makeName}"/></b></h4>
+        <h4>Model: <b><c:out value="${sessionScope.modelName}"/></b></h4>
         <h4>Wybierz rodzaj silnika</h4>
         <form method="post" action="vehicle-search">
             <select class="select2" name="engine">
                 <option value="" selected disabled hidden>Wybierz...</option>
                 <c:forEach items="${engines}" var="engine">
-                    <option value="${engine.value}">${engine.key}</option>
+                    <option value='{"api":"${engine.value}","name":"${engine.key}"}'>${engine.key}</option>
                 </c:forEach>
             </select>
+            <input value="${modelApi}" name="modelApi" style="display: none;" />
             <button class="btn btn-secondary btn-lg" type="submit">Dalej</button>
         </form>
     </div>
