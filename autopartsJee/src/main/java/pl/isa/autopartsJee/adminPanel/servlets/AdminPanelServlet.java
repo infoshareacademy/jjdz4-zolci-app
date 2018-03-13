@@ -67,7 +67,7 @@ public class AdminPanelServlet extends HttpServlet {
         String preferences = stringBuilder.toString();
 
         AdminPreferences adminPreferences = new AdminPreferences();
-//        adminPreferences.setId(1);
+
         logger.info(preferences);
         adminPreferences.setPreferences(preferences);
         preferencesRequest.updatePreferences(adminPreferences);

@@ -49,7 +49,7 @@
                 <c:if test="${userRole == admin}">
                     <div class="text-center">
                         <a class="listing btn btn-primary" href="admin-panel.jsp" role="button"><fmt:message key="banner.adminPanel"/></a>
-                        <a class="listing btn btn-primary" href="/statistics" role="button"><fmt:message key="banner.statistics"/></a>
+                        <%--<a class="listing btn btn-primary" href="/statistics" role="button"><fmt:message key="banner.statistics"/></a>--%>
                     </div>
                 </c:if>
             </c:when>

@@ -48,41 +48,42 @@
 
     <div class="content">
         <h1><fmt:message key="findByName.header"/></h1><br/>
-        <form action="/find-by-name" method="GET">
-            <div class="form-group">
-                <div class="ui-widget">
+        <div class="text-center">
+            <form action="/find-by-name" method="GET">
+                <div class="form-group">
+                    <div class="ui-widget">
 
-                    <%--<input type="text" class="form-control" name="search">--%>
-                    <select class="js-example-basic-single " name="search">
-                        <option value="" selected disabled hidden>Wybierz...</option>
-                        <c:choose>
-                            <c:when test="${not empty partsNames}">
-                                <c:forEach var="entry" items="${partsNames}">
-                                    <option value="${entry}">${entry}</option>
-                                </c:forEach>
-                            </c:when>
-                            <c:otherwise>
-                            </c:otherwise>
-                        </c:choose>
-                    </select>
+                        <%--<input type="text" class="form-control" name="search">--%>
+                        <select class="js-example-basic-single " name="search">
+                            <option value="" selected disabled hidden>Wybierz...</option>
+                            <c:choose>
+                                <c:when test="${not empty partsNames}">
+                                    <c:forEach var="entry" items="${partsNames}">
+                                        <option value="${entry}">${entry}</option>
+                                    </c:forEach>
+                                </c:when>
+                                <c:otherwise>
+                                </c:otherwise>
+                            </c:choose>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <select class="" id="inlineFormCustomSelect" name="carID">
-                <option value="0" selected>-</option>
-                <c:choose>
-                    <c:when test="${not empty cars}">
-                        <c:forEach var="entry" items="${cars}">
-                            <option value="${entry.carID}">${entry.vehicleMake} ${entry.vehicleModel} ${entry.prodYear}</option>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                    </c:otherwise>
-                </c:choose>
-            </select>
-            <button type="submit" class="btn btn-primary">
-                <fmt:message key="findByName.searchButton"/></button>
-        </form>
-
+                <select class="" id="inlineFormCustomSelect" name="carID">
+                    <option value="0" selected>Wybierz</option>
+                    <c:choose>
+                        <c:when test="${not empty cars}">
+                            <c:forEach var="entry" items="${cars}">
+                                <option value="${entry.carID}">${entry.vehicleMake} ${entry.vehicleModel} ${entry.prodYear}</option>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                        </c:otherwise>
+                    </c:choose>
+                </select>
+                <button type="submit" class="btn btn-primary">
+                    <fmt:message key="findByName.searchButton"/></button>
+            </form>
+        </div>
     </div>
 
 

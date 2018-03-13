@@ -43,7 +43,7 @@
         <h1><fmt:message key="findCategory.header"/></h1><br/>
 
         <div class="row justify-content-center">
-            <a href="/set-parts-list" class="btn btn-secondary btn-lg listing" role="button"
+            <a href="find-category-by-name.jsp" class="btn btn-secondary btn-lg listing" role="button"
                aria-pressed="true"><fmt:message key="findCategory.search"/></a>
             <a href="find-questions?step=1" class="btn btn-secondary btn-lg listing" role="button" aria-pressed="true">
                 <fmt:message key="findCategory.questionary"/></a>
