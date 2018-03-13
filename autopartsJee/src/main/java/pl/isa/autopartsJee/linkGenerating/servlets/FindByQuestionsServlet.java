@@ -23,22 +23,15 @@ import java.io.IOException;
 public class FindByQuestionsServlet extends HttpServlet {
     @Inject
     LogRequest logRequest;
-    @Inject
-    UsersRepositoryDao usersRepositoryDao;
 
     public FindByQuestionsServlet() throws IOException {
     }
 
-    @EJB
-    private TreeOperationsRepositoryDao dao;
-
     @Inject
     FindQuestionDao findQuestionDao;
-    TopClass topClass = new TopClass();
     private static String step;
     private Logger logger = LoggerFactory.getLogger(FindByQuestionsServlet.class.getName());
     private WebFunctions webFunctions = new WebFunctions();
-    private boolean findLog;
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
@@ -49,7 +42,6 @@ public class FindByQuestionsServlet extends HttpServlet {
             /**     Step 1   */
             if (req.getParameter("step").equals("1")) {
                 logger.debug("Web: invoke step 1");
-                findLog = true;
                 step = req.getParameter("step");
 
                 req.getSession().setAttribute("groupQuestions", findQuestionDao.getQuestiongroup());
@@ -62,8 +54,7 @@ public class FindByQuestionsServlet extends HttpServlet {
                 step = req.getParameter("step");
                 String getParam = req.getParameter("selected_1");
 
-                req.getSession().setAttribute("questions",
-                        findQuestionDao.getQuestionDao(getParam, webFunctions));
+                req.getSession().setAttribute("questions", findQuestionDao.getQuestionDao(getParam, webFunctions));
                 req.getSession().setAttribute("selected", getParam);
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category-by-form-step2.jsp");
                 requestDispatcher.forward(req, resp);
@@ -72,11 +63,10 @@ public class FindByQuestionsServlet extends HttpServlet {
             } else if (req.getParameter("step").equals("3")) {
                 logger.debug("Web: invoke step 3");
                 step = req.getParameter("step");
-
                 String getParam = req.getParameter("selected_2");
+
                 req.getSession().setAttribute("selected", getParam);
-                req.getSession().setAttribute("breakDown",
-                        findQuestionDao.getBreakDownDao(getParam, webFunctions));
+                req.getSession().setAttribute("breakDown", findQuestionDao.getBreakDownDao(getParam, webFunctions));
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-category-by-form-step3.jsp");
                 requestDispatcher.forward(req, resp);
 
