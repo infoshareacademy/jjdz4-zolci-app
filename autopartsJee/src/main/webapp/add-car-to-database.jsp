@@ -41,7 +41,7 @@
         <div class="row justify-content-center">
             <a href="find-car-by-aztec.jsp" class="btn btn-secondary btn-lg listing" role="button"
                aria-pressed="true">Dodaj poprzez kod Aztec</a>
-            <a href="/vehicle-search.jsp" class="btn btn-secondary btn-lg listing" role="button" aria-pressed="true">Wprowadź auto ręcznie</a>
+            <a href="vehicle-search" class="btn btn-secondary btn-lg listing" role="button" aria-pressed="true">Wprowadź auto ręcznie</a>
 
         </div>
     </div>
