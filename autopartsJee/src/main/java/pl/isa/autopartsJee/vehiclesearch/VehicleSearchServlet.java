@@ -14,73 +14,55 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
+import java.util.TreeMap;
 
-@WebServlet("vehiclesearch/vehicle-search")
+@WebServlet("vehicle-search")
 public class VehicleSearchServlet extends HttpServlet{
 
-    private Logger logger = LoggerFactory.getLogger(VehicleSearchServlet.class.getName());
+    private static final String API_LINK = "/api/v2";
+
+    private final Logger logger = LoggerFactory.getLogger(VehicleSearchServlet.class.getName());
 
     private HttpServletRequest request;
     private HttpServletResponse response;
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) {
-
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) {
 
         request = req;
         response = res;
 
-
-
-        Vehicle vehicle = null;
-        String brand = request.getParameter("brand");
-
-        if (brand != null) {
-            if (!brand.equals("KIA")) {
-                try {
-                    vehicle = VehicleSearch.searchVehicleFromURL();
-                } catch (IOException e) {
-                    forwardToPageWithError("Nie udało się połączyć z bazą danych");
-                    logger.error("Could not connect to database.");
-                    return;
-                }
-            }
-        }
+        Map<String, String> makes = new TreeMap<>();
 
         try {
-            vehicle = JsonParser.parseJsonFromFile("VehicleSearchResult.json", Vehicle.class);
+            makes = VehicleSearch.getVehicleMakesFromApi(API_LINK);
         } catch (IOException e) {
-            forwardToPageWithError("Nie udało się pobrać dummy json. " + e.toString());
-            logger.error("Json file load error");
-            return;
+            String errorMessage = "Could not parse vehicle names from database.";
+            logger.error(errorMessage);
+            forwardToPageWithError(errorMessage);
         }
 
-        VehicleData[] d = vehicle.getData();
-        request.setAttribute("fBrand", d[0].getBrand_id());
-        request.setAttribute("fModel", d[0].getModel_id());
-        request.setAttribute("fYear", d[0].getEnd_year());
-        request.setAttribute("fVolume", d[0].getCcm());
-        request.setAttribute("fHp", d[0].getHp());
-        request.setAttribute("fCylinders", d[0].getCylinders());
-        request.setAttribute("fEngtype", d[0].getEngine());
-        request.setAttribute("fFuel", d[0].getFuel());
-        request.setAttribute("fAxle", d[0].getAxle());
-        request.setAttribute("fWeight", d[0].getMax_weight());
+        req.setAttribute("makes", makes);
+        forwardToPage("vehicle-search.jsp");
+    }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("found-vehicle.jsp");
-        try {
-            dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) {
+
+        request = req;
+        response = res;
+
+        Optional<String> make = Optional.ofNullable(request.getParameter("make"));
+        if (make.isPresent()) {
+
         }
     }
 
-    private void forwardToPageWithError(String errorMessage) {
-        logger.error("Could not search vehicle");
-        request.setAttribute("errorMessage", errorMessage);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("vehicle-search.jsp");
+    private void forwardToPage(String page) {
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(page);
         try {
             dispatcher.forward(request, response);
 
@@ -91,4 +73,9 @@ public class VehicleSearchServlet extends HttpServlet{
         }
     }
 
+    private void forwardToPageWithError(String errorMessage) {
+
+        request.setAttribute("errorMessage", errorMessage);
+        forwardToPageWithError("vehicle-search.jsp");
+    }
 }
