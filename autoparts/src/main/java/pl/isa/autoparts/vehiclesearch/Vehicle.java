@@ -3,6 +3,9 @@ package pl.isa.autoparts.vehiclesearch;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Vehicle {
 
@@ -32,5 +35,16 @@ public class Vehicle {
 
     public VehicleBreadcrumbs[] getBreadcrumbs() {
         return breadcrumbs;
+    }
+
+    public Map<String,String> getNamesAndApi() {
+
+        Map<String,String> names = new TreeMap<>();
+
+        for (VehicleData d : data) {
+            names.put(d.getName(), d.getLink());
+        }
+
+        return names;
     }
 }
