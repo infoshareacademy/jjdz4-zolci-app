@@ -38,27 +38,21 @@
         </div>
     </div>
 </nav>
+
 <div class="container">
-
     <div class="content">
-        <h1>Wyszukiwarka autoczęści</h1>
-        <div class="row">
-            <div class="ui-widget">
-                <form method="post" action="vehicle-search">
-                    <label>Wybierz markę pojazdu:</label>
-                    <select class="select2" name="make">
-                        <option value="" selected disabled hidden>Wybierz...</option>
-                        <c:forEach items="${makes}" var="make">
-                            <option value="${make.value}">${make.key}</option>
-                        </c:forEach>
-                    </select>
-                    <button class="btn btn-secondary btn-lg" type="submit">Dalej</button>
-                </form>
-            </div>
-        </div>
+        <h1><i class="demo-icon icon-wrench-outline"></i>Wyszukiwarka autoczęści</h1>
+        <h4>Wybierz markę pojazdu</h4>
+        <form method="post" action="vehicle-search">
+            <select class="select2" name="make">
+                <option value="" selected disabled hidden>Wybierz...</option>
+                <c:forEach items="${makes}" var="make">
+                    <option value="${make.value}">${make.key}</option>
+                </c:forEach>
+            </select>
+            <button class="btn btn-secondary btn-lg" type="submit">Dalej</button>
+        </form>
     </div>
-
-
 </div>
 
 
