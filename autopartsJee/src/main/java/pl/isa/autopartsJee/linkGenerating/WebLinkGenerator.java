@@ -11,7 +11,7 @@ import pl.isa.autopartsJee.linkGenerating.domain.ItemParentName;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WebLinkGenerator {
+public class    WebLinkGenerator {
 
     private Logger logger = LoggerFactory.getLogger(WebLinkGenerator.class.getName());
 
@@ -25,7 +25,12 @@ public class WebLinkGenerator {
 
     public void generateLinkMap(String category, CarData car, TreeOperations treeOperations) {
         StringNormalizer stringNormalizer = new StringNormalizer();
-
+        if (car != null) {
+            searchedCar = "?" + "string="
+                    + car.getVehicleMake() + " " +
+                    car.getVehicleModel().substring(0, car.getVehicleModel().indexOf(" "))
+                    + " " + car.getProdYear();
+        }
         try {
 
             AllegroItem allegroItem = treeOperations.findExactCarPartCategory(category);

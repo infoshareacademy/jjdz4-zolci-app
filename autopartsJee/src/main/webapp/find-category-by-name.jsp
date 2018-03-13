@@ -55,7 +55,7 @@
 
                         <%--<input type="text" class="form-control" name="search">--%>
                         <select class="js-example-basic-single " name="search">
-                            <option value="" selected disabled hidden>Wybierz...</option>
+                            <option value="0" selected disabled hidden>Wybierz...</option>
                             <c:choose>
                                 <c:when test="${not empty partsNames}">
                                     <c:forEach var="entry" items="${partsNames}">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <select class="" id="inlineFormCustomSelect" name="carID">
-                    <option value="0" selected>Wybierz</option>
+                    <option value="0" selected>Wybierz...</option>
                     <c:choose>
                         <c:when test="${not empty cars}">
                             <c:forEach var="entry" items="${cars}">
