@@ -44,16 +44,19 @@
         <h1>Wyszukiwarka autoczęści</h1>
         <div class="row">
             <div class="ui-widget">
-                <label>Marka pojazdu: </label>
-                <select class="js-example-basic-single" name="make">
-                    <option value="" selected disabled hidden>Wybierz...</option>
-                    <option value="Audi">Audi</option>
-                    <option value="Mitsubishi">Mitsubishi</option>
-                    <option value="Renault">Renault</option>
-                </select>
+                <form method="post" action="vehicle-search">
+                    <label>Wybierz markę pojazdu:</label>
+                    <select class="select2" name="make">
+                        <option value="" selected disabled hidden>Wybierz...</option>
+                        <c:forEach items="${makes}" var="make">
+                            <option value="${make.value}">${make.key}</option>
+                        </c:forEach>
+                    </select>
+                    <button class="btn btn-secondary btn-lg" type="submit">Dalej</button>
+                </form>
             </div>
         </div>
-        </div>
+    </div>
 
 
 </div>
