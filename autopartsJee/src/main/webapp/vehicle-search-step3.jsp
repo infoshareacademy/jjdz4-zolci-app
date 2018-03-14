@@ -46,8 +46,8 @@
         <h4>Marka: <span class="blue"><c:out value="${sessionScope.makeName}"/></span></h4>
         <h4>Model: <span class="blue"><c:out value="${sessionScope.modelName}"/></span></h4>
         <h4>Rodzaj silnika: <b><span class="blue"><c:out value="${sessionScope.engineName}"/></span></h4>
-        <h4>Moc: <span class="blue"><c:out value="${sessionScope.hp}"/> KM</span></h4>
-        <h4>Pojemność: <span class="blue"><c:out value="${sessionScope.ccm}"/> ccm&sup3;</span></h4>
+        <h4>Moc: <span class="blue"><c:out value="${sessionScope.hp}"/></span></h4>
+        <h4>Pojemność: <span class="blue"><c:out value="${sessionScope.ccm}"/></span></h4>
         <h4>Rodzaj paliwa: <span class="blue"><c:out value="${sessionScope.fuel}"/></span></h4>
         <h3 class="blue">Pozostałe parametry</h3>
 
@@ -59,8 +59,8 @@
                     <option value="${year}">${year}</option>
                 </c:forEach>
             </select>
-            <label for="vin">Nr VIN: </label><input class="form-control" id="vin" type="text" name="vin">
-            <label for="reg">Nr Rejestracyjny: </label><input class="form-control" id="reg" type="text" name="registry">
+            <label for="vin">Nr VIN: </label><input class="form-control" id="vin" type="text" name="vin" required>
+            <label for="reg">Nr Rejestracyjny: </label><input class="form-control" id="reg" type="text" name="registry" required>
             <a href="vehicle-search-step2.jsp" class="btn btn-secondary btn-lg">Powrót</a>
             <button class="btn btn-secondary btn-lg" type="submit">Zapisz auto</button>
         </form>

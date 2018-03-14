@@ -46,7 +46,7 @@
         <h4>Marka: <span class="blue"><c:out value="${sessionScope.makeName}"/></span></h4>
         <h3 class="blue">Wybierz model pojazdu</h3>
         <form class="form-group" method="post" action="vehicle-search">
-            <select class="select2 form-control" name="model">
+            <select class="select2 form-control" name="model" required>
                 <option value="" selected disabled hidden>Wybierz...</option>
                 <c:forEach items="${models}" var="model">
                     <option value='{"api":"${model.value}","name":"${model.key}"}'>${model.key}</option>

@@ -47,7 +47,7 @@
         <h4>Model: <span class="blue"><c:out value="${sessionScope.modelName}"/></span></h4>
         <h3 class="blue">Wybierz rodzaj silnika</h3>
         <form class="form-group" method="post" action="vehicle-search">
-            <select class="select2 form-control" name="engine">
+            <select class="select2 form-control" name="engine" required>
                 <option value="" selected disabled hidden>Wybierz...</option>
                 <c:forEach items="${engines}" var="engine">
                     <option value='{"api":"${engine.value}","name":"${engine.key}"}'>${engine.key}</option>

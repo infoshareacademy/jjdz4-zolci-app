@@ -44,7 +44,7 @@
         <h1><i class="demo-icon icon-wrench-outline"></i>Wyszukiwarka autoczęści</h1>
         <h3 class="blue">Wybierz markę pojazdu</h3>
         <form class="form-group" method="post" action="vehicle-search">
-            <select class="select2 form-control" name="make">
+            <select class="select2 form-control" name="make" required>
                 <option value="" selected disabled hidden>Wybierz...</option>
                 <c:forEach items="${makes}" var="make">
                     <option value='{"api":"${make.value}","name":"${make.key}"}'>${make.key}</option>
