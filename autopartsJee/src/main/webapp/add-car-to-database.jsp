@@ -51,6 +51,13 @@
                 <p><c:out value="${vsErrorMessage}"/></p>
             </div>
         </c:if>
+
+        <c:if test="${vsOkMessage != null}">
+            <div class="success">
+                <h4>Sukces!</h4>
+                <p><c:out value="${vsOkMessage}"/></p>
+            </div>
+        </c:if>
     </div>
 
 
