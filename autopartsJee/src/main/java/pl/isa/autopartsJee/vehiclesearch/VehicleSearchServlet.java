@@ -57,14 +57,16 @@ public class VehicleSearchServlet extends HttpServlet{
         Optional<String> engine = Optional.ofNullable(req.getParameter("engine"));
         if (engine.isPresent()) {
 
-            // TODO Finish this nicely
-
-
+            Optional<String> modelAPI = Optional.ofNullable(session.getAttribute(MODEL_API).toString());
             OptionValue value;
             Vehicle vehicle;
+            if (modelApi.isPresent()) {
+                LOG.info("MODEL_API: {}", modelApi.get())
+            }
+            
             try {
                 value = parseParameters(engine.get());
-                vehicle = VehicleSearch.getVehicleFromApi(value.getApi());
+                vehicle = VehicleSearch.getVehicleFromApi(modelApi.get());
             } catch (IOException e) {
                 String errorMessage = "Could not load Vehicle from given API";
                 LOG.error(errorMessage);
