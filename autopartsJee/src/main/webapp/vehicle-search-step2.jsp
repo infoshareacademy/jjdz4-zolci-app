@@ -52,7 +52,6 @@
                     <option value='{"api":"${engine.value}","name":"${engine.key}"}'>${engine.key}</option>
                 </c:forEach>
             </select>
-            <input value="${modelApi}" name="modelApi" style="display: none;" />
             <button class="btn btn-secondary btn-lg" type="submit">Dalej</button>
         </form>
     </div>
