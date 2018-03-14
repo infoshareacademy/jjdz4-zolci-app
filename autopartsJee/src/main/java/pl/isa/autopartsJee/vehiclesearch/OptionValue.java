@@ -2,7 +2,7 @@ package pl.isa.autopartsJee.vehiclesearch;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class OptionValue {
+class OptionValue {
 
     @JsonProperty("name")
     private String name;
@@ -10,21 +10,21 @@ public class OptionValue {
     @JsonProperty("api")
     private String api;
 
-    public OptionValue() {};
+    OptionValue() {};
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
-    public String getApi() {
+    String getApi() {
         return api;
     }
 
-    public void setApi(String api) {
+    void setApi(String api) {
         this.api = api;
     }
 }
