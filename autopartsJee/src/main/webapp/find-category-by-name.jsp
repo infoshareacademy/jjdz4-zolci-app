@@ -1,20 +1,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language"/>
 
 <!doctype html>
 <html lang="${language}">
 <head>
     <meta charset="utf-8">
-    <title>Znajdź po nazwie</title>
+    <title><fmt:message key="title.findCategory.byName"/></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/fontello-css/fontello.css">
+    <link rel="stylesheet" href="/css/fontello-css/fontello.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript" src="/scripts/vehicle-search-jq.js"></script>
 </head>
 
 <body>
@@ -41,12 +48,28 @@
 
     <div class="content">
         <h1><fmt:message key="findByName.header"/></h1><br/>
-        <form action="/find-by-name" method="GET">
-            <div class="form-group">
-                <input type="text" class="form-control" name="search">
-            </div>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="carID">
-                    <option value="0" selected>-</option>
+        <div class="text-center">
+            <form action="/find-by-name" method="GET">
+                <div class="form-group">
+                    <div class="ui-widget">
+
+                        <%--<input type="text" class="form-control" name="search">--%>
+                        <select class="js-example-basic-single " name="search">
+                            <option value="0" selected disabled hidden>Wybierz...</option>
+                            <c:choose>
+                                <c:when test="${not empty partsNames}">
+                                    <c:forEach var="entry" items="${partsNames}">
+                                        <option value="${entry}">${entry}</option>
+                                    </c:forEach>
+                                </c:when>
+                                <c:otherwise>
+                                </c:otherwise>
+                            </c:choose>
+                        </select>
+                    </div>
+                </div>
+                <select class="" id="inlineFormCustomSelect" name="carID">
+                    <option value="0" selected>Wybierz...</option>
                     <c:choose>
                         <c:when test="${not empty cars}">
                             <c:forEach var="entry" items="${cars}">
@@ -57,19 +80,16 @@
                         </c:otherwise>
                     </c:choose>
                 </select>
-            <button type="submit" class="btn btn-primary">
-                <fmt:message key="findByName.searchButton"/></button>
-        </form>
-
+                <button type="submit" class="btn btn-primary">
+                    <fmt:message key="findByName.searchButton"/></button>
+            </form>
+        </div>
     </div>
 
 
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>

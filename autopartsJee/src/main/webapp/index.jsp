@@ -1,18 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <fmt:setLocale value="${language}" />
-<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" var="lang" />
-<fmt:requestEncoding value = "UTF-8" />
-<meta charset="UTF-8">
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
 <!doctype html>
 <html lang="${language}">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-    <title>Strona główna</title>
+    <title><fmt:message key="title.index"/></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -54,7 +49,7 @@
                 <c:if test="${userRole == admin}">
                     <div class="text-center">
                         <a class="listing btn btn-primary" href="admin-panel.jsp" role="button"><fmt:message key="banner.adminPanel"/></a>
-                        <a class="listing btn btn-primary" href="/statistics" role="button">Statystyki użytkowników</a>
+                        <%--<a class="listing btn btn-primary" href="/statistics" role="button"><fmt:message key="banner.statistics"/></a>--%>
                     </div>
                 </c:if>
             </c:when>
