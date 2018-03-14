@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -83,8 +86,7 @@ public class VehicleSearchServlet extends HttpServlet{
                     session.setAttribute("hp", vd.getHp());
                     session.setAttribute("ccm", vd.getCcm());
                     session.setAttribute("fuel", vd.getFuel());
-                    ProductionYearsCalc yearsCalc = new ProductionYearsCalc(vd.getStart_year(), vd.getEnd_year());
-                    req.setAttribute("years", yearsCalc.getProductionYearsList());
+                    req.setAttribute("years", explodeToYearsList(vd.getStart_year(), vd.getEnd_year()));
                     pageController.forward("vehicle-search-step3.jsp");
                     return;
                 }
@@ -141,5 +143,27 @@ public class VehicleSearchServlet extends HttpServlet{
     private OptionValue parseParameters(String value) throws IOException {
 
         return JsonParser.parseFromString(value, OptionValue.class);
+    }
+
+    private List<String> explodeToYearsList(String startYear, String endYear) {
+
+        Integer startY = Integer.valueOf(startYear);
+        Integer endY;
+
+        Optional<String> end = Optional.ofNullable(endYear);
+        if (end.isPresent()) {
+            endY = Integer.valueOf(end.get());
+        }
+        else {
+            LocalDate now = LocalDate.now();
+            endY = Integer.valueOf(now.getYear());
+        }
+
+        List<String> years = new ArrayList<>();
+        for (int i = startY; i <= endY; i++) {
+            years.add(String.valueOf(i));
+        }
+
+        return years;
     }
 }
