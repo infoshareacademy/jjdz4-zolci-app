@@ -1,10 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
 <!doctype html>
 <html lang="pl">
 <head>
     <meta charset="utf-8">
-    <title>Dodaj auto</title>
+    <title><fmt:message key="title.addCarToDatabase"/></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -36,8 +39,9 @@
 <div class="container">
 
     <div class="content">
-        <h1>Wybierz sposób</h1><br/>
-
+        <h1><fmt:message key="addCarToDB.header"/></h1><br/>
+        <span style="color: red;"><c:out value="${wrongCode}"/></span><br/>
+        <span style="color: limegreen;"><c:out value="${carAdded}"/></span><br/>
         <div class="row justify-content-center">
             <a href="find-car-by-aztec.jsp" class="btn btn-secondary btn-lg listing" role="button"
                aria-pressed="true">Dodaj poprzez kod Aztec</a>

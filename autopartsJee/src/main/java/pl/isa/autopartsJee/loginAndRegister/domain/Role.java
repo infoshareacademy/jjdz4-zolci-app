@@ -10,7 +10,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
-    private Integer id;
+    private Long id;
 
     public void setUser_login(String user_login) {
         this.user_login = user_login;
@@ -24,16 +24,16 @@ public class Role {
         this.role_group = role_group;
     }
 
-    public void setUser_id(Integer user_id) {
+    public void setUser_id(Long user_id) {
         this.user_id = user_id;
     }
 
     private String user_login;
     private String user_role;
     private String role_group;
-    private Integer user_id;
+    private Long user_id;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -49,7 +49,7 @@ public class Role {
         return role_group;
     }
 
-    public Integer getUser_id() {
+    public Long getUser_id() {
         return user_id;
     }
 }

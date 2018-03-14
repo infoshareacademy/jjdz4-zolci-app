@@ -1,10 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
-    <title>Wpisz kod sesji Atena</title>
+    <title><fmt:message key="title.findCarByAztec"/></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -36,15 +39,27 @@
 <div class="container">
 
     <div class="content">
-        <h1>Podaj kod sesji Atena:</h1><br/>
-        <h3>Aby uzyskać kod sesji Atena, zeskanuj kod Aztec z dowodu rejestracyjnego twojego pojazdu przy pomocy
-            aplikacji na telefon Atena Aztec Reader</h3>
+        <h1><fmt:message key="findAztec.header"/></h1><br/>
+        <h3><fmt:message key="findAztec.instruction"/></h3>
+        <span style="color: limegreen;"><c:out value="${carAdded}"/></span>
         <span style="color: red;"><c:out value="${wrongCode}"/></span>
-        <form action="/find-by-aztec" method="GET">
+        <%--<c:when test="${carAdded == true}">--%>
+            <%--<fmt:message key="findAztec.message.correct"/>--%>
+        <%--</c:when>--%>
+        <%--<c:otherwise>--%>
+            <%--&lt;%&ndash;<fmt:message key="findAztec.message.fault"/>&ndash;%&gt;--%>
+        <%--</c:otherwise>--%>
+        <form action="/find-by-aztec" method="GET" class="needs-validation" novalidate>
             <div class="form-group">
-                <input type="text" class="form-control" name="search">
+                <input type="text" id="validationCustom1" class="form-control" name="search"
+                       placeholder="aztec" required>
+                <div class="invalid-feedback">
+                    <fmt:message key="findAztec.message.fault"/>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Szukaj</button>
+            <button type="submit" class="btn btn-primary">
+                <fmt:message key="findAztec.searchButton"/>
+            </button>
         </form>
     </div>
 

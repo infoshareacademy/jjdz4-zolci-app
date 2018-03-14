@@ -1,20 +1,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
-    <title>Strona główna</title>
+    <title><fmt:message key="title.index"/></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fontello-css/fontello.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
 </head>
 
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
     <div class="container">
         <a class="navbar-brand" href="index.jsp">
@@ -40,21 +42,26 @@
         <span style="color: limegreen;"><c:out value="${success}"/></span>
         <c:choose>
             <c:when test="${not empty sessionScope.isLogged && sessionScope.isLogged == true}">
-                <h3>Cześć, ${userName}!</h3>
-                <h4>Użyj menu w górnym pasku aby skorzystać z funkcjonalności serwisu.</h4>
+                <h3><fmt:message key="banner.hello"/>, ${userName}!</h3>
+                <h4><fmt:message key="banner.message"/></h4>
+                <%--<h4>Użyj menu w górnym pasku aby skorzystać z funkcjonalności serwisu.</h4>--%>
 
                 <c:if test="${userRole == admin}">
                     <div class="text-center">
-                        <a class="listing btn btn-primary" href="admin-panel.jsp" role="button">Panel admina</a>
+                        <a class="listing btn btn-primary" href="admin-panel.jsp" role="button"><fmt:message key="banner.adminPanel"/></a>
+                        <%--<a class="listing btn btn-primary" href="/statistics" role="button"><fmt:message key="banner.statistics"/></a>--%>
                     </div>
                 </c:if>
             </c:when>
             <c:otherwise>
-                <h3>Autoparts Finder jest aplikacją, która pomoże Ci zlokalizować uszkodzoną część w Twoim aucie oraz
-                    przekieruje Cię
-                    do kategorii Allegro, w której znajdziesz część zamienną. </h3><br/>
-                <h4>Jako zalogowany użytkownik możesz wprowadzić do naszej bazy danych swój pojazd i skorzystać z
-                    funkcjonalności serwisu.</h4>
+                <c:if test="${errorMessage != null}">
+                    <div style="color: red;"><fmt:message key="menu.errorMessage"/></div>
+                </c:if>
+                <c:if test="${okMessage != null}">
+                    <div style="color: green;">${okMessage}</div>
+                </c:if>
+                <h3><fmt:message key="banner.instruction.introduce"/></h3><br/>
+                <h4><fmt:message key="banner.instruction.main"/></h4>
             </c:otherwise>
         </c:choose>
     </div>

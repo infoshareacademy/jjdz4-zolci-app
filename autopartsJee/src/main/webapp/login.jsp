@@ -1,10 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
-    <title>Logowanie</title>
+    <title><fmt:message key="title.login"/></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -14,7 +17,6 @@
 </head>
 
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
     <div class="container">
         <a class="navbar-brand" href="index.jsp">
@@ -36,17 +38,17 @@
 <div class="container">
 
     <div class="content">
-        <h1>Logowanie</h1><br/>
+        <h1><fmt:message key="logging.header"/></h1><br/>
         <form action="/login" method="POST">
             <div class="form-group">
                 <label>Login</label>
                 <input type="text" class="form-control" name="login">
             </div>
             <div class="form-group">
-                <label>Hasło</label>
+                <label><fmt:message key="logging.password"/></label>
                 <input type="password" class="form-control" name="password">
             </div>
-            <button type="submit" class="btn btn-primary">Zaloguj się</button>
+            <button type="submit" class="btn btn-primary"><fmt:message key="logging.passwordButton"/></button>
         </form>
     </div>
 

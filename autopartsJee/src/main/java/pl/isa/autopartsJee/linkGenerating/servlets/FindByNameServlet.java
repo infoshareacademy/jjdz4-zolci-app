@@ -1,5 +1,6 @@
 package pl.isa.autopartsJee.linkGenerating.servlets;
 
+import pl.isa.autopartsJee.adminPanel.raportModule.rest.LogRequest;
 import pl.isa.autopartsJee.carToDatabase.dao.CarRepositoryDao;
 import pl.isa.autopartsJee.linkGenerating.WebLinkGenerator;
 import pl.isa.autopartsJee.linkGenerating.dao.TreeOperationsRepositoryDao;
@@ -21,15 +22,26 @@ public class FindByNameServlet extends HttpServlet {
     TreeOperationsRepositoryDao dao;
     @Inject
     CarRepositoryDao carRepositoryDao;
+    @Inject
+    LogRequest logRequest;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebLinkGenerator linkGenerator = new WebLinkGenerator();
+        String search = req.getParameter("search");
 
-        linkGenerator.generateLinkMap(req.getParameter("search"), carRepositoryDao.findCarById(Integer.parseInt(req.getParameter("carID"))), dao.getRepository());
-        Map<String, ItemParentName> link = linkGenerator.getLinkAndNames();
+        if (search == null || search.isEmpty()) {
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-by-name-result.jsp");
+            requestDispatcher.forward(req, resp);
+            return;
+        }
 
-        req.setAttribute("link", link);
+        linkGenerator.generateLinkMap(search, carRepositoryDao.findCarById(Long.parseLong(req.getParameter("carID"))), dao.getRepository());
+        Map<String, ItemParentName> linkMap = linkGenerator.getLinkAndNames();
+        logRequest.createLog("searching-manually",
+                (Long) req.getSession().getAttribute("userId"), "link-generation");
+
+        req.setAttribute("link", linkMap);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-by-name-result.jsp");
         requestDispatcher.forward(req, resp);
 
