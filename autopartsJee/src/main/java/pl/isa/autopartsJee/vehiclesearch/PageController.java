@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class PageController {
+class PageController {
 
     private final Logger logger = LoggerFactory.getLogger(PageController.class.getName());
 
@@ -18,13 +18,13 @@ public class PageController {
     private HttpServletRequest request;
     private HttpServletResponse response;
 
-    protected PageController(HttpServletRequest req, HttpServletResponse res) {
+    PageController(HttpServletRequest req, HttpServletResponse res) {
 
         request = req;
         response = res;
     }
 
-    protected void forward(String page) {
+    void forward(String page) {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(page);
         try {
@@ -37,7 +37,7 @@ public class PageController {
         }
     }
 
-    protected void forwardWithError(String errorMessage) {
+    void forwardWithError(String errorMessage) {
 
         request.setAttribute("vsErrorMessage", errorMessage);
         forward(ERROR_PAGE);
