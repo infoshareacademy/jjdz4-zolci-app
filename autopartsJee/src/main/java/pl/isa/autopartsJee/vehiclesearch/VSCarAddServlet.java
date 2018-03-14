@@ -41,7 +41,7 @@ public class VSCarAddServlet extends HttpServlet {
         carData.setProdYear(year);
         carData.setVin(req.getParameter("vin"));
         carData.setRegistryNumber(req.getParameter("registry"));
-        carData.setOwnerId(getSessionAttributeInt("userId"));
+        carData.setOwnerId(getSessionAttributeLong("userId"));
 
         try {
             carRepository.addCar(carData);
@@ -61,8 +61,8 @@ public class VSCarAddServlet extends HttpServlet {
         return session.getAttribute(attrName).toString();
     }
 
-    private int getSessionAttributeInt(String attrName) {
+    private Long getSessionAttributeLong(String attrName) {
 
-        return Integer.parseInt(session.getAttribute(attrName).toString());
+        return Long.valueOf(session.getAttribute(attrName).toString());
     }
 }
