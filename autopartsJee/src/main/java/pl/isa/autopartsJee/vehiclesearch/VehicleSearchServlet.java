@@ -83,8 +83,8 @@ public class VehicleSearchServlet extends HttpServlet{
                 if (vd.getLink().equals(value.getApi())) {
 
                     session.setAttribute("engineName", value.getName());
-                    session.setAttribute("hp", vd.getHp());
-                    session.setAttribute("ccm", vd.getCcm());
+                    session.setAttribute("hp", vd.getKw() + ",00KW");
+                    session.setAttribute("ccm", vd.getCcm() + ",00cm3");
                     session.setAttribute("fuel", vd.getFuel());
                     req.setAttribute("years", explodeToYearsList(vd.getStart_year(), vd.getEnd_year()));
                     pageController.forward("vehicle-search-step3.jsp");
