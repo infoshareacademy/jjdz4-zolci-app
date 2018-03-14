@@ -44,6 +44,13 @@
             <a href="vehicle-search" class="btn btn-secondary btn-lg listing" role="button" aria-pressed="true">Wprowadź auto ręcznie</a>
 
         </div>
+
+        <c:if test="${vsErrorMessage != null}">
+            <div class="error">
+                <h4>Błąd!</h4>
+                <p><c:out value="${vsErrorMessage}"/></p>
+            </div>
+        </c:if>
     </div>
 
 

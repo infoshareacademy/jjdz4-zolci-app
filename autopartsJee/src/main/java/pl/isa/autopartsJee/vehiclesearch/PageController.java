@@ -13,7 +13,7 @@ public class PageController {
 
     private final Logger logger = LoggerFactory.getLogger(PageController.class.getName());
 
-    private static final String ERROR_PAGE = "vehicle-search.jsp";
+    private static final String ERROR_PAGE = "add-car-to-database.jsp";
 
     private HttpServletRequest request;
     private HttpServletResponse response;
@@ -39,7 +39,7 @@ public class PageController {
 
     protected void forwardWithError(String errorMessage) {
 
-        request.setAttribute("errorMessage", errorMessage);
+        request.setAttribute("vsErrorMessage", errorMessage);
         forward(ERROR_PAGE);
     }
 }
