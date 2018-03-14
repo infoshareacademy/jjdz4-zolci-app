@@ -1,9 +1,10 @@
-package pl.isa.autopartsJee.vehiclesearch;
+package pl.isa.autopartsJee.carToDatabase.servlets;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.autopartsJee.carToDatabase.dao.CarRepositoryDao;
 import pl.isa.autopartsJee.carToDatabase.domain.CarData;
+import pl.isa.autopartsJee.vehiclesearch.PageController;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -13,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("vs-car-add")
-public class VSCarAddServlet extends HttpServlet {
+public class FindByVehicleSearchServlet extends HttpServlet {
 
-    private final Logger LOG = LoggerFactory.getLogger(VSCarAddServlet.class.getName());
+    private final Logger LOG = LoggerFactory.getLogger(FindByVehicleSearchServlet.class.getName());
 
     @Inject
     CarRepositoryDao carRepository;
