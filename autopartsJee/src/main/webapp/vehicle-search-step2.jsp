@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/fontello-css/fontello.css">
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+    <link href="css/vs-style.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -42,16 +43,17 @@
 <div class="container">
     <div class="content">
         <h1><i class="demo-icon icon-wrench-outline"></i>Wyszukiwarka autoczęści</h1>
-        <h4>Marka: <b><c:out value="${sessionScope.makeName}"/></b></h4>
-        <h4>Model: <b><c:out value="${sessionScope.modelName}"/></b></h4>
-        <h4>Wybierz rodzaj silnika</h4>
-        <form method="post" action="vehicle-search">
-            <select class="select2" name="engine">
+        <h4>Marka: <span class="blue"><c:out value="${sessionScope.makeName}"/></span></h4>
+        <h4>Model: <span class="blue"><c:out value="${sessionScope.modelName}"/></span></h4>
+        <h3 class="blue">Wybierz rodzaj silnika</h3>
+        <form class="form-group" method="post" action="vehicle-search">
+            <select class="select2 form-control" name="engine">
                 <option value="" selected disabled hidden>Wybierz...</option>
                 <c:forEach items="${engines}" var="engine">
                     <option value='{"api":"${engine.value}","name":"${engine.key}"}'>${engine.key}</option>
                 </c:forEach>
             </select>
+            <a href="vehicle-search-step1.jsp" class="btn btn-secondary btn-lg">Powrót</a>
             <button class="btn btn-secondary btn-lg" type="submit">Dalej</button>
         </form>
     </div>

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/fontello-css/fontello.css">
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+    <link href="css/vs-style.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -42,10 +43,27 @@
 <div class="container">
     <div class="content">
         <h1><i class="demo-icon icon-wrench-outline"></i>Wyszukiwarka autoczęści</h1>
-        <h4>Marka: <b><c:out value="${sessionScope.makeName}"/></b></h4>
-        <h4>Model: <b><c:out value="${sessionScope.modelName}"/></b></h4>
-        <h4>Rodzaj silnika: <b><c:out value="${sessionScope.engineName}"/></b></h4>
-        <h4>Pozostałe parametry</h4>
+        <h4>Marka: <span class="blue"><c:out value="${sessionScope.makeName}"/></span></h4>
+        <h4>Model: <span class="blue"><c:out value="${sessionScope.modelName}"/></span></h4>
+        <h4>Rodzaj silnika: <b><span class="blue"><c:out value="${sessionScope.engineName}"/></span></h4>
+        <h4>Moc: <span class="blue"><c:out value="${sessionScope.hp}"/> KM</span></h4>
+        <h4>Pojemność: <span class="blue"><c:out value="${sessionScope.ccm}"/> ccm&sup3;</span></h4>
+        <h4>Rodzaj paliwa: <span class="blue"><c:out value="${sessionScope.fuel}"/></span></h4>
+        <h3 class="blue">Pozostałe parametry</h3>
+
+        <form class="form-group" method="post" action="vs-car-add">
+            <label for="year">Rok produkcji:</label>
+            <select class="select2 form-control" id="year" name="year">
+                <option value="" selected disabled hidden>Wybierz...</option>
+                <c:forEach items="${years}" var="year">
+                    <option value="${year}">${year}</option>
+                </c:forEach>
+            </select>
+            <label for="vin">Nr VIN: </label><input class="form-control" id="vin" type="text" name="vin">
+            <label for="reg">Nr Rejestracyjny: </label><input class="form-control" id="reg" type="text" name="registry">
+            <a href="vehicle-search-step2.jsp" class="btn btn-secondary btn-lg">Powrót</a>
+            <button class="btn btn-secondary btn-lg" type="submit">Zapisz auto</button>
+        </form>
     </div>
 </div>
 

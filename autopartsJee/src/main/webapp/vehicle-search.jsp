@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/fontello-css/fontello.css">
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+    <link href="css/vs-style.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -41,9 +42,9 @@
 <div class="container">
     <div class="content">
         <h1><i class="demo-icon icon-wrench-outline"></i>Wyszukiwarka autoczęści</h1>
-        <h4>Wybierz markę pojazdu</h4>
-        <form method="post" action="vehicle-search">
-            <select class="select2" name="make">
+        <h3 class="blue">Wybierz markę pojazdu</h3>
+        <form class="form-group" method="post" action="vehicle-search">
+            <select class="select2 form-control" name="make">
                 <option value="" selected disabled hidden>Wybierz...</option>
                 <c:forEach items="${makes}" var="make">
                     <option value='{"api":"${make.value}","name":"${make.key}"}'>${make.key}</option>
