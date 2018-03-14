@@ -22,20 +22,21 @@ public class VehicleSearchServlet extends HttpServlet{
     private final Logger LOG = LoggerFactory.getLogger(VehicleSearchServlet.class.getName());
 
     private static final String API_LINK = "/api/v2";
-    private static final String MAKE_API = "makeApi";
-    private static final String MAKE_NAME = "makeName";
     private static final String MODEL_API = "modelApi";
-    private static final String MODEL_NAME = "modelName";
-    private static final String ENGINE_NAME = "engineName";
+
+    private OptionValue value;
+    private Vehicle vehicle;
+    private HttpSession session;
+    private PageController pageController;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) {
 
-        PageController pageController = new PageController(req, res);
+        pageController = new PageController(req, res);
         Map<String, String> makes;
 
         try {
-            Vehicle vehicle = VehicleSearch.getVehicleFromApi(API_LINK);
+            vehicle = VehicleSearch.getVehicleFromApi(API_LINK);
             makes = vehicle.getNamesAndApi();
         } catch (IOException e) {
             String errorMessage = "Could not parse vehicle names from database.";
@@ -51,17 +52,18 @@ public class VehicleSearchServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) {
 
-        HttpSession session = req.getSession();
-        PageController pageController = new PageController(req, res);
+        session = req.getSession();
+        pageController = new PageController(req, res);
 
         Optional<String> engine = Optional.ofNullable(req.getParameter("engine"));
         if (engine.isPresent()) {
 
-            Optional<String> modelAPI = Optional.ofNullable(session.getAttribute(MODEL_API).toString());
-            OptionValue value;
-            Vehicle vehicle;
-            if (modelApi.isPresent()) {
-                LOG.info("MODEL_API: {}", modelApi.get())
+            Optional<String> modelApi = Optional.ofNullable(session.getAttribute(MODEL_API).toString());
+            if (!modelApi.isPresent()) {
+                String errorMessage = "Could not load Vehicle model API";
+                LOG.error(errorMessage);
+                pageController.forwardWithError(errorMessage);
+                return;
             }
             
             try {
@@ -76,7 +78,13 @@ public class VehicleSearchServlet extends HttpServlet{
 
             for (VehicleData vd : vehicle.getData()) {
                 if (vd.getLink().equals(value.getApi())) {
-                    session.setAttribute(ENGINE_NAME, value.getName());
+
+                    session.setAttribute("engineName", value.getName());
+                    session.setAttribute("hp", vd.getHp());
+                    session.setAttribute("ccm", vd.getCcm());
+                    session.setAttribute("fuel", vd.getFuel());
+                    ProductionYearsCalc yearsCalc = new ProductionYearsCalc(vd.getStart_year(), vd.getEnd_year());
+                    req.setAttribute("years", yearsCalc.getProductionYearsList());
                     pageController.forward("vehicle-search-step3.jsp");
                     return;
                 }
@@ -86,11 +94,10 @@ public class VehicleSearchServlet extends HttpServlet{
         Optional<String> model = Optional.ofNullable(req.getParameter("model"));
         if (model.isPresent()) {
 
-            OptionValue value;
             Map<String,String> engines;
             try {
                 value = parseParameters(model.get());
-                Vehicle vehicle = VehicleSearch.getVehicleFromApi(value.getApi());
+                vehicle = VehicleSearch.getVehicleFromApi(value.getApi());
                 engines = vehicle.getNamesAndApi();
             } catch (IOException e) {
                 String errorMessage = "Could not load engine names from API";
@@ -99,7 +106,7 @@ public class VehicleSearchServlet extends HttpServlet{
                 return;
             }
 
-            session.setAttribute(MODEL_NAME, value.getName());
+            session.setAttribute("modelName", value.getName());
             session.setAttribute(MODEL_API, value.getApi());
             req.setAttribute("engines", engines);
             pageController.forward("vehicle-search-step2.jsp");
@@ -109,11 +116,10 @@ public class VehicleSearchServlet extends HttpServlet{
         Optional<String> make = Optional.ofNullable(req.getParameter("make"));
         if (make.isPresent()) {
 
-            OptionValue value;
             Map<String,String> models;
             try {
                 value = parseParameters(make.get());
-                Vehicle vehicle = VehicleSearch.getVehicleFromApi(value.getApi());
+                vehicle = VehicleSearch.getVehicleFromApi(value.getApi());
                 models = vehicle.getNamesAndApi();
             } catch (IOException e) {
                 String errorMessage = "Could not load model names from API";
@@ -122,8 +128,8 @@ public class VehicleSearchServlet extends HttpServlet{
                 return;
             }
 
-            session.setAttribute(MAKE_NAME, value.getName());
-            session.setAttribute(MAKE_API, value.getApi());
+            session.setAttribute("makeName", value.getName());
+            session.setAttribute("makeApi", value.getApi());
             req.setAttribute("models", models);
             pageController.forward("vehicle-search-step1.jsp");
             return;
