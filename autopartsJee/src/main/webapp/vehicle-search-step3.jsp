@@ -59,8 +59,8 @@
                     <option value="${year}">${year}</option>
                 </c:forEach>
             </select>
-            <label for="vin">Nr VIN: </label><input class="form-control" id="vin" type="text" name="vin" required>
-            <label for="reg">Nr Rejestracyjny: </label><input class="form-control" id="reg" type="text" name="registry" required>
+            <label for="vin">Nr VIN: </label><input class="form-control" id="vin" type="text" name="vin">
+            <label for="reg">Nr Rejestracyjny: </label><input class="form-control" id="reg" type="text" name="registry">
             <a href="vehicle-search-step2.jsp" class="btn btn-secondary btn-lg">Powrót</a>
             <button class="btn btn-secondary btn-lg" type="submit">Zapisz auto</button>
         </form>
