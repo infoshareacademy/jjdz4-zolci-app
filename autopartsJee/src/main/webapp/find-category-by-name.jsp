@@ -19,7 +19,7 @@
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script type="text/javascript" src="/scripts/vehicle-search-jq.js"></script>
 </head>
@@ -54,8 +54,8 @@
                     <div class="ui-widget">
 
                         <%--<input type="text" class="form-control" name="search">--%>
-                        <select class="js-example-basic-single " name="search">
-                            <option value="0" selected disabled hidden>Wybierz...</option>
+                        <select class="select2 form-control " name="search" required>
+                            <option value="0" selected disabled hidden>Wybierz część</option>
                             <c:choose>
                                 <c:when test="${not empty partsNames}">
                                     <c:forEach var="entry" items="${partsNames}">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <select class="" id="inlineFormCustomSelect" name="carID">
-                    <option value="0" selected>Wybierz...</option>
+                    <option value="0" selected>Wybierz auto</option>
                     <c:choose>
                         <c:when test="${not empty cars}">
                             <c:forEach var="entry" items="${cars}">
