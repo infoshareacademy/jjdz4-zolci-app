@@ -1,23 +1,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="pl">
 <head>
     <meta charset="utf-8">
-    <title><fmt:message key="title.addCarToDatabase"/></title>
+    <title>Wyszukiwarka aut</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/fontello-css/fontello.css">
+    <link rel="stylesheet" href="/css/fontello-css/fontello.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="css/vs-style.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript" src="/scripts/vehicle-search-jq.js"></script>
 </head>
-
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark " style=" background-color:rgba(41,41,41,0.8);">
     <div class="container">
         <a class="navbar-brand" href="index.jsp">
@@ -36,41 +39,26 @@
         </div>
     </div>
 </nav>
+
 <div class="container">
-
     <div class="content">
-        <h1><fmt:message key="addCarToDB.header"/></h1><br/>
-        <span style="color: red;"><c:out value="${wrongCode}"/></span><br/>
-        <span style="color: limegreen;"><c:out value="${carAdded}"/></span><br/>
-        <div class="row justify-content-center">
-            <a href="find-car-by-aztec.jsp" class="btn btn-secondary btn-lg listing" role="button"
-               aria-pressed="true">Dodaj poprzez kod Aztec</a>
-            <a href="vehicle-search" class="btn btn-secondary btn-lg listing" role="button" aria-pressed="true">Wprowadź auto ręcznie</a>
-
-        </div>
-
-        <c:if test="${vsErrorMessage != null}">
-            <div class="error">
-                <h4>Błąd!</h4>
-                <p><c:out value="${vsErrorMessage}"/></p>
-            </div>
-        </c:if>
-
-        <c:if test="${vsOkMessage != null}">
-            <div class="success">
-                <h4>Sukces!</h4>
-                <p><c:out value="${vsOkMessage}"/></p>
-            </div>
-        </c:if>
+        <h1><i class="demo-icon icon-wrench-outline"></i>Wyszukiwarka autoczęści</h1>
+        <h4>Marka: <span class="blue"><c:out value="${sessionScope.makeName}"/></span></h4>
+        <h3 class="blue">Wybierz model pojazdu</h3>
+        <form class="form-group" method="post" action="vehicle-search">
+            <select class="select2 form-control" name="model" required>
+                <option value="" selected disabled hidden>Wybierz...</option>
+                <c:forEach items="${models}" var="model">
+                    <option value='{"api":"${model.value}","name":"${model.key}"}'>${model.key}</option>
+                </c:forEach>
+            </select>
+            <a href="vehicle-search" class="btn btn-secondary btn-lg">Powrót</a>
+            <button class="btn btn-secondary btn-lg" type="submit">Dalej</button>
+        </form>
     </div>
-
-
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
@@ -78,5 +66,4 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 </body>
-
 </html>

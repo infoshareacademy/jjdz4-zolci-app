@@ -20,3 +20,31 @@ body {
     text-align: center;
     min-width: 40%;
 }
+
+.content .error {
+    margin: 50px auto;
+    width: 50%;
+    border: solid 1px red;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.content .error h4,
+.content .error p {
+    font-weight: bold;
+    color: crimson;
+}
+
+.content .success {
+    margin: 50px auto;
+    width: 50%;
+    border: solid 1px greenyellow;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.content .success h4,
+.content .success p {
+    font-weight: bold;
+    color: greenyellow;
+}

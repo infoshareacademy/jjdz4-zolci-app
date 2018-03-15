@@ -27,4 +27,10 @@ public class JsonParser {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(file, JsonObjectClass);
     }
+
+    public static <T> T parseFromString(String data, Class<T> JsonObjectClass) throws IOException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(data, JsonObjectClass);
+    }
 }

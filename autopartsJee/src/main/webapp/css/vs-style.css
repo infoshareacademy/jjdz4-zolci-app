@@ -1,50 +1,28 @@
-.text-menu h2 {
+.content {
+    padding-left: 40px;
+}
+
+.blue {
+    color: lightskyblue;
     font-weight: bold;
-    margin-bottom: 30px;
 }
 
-.vehicle li .form-group label {
-    margin-right: 20px;
+.content h1 {
+    margin-bottom: 15px;
 }
 
-.vehicle li {
+.content h3.blue {
+    margin-top: 25px;
     margin-bottom: 20px;
 }
 
-.vehicle input {
-    color: #007bff;
-    font-size: 20px;
-}
-
-.vehicle .form-inline form {
-    margin: 0 auto;
-}
-
-.vehicle .btn {
-    margin-top: 30px;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-.vehicle .form-check-label {
-    font-size: 20px;
-}
-
-.car-data button {
+.content button.btn.btn-secondary,
+.content a.btn.btn-secondary {
     margin-top: 15px;
-    font-size: 15px;
+    margin-right: 7px;
 }
 
-.car-data .blue-data,
-.found-data .blue-data{
-    color: #007bff;
+.content label {
+    margin-top: 10px;
 }
 
-.car-data .hidden {
-    display: none;
-}
-
-.car-data input {
-    color: #007bff;
-    width: 130px;
-}

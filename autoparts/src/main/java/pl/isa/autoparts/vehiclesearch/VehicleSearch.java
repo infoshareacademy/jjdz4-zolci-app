@@ -6,12 +6,9 @@ import pl.isa.autoparts.tools.JsonParser;
 import pl.isa.autoparts.tools.Printer;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class VehicleSearch {
-
-    // TODO redesign this class
 
     private Logger logger = LoggerFactory.getLogger(VehicleSearch.class.getName());
 
@@ -20,6 +17,11 @@ public class VehicleSearch {
 
     private Vehicle foundVehicle;
     private String link;
+
+    public static Vehicle getVehicleFromApi(String api) throws IOException {
+
+        return JsonParser.parseJsonFromURL(API_URL_PRE + api, Vehicle.class);
+    }
 
     public Vehicle getFoundVehicle() {
         return foundVehicle;
@@ -33,11 +35,6 @@ public class VehicleSearch {
     public List<VehicleData> foundVehicles(String modelName, String cylinderVolume
     ) {
         return findProductionYearAndCylinderVolume(modelName, cylinderVolume);
-    }
-
-    public static Vehicle searchVehicleFromURL() throws IOException {
-
-        return JsonParser.parseJsonFromURL(API_URL_PRE + API_URL_POST, Vehicle.class);
     }
 
     private Vehicle parseFoundVehicle() throws IOException {

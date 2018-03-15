@@ -7,88 +7,163 @@ import pl.isa.autoparts.vehiclesearch.Vehicle;
 import pl.isa.autoparts.vehiclesearch.VehicleData;
 import pl.isa.autoparts.vehiclesearch.VehicleSearch;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
-@WebServlet("vehiclesearch/vehicle-search")
+@WebServlet("vehicle-search")
 public class VehicleSearchServlet extends HttpServlet{
 
-    private Logger logger = LoggerFactory.getLogger(VehicleSearchServlet.class.getName());
+    private final Logger LOG = LoggerFactory.getLogger(VehicleSearchServlet.class.getName());
 
-    private HttpServletRequest request;
-    private HttpServletResponse response;
+    private static final String API_LINK = "/api/v2";
+    private static final String MODEL_API = "modelApi";
+
+    private OptionValue value;
+    private Vehicle vehicle;
+    private HttpSession session;
+    private PageController pageController;
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) {
+
+        pageController = new PageController(req, res);
+        Map<String, String> makes;
+
+        try {
+            vehicle = VehicleSearch.getVehicleFromApi(API_LINK);
+            makes = vehicle.getNamesAndApi();
+        } catch (IOException e) {
+            String errorMessage = "Could not parse vehicle names from database.";
+            LOG.error(errorMessage);
+            pageController.forwardWithError(errorMessage);
+            return;
+        }
+
+        req.setAttribute("makes", makes);
+        pageController.forward("vehicle-search.jsp");
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) {
 
+        session = req.getSession();
+        pageController = new PageController(req, res);
 
-        request = req;
-        response = res;
+        Optional<String> engine = Optional.ofNullable(req.getParameter("engine"));
+        if (engine.isPresent()) {
 
+            Optional<String> modelApi = Optional.ofNullable(session.getAttribute(MODEL_API).toString());
+            if (!modelApi.isPresent()) {
+                String errorMessage = "Could not load Vehicle model API";
+                LOG.error(errorMessage);
+                pageController.forwardWithError(errorMessage);
+                return;
+            }
+            
+            try {
+                value = parseParameters(engine.get());
+                vehicle = VehicleSearch.getVehicleFromApi(modelApi.get());
+            } catch (IOException e) {
+                String errorMessage = "Could not load Vehicle from given API";
+                LOG.error(errorMessage);
+                pageController.forwardWithError(errorMessage);
+                return;
+            }
 
+            for (VehicleData vd : vehicle.getData()) {
+                if (vd.getLink().equals(value.getApi())) {
 
-        Vehicle vehicle = null;
-        String brand = request.getParameter("brand");
-
-        if (brand != null) {
-            if (!brand.equals("KIA")) {
-                try {
-                    vehicle = VehicleSearch.searchVehicleFromURL();
-                } catch (IOException e) {
-                    forwardToPageWithError("Nie udało się połączyć z bazą danych");
-                    logger.error("Could not connect to database.");
+                    session.setAttribute("engineName", value.getName());
+                    session.setAttribute("hp", vd.getKw() + ",00KW");
+                    session.setAttribute("ccm", vd.getCcm() + ",00cm3");
+                    session.setAttribute("fuel", vd.getFuel());
+                    req.setAttribute("years", explodeToYearsList(vd.getStart_year(), vd.getEnd_year()));
+                    pageController.forward("vehicle-search-step3.jsp");
                     return;
                 }
             }
         }
 
-        try {
-            vehicle = JsonParser.parseJsonFromFile("VehicleSearchResult.json", Vehicle.class);
-        } catch (IOException e) {
-            forwardToPageWithError("Nie udało się pobrać dummy json. " + e.toString());
-            logger.error("Json file load error");
+        Optional<String> model = Optional.ofNullable(req.getParameter("model"));
+        if (model.isPresent()) {
+
+            Map<String,String> engines;
+            try {
+                value = parseParameters(model.get());
+                vehicle = VehicleSearch.getVehicleFromApi(value.getApi());
+                engines = vehicle.getNamesAndApi();
+            } catch (IOException e) {
+                String errorMessage = "Could not load engine names from API";
+                LOG.error(errorMessage);
+                pageController.forwardWithError(errorMessage);
+                return;
+            }
+
+            session.setAttribute("modelName", value.getName());
+            session.setAttribute(MODEL_API, value.getApi());
+            req.setAttribute("engines", engines);
+            pageController.forward("vehicle-search-step2.jsp");
             return;
         }
 
-        VehicleData[] d = vehicle.getData();
-        request.setAttribute("fBrand", d[0].getBrand_id());
-        request.setAttribute("fModel", d[0].getModel_id());
-        request.setAttribute("fYear", d[0].getEnd_year());
-        request.setAttribute("fVolume", d[0].getCcm());
-        request.setAttribute("fHp", d[0].getHp());
-        request.setAttribute("fCylinders", d[0].getCylinders());
-        request.setAttribute("fEngtype", d[0].getEngine());
-        request.setAttribute("fFuel", d[0].getFuel());
-        request.setAttribute("fAxle", d[0].getAxle());
-        request.setAttribute("fWeight", d[0].getMax_weight());
+        Optional<String> make = Optional.ofNullable(req.getParameter("make"));
+        if (make.isPresent()) {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("found-vehicle.jsp");
-        try {
-            dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Map<String,String> models;
+            try {
+                value = parseParameters(make.get());
+                vehicle = VehicleSearch.getVehicleFromApi(value.getApi());
+                models = vehicle.getNamesAndApi();
+            } catch (IOException e) {
+                String errorMessage = "Could not load model names from API";
+                LOG.error(errorMessage);
+                pageController.forwardWithError(errorMessage);
+                return;
+            }
+
+            session.setAttribute("makeName", value.getName());
+            session.setAttribute("makeApi", value.getApi());
+            req.setAttribute("models", models);
+            pageController.forward("vehicle-search-step1.jsp");
+            return;
         }
+
+        pageController.forwardWithError("No option has been selected");
     }
 
-    private void forwardToPageWithError(String errorMessage) {
-        logger.error("Could not search vehicle");
-        request.setAttribute("errorMessage", errorMessage);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("vehicle-search.jsp");
-        try {
-            dispatcher.forward(request, response);
+    private OptionValue parseParameters(String value) throws IOException {
 
-        } catch (ServletException e) {
-            logger.error("Servlet request dispatcher error." + e.toString());
-        } catch (IOException e) {
-            logger.error("IO Servlet request dispatcher error." + e.toString());
-        }
+        return JsonParser.parseFromString(value, OptionValue.class);
     }
 
+    private List<String> explodeToYearsList(String startYear, String endYear) {
+
+        Integer startY = Integer.valueOf(startYear);
+        Integer endY;
+
+        Optional<String> end = Optional.ofNullable(endYear);
+        if (end.isPresent()) {
+            endY = Integer.valueOf(end.get());
+        }
+        else {
+            LocalDate now = LocalDate.now();
+            endY = Integer.valueOf(now.getYear());
+        }
+
+        List<String> years = new ArrayList<>();
+        for (int i = startY; i <= endY; i++) {
+            years.add(String.valueOf(i));
+        }
+
+        return years;
+    }
 }

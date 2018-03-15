@@ -1,8 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="pl">
 <head>
@@ -42,18 +39,30 @@
         </div>
     </div>
 </nav>
+
 <div class="container">
     <div class="content">
         <h1><i class="demo-icon icon-wrench-outline"></i>Wyszukiwarka autoczęści</h1>
-        <h3 class="blue">Wybierz markę pojazdu</h3>
-        <form class="form-group" method="post" action="vehicle-search">
-            <select class="select2 form-control" name="make" required>
+        <h4>Marka: <span class="blue"><c:out value="${sessionScope.makeName}"/></span></h4>
+        <h4>Model: <span class="blue"><c:out value="${sessionScope.modelName}"/></span></h4>
+        <h4>Rodzaj silnika: <b><span class="blue"><c:out value="${sessionScope.engineName}"/></span></h4>
+        <h4>Moc: <span class="blue"><c:out value="${sessionScope.hp}"/></span></h4>
+        <h4>Pojemność: <span class="blue"><c:out value="${sessionScope.ccm}"/></span></h4>
+        <h4>Rodzaj paliwa: <span class="blue"><c:out value="${sessionScope.fuel}"/></span></h4>
+        <h3 class="blue">Pozostałe parametry</h3>
+
+        <form class="form-group" method="post" action="vs-car-add">
+            <label for="year">Rok produkcji:</label>
+            <select class="select2 form-control" id="year" name="year">
                 <option value="" selected disabled hidden>Wybierz...</option>
-                <c:forEach items="${makes}" var="make">
-                    <option value='{"api":"${make.value}","name":"${make.key}"}'>${make.key}</option>
+                <c:forEach items="${years}" var="year">
+                    <option value="${year}">${year}</option>
                 </c:forEach>
             </select>
-            <button class="btn btn-secondary btn-lg" type="submit">Dalej</button>
+            <label for="vin">Nr VIN: </label><input class="form-control" id="vin" type="text" name="vin" required>
+            <label for="reg">Nr Rejestracyjny: </label><input class="form-control" id="reg" type="text" name="registry" required>
+            <a href="vehicle-search-step2.jsp" class="btn btn-secondary btn-lg">Powrót</a>
+            <button class="btn btn-secondary btn-lg" type="submit">Zapisz auto</button>
         </form>
     </div>
 </div>
