@@ -58,8 +58,8 @@ public class StartUp implements ServletContextListener {
             if (user.getLogin().equals("admin") || user.getEmail().equals("yellowautopartsfinder@gmail.com")) {
                 return true;
             }
-            return false;
         }
+        return false;
     }
 
 
