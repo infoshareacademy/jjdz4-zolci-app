@@ -53,14 +53,14 @@
 
         <form class="form-group" method="post" action="vs-car-add">
             <label for="year">Rok produkcji:</label>
-            <select class="select2 form-control" id="year" name="year">
+            <select class="select2 form-control" id="year" name="year" required>
                 <option value="" selected disabled hidden>Wybierz...</option>
                 <c:forEach items="${years}" var="year">
                     <option value="${year}">${year}</option>
                 </c:forEach>
             </select>
-            <label for="vin">Nr VIN: </label><input class="form-control" id="vin" type="text" name="vin" required>
-            <label for="reg">Nr Rejestracyjny: </label><input class="form-control" id="reg" type="text" name="registry" required>
+            <label for="vin">Nr VIN: </label><input class="form-control" id="vin" type="text" name="vin">
+            <label for="reg">Nr Rejestracyjny: </label><input class="form-control" id="reg" type="text" name="registry">
             <a href="vehicle-search-step2.jsp" class="btn btn-secondary btn-lg">Powrót</a>
             <button class="btn btn-secondary btn-lg" type="submit">Zapisz auto</button>
         </form>

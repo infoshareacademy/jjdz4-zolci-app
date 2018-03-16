@@ -33,7 +33,7 @@ public class FindByVehicleSearchServlet extends HttpServlet {
         CarData carData = new CarData();
         carData.setVehicleMake(getSessionAttribute("makeName"));
         carData.setVehicleModel(getSessionAttribute("modelName"));
-        carData.setVehicleVersion("---");
+        carData.setVehicleVersion("");
         carData.setVehicleVariant(getSessionAttribute("engineName"));
         carData.setFuel(getSessionAttribute("fuel"));
         carData.setCapacity(getSessionAttribute("ccm"));
