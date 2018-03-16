@@ -53,7 +53,7 @@
 
         <form class="form-group" method="post" action="vs-car-add">
             <label for="year">Rok produkcji:</label>
-            <select class="select2 form-control" id="year" name="year">
+            <select class="select2 form-control" id="year" name="year" required>
                 <option value="" selected disabled hidden>Wybierz...</option>
                 <c:forEach items="${years}" var="year">
                     <option value="${year}">${year}</option>
