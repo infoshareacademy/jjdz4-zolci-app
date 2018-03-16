@@ -4,7 +4,7 @@
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
     <title><fmt:message key="title.addCarToDatabase"/></title>
@@ -44,8 +44,9 @@
         <span style="color: limegreen;"><c:out value="${carAdded}"/></span><br/>
         <div class="row justify-content-center">
             <a href="find-car-by-aztec.jsp" class="btn btn-secondary btn-lg listing" role="button"
-               aria-pressed="true">Dodaj poprzez kod Aztec</a>
-            <a href="vehicle-search" class="btn btn-secondary btn-lg listing" role="button" aria-pressed="true">Wprowadź auto ręcznie</a>
+               aria-pressed="true"><fmt:message key="addCarToDB.aztecCode"/></a>
+            <a href="vehicle-search" class="btn btn-secondary btn-lg listing" role="button" aria-pressed="true">
+                <fmt:message key="addCarToDB.questionary"/></a>
 
         </div>
 

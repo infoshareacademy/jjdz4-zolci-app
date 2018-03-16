@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
-<!doctype html>
+<html lang="${language}">
 <html>
 <head>
     <meta charset="utf-8">

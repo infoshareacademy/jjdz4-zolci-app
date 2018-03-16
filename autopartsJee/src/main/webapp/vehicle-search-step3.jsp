@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
     <title>Wyszukiwarka aut</title>
@@ -42,27 +42,32 @@
 
 <div class="container">
     <div class="content">
-        <h1><i class="demo-icon icon-wrench-outline"></i>Wyszukiwarka autoczęści</h1>
-        <h4>Marka: <span class="blue"><c:out value="${sessionScope.makeName}"/></span></h4>
-        <h4>Model: <span class="blue"><c:out value="${sessionScope.modelName}"/></span></h4>
-        <h4>Rodzaj silnika: <b><span class="blue"><c:out value="${sessionScope.engineName}"/></span></h4>
-        <h4>Moc: <span class="blue"><c:out value="${sessionScope.hp}"/></span></h4>
-        <h4>Pojemność: <span class="blue"><c:out value="${sessionScope.ccm}"/></span></h4>
-        <h4>Rodzaj paliwa: <span class="blue"><c:out value="${sessionScope.fuel}"/></span></h4>
-        <h3 class="blue">Pozostałe parametry</h3>
+        <h1><i class="demo-icon icon-wrench-outline"></i><fmt:message key="vehicleSearch.banner"/></h1>
+        <h4><fmt:message key="vehicleSearchSteps.brand"/> <span class="blue"><c:out value="${sessionScope.makeName}"/></span></h4>
+        <h4><fmt:message key="vehicleSearchSteps.model"/> <span class="blue"><c:out value="${sessionScope.modelName}"/></span></h4>
+        <h4><fmt:message key="vehicleSearchSteps.engineType"/> <b><span class="blue"><c:out value="${sessionScope.engineName}"/></span></h4>
+        <h4><fmt:message key="vehicleSearchSteps.power"/> <span class="blue"><c:out value="${sessionScope.hp}"/></span></h4>
+        <h4><fmt:message key="vehicleSearchSteps.capacity"/> <span class="blue"><c:out value="${sessionScope.ccm}"/></span></h4>
+        <h4><fmt:message key="vehicleSearchSteps.fuelType"/> <span class="blue"><c:out value="${sessionScope.fuel}"/></span></h4>
+        <h3 class="blue"><fmt:message key="vehicleSearchSteps.otherParameters"/></h3>
 
         <form class="form-group" method="post" action="vs-car-add">
-            <label for="year">Rok produkcji:</label>
+            <label for="year"><fmt:message key="vehicleSearchSteps.yearOfProduction"/></label>
             <select class="select2 form-control" id="year" name="year">
-                <option value="" selected disabled hidden>Wybierz...</option>
+                <option value="" selected disabled hidden>
+                    <fmt:message key="vehicleSearch.chooseOption"/></option>
                 <c:forEach items="${years}" var="year">
                     <option value="${year}">${year}</option>
                 </c:forEach>
             </select>
-            <label for="vin">Nr VIN: </label><input class="form-control" id="vin" type="text" name="vin" required>
-            <label for="reg">Nr Rejestracyjny: </label><input class="form-control" id="reg" type="text" name="registry" required>
-            <a href="vehicle-search-step2.jsp" class="btn btn-secondary btn-lg">Powrót</a>
-            <button class="btn btn-secondary btn-lg" type="submit">Zapisz auto</button>
+            <label for="vin"><fmt:message key="vehicleSearchSteps.vinNumber"/>
+            </label><input class="form-control" id="vin" type="text" name="vin" required>
+
+            <label for="reg"><fmt:message key="vehicleSearchSteps.registrationNumber"/>
+            </label><input class="form-control" id="reg" type="text" name="registry" required>
+            <a href="vehicle-search-step2.jsp" class="btn btn-secondary btn-lg">
+                <fmt:message key="vehicleSearchSteps.return"/></a>
+            <button class="btn btn-secondary btn-lg" type="submit"><fmt:message key="vehicleSearchSteps.saveCar"/></button>
         </form>
     </div>
 </div>

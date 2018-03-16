@@ -1,11 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="${language}"/>
-<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language"/>
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
 
-<!doctype html>
 <html lang="${language}">
+<html>
 <head>
     <meta charset="utf-8">
     <title><fmt:message key="title.findCategory.byName"/></title>
@@ -55,7 +55,8 @@
 
                         <%--<input type="text" class="form-control" name="search">--%>
                         <select class="select2 form-control " name="search" required>
-                            <option value="0" selected disabled hidden>Wybierz część</option>
+                            <option value="0" selected disabled hidden>
+                                <fmt:message key="findByName.choosePart"/></option>
                             <c:choose>
                                 <c:when test="${not empty partsNames}">
                                     <c:forEach var="entry" items="${partsNames}">
@@ -69,7 +70,7 @@
                     </div>
                 </div>
                 <select class="" id="inlineFormCustomSelect" name="carID">
-                    <option value="0" selected>Wybierz auto</option>
+                    <option value="0" selected><fmt:message key="findByName.chooseCar"/></option>
                     <c:choose>
                         <c:when test="${not empty cars}">
                             <c:forEach var="entry" items="${cars}">
