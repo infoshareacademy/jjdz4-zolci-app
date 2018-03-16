@@ -1,13 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
+
 <html lang="${language}">
 <html>
 <head>
     <meta charset="utf-8">
-    <title><fmt:message key="title.adminPanel"/>Panel administratora</title>
+    <title><fmt:message key="title.adminPanel"/></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -39,7 +39,11 @@
     <c:set var="admin" scope="request" value="admin"/>
     <div class="content">
         <h1><fmt:message key="adminPanel.header"/></h1><br/>
-        <span style="color: limegreen;"><c:out value="${updatemessage}"/></span><br/>
+
+        <c:if test="${updatemessage == 'Preferencje zaktualizowane'}">
+            <span style="color: limegreen;"><fmt:message key="adminPanel.updated"/></span><br/>
+        </c:if>
+        <%--<span style="color: limegreen;"><c:out value="${updatemessage}"/></span><br/>--%>
         <fmt:message key="adminPanel.header2"/>
         <form method="post" action="/updatepreferences">
             <div class="form-check">
