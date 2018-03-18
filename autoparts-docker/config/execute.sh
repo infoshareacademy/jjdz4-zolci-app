@@ -41,13 +41,14 @@ module add --name=com.mysql --resources=/opt/jboss/wildfly/config/mysql-connecto
 
 # Add MySQL driver
 /subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource)
+#/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver)
 
 # Add the datasource
 data-source add --name=ISAJeeAuth --driver-name=mysql --jndi-name=$DATASOURCE_NAME --connection-url=jdbc:mysql://$MYSQL_URI/$MYSQL_DATABASE?useUnicode=true&characterEncoding=UTF-8&useSSL=false --user-name=$MYSQL_USER --password=$MYSQL_PASSWORD --enabled=true
 
 # Add security domain
 /subsystem=security/security-domain=AutopartsSecurityDomain:add(cache-type=default)
-/subsystem=security/security-domain=AutopartsSecurityDomain/authentication=classic:add(login-modules=[{"code"=>"Database", "flag"=>"required", "module-options"=>[("dsJndiName"=>"java:/ISAJeeAuth"),("principalsQuery"=>"SELECT password FROM user WHERE login=?"), ("rolesQuery"=>"SELECT user_role, 'Roles' FROM roles user_login=?"), ("hashAlgorithm"=>"MD5"), ("hashEncoding"=>"hex")]}])
+/subsystem=security/security-domain=AutopartsSecurityDomain/authentication=classic:add(login-modules=[{"code"=>"Database","flag"=>"required","module-options"=>[("dsJndiName"=>"java:/ISAJeeAuth"),("principalsQuery"=>"SELECT password FROM user WHERE login=?"), ("rolesQuery"=>"SELECT user_role, 'Roles' FROM roles WHERE user_login=?"), ("hashAlgorithm"=>"MD5"), ("hashEncoding"=>"hex")]}])
 
 # Execute the batch
 run-batch

@@ -18,7 +18,7 @@
 --
 -- Table structure for table `CarData`
 --
-USE 'isa-jee-auth';
+USE isa-jee-auth;
 
 DROP TABLE IF EXISTS `CarData`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
