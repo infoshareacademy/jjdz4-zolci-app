@@ -7,5 +7,5 @@ Contributors:
 * Anna Sidz [ansid88](https://github.com/ansid88)
 * Jakub Suszyński [steveyakob](https://github.com/steveyakob)
 * Krzysztof Muller [kmull](https://github.com/kmull)
-* Michał Butkiewicz [majkeldevtest](https://github.com/majkeldevtest)
+* Michał Butkiewicz [michal-butkiewicz](https://github.com/michal-butkiewicz)
 
