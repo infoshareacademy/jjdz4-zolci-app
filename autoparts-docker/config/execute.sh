@@ -37,20 +37,24 @@ set CONNECTION_URL=jdbc:mysql://$MYSQL_URI/$MYSQL_DATABASE
 echo "Connection URL: " $CONNECTION_URL
 
 # Add MySQL module
-module add --name=com.mysql --resources=/opt/jboss/wildfly/config/mysql-connector-java-6.0.6.jar --dependencies=javax.api,javax.transaction.api
+module add --name=com.mysql --resources=/opt/jboss/wildfly/config/mysql-connector-java-8.0.8-dmr.jar --dependencies=javax.api,javax.transaction.api
 
 # Add MySQL driver
 /subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource)
 
 # Add the datasource
-data-source add --name=ISAraportModule --driver-name=mysql --jndi-name=$DATASOURCE_NAME --connection-url=jdbc:mysql://$MYSQL_URI/$MYSQL_DATABASE?useUnicode=true&characterEncoding=UTF-8 --user-name=$MYSQL_USER --password=$MYSQL_PASSWORD --enabled=true
+data-source add --name=ISAJeeAuth --driver-name=mysql --jndi-name=$DATASOURCE_NAME --connection-url=jdbc:mysql://$MYSQL_URI/$MYSQL_DATABASE?useUnicode=true&characterEncoding=UTF-8&useSSL=false --user-name=$MYSQL_USER --password=$MYSQL_PASSWORD --enabled=true
+
+# Add security domain
+/subsystem=security/security-domain=AutopartsSecurityDomain:add(cache-type=default)
+/subsystem=security/security-domain=AutopartsSecurityDomain/authentication=classic:add(login-modules=[{"code"=>"Database", "flag"=>"required", "module-options"=>[("dsJndiName"=>"java:/ISAJeeAuth"),("principalsQuery"=>"SELECT password FROM user WHERE login=?"), ("rolesQuery"=>"SELECT user_role, 'Roles' FROM roles user_login=?"), ("hashAlgorithm"=>"MD5"), ("hashEncoding"=>"hex")]}])
 
 # Execute the batch
 run-batch
 EOF
 
 # Deploy the WAR
-cp /opt/jboss/wildfly/config/*.war $JBOSS_HOME/$JBOSS_MODE/deployments/
+cp /opt/jboss/wildfly/config/autoparts-Jee.war $JBOSS_HOME/$JBOSS_MODE/deployments/
 
 echo "=> Shutting down WildFly"
 if [ "$JBOSS_MODE" = "standalone" ]; then
