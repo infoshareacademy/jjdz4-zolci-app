@@ -38,7 +38,7 @@ public class LogCalculator {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(originAddress));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(address));
-            message.setSubject("Weekly Raport " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.mm.yyyy")));
+            message.setSubject("Weekly Raport " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
             message.setText(raport);
             Transport transport = session.getTransport("smtp");
             transport.connect(host, originAddress, password);

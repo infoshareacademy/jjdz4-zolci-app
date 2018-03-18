@@ -75,7 +75,7 @@ public class ApiService {
     @Path("/getkeys")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getkeys() {
-        return Response.ok(new Gson().toJson(clientKeysRepository.getAllKeys())).build();
+        return Response.ok(clientKeysRepository.getAllKeys()).build();
     }
 
     @GET
@@ -102,13 +102,13 @@ public class ApiService {
     @GET
     @Path("/getpreferences")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPreferences(){
+    public Response getPreferences() {
         return Response.ok(adminPreferencesRepository.getAdminPreferences()).build();
     }
 
     @GET
     @Path("/sendraport")
-    public Response sendRaport(){
+    public Response sendRaport() {
         LogCalculator logCalculator = new LogCalculator();
         String raport = logCalculator.buildRaport(logRepository, adminPreferencesRepository);
         return Response.ok(raport).build();
