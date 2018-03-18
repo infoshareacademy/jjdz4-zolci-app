@@ -1,26 +1,28 @@
 version: '2'
 services:
-  raportmodule-db:
-    container_name: "raportmodule-db"
+  autoparts-db:
+    container_name: "autoparts-db"
     image: mysql:latest
     environment:
-      - MYSQL_DATABASE=raportmodule-db
-      - MYSQL_USER=jakub
-      - MYSQL_PASSWORD=jakub
+      - MYSQL_DATABASE=isa-jee-auth
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
       - MYSQL_ROOT_PASSWORD=root
     ports:
-      - 3307:3306
-  raportmodule:
-    container_name: "raportmodule"
+      - "3307:3306"
+    volumes:
+      - ./db-dump:/docker-entrypoint-initdb.d
+  autoparts:
+    container_name: "autoparts"
     build: .
     environment:
-      - MYSQL_URI=raportmodule-db:3306
-      - MYSQL_DATABASE=raportmodule-db
-      - MYSQL_USER=jakub
-      - MYSQL_PASSWORD=jakub
-      - DATASOURCE_NAME=java:/ISAraportModule
+      - MYSQL_URI=isa-jee-auth:3306
+      - MYSQL_DATABASE=isa-jee-auth
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - DATASOURCE_NAME=java:/ISAJeeAuth
     ports:
-      - 4071:8080
-      - 9991:9990
+      - "4070:8080"
+      - "9990:9990"
     depends_on:
-      - raportmodule-db
+      - autoparts-db
