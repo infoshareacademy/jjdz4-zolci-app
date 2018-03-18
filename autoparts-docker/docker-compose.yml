@@ -16,7 +16,7 @@ services:
     container_name: "autoparts"
     build: .
     environment:
-      - MYSQL_URI=isa-jee-auth:3306
+      - MYSQL_URI=autoparts-db:3306
       - MYSQL_DATABASE=isa-jee-auth
       - MYSQL_USER=root
       - MYSQL_PASSWORD=root
