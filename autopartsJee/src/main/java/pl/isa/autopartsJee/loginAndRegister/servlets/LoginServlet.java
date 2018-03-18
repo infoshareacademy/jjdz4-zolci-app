@@ -26,11 +26,20 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doRecive(req, resp);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doRecive(req, resp);
+    }
+
+    private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             req.login(req.getParameter("login"), req.getParameter("password"));
         } catch (ServletException e) {
             req.setAttribute("errorMessage", e.getMessage());
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
             requestDispatcher.forward(req, resp);
             logger.error(e.getMessage(), e);
             logRequest.createLog("login-error",

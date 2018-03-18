@@ -38,24 +38,21 @@
     <c:set var="admin" scope="request" value="admin"/>
     <div class="content">
         <h1><i class="demo-icon icon-wrench-outline"></i>Autoparts Finder</h1><br/>
-        <span style="color: limegreen;"><c:out value="${success}"/></span>
+        <c:if test="${success == 'Użytkownik zarejestrowany pomyślnie'}">
+            <span style="color: limegreen;"><fmt:message key="banner.updated"/></span><br/>
+        </c:if>
         <c:choose>
             <c:when test="${not empty sessionScope.isLogged && sessionScope.isLogged == true}">
                 <h3><fmt:message key="banner.hello"/>, ${userName}!</h3>
                 <h4><fmt:message key="banner.message"/></h4>
-                <%--<h4>Użyj menu w górnym pasku aby skorzystać z funkcjonalności serwisu.</h4>--%>
 
                 <c:if test="${userRole == admin}">
                     <div class="text-center">
                         <a class="listing btn btn-primary" href="admin-panel.jsp" role="button"><fmt:message key="banner.adminPanel"/></a>
-                        <%--<a class="listing btn btn-primary" href="/statistics" role="button"><fmt:message key="banner.statistics"/></a>--%>
                     </div>
                 </c:if>
             </c:when>
             <c:otherwise>
-                <c:if test="${errorMessage != null}">
-                    <div style="color: red;"><fmt:message key="menu.errorMessage"/></div>
-                </c:if>
                 <c:if test="${okMessage != null}">
                     <div style="color: green;">${okMessage}</div>
                 </c:if>
