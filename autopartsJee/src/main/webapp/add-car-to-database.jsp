@@ -52,14 +52,14 @@
 
         <c:if test="${vsErrorMessage != null}">
             <div class="error">
-                <h4>Błąd!</h4>
+                <h4><fmt:message key="addCarToDB.fault"/></h4>
                 <p><c:out value="${vsErrorMessage}"/></p>
             </div>
         </c:if>
 
         <c:if test="${vsOkMessage != null}">
             <div class="success">
-                <h4>Sukces!</h4>
+                <h4><fmt:message key="addCarToDB.correct"/></h4>
                 <p><c:out value="${vsOkMessage}"/></p>
             </div>
         </c:if>
