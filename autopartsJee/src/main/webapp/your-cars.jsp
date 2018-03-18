@@ -47,16 +47,16 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Marka</th>
-                            <th scope="col">Model</th>
-                            <th scope="col">Rocznik</th>
-                            <th scope="col">Wersja</th>
-                            <th scope="col">Wariant</th>
-                            <th scope="col">Paliwo</th>
-                            <th scope="col">Pojemnosć</th>
-                            <th scope="col">Moc</th>
+                            <th scope="col"><fmt:message key="yourcars.brand"/></th>
+                            <th scope="col"><fmt:message key="yourcars.model"/></th>
+                            <th scope="col"><fmt:message key="yourcars.year"/></th>
+                            <th scope="col"><fmt:message key="yourcars.version"/></th>
+                            <th scope="col"><fmt:message key="yourcars.variant"/></th>
+                            <th scope="col"><fmt:message key="yourcars.fuel"/></th>
+                            <th scope="col"><fmt:message key="yourcars.capacity"/></th>
+                            <th scope="col"><fmt:message key="yourcars.power"/></th>
                             <th scope="col">VIN</th>
-                            <th scope="col">Rejestracja</th>
+                            <th scope="col"><fmt:message key="yourcars.registration"/></th>
                         </tr>
                         </thead>
                         <tbody>

@@ -19,7 +19,9 @@ public class AdminPanelServlet extends HttpServlet {
     private Logger logger = LoggerFactory.getLogger(AdminPanelServlet.class);
     @Inject
     PreferencesRequest preferencesRequest;
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+    protected void doRecive(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Boolean manualSearch;
         Boolean formSearch;
         Boolean login;
@@ -75,5 +77,15 @@ public class AdminPanelServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/admin-panel.jsp");
         requestDispatcher.forward(req, resp);
         return;
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doRecive(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doRecive(req, resp);
     }
 }

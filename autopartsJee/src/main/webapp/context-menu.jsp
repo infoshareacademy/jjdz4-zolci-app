@@ -4,6 +4,7 @@
 <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language"/>
+
 <c:choose>
     <c:when test="${not empty sessionScope.isLogged && sessionScope.isLogged == true}">
 

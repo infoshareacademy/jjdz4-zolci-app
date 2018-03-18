@@ -41,8 +41,8 @@ public class StartUp implements ServletContextListener {
             user.setLogin("admin");
             usersRepositoryDao.addUser(user);
 
-            role.setRole_group("user");
-            role.setUser_role("user");
+            role.setRole_group("admin");
+            role.setUser_role("admin");
             role.setUser_id(usersRepositoryDao.findUserByLogin(user.getLogin()).getId());
             role.setUser_login(user.getLogin());
             rolesRepositoryDao.addUser(role);

@@ -4,7 +4,7 @@
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
 <!doctype html>
-<html lang="pl">
+<html lang="${language}">
 <head>
     <meta charset="utf-8">
     <title>Wyszukiwarka aut</title>
@@ -44,16 +44,18 @@
 </nav>
 <div class="container">
     <div class="content">
-        <h1><i class="demo-icon icon-wrench-outline"></i>Wyszukiwarka autoczęści</h1>
-        <h3 class="blue">Wybierz markę pojazdu</h3>
+        <h1><i class="demo-icon icon-wrench-outline"></i><fmt:message key="vehicleSearch.banner"/></h1>
+        <h3 class="blue"><fmt:message key="vehicleSearch.chooseVehicleBrand"/></h3>
         <form class="form-group" method="post" action="vehicle-search">
             <select class="select2 form-control" name="make" required>
-                <option value="" selected disabled hidden>Wybierz...</option>
+                <option value="" selected disabled hidden>
+                    <fmt:message key="vehicleSearch.chooseOption"/></option>
                 <c:forEach items="${makes}" var="make">
                     <option value='{"api":"${make.value}","name":"${make.key}"}'>${make.key}</option>
                 </c:forEach>
             </select>
-            <button class="btn btn-secondary btn-lg" type="submit">Dalej</button>
+            <button class="btn btn-secondary btn-lg" type="submit">
+                <fmt:message key="vehicleSearch.further"/></button>
         </form>
     </div>
 </div>
