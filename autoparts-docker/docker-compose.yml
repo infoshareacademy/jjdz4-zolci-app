@@ -23,6 +23,6 @@ services:
       - DATASOURCE_NAME=java:/ISAJeeAuth
     ports:
       - "4070:8080"
-      - "9990:9990"
+      - "9991:9990"
     depends_on:
       - autoparts-db
