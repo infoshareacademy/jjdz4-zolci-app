@@ -4,6 +4,7 @@ import pl.isa.autoparts.categories.AllegroItem;
 import pl.isa.autopartsJee.adminPanel.raportModule.rest.LogRequest;
 import pl.isa.autopartsJee.carToDatabase.dao.CarRepositoryDao;
 import pl.isa.autopartsJee.linkGenerating.dao.TreeOperationsRepositoryDao;
+import pl.isa.autopartsJee.linkGenerating.domain.ItemParentName;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -13,10 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
-import static java.util.stream.Collectors.toList;
 
 @WebServlet("find-category")
 public class CarsAndPartsSetter extends HttpServlet {
@@ -47,11 +47,26 @@ public class CarsAndPartsSetter extends HttpServlet {
     }
 
     private void setPartsNames(HttpServletRequest req) {
-        List<String> partsNames = treeOperationsRepositoryDao.getRepository()
-                .getPartsList().stream().map(AllegroItem::getName)
-                .sorted()
-                .collect(toList());
-        logger.info(partsNames.get(1));
+
+        List<ItemParentName> partsNames = new ArrayList<>();
+
+        for(AllegroItem allegroItem:treeOperationsRepositoryDao.getRepository().getPartsList()){
+
+            AllegroItem parent = treeOperationsRepositoryDao.getRepository().findParent(allegroItem);
+            ItemParentName itemParentName = new ItemParentName();
+            itemParentName.setItemName(allegroItem.getName().substring(0, 1).toUpperCase()
+                    + allegroItem.getName().substring(1).toLowerCase());
+            itemParentName.setParentName(parent.getName().substring(0, 1).toUpperCase()
+                    + parent.getName().substring(1).toLowerCase());
+            partsNames.add(itemParentName);
+        }
+
+
+//        List<String> partsNames = treeOperationsRepositoryDao.getRepository()
+//                .getPartsList().stream().map(AllegroItem::getName)
+//                .sorted()
+//                .collect(toList());
+//        logger.info(partsNames.get(1));
         req.getSession().setAttribute("partsNames", partsNames);
     }
 }
