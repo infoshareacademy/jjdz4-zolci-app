@@ -41,14 +41,14 @@
     <div class="content">
         <h1><fmt:message key="findAztec.header"/></h1><br/>
         <h3><fmt:message key="findAztec.instruction"/></h3>
-        <span style="color: limegreen;"><c:out value="${carAdded}"/></span>
-        <span style="color: red;"><c:out value="${wrongCode}"/></span>
-        <%--<c:when test="${carAdded == true}">--%>
-            <%--<fmt:message key="findAztec.message.correct"/>--%>
-        <%--</c:when>--%>
-        <%--<c:otherwise>--%>
-            <%--&lt;%&ndash;<fmt:message key="findAztec.message.fault"/>&ndash;%&gt;--%>
-        <%--</c:otherwise>--%>
+
+        <c:if test="${wrongCode == 'Nie znaleziono kodu sesji'}">
+            <span style="color: red;"><fmt:message key="findAztec.wrongCode"/></span><br/>
+        </c:if>
+        <c:if test="${carAdded == 'Auto poprawnie dodane do bazy danych'}">
+            <span style="color: limegreen;"><fmt:message key="findAztec.carAdded"/></span><br/>
+        </c:if>
+
         <form action="/find-by-aztec" method="GET" class="needs-validation" novalidate>
             <div class="form-group">
                 <input type="text" id="validationCustom1" class="form-control" name="search"
