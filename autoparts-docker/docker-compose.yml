@@ -1,0 +1,26 @@
+version: '2'
+services:
+  autoparts-db:
+    container_name: "autoparts-db"
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=isa-jee-auth
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3307:3306"
+  autoparts:
+    container_name: "autoparts"
+    build: .
+    environment:
+      - MYSQL_URI=autoparts-db:3306
+      - MYSQL_DATABASE=isa-jee-auth
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - DATASOURCE_NAME=java:/ISAJeeAuth
+    ports:
+      - "4070:8080"
+      - "9991:9990"
+    depends_on:
+      - autoparts-db

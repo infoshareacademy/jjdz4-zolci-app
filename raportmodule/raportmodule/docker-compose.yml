@@ -9,7 +9,7 @@ services:
       - MYSQL_PASSWORD=jakub
       - MYSQL_ROOT_PASSWORD=root
     ports:
-      - 3307:3306
+      - "3308:3306"
   raportmodule:
     container_name: "raportmodule"
     build: .
@@ -20,7 +20,7 @@ services:
       - MYSQL_PASSWORD=jakub
       - DATASOURCE_NAME=java:/ISAraportModule
     ports:
-      - 4071:8080
-      - 9991:9990
+      - "4071:8080"
+      - "9992:9990"
     depends_on:
       - raportmodule-db
