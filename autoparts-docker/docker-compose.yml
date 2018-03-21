@@ -10,8 +10,6 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     ports:
       - "3307:3306"
-    volumes:
-      - ./db-dump:/docker-entrypoint-initdb.d
   autoparts:
     container_name: "autoparts"
     build: .

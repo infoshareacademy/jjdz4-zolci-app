@@ -9,7 +9,7 @@ services:
       - MYSQL_PASSWORD=jakub
       - MYSQL_ROOT_PASSWORD=root
     ports:
-      - "3310:3306"
+      - "3308:3306"
   raportmodule:
     container_name: "raportmodule"
     build: .
