@@ -33,15 +33,16 @@ public class WebLinkGenerator {
             Matcher matcher = pattern.matcher("p");
 
             try {
+
                 searchedCar = "?" + "string="
                         + car.getVehicleMake() + " " +
-                        car.getVehicleModel().substring(0, car.getVehicleModel().indexOf(" "))
+                        car.getVehicleModel().substring(0, car.getVehicleModel().indexOf("("))
                         + " " + car.getProdYear();
             } catch (Exception e) {
                 try {
                     searchedCar = "?" + "string="
                             + car.getVehicleMake() + " " +
-                            car.getVehicleModel().substring(0, car.getVehicleModel().indexOf("("))
+                            car.getVehicleModel().substring(0, car.getVehicleModel().indexOf(" "))
                             + " " + car.getProdYear();
                 } catch (Exception f) {
                     searchedCar = "?" + "string="
