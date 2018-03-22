@@ -53,7 +53,7 @@
 
         <form class="form-group" method="post" action="vs-car-add">
             <label for="year"><fmt:message key="vehicleSearchSteps.yearOfProduction"/></label>
-            <select class="select2 form-control" id="year" name="year">
+            <select class="select2 form-control" id="year" name="year" required>
                 <option value="" selected disabled hidden>
                     <fmt:message key="vehicleSearch.chooseOption"/></option>
                 <c:forEach items="${years}" var="year">
