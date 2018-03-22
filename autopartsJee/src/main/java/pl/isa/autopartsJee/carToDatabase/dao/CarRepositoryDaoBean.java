@@ -25,4 +25,9 @@ public class CarRepositoryDaoBean implements CarRepositoryDao {
     public CarData findCarById(Long carID) {
         return carRepository.findCarById(carID);
     }
+
+    @Override
+    public void deleteCar(Long carID) {carRepository.deleteCar(carID);
+
+    }
 }

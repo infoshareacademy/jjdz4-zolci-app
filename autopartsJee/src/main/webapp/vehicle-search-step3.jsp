@@ -61,10 +61,10 @@
                 </c:forEach>
             </select>
             <label for="vin"><fmt:message key="vehicleSearchSteps.vinNumber"/>
-            </label><input class="form-control" id="vin" type="text" name="vin" required>
+            </label><input class="form-control" id="vin" type="text" name="vin">
 
             <label for="reg"><fmt:message key="vehicleSearchSteps.registrationNumber"/>
-            </label><input class="form-control" id="reg" type="text" name="registry" required>
+            </label><input class="form-control" id="reg" type="text" name="registry">
             <a href="vehicle-search-step2.jsp" class="btn btn-secondary btn-lg">
                 <fmt:message key="vehicleSearchSteps.return"/></a>
             <button class="btn btn-secondary btn-lg" type="submit"><fmt:message key="vehicleSearchSteps.saveCar"/></button>
