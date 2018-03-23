@@ -26,7 +26,6 @@ public class LogRequest {
         try {
             log.setKey(prop.getProperty("clientkey"));
             String address = prop.getProperty("addlogaddress");
-            logger.info(address);
             Client client = ClientBuilder.newClient();
             WebTarget webTarget = client.target(address);
 
