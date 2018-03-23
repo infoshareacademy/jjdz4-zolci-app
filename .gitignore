@@ -8,3 +8,6 @@ pom.xml.next
 release.properties
 logs/app.log
 raportmodule/raportmodule/raportmodule.war
+raportmodule.war
+autoparts-Jee.war
+autoparts-docker/autoparts-Jee.war

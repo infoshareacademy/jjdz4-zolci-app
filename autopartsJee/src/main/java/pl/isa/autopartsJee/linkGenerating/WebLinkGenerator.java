@@ -10,8 +10,10 @@ import pl.isa.autopartsJee.linkGenerating.domain.ItemParentName;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class    WebLinkGenerator {
+public class WebLinkGenerator {
 
     private Logger logger = LoggerFactory.getLogger(WebLinkGenerator.class.getName());
 
@@ -26,10 +28,28 @@ public class    WebLinkGenerator {
     public void generateLinkMap(String category, CarData car, TreeOperations treeOperations) {
         StringNormalizer stringNormalizer = new StringNormalizer();
         if (car != null) {
-            searchedCar = "?" + "string="
-                    + car.getVehicleMake() + " " +
-                    car.getVehicleModel().substring(0, car.getVehicleModel().indexOf(" "))
-                    + " " + car.getProdYear();
+
+            Pattern pattern = Pattern.compile("[A-Za-z0-9\\!]+");
+            Matcher matcher = pattern.matcher("p");
+
+            try {
+
+                searchedCar = "?" + "string="
+                        + car.getVehicleMake() + " " +
+                        car.getVehicleModel().substring(0, car.getVehicleModel().indexOf("("))
+                        + " " + car.getProdYear();
+            } catch (Exception e) {
+                try {
+                    searchedCar = "?" + "string="
+                            + car.getVehicleMake() + " " +
+                            car.getVehicleModel().substring(0, car.getVehicleModel().indexOf(" "))
+                            + " " + car.getProdYear();
+                } catch (Exception f) {
+                    searchedCar = "?" + "string="
+                            + car.getVehicleMake() + " " +
+                            car.getVehicleModel() + " " + car.getProdYear();
+                }
+            }
         }
         try {
 

@@ -12,4 +12,6 @@ public interface CarRepositoryDao {
     List<CarData> findCarsByOwnerId(Long ownerId);
 
     CarData findCarById(Long carID);
+
+    void deleteCar(Long carID);
 }
