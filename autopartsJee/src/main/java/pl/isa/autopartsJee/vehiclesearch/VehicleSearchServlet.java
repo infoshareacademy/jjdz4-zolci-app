@@ -3,6 +3,7 @@ package pl.isa.autopartsJee.vehiclesearch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.tools.JsonParser;
+import pl.isa.autoparts.vehiclesearch.Blacklist;
 import pl.isa.autoparts.vehiclesearch.Vehicle;
 import pl.isa.autoparts.vehiclesearch.VehicleData;
 import pl.isa.autoparts.vehiclesearch.VehicleSearch;
@@ -46,6 +47,22 @@ public class VehicleSearchServlet extends HttpServlet{
             LOG.error(errorMessage);
             pageController.forwardWithError(errorMessage);
             return;
+        }
+
+        Optional<List<String>> blacklist = null;
+        try {
+            blacklist = Optional.ofNullable(Blacklist.read());
+        } catch (IOException e) {
+            LOG.error("Unable to read blacklist file");
+        }
+
+        final Optional<List<String>> finalBlacklist = blacklist;
+        if (finalBlacklist.isPresent()) {
+            makes.forEach((k,v) -> {
+                if (finalBlacklist.get().contains(k)) {
+                    makes.remove(k);
+                }
+            });
         }
 
         req.setAttribute("makes", makes);
