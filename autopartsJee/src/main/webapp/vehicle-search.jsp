@@ -50,7 +50,7 @@
             <select class="select2 form-control" name="make" required>
                 <option value="" selected disabled hidden>
                     <fmt:message key="vehicleSearch.chooseOption"/></option>
-                <c:forEach items="${makes}" var="make">
+                <c:forEach items="${sessionScope.makes}" var="make">
                     <option value='{"api":"${make.value}","name":"${make.key}"}'>${make.key}</option>
                 </c:forEach>
             </select>
