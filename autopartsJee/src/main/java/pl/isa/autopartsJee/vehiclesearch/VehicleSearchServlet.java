@@ -3,7 +3,6 @@ package pl.isa.autopartsJee.vehiclesearch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.isa.autoparts.tools.JsonParser;
-import pl.isa.autoparts.vehiclesearch.Blacklist;
 import pl.isa.autoparts.vehiclesearch.Vehicle;
 import pl.isa.autoparts.vehiclesearch.VehicleData;
 import pl.isa.autoparts.vehiclesearch.VehicleSearch;
@@ -19,8 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 @WebServlet("vehicle-search")
 public class VehicleSearchServlet extends HttpServlet{
