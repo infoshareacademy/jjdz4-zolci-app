@@ -60,7 +60,7 @@
                             <c:choose>
                                 <c:when test="${not empty partsNames}">
                                     <c:forEach var="entry" items="${partsNames}">
-                                        <option value="${entry}">${entry}</option>
+                                        <option value="${entry.itemName}">${entry.parentName} / ${entry.itemName}</option>
                                     </c:forEach>
                                 </c:when>
                                 <c:otherwise>

@@ -30,4 +30,8 @@ public class CarRepository {
         return entityManager.find(CarData.class, carID);
     }
 
+    public void deleteCar(Long carID){
+        entityManager.remove(entityManager.createQuery("from CarData u where u.id=:id").setParameter("id", carID).getSingleResult());
+    }
+
 }

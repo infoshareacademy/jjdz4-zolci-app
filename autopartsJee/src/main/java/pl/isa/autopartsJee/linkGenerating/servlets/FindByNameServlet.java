@@ -28,7 +28,7 @@ public class FindByNameServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebLinkGenerator linkGenerator = new WebLinkGenerator();
-        String search = req.getParameter("search");
+        String search = req.getParameter("search").toLowerCase();
 
         if (search == null || search.isEmpty()) {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/find-by-name-result.jsp");

@@ -13,6 +13,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -54,68 +55,76 @@ public class LogCalculator {
         List<AdminPreferences> adminPreferencesList = adminPreferencesRepository.getAdminPreferences();
         StringBuilder raport = new StringBuilder();
         for (AdminPreferences adminPreferences : adminPreferencesList) {
-            List<Log> logs;
+            List<Log> logs = logRepository.getLogs();
 
-            String email = adminPreferences.getEmail();
+            for(Log log : logs){
+                if(log.getLocalDateTime().isBefore(LocalDateTime.now().minusDays(7))){
+                    logs.remove(log);
+                    continue;
+                }
+            }
+
+            List<Log> specifiedLogs;
+
             String preferences = adminPreferences.getPreferences();
             if (preferences.contains("logged-in")) {
-                logs = logRepository.getSpecifiedLogs("logged-in");
+                specifiedLogs = filterLogs(logs, "logged-in");
                 raport.append("Logins amount: ");
-                raport.append(logs.size());
+                raport.append(specifiedLogs.size());
                 raport.append(" \n");
             }
             if (preferences.contains("logged-out")) {
-                logs = logRepository.getSpecifiedLogs("logged-out");
+                specifiedLogs = filterLogs(logs,"logged-out");
                 raport.append("Logouts amount: ");
-                raport.append(logs.size());
+                raport.append(specifiedLogs.size());
                 raport.append(" \n");
             }
             if (preferences.contains("login-error")) {
-                logs = logRepository.getSpecifiedLogs("login-error");
+                specifiedLogs = filterLogs(logs,"login-error");
                 raport.append("Login errors amount: ");
-                raport.append(logs.size());
+                raport.append(specifiedLogs.size());
                 raport.append(" \n");
             }
             if (preferences.contains("register-error")) {
-                logs = logRepository.getSpecifiedLogs("register-error");
+                specifiedLogs = filterLogs(logs,"register-error");
                 raport.append("Register errors amount: ");
-                raport.append(logs.size());
+                raport.append(specifiedLogs.size());
                 raport.append(" \n");
             }
             if (preferences.contains("user-registered")) {
-                logs = logRepository.getSpecifiedLogs("user-registered");
+                specifiedLogs = filterLogs(logs,"user-registered");
                 raport.append("New accounts amount: ");
-                raport.append(logs.size());
+                raport.append(specifiedLogs.size());
                 raport.append(" \n");
             }
             if (preferences.contains("searching-manually")) {
-                logs = logRepository.getSpecifiedLogs("searching-manually");
-                raport.append("Manual searching amount: ");
-                raport.append(logs.size());
+                specifiedLogs = filterLogs(logs,"searching-manually");
+                raport.append("Manual searches amount: ");
+                raport.append(specifiedLogs.size());
                 raport.append(" \n");
             }
             if (preferences.contains("searching-form")) {
-                logs = logRepository.getSpecifiedLogs("searching-form");
-                raport.append("Searching by form amount: ");
-                raport.append(logs.size());
+                specifiedLogs = filterLogs(logs,"searching-form");
+                raport.append("Searches by form amount: ");
+                raport.append(specifiedLogs.size());
                 raport.append(" \n");
             }
             if (preferences.contains("cars-displayed")) {
-                logs = logRepository.getSpecifiedLogs("cars-displayed");
+                specifiedLogs = filterLogs(logs,"cars-displayed");
                 raport.append("Cars database access amount: ");
-                raport.append(logs.size());
+                raport.append(specifiedLogs.size());
                 raport.append(" \n");
             }
             if (preferences.contains("car-added")) {
-                logs = logRepository.getSpecifiedLogs("car-added");
+                specifiedLogs = filterLogs(logs,"car-added");
                 raport.append("New cars in database: ");
-                raport.append(logs.size());
+                raport.append(specifiedLogs.size());
                 raport.append(" \n");
             }
             if (preferences.contains("atena-session-not-found")) {
-                logs = logRepository.getSpecifiedLogs("atena-session-not-found");
+                specifiedLogs = filterLogs(logs,"atena-session-not-found");
                 raport.append("Wrong atena session codes amount: ");
-                raport.append(logs.size());
+                raport.append(specifiedLogs.size());
                 raport.append(" \n");
             }
 
@@ -125,6 +134,15 @@ public class LogCalculator {
 
         }
         return raport.toString();
+    }
+
+    private List<Log> filterLogs(List<Log> logsList, String filter){
+        List<Log> filteredLogs = new ArrayList<>();
+        for(Log log : logsList){
+            if(log.getMessage().equals(filter))
+                filteredLogs.add(log);
+        }
+        return filteredLogs;
     }
 
 }

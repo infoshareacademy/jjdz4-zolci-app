@@ -2,6 +2,7 @@ package pl.isa.autopartsJee.carToDatabase.servlets;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.isa.autopartsJee.adminPanel.raportModule.rest.LogRequest;
 import pl.isa.autopartsJee.carToDatabase.dao.CarRepositoryDao;
 import pl.isa.autopartsJee.carToDatabase.domain.CarData;
 import pl.isa.autopartsJee.vehiclesearch.PageController;
@@ -18,6 +19,8 @@ public class FindByVehicleSearchServlet extends HttpServlet {
 
     private final Logger LOG = LoggerFactory.getLogger(FindByVehicleSearchServlet.class.getName());
 
+    @Inject
+    LogRequest logRequest;
     @Inject
     CarRepositoryDao carRepository;
 
@@ -45,6 +48,8 @@ public class FindByVehicleSearchServlet extends HttpServlet {
         carData.setOwnerId(getSessionAttributeLong("userId"));
 
         try {
+            LOG.info("Car added");
+            logRequest.createLog("car-added", (Long) req.getSession().getAttribute("userId"), "car-database");
             carRepository.addCar(carData);
         } catch (Exception e) {
             String errorMessage = "Could not add data to database.";

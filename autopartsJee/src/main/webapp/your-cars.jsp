@@ -1,8 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:setLocale value="${language}" />
-<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language" />
+<fmt:setLocale value="${language}"/>
+<fmt:setBundle basename="pl.isa.autopartsJee.languageOptions.language"/>
 <!doctype html>
 <html lang="${language}">
 <head>
@@ -47,32 +47,44 @@
                         <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col"><fmt:message key="yourcars.delete"/></th>
                             <th scope="col"><fmt:message key="yourcars.brand"/></th>
                             <th scope="col"><fmt:message key="yourcars.model"/></th>
                             <th scope="col"><fmt:message key="yourcars.year"/></th>
                             <th scope="col"><fmt:message key="yourcars.version"/></th>
                             <th scope="col"><fmt:message key="yourcars.variant"/></th>
+                                <%--<th class="d-none d-lg-table-cell" scope="col"><fmt:message key="yourcars.fuel"/></th>--%>
                             <th scope="col"><fmt:message key="yourcars.fuel"/></th>
                             <th scope="col"><fmt:message key="yourcars.capacity"/></th>
+                                <%--<th class="d-none d-lg-table-cell" scope="col"><fmt:message key="yourcars.power"/></th>--%>
                             <th scope="col"><fmt:message key="yourcars.power"/></th>
+                                <%--<th class="d-none d-lg-table-cell" scope="col">VIN</th>--%>
                             <th scope="col">VIN</th>
+                                <%--<th class="d-none d-lg-table-cell" scope="col"><fmt:message key="yourcars.registration"/></th>--%>
                             <th scope="col"><fmt:message key="yourcars.registration"/></th>
                         </tr>
                         </thead>
                         <tbody>
+                        <c:set var="id" scope="request" value="0"/>
 
                         <c:forEach var="entry" items="${cars}">
+                            <c:set var="id" scope="request" value="${id+1}"/>
                             <tr>
-                                <th scope="row">${entry.carID}</th>
+                                <td>${id}</td>
+                                <td><a href="/delete-car-servlet?carID=${entry.carID}">X</a></td>
                                 <td>${entry.vehicleMake}</td>
                                 <td>${entry.vehicleModel}</td>
                                 <td>${entry.prodYear}</td>
                                 <td>${entry.vehicleVersion}</td>
                                 <td>${entry.vehicleVariant}</td>
+                                    <%--<td class="d-none d-lg-table-cell">${entry.fuel}</td>--%>
                                 <td>${entry.fuel}</td>
                                 <td>${entry.capacity}</td>
+                                    <%--<td class="d-none d-lg-table-cell">${entry.power}</td>--%>
                                 <td>${entry.power}</td>
+                                    <%--<td class="d-none d-lg-table-cell">${entry.vin}</td>--%>
                                 <td>${entry.vin}</td>
+                                    <%--<td class="d-none d-lg-table-cell">${entry.registryNumber}</td>--%>
                                 <td>${entry.registryNumber}</td>
 
                             </tr>
