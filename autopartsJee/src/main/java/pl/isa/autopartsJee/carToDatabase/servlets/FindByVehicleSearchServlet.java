@@ -13,11 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @WebServlet("vs-car-add")
 public class FindByVehicleSearchServlet extends HttpServlet {
 
     private final Logger LOG = LoggerFactory.getLogger(FindByVehicleSearchServlet.class.getName());
+    private final String NO_ENTRY = "---";
 
     @Inject
     LogRequest logRequest;
@@ -35,17 +37,33 @@ public class FindByVehicleSearchServlet extends HttpServlet {
 
         CarData carData = new CarData();
         carData.setVehicleMake(getSessionAttribute("makeName"));
-        carData.setVehicleModel(getSessionAttribute("modelName"));
-        carData.setVehicleVersion("");
-        carData.setVehicleVariant(getSessionAttribute("engineName"));
-        carData.setFuel(getSessionAttribute("fuel"));
-        carData.setCapacity(getSessionAttribute("ccm"));
-        carData.setPower(getSessionAttribute("hp"));
-        Integer year = Integer.valueOf(req.getParameter("year"));
-        carData.setProdYear(year);
-        carData.setVin(req.getParameter("vin"));
-        carData.setRegistryNumber(req.getParameter("registry"));
+        carData.setProdYear(setOptional(Integer.valueOf(req.getParameter("year"))));
+        carData.setVehicleVersion(NO_ENTRY);
+        carData.setVin(setOptional(req.getParameter("vin")));
+        carData.setRegistryNumber(setOptional(req.getParameter("registry")));
         carData.setOwnerId(getSessionAttributeLong("userId"));
+
+        if (Optional.ofNullable(session.getAttribute("modelName")).isPresent()) {
+            carData.setVehicleModel(setOptional(getSessionAttribute("modelName")));
+        }
+        else {
+            carData.setVehicleModel(setOptional(req.getParameter("modelName")));
+        }
+
+        if (Optional.ofNullable(session.getAttribute("engineName")).isPresent()) {
+
+            carData.setVehicleVariant(setOptional(getSessionAttribute("engineName")));
+            carData.setFuel(setOptional(getSessionAttribute("fuel")));
+            carData.setCapacity(setOptional(getSessionAttribute("ccm")));
+            carData.setPower(setOptional(getSessionAttribute("hp")));
+        }
+        else {
+            carData.setVehicleVariant(setOptional(req.getParameter("engineName")));
+            carData.setFuel(setOptional(req.getParameter("fuel")));
+            carData.setCapacity(setOptional(req.getParameter("ccm")));
+            carData.setPower(setOptional(req.getParameter("hp")));
+        }
+
 
         try {
             LOG.info("Car added");
@@ -70,5 +88,15 @@ public class FindByVehicleSearchServlet extends HttpServlet {
     private Long getSessionAttributeLong(String attrName) {
 
         return Long.valueOf(session.getAttribute(attrName).toString());
+    }
+
+    private String setOptional(String attribute) {
+
+        return Optional.ofNullable(attribute).orElse(NO_ENTRY);
+    }
+
+    private Integer setOptional(Integer attribute) {
+
+        return Optional.ofNullable(attribute).orElse(0);
     }
 }
