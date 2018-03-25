@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
             logRequest.createLog("logged-in",
                     (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "login");
             login = true;
-
+            resp.sendRedirect("/index.jsp");
         } catch (ServletException e) {
             errorMessage = e.getMessage();
             req.setAttribute("errorMessage", errorMessage);
