@@ -42,7 +42,20 @@
     <div class="content">
         <h1><fmt:message key="register.header"/></h1><br/>
         <form action="/register" method="POST" class="needs-validation" novalidate>
-            <span style="color: red;"><c:out value="${registrationError}"/></span>
+            <%--<span style="color: red;"><c:out value="${registrationError}"/></span>--%>
+
+                <c:if test="${registrationError == 'Użytkownik o podanym loginie istnieje'}">
+                <span style="color: red;"><fmt:message key="register.lginFault"/></span><br/>
+                </c:if>
+
+                <c:if test="${registrationError == 'Użytkownik o podanym emailu istnieje'}">
+                <span style="color: red;"><fmt:message key="register.emailFault"/></span><br/>
+                </c:if>
+
+                <c:if test="${registrationError == 'Wprowadź wszystkie dane'}">
+                <span style="color: red;"><fmt:message key="register.allFault"/></span><br/>
+                </c:if>
+
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="validationCustom01">Login</label>

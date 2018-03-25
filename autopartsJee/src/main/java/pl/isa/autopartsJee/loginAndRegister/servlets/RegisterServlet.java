@@ -60,11 +60,11 @@ public class RegisterServlet extends HttpServlet {
     }
 
     private Boolean checkIfFieldsAreEmpty(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getParameter("login").isEmpty() || req.getParameter("login").equals(null) ||
-                req.getParameter("email").isEmpty() || req.getParameter("email").equals(null) ||
-                req.getParameter("name").isEmpty() || req.getParameter("name").equals(null) ||
-                req.getParameter("surname").isEmpty() || req.getParameter("surname").equals(null) ||
-                req.getParameter("password").isEmpty() || req.getParameter("password").equals(null)) {
+        if (req.getParameter("login").equals(null) || req.getParameter("login").isEmpty() ||
+                req.getParameter("email").equals(null) || req.getParameter("email").isEmpty() ||
+                req.getParameter("name").equals(null) || req.getParameter("name").isEmpty() ||
+                req.getParameter("surname").equals(null) || req.getParameter("surname").isEmpty() ||
+                req.getParameter("password").equals(null) || req.getParameter("password").isEmpty()) {
             logger.error("User had left empty fields");
             req.setAttribute("registrationError", "Wprowadź wszystkie dane");
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("register.jsp");
@@ -76,45 +76,61 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (checkIfFieldsAreEmpty(req, resp)) {
-                logRequest.createLog("register-error",
-                    null, "register");
-            return;
-        }
-        if (checkIfUserExists(req, resp)) {
-            logRequest.createLog("register-error",
-                    null, "register");
-            return;
-        }
-        User user = new User();
-        Role role = new Role();
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("MD5");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        md.update(req.getParameter("password").getBytes());
-        byte[] digest = md.digest();
-        String password = DatatypeConverter
-                .printHexBinary(digest).toLowerCase();
+        doRecive(req, resp);
+    }
 
-        user.setEmail(req.getParameter("email"));
-        user.setPassword(password);
-        user.setName(req.getParameter("name"));
-        user.setSurname(req.getParameter("surname"));
-        user.setLogin(req.getParameter("login"));
-        usersRepositoryDao.addUser(user);
-        role.setRole_group("user");
-        role.setUser_role("user");
-        role.setUser_id(usersRepositoryDao.findUserByLogin(user.getLogin()).getId());
-        role.setUser_login(user.getLogin());
-        rolesRepositoryDao.addUser(role);
-        logger.info("User registered successfully");
-        logRequest.createLog("user-registered",
-                user.getId(), "register");
-        req.setAttribute("success", "Użytkownik zarejestrowany pomyślnie");
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
-        requestDispatcher.forward(req, resp);
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doRecive(req, resp);
+    }
+
+    private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       try {
+           if (checkIfFieldsAreEmpty(req, resp)) {
+               logRequest.createLog("register-error",
+                       null, "register");
+               return;
+           }
+           if (checkIfUserExists(req, resp)) {
+               logRequest.createLog("register-error",
+                       null, "register");
+               return;
+           }
+           User user = new User();
+           Role role = new Role();
+           MessageDigest md = null;
+           try {
+               md = MessageDigest.getInstance("MD5");
+           } catch (NoSuchAlgorithmException e) {
+               e.printStackTrace();
+           }
+           md.update(req.getParameter("password").getBytes());
+           byte[] digest = md.digest();
+           String password = DatatypeConverter
+                   .printHexBinary(digest).toLowerCase();
+
+           user.setEmail(req.getParameter("email"));
+           user.setPassword(password);
+           user.setName(req.getParameter("name"));
+           user.setSurname(req.getParameter("surname"));
+           user.setLogin(req.getParameter("login"));
+           usersRepositoryDao.addUser(user);
+           role.setRole_group("user");
+           role.setUser_role("user");
+           role.setUser_id(usersRepositoryDao.findUserByLogin(user.getLogin()).getId());
+           role.setUser_login(user.getLogin());
+           rolesRepositoryDao.addUser(role);
+           logger.info("User registered successfully");
+           logRequest.createLog("user-registered",
+                   user.getId(), "register");
+           req.setAttribute("success", "Użytkownik zarejestrowany pomyślnie");
+           RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
+           requestDispatcher.forward(req, resp);
+       }catch (NullPointerException e){
+           req.setAttribute("success", "Użytkownik zarejestrowany pomyślnie");
+           RequestDispatcher requestDispatcher = req.
+                   getRequestDispatcher("/index.jsp");
+           requestDispatcher.forward(req, resp);
+       }
     }
 }
