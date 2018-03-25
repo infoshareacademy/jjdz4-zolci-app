@@ -9,7 +9,7 @@
 <form>
     <select id="language" name="language" onchange="updateLanguage()">
         <option value="en" ${language == 'en' ? 'selected' : ''}>English</option>
-        <option value="pl" ${language == 'pl' ? 'selected' : ''}>Polish</option>
+        <option value="pl" ${language == 'pl' ? 'selected' : ''}>Polski</option>
         <option value="de" ${language == 'de' ? 'selected' : ''}>Deutsch</option>
     </select>
 </form>
