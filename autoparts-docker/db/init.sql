@@ -1,0 +1,9 @@
+ALTER DATABASE `isa-jee-auth` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `users` CONVERT TO CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `CarData` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `hibernate_sequence` CONVERT TO CHARACTER SET utf8 COLLATE utf8_polish_ci;
+
+ALTER TABLE `roles` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;

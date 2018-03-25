@@ -53,7 +53,7 @@
             <select class="select2 form-control" name="engine" required>
                 <option value="" selected disabled hidden>
                     <fmt:message key="vehicleSearch.chooseOption"/></option>
-                <c:forEach items="${engines}" var="engine">
+                <c:forEach items="${sessionScope.engines}" var="engine">
                     <option value='{"api":"${engine.value}","name":"${engine.key}"}'>${engine.key}</option>
                 </c:forEach>
             </select>

@@ -59,7 +59,7 @@
             <select class="select2 form-control" id="year" name="year" required>
                 <option value="" selected disabled hidden>
                     <fmt:message key="vehicleSearch.chooseOption"/></option>
-                <c:forEach items="${years}" var="year">
+                <c:forEach items="${sessionScope.years}" var="year">
                     <option value="${year}">${year}</option>
                 </c:forEach>
             </select>

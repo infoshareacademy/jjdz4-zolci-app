@@ -52,7 +52,7 @@
             <select class="select2 form-control" name="model" required>
                 <option value="" selected disabled hidden>
                     <fmt:message key="vehicleSearch.chooseOption"/></option>
-                <c:forEach items="${models}" var="model">
+                <c:forEach items="${sessionScope.models}" var="model">
                     <option value='{"api":"${model.value}","name":"${model.key}"}'>${model.key}</option>
                 </c:forEach>
             </select>

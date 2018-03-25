@@ -35,6 +35,8 @@ public class VehicleSearchServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) {
 
+        session = req.getSession();
+
         pageController = new PageController(req, res);
         Map<String, String> makes;
 
@@ -48,7 +50,7 @@ public class VehicleSearchServlet extends HttpServlet{
             return;
         }
 
-        req.setAttribute("makes", makes);
+        session.setAttribute("makes", makes);
         pageController.forward("vehicle-search.jsp");
     }
 
@@ -82,11 +84,11 @@ public class VehicleSearchServlet extends HttpServlet{
             for (VehicleData vd : vehicle.getData()) {
                 if (vd.getLink().equals(value.getApi())) {
 
-                    session.setAttribute("engineName", value.getName());
-                    session.setAttribute("hp", vd.getKw() + ",00KW");
-                    session.setAttribute("ccm", vd.getCcm() + ",00cm3");
-                    session.setAttribute("fuel", vd.getFuel());
-                    req.setAttribute("years", explodeToYearsList(vd.getStart_year(), vd.getEnd_year()));
+                    session.setAttribute(VehicleAttributes.ENGINE_NAME, value.getName());
+                    session.setAttribute(VehicleAttributes.HP, vd.getKw() + ",00KW");
+                    session.setAttribute(VehicleAttributes.CCM, vd.getCcm() + ",00cm3");
+                    session.setAttribute(VehicleAttributes.FUEL, vd.getFuel());
+                    session.setAttribute("years", explodeToYearsList(vd.getStart_year(), vd.getEnd_year()));
                     pageController.forward("vehicle-search-step3.jsp");
                     return;
                 }
@@ -108,9 +110,18 @@ public class VehicleSearchServlet extends HttpServlet{
                 return;
             }
 
-            session.setAttribute("modelName", value.getName());
+
+            session.setAttribute(VehicleAttributes.MODEL_NAME, value.getName());
             session.setAttribute(MODEL_API, value.getApi());
-            req.setAttribute("engines", engines);
+
+            if (engines.isEmpty()) {
+                session.removeAttribute(VehicleAttributes.ENGINE_NAME);
+                removeAttributes();
+                pageController.forward("vehicle-search-step3-1.jsp");
+                return;
+            }
+
+            session.setAttribute("engines", engines);
             pageController.forward("vehicle-search-step2.jsp");
             return;
         }
@@ -130,9 +141,18 @@ public class VehicleSearchServlet extends HttpServlet{
                 return;
             }
 
-            session.setAttribute("makeName", value.getName());
+            session.setAttribute(VehicleAttributes.MAKE_NAME, value.getName());
             session.setAttribute("makeApi", value.getApi());
-            req.setAttribute("models", models);
+
+            if (models.isEmpty()) {
+                session.removeAttribute(VehicleAttributes.MODEL_NAME);
+                session.removeAttribute(VehicleAttributes.ENGINE_NAME);
+                removeAttributes();
+                pageController.forward("vehicle-search-step3-2.jsp");
+                return;
+            }
+
+            session.setAttribute("models", models);
             pageController.forward("vehicle-search-step1.jsp");
             return;
         }
@@ -166,4 +186,13 @@ public class VehicleSearchServlet extends HttpServlet{
 
         return years;
     }
+
+    private void removeAttributes() {
+
+        session.removeAttribute(VehicleAttributes.HP);
+        session.removeAttribute(VehicleAttributes.CCM);
+        session.removeAttribute(VehicleAttributes.FUEL);
+    }
+
+
 }
