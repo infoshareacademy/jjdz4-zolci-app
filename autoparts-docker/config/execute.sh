@@ -28,23 +28,30 @@ echo "=> MYSQL_DATABASE: " $MYSQL_DATABASE
 echo "=> MYSQL_USER: " $MYSQL_USER
 echo "=> MYSQL_PASSWORD: " $MYSQL_PASSWORD
 echo "=> DATASOURCE_NAME: " $DATASOURCE_NAME
+echo "=> -----"
+echo "=> Preparing server DB connection"
+echo "=> MYSQL_URI: " $RAPORT_MYSQL_URI
+echo "=> MYSQL_DATABASE: " $RAPORT_MYSQL_DATABASE
+echo "=> MYSQL_USER: " $RAPORT_MYSQL_USER
+echo "=> MYSQL_PASSWORD: " $RAPORT_MYSQL_PASSWORD
+echo "=> DATASOURCE_NAME: " $RAPORT_DATASOURCE_NAME
 
 $JBOSS_CLI -c << EOF
 batch
 
-#set CONNECTION_URL
 set CONNECTION_URL=jdbc:mysql://$MYSQL_URI/$MYSQL_DATABASE
 echo "Connection URL: " $CONNECTION_URL
 
 # Add MySQL module
 module add --name=com.mysql --resources=/opt/jboss/wildfly/config/mysql-connector-java-8.0.8-dmr.jar --dependencies=javax.api,javax.transaction.api
+# module add --name=com.mysql --resources=/opt/jboss/wildfly/config/mysql-connector-java-6.0.6.jar --dependencies=javax.api,javax.transaction.api
 
-# Add MySQL driver
+# Add MySQL drivers
 /subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource)
-#/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver)
 
-# Add the datasource
+# Add datasources
 data-source add --name=ISAJeeAuth --driver-name=mysql --jndi-name=$DATASOURCE_NAME --connection-url=jdbc:mysql://$MYSQL_URI/$MYSQL_DATABASE?useUnicode=true&characterEncoding=UTF-8&useSSL=false --user-name=$MYSQL_USER --password=$MYSQL_PASSWORD --enabled=true
+data-source add --name=ISAraportModule --driver-name=mysql --jndi-name=$RAPORT_DATASOURCE_NAME --connection-url=jdbc:mysql://$RAPORT_MYSQL_URI/$RAPORT_MYSQL_DATABASE?useUnicode=true&characterEncoding=UTF-8&useSSL=false --user-name=$RAPORT_MYSQL_USER --password=$RAPORT_MYSQL_PASSWORD --enabled=true
 
 # Add security domain
 /subsystem=security/security-domain=AutopartsSecurityDomain:add
@@ -56,7 +63,7 @@ run-batch
 EOF
 
 # Deploy the WAR
-cp /opt/jboss/wildfly/config/autoparts-Jee.war $JBOSS_HOME/$JBOSS_MODE/deployments/
+cp /opt/jboss/wildfly/config/* $JBOSS_HOME/$JBOSS_MODE/deployments/
 
 echo "=> Shutting down WildFly"
 if [ "$JBOSS_MODE" = "standalone" ]; then
@@ -67,9 +74,9 @@ fi
 
 echo "=> Restarting WildFly"
 
-#add user for console management tool
+# add user for console management tool
 /opt/jboss/wildfly/bin/add-user.sh admin admin --silent
 
-#run wildfly
+# run wildfly
 $JBOSS_HOME/bin/$JBOSS_MODE.sh -b 0.0.0.0 -bmanagement 0.0.0.0 -c $JBOSS_CONFIG
 

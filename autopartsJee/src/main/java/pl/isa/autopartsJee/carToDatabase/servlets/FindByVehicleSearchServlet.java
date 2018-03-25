@@ -6,6 +6,7 @@ import pl.isa.autopartsJee.adminPanel.raportModule.rest.LogRequest;
 import pl.isa.autopartsJee.carToDatabase.dao.CarRepositoryDao;
 import pl.isa.autopartsJee.carToDatabase.domain.CarData;
 import pl.isa.autopartsJee.vehiclesearch.PageController;
+import pl.isa.autopartsJee.vehiclesearch.VehicleAttributes;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
@@ -15,9 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
+import static java.util.Optional.ofNullable;
+
 @WebServlet("vs-car-add")
 public class FindByVehicleSearchServlet extends HttpServlet {
 
+    private static final String USER_ID = "userId";
     private final Logger LOG = LoggerFactory.getLogger(FindByVehicleSearchServlet.class.getName());
     private final String NO_ENTRY = "---";
 
@@ -27,47 +31,53 @@ public class FindByVehicleSearchServlet extends HttpServlet {
     CarRepositoryDao carRepository;
 
     private HttpSession session;
+    private HttpServletRequest request;
     private PageController pageController;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) {
 
+        request = req;
         session = req.getSession();
         pageController = new PageController(req, res);
 
         CarData carData = new CarData();
-        carData.setVehicleMake(getSessionAttribute("makeName"));
-        carData.setProdYear(setOptional(Integer.valueOf(req.getParameter("year"))));
+
+        carData.setVehicleMake(getSessionAttribute(VehicleAttributes.MAKE_NAME));
+
         carData.setVehicleVersion(NO_ENTRY);
-        carData.setVin(setOptional(req.getParameter("vin")));
-        carData.setRegistryNumber(setOptional(req.getParameter("registry")));
-        carData.setOwnerId(getSessionAttributeLong("userId"));
 
-        if (Optional.ofNullable(session.getAttribute("modelName")).isPresent()) {
-            carData.setVehicleModel(setOptional(getSessionAttribute("modelName")));
+        carData.setProdYear(getParameterInteger(VehicleAttributes.YEAR));
+        carData.setVin(getParameter(VehicleAttributes.VIN));
+        carData.setRegistryNumber(getParameter(VehicleAttributes.REGISTRY));
+
+        carData.setOwnerId(getSessionId());
+
+        if (attributeIsPresent(VehicleAttributes.MODEL_NAME)) {
+            carData.setVehicleModel(getSessionAttribute(VehicleAttributes.MODEL_NAME));
         }
         else {
-            carData.setVehicleModel(setOptional(req.getParameter("modelName")));
+            carData.setVehicleModel(getParameter(VehicleAttributes.MODEL_NAME));
         }
 
-        if (Optional.ofNullable(session.getAttribute("engineName")).isPresent()) {
+        if (attributeIsPresent(VehicleAttributes.ENGINE_NAME)) {
 
-            carData.setVehicleVariant(setOptional(getSessionAttribute("engineName")));
-            carData.setFuel(setOptional(getSessionAttribute("fuel")));
-            carData.setCapacity(setOptional(getSessionAttribute("ccm")));
-            carData.setPower(setOptional(getSessionAttribute("hp")));
+            carData.setVehicleVariant(getSessionAttribute(VehicleAttributes.ENGINE_NAME));
+            carData.setFuel(getSessionAttribute(VehicleAttributes.FUEL));
+            carData.setCapacity(getSessionAttribute(VehicleAttributes.CCM));
+            carData.setPower(getSessionAttribute(VehicleAttributes.HP));
         }
         else {
-            carData.setVehicleVariant(setOptional(req.getParameter("engineName")));
-            carData.setFuel(setOptional(req.getParameter("fuel")));
-            carData.setCapacity(setOptional(req.getParameter("ccm")));
-            carData.setPower(setOptional(req.getParameter("hp")));
+            carData.setVehicleVariant(getParameter(VehicleAttributes.ENGINE_NAME));
+            carData.setFuel(getParameter(VehicleAttributes.FUEL));
+            carData.setCapacity(getParameter(VehicleAttributes.CCM));
+            carData.setPower(getParameter(VehicleAttributes.HP));
         }
 
 
         try {
             LOG.info("Car added");
-            logRequest.createLog("car-added", (Long) req.getSession().getAttribute("userId"), "car-database");
+            logRequest.createLog("car-added", (Long) req.getSession().getAttribute(USER_ID), "car-database");
             carRepository.addCar(carData);
         } catch (Exception e) {
             String errorMessage = "Could not add data to database.";
@@ -80,23 +90,55 @@ public class FindByVehicleSearchServlet extends HttpServlet {
         pageController.forward("add-car-to-database.jsp");
     }
 
+    private boolean attributeIsPresent(String attributeName) {
+        return ofNullable(session.getAttribute(attributeName))
+                .isPresent();
+    }
+
+    private String getParameter(String parameterName) {
+        return ofNullable(request.getParameter(parameterName))
+                .orElse(NO_ENTRY);
+    }
+
+    private Integer getParameterInteger(String parameterName) {
+
+        final Integer defaultValue = 0;
+        Integer value;
+
+        Optional parameter = ofNullable(request.getParameter(parameterName));
+        if (parameter.isPresent()) {
+            try {
+                value = Integer.valueOf(parameter.get().toString());
+            } catch (NumberFormatException e) {
+                value = defaultValue;
+            }
+        }
+        else {
+            value = defaultValue;
+        }
+
+        return value;
+    }
+
     private String getSessionAttribute(String attrName) {
 
-        return session.getAttribute(attrName).toString();
+        return ofNullable(session.getAttribute(attrName).toString())
+                .orElse(NO_ENTRY);
     }
 
-    private Long getSessionAttributeLong(String attrName) {
 
-        return Long.valueOf(session.getAttribute(attrName).toString());
+    private Long getSessionId() {
+
+        return Long.valueOf(session.getAttribute(USER_ID).toString());
     }
 
-    private String setOptional(String attribute) {
+    private void removeAttributes() {
 
-        return Optional.ofNullable(attribute).orElse(NO_ENTRY);
-    }
-
-    private Integer setOptional(Integer attribute) {
-
-        return Optional.ofNullable(attribute).orElse(0);
+        session.removeAttribute(VehicleAttributes.MODEL_NAME);
+        session.removeAttribute(VehicleAttributes.MAKE_NAME);
+        session.removeAttribute(VehicleAttributes.ENGINE_NAME);
+        session.removeAttribute(VehicleAttributes.FUEL);
+        session.removeAttribute(VehicleAttributes.HP);
+        session.removeAttribute(VehicleAttributes.CCM);
     }
 }
