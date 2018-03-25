@@ -24,6 +24,8 @@ public class LoginServlet extends HttpServlet {
     @Inject
     UsersRepositoryDao usersRepositoryDao;
 
+    private boolean login;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doRecive(req, resp);
@@ -31,12 +33,24 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doRecive(req, resp);
+        if (login == true) {
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
+            requestDispatcher.forward(req, resp);
+            return;
+        } else {
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
+            requestDispatcher.forward(req, resp);
+            return;
+        }
     }
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             req.login(req.getParameter("login"), req.getParameter("password"));
+            logRequest.createLog("logged-in",
+                    (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "login");
+            login = true;
+
         } catch (ServletException e) {
             req.setAttribute("errorMessage", e.getMessage());
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
@@ -47,12 +61,11 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        if (req.getHeader("Referer").contains("login.jsp")) {
-            resp.sendRedirect("/index.jsp");
-            logRequest.createLog("logged-in",
-                    (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "login");
-            return;
-        }
+//        if (req.getHeader("Referer").contains("login.jsp")) {
+//            resp.sendRedirect("/index.jsp");
+//
+//            return;
+//        }
         resp.sendRedirect(req.getHeader("Referer"));
     }
 }
