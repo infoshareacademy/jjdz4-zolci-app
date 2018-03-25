@@ -23,8 +23,8 @@ public class LoginServlet extends HttpServlet {
     LogRequest logRequest;
     @Inject
     UsersRepositoryDao usersRepositoryDao;
-
     private boolean login;
+    private String errorMessage;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,8 +38,10 @@ public class LoginServlet extends HttpServlet {
             requestDispatcher.forward(req, resp);
             return;
         } else {
+            req.setAttribute("errorMessage", errorMessage);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
             requestDispatcher.forward(req, resp);
+
             return;
         }
     }
@@ -52,12 +54,14 @@ public class LoginServlet extends HttpServlet {
             login = true;
 
         } catch (ServletException e) {
-            req.setAttribute("errorMessage", e.getMessage());
+            errorMessage = e.getMessage();
+            req.setAttribute("errorMessage", errorMessage);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
             requestDispatcher.forward(req, resp);
             logger.error(e.getMessage(), e);
             logRequest.createLog("login-error",
                     null, "login");
+            login = false;
             return;
         }
 
