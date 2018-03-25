@@ -23,6 +23,8 @@ public class LoginServlet extends HttpServlet {
     LogRequest logRequest;
     @Inject
     UsersRepositoryDao usersRepositoryDao;
+    private boolean login;
+    private String errorMessage;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,28 +33,43 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doRecive(req, resp);
+        if (login == true) {
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/index.jsp");
+            requestDispatcher.forward(req, resp);
+            return;
+        } else {
+            req.setAttribute("errorMessage", errorMessage);
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
+            requestDispatcher.forward(req, resp);
+
+            return;
+        }
     }
 
     private void doRecive(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             req.login(req.getParameter("login"), req.getParameter("password"));
+            logRequest.createLog("logged-in",
+                    (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "login");
+            login = true;
+            resp.sendRedirect("/index.jsp");
         } catch (ServletException e) {
-            req.setAttribute("errorMessage", e.getMessage());
+            errorMessage = e.getMessage();
+            req.setAttribute("errorMessage", errorMessage);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.jsp");
             requestDispatcher.forward(req, resp);
             logger.error(e.getMessage(), e);
             logRequest.createLog("login-error",
                     null, "login");
+            login = false;
             return;
         }
 
-        if (req.getHeader("Referer").contains("login.jsp")) {
-            resp.sendRedirect("/index.jsp");
-            logRequest.createLog("logged-in",
-                    (usersRepositoryDao.findUserByLogin(req.getParameter("login")).getId()), "login");
-            return;
-        }
+//        if (req.getHeader("Referer").contains("login.jsp")) {
+//            resp.sendRedirect("/index.jsp");
+//
+//            return;
+//        }
         resp.sendRedirect(req.getHeader("Referer"));
     }
 }
