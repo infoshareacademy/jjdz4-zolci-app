@@ -53,7 +53,6 @@
                 <div class="form-group">
                     <div class="ui-widget">
 
-                        <%--<input type="text" class="form-control" name="search">--%>
                         <select class="select2 form-control " name="search" required>
                             <option value="0" selected disabled hidden>
                                 <fmt:message key="findByName.choosePart"/></option>

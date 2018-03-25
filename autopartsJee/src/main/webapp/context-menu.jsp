@@ -25,8 +25,6 @@
     </c:otherwise>
 </c:choose>
 <c:if test="${errorMessage != null}">
-    <%--<div style="color: red;">${errorMessage}</div>--%>
-    <%--<div style="color: red;"><fmt:message key="menu.errorMessage"/></div>--%>
 </c:if>
 <c:if test="${okMessage != null}">
     <div style="color: green;">${okMessage}</div>
