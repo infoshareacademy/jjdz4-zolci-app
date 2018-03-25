@@ -43,7 +43,6 @@
         <c:if test="${updatemessage == 'Preferencje zaktualizowane'}">
             <span style="color: limegreen;"><fmt:message key="adminPanel.updated"/></span><br/>
         </c:if>
-        <%--<span style="color: limegreen;"><c:out value="${updatemessage}"/></span><br/>--%>
         <fmt:message key="adminPanel.header2"/>
         <form method="post" action="/updatepreferences">
             <div class="form-check">
